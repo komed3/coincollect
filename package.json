@@ -25,7 +25,12 @@
   "engines": {
     "node": ">=18.0.0"
   },
-  "scripts": {},
+  "scripts": {
+    "start": "concurrently \"npm run start:server\" \"npm run start:client\"",
+    "start:server": "cd server && npm run start",
+    "start:client": "cd client && npm run dev",
+    "install:all": "npm install && cd server && npm install && cd ../client && npm install"
+  },
   "devDependencies": {
     "@types/fs-extra": "^11.0.4",
     "concurrently": "^9.2.1"

@@ -26,7 +26,10 @@
   "engines": {
     "node": ">=18.0.0"
   },
-  "scripts": {},
+  "scripts": {
+    "start": "nodemon src/index.ts",
+    "build": "tsc"
+  },
   "dependencies": {
     "cors": "^2.8.6",
     "express": "^5.2.1",
