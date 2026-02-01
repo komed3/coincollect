@@ -65,4 +65,27 @@ export class CoinController {
         }
     }
 
+    public async updateCoin ( req: Request, res: Response ) : Promise< void > {
+        try {
+            const { id } = req.params;
+            const coinUpdate: Coin = req.body;
+
+            if ( typeof id !== 'string' ) {
+                res.status( 400 ).json( { error: 'Invalid ID' } );
+                return;
+            }
+
+            if ( id !== coinUpdate.id ) {
+                res.status( 400 ).json( { error: 'ID mismatch' } );
+                return;
+            }
+
+            coinUpdate.updatedAt = new Date().toISOString();
+            await this.dbService.updateCoin( coinUpdate );
+            res.json( coinUpdate );
+        } catch ( error ) {
+            res.status( 500 ).json( { error: 'Failed to update coin' } );
+        }
+    }
+
 }
