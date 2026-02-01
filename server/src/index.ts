@@ -98,3 +98,46 @@ io.on( 'connection', ( socket ) => {
         console.log( 'Client disconnected:', socket.id );
     } );
 } );
+
+// Start Server with Port Retry
+const startServer = ( port: number ) => {
+    httpServer.removeAllListeners( 'listening' );
+    httpServer.removeAllListeners( 'error' );
+
+    const serverInstance = httpServer.listen( port, '0.0.0.0' );
+
+    serverInstance.once( 'listening', () => {
+        console.log( `[Server] SUCCESS: Running on port ${port}` );
+        console.log( `[Server] Local: http://localhost:${port}` );
+
+        const interfaces = networkInterfaces();
+
+        for ( const devName in interfaces ) {
+            const iface = interfaces[ devName ];
+
+            for (let i = 0; i < ( iface ?? [] ).length; i++ ) {
+                const alias = iface![ i ];
+
+                if ( alias.family === 'IPv4' && alias.address !== '127.0.0.1' && ! alias.internal ) {
+                    console.log( `[Server] Mobile Connection URL: http://${alias.address}:${port}` );
+                }
+            }
+        }
+    } );
+
+    serverInstance.once( 'error', ( error: any ) => {
+        if ( error.code === 'EADDRINUSE' ) {
+            console.error( `[Server] Port ${port} is occupied by another process!` );
+            console.log( `[Server] Please check if you have another terminal open with 'npm start'.` );
+            console.log( `[Server] Retrying in 5s... (Waiting for manual cleanup or port release)` );
+
+            setTimeout( () => {
+                try { serverInstance.close() }
+                catch { /** do nothing */ }
+                startServer( port );
+            }, 5000 );
+        } else {
+            console.error( '[Server] Fatal Error:', error );
+        }
+    } );
+};
