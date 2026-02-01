@@ -84,6 +84,8 @@ export class DatabaseService {
             }
         }
 
+        const total = coins.length;
+        if ( offset !== undefined && limit !== undefined ) coins = coins.slice( offset, offset + limit );
         return { coins, total };
     }
 
