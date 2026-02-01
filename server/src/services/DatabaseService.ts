@@ -1,5 +1,5 @@
-import {} from 'fs-extra';
-import { join } from 'path';
+import { ensureDirSync, existsSync, writeJsonSync } from 'fs-extra';
+import { dirname, join } from 'path';
 
 import { Coin, DatabaseSchema } from '../../../shared/types';
 
@@ -21,7 +21,17 @@ export class DatabaseService {
     private static instance: DatabaseService;
     private data: DatabaseSchema | undefined = undefined;
 
-    private constructor () {}
+    private constructor () {
+        this.ensureDbExists();
+    }
+
+    private ensureDbExists () : void {
+        if ( ! existsSync( DB_PATH ) ) {
+            ensureDirSync( dirname( DB_PATH ) );
+            writeJsonSync( DB_PATH, INITIAL_DB, { spaces: 2 } );
+            console.log( 'Created new database file at', DB_PATH );
+        }
+    }
 
     public static getInstance () : DatabaseService {
         return DatabaseService.instance ||= new DatabaseService();
