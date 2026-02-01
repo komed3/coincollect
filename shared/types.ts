@@ -16,7 +16,7 @@ export interface Coin {
         currency: string;
     };
 
-    grade: any;
+    grade: CoinGrade;
 
     shape: CoinShape;
     material?: CoinMaterial;
@@ -62,6 +62,17 @@ export enum CoinType {
     Medal = 'Medaille',
     Probetracking = 'Probeprägung',
     Other = 'Sonstige'
+}
+
+export enum CoinGrade {
+    G = 'G',
+    VG = 'VG',
+    F = 'F',
+    VF = 'VF',
+    XF = 'XF',
+    UNC = 'UNC',
+    BU = 'BU',
+    FDC = 'FDC'
 }
 
 export enum CoinShape {
