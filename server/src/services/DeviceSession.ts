@@ -9,7 +9,20 @@ export class DeviceService {
     private static instance: DeviceService;
     private sessions: Map< string, DeviceSession > = new Map();
 
-    private constructor () {}
+    private constructor () {
+        setInterval( this.cleanupOldSessions.bind( this ), 1000 * 60 * 15 );
+    }
+
+    private cleanupOldSessions () : void {
+        const now = Date.now();
+
+        for ( const [ id, session ] of this.sessions.entries() ) {
+            if ( now - session.createdAt > DeviceService.SESSION_TIMEOUT ) {
+                this.sessions.delete( id );
+                console.log( `[DeviceService] Cleaned up timestamped-out session ${id}` );
+            }
+        }
+    }
 
     public createSession ( desktopSocketId: string ) : string {
         const sessionId = uuidv4();
