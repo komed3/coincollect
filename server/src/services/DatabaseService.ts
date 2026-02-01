@@ -1,4 +1,4 @@
-import { ensureDirSync, existsSync, readJson, writeJsonSync } from 'fs-extra';
+import { ensureDirSync, existsSync, readJson, writeJson, writeJsonSync } from 'fs-extra';
 import { dirname, join } from 'path';
 
 import { Coin, DatabaseSchema } from '../../../shared/types';
@@ -37,6 +37,16 @@ export class DatabaseService {
         try { return this.data ||= await readJson( DB_PATH ) }
         catch ( error ) {
             console.error( 'Failed to load database:', error );
+            throw error;
+        }
+    }
+
+    public async save ( data: DatabaseSchema ) : Promise< void > {
+        try {
+            await writeJson( DB_PATH, data, { spaces: 2 } );
+            this.data = data;
+        } catch ( error ) {
+            console.error( 'Failed to save database:', error );
             throw error;
         }
     }
