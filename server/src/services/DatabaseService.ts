@@ -55,4 +55,8 @@ export class DatabaseService {
         return DatabaseService.instance ||= new DatabaseService();
     }
 
+    public static getDbPath () : string {
+        return DB_PATH;
+    }
+
 }
