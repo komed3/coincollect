@@ -18,8 +18,8 @@ export interface Coin {
 
     grade: any;
 
-    shape: any;
-    material?: any;
+    shape: CoinShape;
+    material?: CoinMaterial;
     dimensions?: {
         diameter?: number;
         thickness?: number;
@@ -62,4 +62,19 @@ export enum CoinType {
     Medal = 'Medaille',
     Probetracking = 'Probeprägung',
     Other = 'Sonstige'
+}
+
+export enum CoinShape {
+    Round = 'Rund',
+    Oval = 'Oval',
+    Square = 'Quadratisch',
+    Polygonal = 'Mehreckig',
+    Irregular = 'Unregelmäßig',
+    Other = 'Sonstige'
+}
+
+export interface CoinMaterial {
+    name: string;
+    fineness?: number;
+    portionPct?: number;
 }
