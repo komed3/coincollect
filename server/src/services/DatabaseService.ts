@@ -52,10 +52,37 @@ export class DatabaseService {
     }
 
     public async getCoins ( offset?: number, limit?: number, filters?: {
-        search?: string, country?: string, grade?: string, type?: string,
-        currency?: string, minYear?: number, maxYear?: number
+        search?: string, type?: string, country?: string, grade?: string, currency?: string,
+        material?: string, minYear?: number, maxYear?: number
     } ) : Promise< { coins: Coin[], total: number } > {
         const db = await this.load();
+        let coins = db.coins;
+
+        if ( filters ) {
+            if ( filters.search ) {
+                const query = filters.search.toLowerCase();
+                coins = coins.filter( c =>
+                    c.name.toLowerCase().includes( query ) ||
+                    ( c.series && c.series.toLowerCase().includes( query ) ) ||
+                    c.originCountry.toLowerCase().includes( query ) ||
+                    c.tags?.some( t => t.toLowerCase().includes( query ) )
+                );
+            }
+
+            if ( filters.type ) coins = coins.filter( c => c.type === filters.type );
+            if ( filters.country ) coins = coins.filter( c => c.originCountry === filters.country );
+            if ( filters.grade ) coins = coins.filter( c => c.grade === filters.grade );
+            if ( filters.currency ) coins = coins.filter( c => c.faceValue?.currency === filters.currency );
+            if ( filters.minYear !== undefined ) coins = coins.filter( c => ( c.mintYear || 0 ) >= filters.minYear! );
+            if ( filters.maxYear !== undefined ) coins = coins.filter( c => ( c.mintYear || 0 ) <= filters.maxYear! );
+
+            if ( filters.material ) {
+                const material = filters.material.toLowerCase();
+                coins = coins.filter( c =>
+                    c.material?.some( m => m.name.toLowerCase() === material )
+                );
+            }
+        }
 
         return { coins, total };
     }
