@@ -3,6 +3,7 @@ import { v4 as uuidv4 } from 'uuid';
 import type { Coin } from '../../../shared/types';
 import { DatabaseService } from '../services/DatabaseService';
 
+
 export class CoinController {
 
     private dbService: DatabaseService;
