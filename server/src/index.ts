@@ -141,3 +141,24 @@ const startServer = ( port: number ) => {
         }
     } );
 };
+
+// Start with delay to let OS clean up
+setTimeout( () => startServer( Number( PORT ) ), 1000 );
+
+// Graceful Shutdown
+const shutdown = () => {
+    console.log( '[Server] Shutting down gracefully ...' );
+    httpServer.close( () => {
+        console.log( '[Server] Closed out remaining connections.' );
+        process.exit( 0 );
+    } );
+
+    // Force shutdown after 5s
+    setTimeout( () => {
+        console.error( '[Server] Could not close connections in time, forcefully shutting down' );
+        process.exit( 1 );
+    }, 5000 );
+};
+
+process.on( 'SIGTERM', shutdown );
+process.on( 'SIGINT', shutdown );
