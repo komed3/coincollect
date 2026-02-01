@@ -9,7 +9,7 @@ export class SettingsController {
         this.dbService = DatabaseService.getInstance();
     }
 
-    public async getSettings ( req: Request, res: Response ) : Promise< void > {
+    public async getSettings ( _: Request, res: Response ) : Promise< void > {
         try {
             const settings = await this.dbService.getSettings();
             res.json( settings );
