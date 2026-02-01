@@ -1,7 +1,7 @@
 import { ensureDirSync, existsSync, readJson, writeJson, writeJsonSync } from 'fs-extra';
 import { dirname, join } from 'path';
 
-import { Coin, DatabaseSchema } from '../../../shared/types';
+import { AppSettings, Coin, DatabaseSchema } from '../../../shared/types';
 
 const DB_PATH = join( __dirname, '../../data/db.json' );
 const INITIAL_DB: DatabaseSchema = {
@@ -60,6 +60,7 @@ export class DatabaseService {
     public async updateCoin( updatedCoin: Coin ) : Promise< void > {
         const db = await this.load();
         const index = db.coins.findIndex( c => c.id === updatedCoin.id );
+
         if ( index !== -1 ) {
             db.coins[ index ] = updatedCoin;
             await this.save( db );
@@ -72,9 +73,28 @@ export class DatabaseService {
         const db = await this.load();
         const initialLength = db.coins.length;
         db.coins = db.coins.filter( c => c.id !== id );
+
         if ( db.coins.length !== initialLength ) {
             await this.save( db );
         }
+    }
+
+    public async deleteAllCoins () : Promise< void > {
+        const db = await this.load();
+        db.coins = [];
+        await this.save( db );
+    }
+
+    public async getSettings () : Promise< AppSettings > {
+        const db = await this.load();
+        return db.settings;
+    }
+
+    public async updateSettings ( settings: Partial< AppSettings > ) : Promise< AppSettings > {
+        const db = await this.load();
+        db.settings = { ...db.settings, ...settings };
+        await this.save( db );
+        return db.settings;
     }
 
     public static getInstance () : DatabaseService {
