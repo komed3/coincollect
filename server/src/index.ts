@@ -7,8 +7,10 @@ import { Server } from 'socket.io';
 import coinRoutes from './routes/coinRoutes';
 import settingsRoutes from './routes/settingsRoutes';
 import { DeviceService } from './services/DeviceSession';
+import { SessionRole } from '../../shared/types';
 
 
+// Setup server
 const app = express();
 const httpServer = createServer( app );
 
@@ -58,4 +60,41 @@ app.get( '/api/ip', ( _: Request, res: Response ) => {
     }
 
     res.json( { ip } );
+} );
+
+// Socket.io Connection
+io.on( 'connection', ( socket ) => {
+    console.log( 'New client connected:', socket.id );
+
+    socket.on( 'create-session', () => {
+        const sessionId = deviceService.createSession( socket.id );
+        socket.emit( 'session-created', { sessionId } );
+    } );
+
+    socket.on( 'join-session', ( { sessionId, role }: { sessionId: string, role?: SessionRole } ) => {
+        const success = deviceService.joinSession( sessionId, socket.id, role );
+
+        if ( success ) {
+            socket.emit( 'joined-session', { success: true } );
+
+            const xId = deviceService.getCounterpartSocketId( socket.id );
+            if ( xId ) io.to( xId ).emit( 'device-connected', { counterpartSocketId: socket.id } );
+        } else {
+            socket.emit( 'joined-session', { success: false, error: 'Session invalid' } );
+        }
+    } );
+
+    socket.on( 'relay-message', ( data: { type: string, payload: any } ) => {
+        const tsId = deviceService.getCounterpartSocketId( socket.id );
+        console.log( `[Relay] Type: ${data.type} from ${socket.id} to ${ tsId || 'NONE' }` );
+        if ( tsId ) io.to( tsId ).emit( 'relay-message', data );
+    } );
+
+    socket.on( 'disconnect', () => {
+        const xId = deviceService.getCounterpartSocketId( socket.id );
+        if ( xId ) io.to( xId ).emit( 'device-disconnected' );
+
+        deviceService.removeSocket( socket.id );
+        console.log( 'Client disconnected:', socket.id );
+    } );
 } );
