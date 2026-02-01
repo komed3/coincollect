@@ -55,13 +55,13 @@ export interface Coin {
 }
 
 export enum CoinType {
-    Circulation = 'Umlaufmünze',
-    CommemorativeCirculation = 'Sonderumlaufmünze',
-    Commemorative = 'Gedenkmünze',
-    Bullion = 'Anlagemünze',
-    Medal = 'Medaille',
-    Probetracking = 'Probeprägung',
-    Other = 'Sonstige'
+    Circulation = 'circulation',
+    CommemorativeCirculation = 'commemorative_circulation',
+    Commemorative = 'commemorative',
+    Bullion = 'bullion',
+    Medal = 'medal',
+    Probetracking = 'probe',
+    Other = 'other'
 }
 
 export enum CoinGrade {
@@ -76,12 +76,12 @@ export enum CoinGrade {
 }
 
 export enum CoinShape {
-    Round = 'Rund',
-    Oval = 'Oval',
-    Square = 'Quadratisch',
-    Polygonal = 'Mehreckig',
-    Irregular = 'Unregelmäßig',
-    Other = 'Sonstige'
+    Round = 'round',
+    Oval = 'oval',
+    Square = 'square',
+    Polygonal = 'polygonal',
+    Irregular = 'irregular',
+    Other = 'other'
 }
 
 export interface CoinMaterial {
