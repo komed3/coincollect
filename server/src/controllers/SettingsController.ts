@@ -3,7 +3,7 @@ import { DatabaseService } from '../services/DatabaseService';
 
 export class SettingsController {
 
-    private dbService: DatabaseService;
+    private readonly dbService: DatabaseService;
 
     constructor () {
         this.dbService = DatabaseService.getInstance();

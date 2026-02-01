@@ -1,5 +1,5 @@
-import { ensureDirSync, existsSync, readJson, writeJson, writeJsonSync } from 'fs-extra';
 import { dirname, join } from 'node:path';
+import { ensureDirSync, existsSync, readJson, writeJson, writeJsonSync } from 'fs-extra';
 import type { AppSettings, Coin, DatabaseSchema } from '../../../shared/types';
 
 
