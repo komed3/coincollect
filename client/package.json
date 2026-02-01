@@ -1,6 +1,6 @@
 {
-  "name": "@komed3/coincollect",
-  "description": "Web app for managing coin collections",
+  "name": "@komed3/coincollect-client",
+  "description": "CoinCollect client application, built with React",
   "private": true,
   "license": "MIT",
   "version": "0.1.0-alpha",
@@ -17,7 +17,8 @@
   ],
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/komed3/coincollect.git"
+    "url": "git+https://github.com/komed3/coincollect.git",
+    "directory": "client"
   },
   "bugs": {
     "url": "https://github.com/komed3/coincollect/issues"
@@ -25,8 +26,5 @@
   "engines": {
     "node": ">=18.0.0"
   },
-  "scripts": {},
-  "devDependencies": {
-    "concurrently": "^9.2.1"
-  }
+  "scripts": {}
 }
