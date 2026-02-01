@@ -51,6 +51,32 @@ export class DatabaseService {
         }
     }
 
+    public async addCoin ( coin: Coin ) : Promise< void > {
+        const db = await this.load();
+        db.coins.push( coin );
+        await this.save( db );
+    }
+
+    public async updateCoin( updatedCoin: Coin ) : Promise< void > {
+        const db = await this.load();
+        const index = db.coins.findIndex( c => c.id === updatedCoin.id );
+        if ( index !== -1 ) {
+            db.coins[ index ] = updatedCoin;
+            await this.save( db );
+        } else {
+            throw new Error( `Coin with id ${updatedCoin.id} not found` );
+        }
+    }
+
+    public async deleteCoin ( id: string ) : Promise< void > {
+        const db = await this.load();
+        const initialLength = db.coins.length;
+        db.coins = db.coins.filter( c => c.id !== id );
+        if ( db.coins.length !== initialLength ) {
+            await this.save( db );
+        }
+    }
+
     public static getInstance () : DatabaseService {
         return DatabaseService.instance ||= new DatabaseService();
     }
