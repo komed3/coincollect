@@ -15,3 +15,16 @@ const INITIAL_DB: DatabaseSchema = {
     },
     coins: []
 };
+
+export class DatabaseService {
+
+    private static instance: DatabaseService;
+    private data: DatabaseSchema | undefined = undefined;
+
+    private constructor () {}
+
+    public static getInstance () : DatabaseService {
+        return DatabaseService.instance ||= new DatabaseService();
+    }
+
+}
