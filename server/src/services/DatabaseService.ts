@@ -89,6 +89,11 @@ export class DatabaseService {
         return { coins, total };
     }
 
+    public async getCoinById ( id: string ) : Promise< Coin | undefined > {
+        const db = await this.load();
+        return db.coins.find( c => c.id === id );
+    }
+
     public async addCoin ( coin: Coin ) : Promise< void > {
         const db = await this.load();
         db.coins.push( coin );
