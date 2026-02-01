@@ -88,4 +88,29 @@ export class CoinController {
         }
     }
 
+    public async deleteCoin ( req: Request, res: Response ) : Promise< void > {
+        try {
+            const { id } = req.params;
+
+            if ( typeof id !== 'string' ) {
+                res.status( 400 ).json( { error: 'Invalid ID' } );
+                return;
+            }
+
+            await this.dbService.deleteCoin( id );
+            res.status( 204 ).send();
+        } catch ( error ) {
+            res.status( 500 ).json( { error: 'Failed to delete coin' } );
+        }
+    }
+
+    public async deleteAllCoins ( req: Request, res: Response ) : Promise< void > {
+        try {
+            await this.dbService.deleteAllCoins();
+            res.status( 204 ).send();
+        } catch (error) {
+            res.status( 500 ).json( { error: 'Failed to delete all coins' } );
+        }
+    }
+
 }
