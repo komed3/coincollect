@@ -1,4 +1,6 @@
 import type { Request, Response } from 'express';
+import { v4 as uuidv4 } from 'uuid';
+import type { Coin } from '../../../shared/types';
 import { DatabaseService } from '../services/DatabaseService';
 
 export class CoinController {
@@ -39,6 +41,27 @@ export class CoinController {
             else res.status( 404 ).json( { error: 'Coin not found' } );
         } catch ( error ) {
             res.status( 500 ).json( { error: 'Failed to fetch coin' } );
+        }
+    }
+
+    public async createCoin ( req: Request, res: Response ) : Promise< void > {
+        try {
+            const newCoin: Coin = req.body;
+
+            if ( ! newCoin.name || ! newCoin.type ) {
+                res.status( 400 ).json( { error: 'Missing required fields' } );
+                return;
+            }
+
+            newCoin.id ||= uuidv4();
+            const now = new Date().toISOString();
+            newCoin.createdAt ||= now;
+            newCoin.updatedAt ||= now;
+
+            await this.dbService.addCoin( newCoin );
+            res.status( 201 ).json( newCoin );
+        } catch ( error ) {
+            res.status( 500 ).json( { error: 'Failed to create coin' } );
         }
     }
 
