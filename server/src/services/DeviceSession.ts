@@ -48,6 +48,18 @@ export class DeviceService {
         }
     }
 
+    public removeSocket ( socketId: string ) : void {
+        for ( const [ id, session ] of this.sessions.entries() ) {
+            if ( session.desktopSocketId === socketId ) {
+                session.desktopSocketId = undefined;
+                console.log( `[DeviceService] Desktop disconnected from session ${id}` );
+            } else if ( session.mobileSocketId === socketId ) {
+                session.mobileSocketId = undefined;
+                console.log( `[DeviceService] Mobile disconnected from session ${id}` );
+            }
+        }
+    }
+
     public static getInstance () : DeviceService {
         return DeviceService.instance ||= new DeviceService();
     }
