@@ -20,9 +20,9 @@ const io = new Server( httpServer, {
         methods: [ 'GET', 'POST', 'PUT', 'DELETE' ]
     },
     maxHttpBufferSize: 5e7,
-    pingTimeout: 600000,
-    pingInterval: 25000,
-    connectTimeout: 600000
+    pingTimeout: 60 * 10 * 1000,
+    pingInterval: 25 * 1000,
+    connectTimeout: 60 * 10 * 1000
 } );
 
 const deviceService = DeviceService.getInstance();
