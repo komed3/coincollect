@@ -41,6 +41,13 @@ export class DeviceService {
         return true;
     }
 
+    public getCounterpartSocketId ( socketId: string ) : string | undefined {
+        for ( const session of this.sessions.values() ) {
+            if ( session.desktopSocketId === socketId ) return session.mobileSocketId;
+            if ( session.mobileSocketId === socketId ) return session.desktopSocketId;
+        }
+    }
+
     public static getInstance () : DeviceService {
         return DeviceService.instance ||= new DeviceService();
     }
