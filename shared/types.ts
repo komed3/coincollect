@@ -1,3 +1,17 @@
+export interface AppSettings {
+    currency: string;
+    language: string;
+}
+
+export interface DatabaseSchema {
+    meta: {
+        version: string;
+        lastExport: string;
+    };
+    settings: AppSettings;
+    coins: Coin[];
+}
+
 export interface Coin {
     id: string;
     name: string;
