@@ -110,3 +110,5 @@ export interface DeviceSession {
     mobileSocketId: string | undefined;
     createdAt: number;
 }
+
+export type SessionRole = 'desktop' | 'mobile';
