@@ -29,7 +29,8 @@
     "start": "concurrently \"npm run start:server\" \"npm run start:client\"",
     "start:server": "cd server && npm run start",
     "start:client": "cd client && npm run dev",
-    "install:all": "npm install && cd server && npm install && cd ../client && npm install"
+    "install:all": "npm install && cd server && npm install && cd ../client && npm install",
+    "build:all": "cd server && tsc && cd ../client && tsc -b && vite build"
   },
   "devDependencies": {
     "@types/fs-extra": "^11.0.4",
