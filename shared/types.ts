@@ -104,6 +104,8 @@ export interface CoinMaterial {
     portionPct?: number;
 }
 
+export type DeviceSessionCallback = ( data: any ) => void;
+
 export interface DeviceSession {
     id: string;
     desktopSocketId: string | undefined;
