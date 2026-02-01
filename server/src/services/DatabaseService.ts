@@ -1,7 +1,7 @@
 import { ensureDirSync, existsSync, readJson, writeJson, writeJsonSync } from 'fs-extra';
-import { dirname, join } from 'path';
+import { dirname, join } from 'node:path';
 
-import { AppSettings, Coin, DatabaseSchema } from '../../../shared/types';
+import type { AppSettings, Coin, DatabaseSchema } from '../../../shared/types';
 
 const DB_PATH = join( __dirname, '../../data/db.json' );
 const INITIAL_DB: DatabaseSchema = {

@@ -103,3 +103,10 @@ export interface CoinMaterial {
     fineness?: number;
     portionPct?: number;
 }
+
+export interface DeviceSession {
+    id: string;
+    desktopSocketId: string | undefined;
+    mobileSocketId: string | undefined;
+    createdAt: number;
+}
