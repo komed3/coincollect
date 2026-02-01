@@ -33,7 +33,7 @@ export interface Coin {
     grade: CoinGrade;
 
     shape: CoinShape;
-    material?: CoinMaterial;
+    material?: CoinMaterial[];
     dimensions?: {
         diameter?: number;
         thickness?: number;
