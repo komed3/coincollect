@@ -51,6 +51,15 @@ export class DatabaseService {
         }
     }
 
+    public async getCoins ( offset?: number, limit?: number, filters?: {
+        search?: string, country?: string, grade?: string, type?: string,
+        currency?: string, minYear?: number, maxYear?: number
+    } ) : Promise< { coins: Coin[], total: number } > {
+        const db = await this.load();
+
+        return { coins, total };
+    }
+
     public async addCoin ( coin: Coin ) : Promise< void > {
         const db = await this.load();
         db.coins.push( coin );
