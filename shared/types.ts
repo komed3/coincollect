@@ -2,7 +2,7 @@ export interface Coin {
     id: string;
     name: string;
 
-    type: any;
+    type: CoinType;
     originCountry: string;
     series?: string;
     tags?: string[];
@@ -52,4 +52,14 @@ export interface Coin {
 
     createdAt: string;
     updatedAt: string; 
+}
+
+export enum CoinType {
+    Circulation = 'Umlaufmünze',
+    CommemorativeCirculation = 'Sonderumlaufmünze',
+    Commemorative = 'Gedenkmünze',
+    Bullion = 'Anlagemünze',
+    Medal = 'Medaille',
+    Probetracking = 'Probeprägung',
+    Other = 'Sonstige'
 }
