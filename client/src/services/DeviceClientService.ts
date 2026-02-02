@@ -1,5 +1,5 @@
 import { io, Socket } from 'socket.io-client';
-import type { DeviceSessionCallback } from '../../../shared/types';
+import type { DeviceSessionCallback, SessionRole } from '../../../shared/types';
 
 const SOCKET_URL = `http://${window.location.hostname}:3001`;
 
@@ -44,6 +44,28 @@ class DeviceClientService {
             this.socket.disconnect();
             this.socket = null;
         }
+    }
+
+    // Session management
+
+    public createSession ( onCreated: ( sessionId: string ) => void ) : void {
+        if ( ! this.socket ) this.connect();
+
+        this.socket?.emit( 'create-session' );
+        this.socket?.once( 'session-created', ( { sessionId } ) => {
+            localStorage.setItem( 'active_session_id', sessionId );
+            onCreated( sessionId );
+        } );
+    }
+
+    public joinSession ( sessionId: string, onResult: ( success: boolean ) => void, role: SessionRole = 'mobile' ) : void {
+        if ( ! this.socket ) this.connect();
+
+        this.socket?.emit( 'join-session', { sessionId, role } );
+        this.socket?.once( 'joined-session', ( { success } ) => {
+            if ( success && role === 'desktop' ) localStorage.setItem( 'active_session_id', sessionId );
+            onResult( success );
+        } );
     }
 
 }
