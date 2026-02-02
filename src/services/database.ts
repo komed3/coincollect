@@ -82,6 +82,14 @@ export class DatabaseService {
         if ( input.tags ) out.tags = input.tags.filter( Boolean ).map( String );
         if ( input.amount ) out.amount = Number( input.amount );
 
+        if ( input.mint ) {
+            out.mint = {};
+            if ( input.mint.year ) out.mint.year = Number( input.mint.year );
+            if ( input.mint.mark ) out.mint.mark = String( input.mint.mark ).trim();
+            if ( input.mint.issueDate ) out.mint.issueDate = new Date( input.mint.issueDate ).toISOString();
+            if ( input.mint.mintage ) out.mint.mintage = Number( input.mint.mintage );
+        }
+
         return out;
     }
 
