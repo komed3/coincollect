@@ -3,6 +3,10 @@ import { Low } from 'lowdb';
 import { JSONFile } from 'lowdb/node';
 import { Coin, CoinStats, CoinStatsItem, Database } from '../types';
 
+type PartialCoinInput = Partial< Omit< Coin, 'id' | 'createdAt' | 'updatedAt' | 'omv' > > & {
+    omv?: { value: number; date: string };
+};
+
 export class DatabaseService {
 
     private static instance: DatabaseService;
