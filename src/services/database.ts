@@ -1,7 +1,10 @@
-import { join } from 'node:path';
+import { dirname, join } from 'node:path';
+import { fileURLToPath } from 'node:url';
 import { Low } from 'lowdb';
 import { JSONFile } from 'lowdb/node';
 import { Coin, CoinStats, CoinStatsItem, Database } from '../types';
+
+const __dirname = dirname ( fileURLToPath( import.meta.url ) );
 
 type PartialCoinInput = Partial< Omit< Coin, 'id' | 'createdAt' | 'updatedAt' | 'omv' > > & {
     omv?: { value: number; date: string };
