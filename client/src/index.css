@@ -14,10 +14,6 @@ body {
     @apply bg-white text-slate-900 font-sans;
 }
 
-* {
-  border-radius: 0 !important;
-}
-
 button, a, select,
 input[type='submit'],
 input[type='button'],

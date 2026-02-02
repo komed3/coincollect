@@ -61,14 +61,14 @@ const Layout = ( { children }: { children: React.ReactNode } ) => {
                     </div>
                     <div className="flex gap-8 items-center bg-white px-8 py-4 border border-slate-100 rounded-full shadow-sm">
                         <div className="flex items-center gap-3">
-                            <div className={ `w-1.5 h-1.5 rounded-full ${ socketConnected ? 'bg-emerald-500 shadow-[0_0_8px_rgba(16,185,129,0.5)]' : 'bg-slate-300' }` } />
+                            <div className={ `w-2.5 h-2.5 rounded-full ${ socketConnected ? 'bg-emerald-500 shadow-[0_0_8px_rgba(16,185,129,0.5)]' : 'bg-slate-300' }` } />
                                 <span className="text-[9px] uppercase tracking-widest font-bold text-slate-400 flex items-center gap-2">
                                     <Activity size={12} /> { t( 'server' ) }: { socketConnected ? t( 'online' ) : t( 'offline' ) }
                                 </span>
                             </div>
                             <div className="w-px h-4 bg-slate-100" />
                             <div className="flex items-center gap-3">
-                            <div className={ `w-1.5 h-1.5 rounded-full ${ phoneConnected ? 'bg-amber-500 shadow-[0_0_8px_rgba(245,158,11,0.5)]' : 'bg-slate-300' }` } />
+                            <div className={ `w-2.5 h-2.5 rounded-full ${ phoneConnected ? 'bg-amber-500 shadow-[0_0_8px_rgba(245,158,11,0.5)]' : 'bg-slate-300' }` } />
                             <span className="text-[9px] uppercase tracking-widest font-bold text-slate-400 flex items-center gap-2">
                                 <Smartphone size={12} /> { t( 'smartphone' ) }: { phoneConnected ? t( 'connected_status' ) : t( 'disconnected_status' ) }
                             </span>
