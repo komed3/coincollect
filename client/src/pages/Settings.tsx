@@ -1,3 +1,4 @@
+import randomstring from 'randomstring';
 import { useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { useSettings } from '../context/SettingsContext';
@@ -26,6 +27,28 @@ export default function Settings() {
             URL.revokeObjectURL( url );
         } catch ( error ) {
             alert( t( 'export_fail' ) );
+        }
+    };
+
+    const handleWipe = async () => {
+        if ( ! window.confirm( t( 'wipe_confirm' ) ) ) return;
+
+        const token = randomstring.generate( 7 );
+        const confirm = window.prompt( t( 'wipe_prompt', { token } ) );
+        if ( confirm !== token ) {
+            alert( t( 'wipe_cancel' ) );
+            return;
+        }
+
+        setIsWiping( true );
+        try {
+            await APIService.delete( '/coins' );
+            alert( t( 'wipe_success' ) );
+            window.location.reload();
+        } catch ( error ) {
+            alert( t( 'wipe_fail' ) );
+        } finally {
+            setIsWiping( false );
         }
     };
 }
