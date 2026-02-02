@@ -31,9 +31,6 @@ class DeviceClientService {
                 console.log( 'Reconnected after', attNr, 'attempts' );
                 this.tryRestoreSession();
             } );
-
-            // Global listeners setup
-            this.setupGlobalListeners();
         }
 
         return this.socket;
@@ -80,6 +77,22 @@ class DeviceClientService {
                 }
             }, 'desktop' );
         }
+    }
+
+    // Events
+
+    public on ( event: string, callback: DeviceSessionCallback ) : void {
+        if ( ! this.socket ) this.connect();
+        this.socket?.on( event, callback );
+    }
+
+    public off ( event: string, callback: DeviceSessionCallback ) : void {
+        this.socket?.off( event, callback );
+    }
+
+    public emitRelay ( type: string, payload: any ) : void {
+        if ( ! this.socket ) this.connect();
+        this.socket?.emit( 'relay-message', { type, payload } );
     }
 
 }
