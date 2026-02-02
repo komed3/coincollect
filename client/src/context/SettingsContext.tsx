@@ -26,4 +26,16 @@ export const SettingsProvider: React.FC< { children: React.ReactNode } > = ( { c
 
         fetchSettings();
     }, [ i18n ] );
+
+    const updateSettings = async ( newSettings: Partial< AppSettings > ) => {
+        try {
+            const response = await apiClient.patch< AppSettings >( '/settings', newSettings );
+            setSettings( response.data );
+
+            if ( newSettings.language ) i18n.changeLanguage( newSettings.language );
+        } catch ( error ) {
+            console.error( 'Failed to update settings:', error );
+            throw error;
+        }
+    };
 };
