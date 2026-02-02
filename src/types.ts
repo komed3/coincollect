@@ -14,6 +14,7 @@ export interface Coin {
     mint?: {
         year?: number;
         mark?: string;
+        issueDate?: string;
         mintage?: number;
     };
 
@@ -44,8 +45,8 @@ export interface Coin {
     };
     omv: {
         value: number;
-        lastUpdated: string;
-    };
+        date: string;
+    }[];
 
     createdAt: string;
     updatedAt: string;
