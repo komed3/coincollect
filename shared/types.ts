@@ -3,6 +3,12 @@ export interface AppSettings {
     language: string;
 }
 
+export interface SettingsContextType {
+    settings: AppSettings;
+    loading: boolean;
+    updateSettings: ( newSettings: Partial< AppSettings > ) => Promise< void >;
+}
+
 export interface DatabaseSchema {
     meta: {
         version: string;
