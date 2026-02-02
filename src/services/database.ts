@@ -2,7 +2,7 @@ import { dirname, join } from 'node:path';
 import { fileURLToPath } from 'node:url';
 import { Low } from 'lowdb';
 import { JSONFile } from 'lowdb/node';
-import { Coin, CoinGrade, CoinStats, CoinStatsItem, CoinStatus, CoinType, Database } from '../types';
+import { Coin, CoinGrade, CoinShape, CoinStats, CoinStatsItem, CoinStatus, CoinType, Database } from '../types';
 
 const __dirname = dirname ( fileURLToPath( import.meta.url ) );
 
@@ -99,6 +99,22 @@ export class DatabaseService {
             };
 
             if ( input.nominalValue.currency ) out.nominalValue.currency = String( out.nominalValue.currency ).trim();
+        }
+
+        if ( input.design ) {
+            out.mint = {};
+            if ( input.design.shape ) out.design.shape = input.design.shape as CoinShape;
+            if ( input.design.obverse ) out.design.obverse = String( input.design.obverse ).trim();
+            if ( input.design.reverse ) out.design.reverse = String( input.design.reverse ).trim();
+            if ( input.design.edge ) out.design.edge = String( input.design.edge ).trim();
+        }
+
+        if ( input.dimensions ) {
+            out.dimensions = {};
+
+            if ( input.dimensions.diameter ) out.dimensions.diameter = Number( input.dimensions.diameter );
+            if ( input.dimensions.thickness ) out.dimensions.thickness = Number( input.dimensions.thickness );
+            if ( input.dimensions.weight ) out.dimensions.weight = Number( input.dimensions.weight );
         }
 
         return out;
