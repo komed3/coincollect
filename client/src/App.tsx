@@ -81,7 +81,18 @@ const Layout = ( { children }: { children: React.ReactNode } ) => {
 };
 
 function App () {
-    return ( <></> )
+    return (
+        <Router>
+            <Routes>
+                <Route path="*" element={
+                    <Layout>
+                        <Routes>
+                        </Routes>
+                    </Layout>
+                } />
+            </Routes>
+        </Router>
+    )
 }
 
 export default App;
