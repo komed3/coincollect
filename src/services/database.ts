@@ -191,6 +191,17 @@ export class DatabaseService {
         return coin;
     }
 
+    public async updateCoin ( id: string, updates: PartialCoinInput ) : Promise< Coin | undefined > {
+        const coin = await this.getCoinById( id );
+        if ( ! coin ) return;
+
+        const validated = this.sanitizeAndValidateInput( updates, false );
+        Object.assign( coin, deepmerge( coin, validated ), { updatedAt: new Date().toISOString() } );
+        this.computeStats();
+        this.scheduleWrite();
+        return coin;
+    }
+
     public async deleteCoin ( id: string ) : Promise< boolean > {
         if ( ! this.db ) await this.initDb();
 
