@@ -25,6 +25,7 @@ export interface Coin {
     };
 
     description?: string;
+    note?: string;
     design?: {
         shape?: CoinShape;
         obverse?: string;
