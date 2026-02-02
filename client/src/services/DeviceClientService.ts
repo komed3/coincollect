@@ -68,6 +68,20 @@ class DeviceClientService {
         } );
     }
 
+    public tryRestoreSession () {
+        const savedId = localStorage.getItem( 'active_session_id' );
+        if ( savedId ) {
+            this.joinSession( savedId, ( success ) => {
+                if ( success ) {
+                    console.log( 'Session restored:', savedId );
+                } else {
+                    console.log( 'Session expired, clearing storage' );
+                    localStorage.removeItem( 'active_session_id' );
+                }
+            }, 'desktop' );
+        }
+    }
+
 }
 
 export const deviceClient = new DeviceClientService();
