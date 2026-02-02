@@ -8,6 +8,7 @@ export interface Coin {
     tags?: string[];
 
     grade: CoinGrade;
+    status: CoinStatus;
     amount?: number;
 
     mint?: {
@@ -18,6 +19,7 @@ export interface Coin {
 
     nominalValue?: {
         value: number;
+        unit: string;
         currency?: string;
     };
 
@@ -29,13 +31,21 @@ export interface Coin {
         edge?: string;
     };
 
+    material?: CoinMaterial[];
     dimensions?: {
         diameter?: number;
         thickness?: number;
         weight?: number;
     };
 
-    material?: CoinMaterial[];
+    purchase?: {
+        value: number;
+        date?: string;
+    };
+    omv: {
+        value: number;
+        lastUpdated: string;
+    };
 
     createdAt: string;
     updatedAt: string;
@@ -60,6 +70,16 @@ export enum CoinGrade {
     UNC = 'UNC',
     BU = 'BU',
     FDC = 'FDC'
+}
+
+export enum CoinStatus {
+    Owned = 'owned',
+    Duplicate = 'duplicate',
+    Missing = 'missing',
+    Wanted = 'wanted',
+    Ordered = 'ordered',
+    ForSale = 'forSale',
+    Sold = 'sold'
 }
 
 export enum CoinShape {
