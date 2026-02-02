@@ -81,8 +81,8 @@ export default function Settings() {
                         </FormField>
                         <FormField label={ t( 'language' ) }>
                             <Select value={settings.language} onChange={ e => updateSettings( { language: e.target.value } ) }>
-                                <option value="de">{ t( 'DE' ) }</option>
-                                <option value="en">{ t( 'EN' ) }</option>
+                                <option value="de">{ t( 'de' ) }</option>
+                                <option value="en">{ t( 'en' ) }</option>
                             </Select>
                         </FormField>
                     </div>
