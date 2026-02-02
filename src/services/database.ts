@@ -1,7 +1,7 @@
 import { join } from 'node:path';
 import { Low } from 'lowdb';
 import { JSONFile } from 'lowdb/node';
-import { Coin, Database } from '../types';
+import { Coin, CoinStats, CoinStatsItem, Database } from '../types';
 
 export class DatabaseService {
 
@@ -32,6 +32,7 @@ export class DatabaseService {
                 totalPurchase: 0,
                 totalOmv: 0,
                 type: {},
+                grade: {},
                 country: {},
                 currency: {},
                 year: {}
@@ -86,13 +87,47 @@ export class DatabaseService {
 
     public async deleteCoin ( id: string ) : Promise< boolean > {
         if ( ! this.db ) await this.initDb();
+
         const idx = this.db!.data.coins.findIndex( c => c.id === id );
         if ( idx === -1 ) return false;
 
         this.db!.data.coins.splice( idx, 1 );
+        await this.computeStats();
         this.scheduleWrite();
 
         return true;
+    }
+
+    public async computeStats () : Promise< CoinStats > {
+        if ( ! this.db ) await this.initDb();
+        const coins = this.db!.data.coins;
+        const stats: CoinStats = this.defaultData().stats;
+
+        for ( const c of coins ) {
+            const amount = c.amount || 1;
+            let purchase: number, omv: number;
+            stats.totalCoins += amount;
+
+            if ( c.purchase?.value ) stats.totalPurchase += ( purchase = c.purchase.value * amount );
+            if ( c.omv?.length ) stats.totalOmv += ( omv = c.omv.reduce( ( p, n ) => p.date > n.date ? p : n ).value * amount );
+
+            const updateStats = ( obj: keyof CoinStats, key: string ) => {
+                ( stats as any )[ obj ][ key ] ??= { coins: 0, purchase: 0, omv: 0 } as CoinStatsItem;
+
+                ( stats as any )[ obj ][ key ].coins += amount;
+                ( stats as any )[ obj ][ key ].purchase += purchase;
+                ( stats as any )[ obj ][ key ].omv += omv;
+            };
+
+            c.type && updateStats( 'type', c.type );
+            c.grade && updateStats( 'grade', c.grade );
+            c.country && updateStats( 'country', c.country );
+            c.nominalValue?.currency && updateStats( 'currency', c.nominalValue.currency );
+            c.purchase?.date && updateStats( 'year', new Date( c.purchase.date ).getFullYear().toString() );
+        }
+
+        this.db!.data.stats = stats;
+        return stats;
     }
 
     public static getInstance () : DatabaseService {

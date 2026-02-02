@@ -12,7 +12,8 @@ export interface CoinStats {
     totalCoins: number;
     totalPurchase: number;
     totalOmv: number;
-    type: { [ K in CoinType ]?: CoinStatsItem };
+    type: { [ T in CoinType ]?: CoinStatsItem };
+    grade: { [ G in CoinGrade ]?: CoinStatsItem };
     country: Record< string, CoinStatsItem >;
     currency: Record< string, CoinStatsItem >;
     year: Record< string, CoinStatsItem >;
