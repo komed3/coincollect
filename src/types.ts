@@ -49,6 +49,12 @@ export interface Coin {
         date: string;
     }[];
 
+    images?: {
+        obverse?: string;
+        reverse?: string;
+        other?: string[];
+    };
+
     createdAt: string;
     updatedAt: string;
 }
