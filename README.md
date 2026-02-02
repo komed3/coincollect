@@ -1,2 +1,3 @@
-# coincollect
-Manage your coin collection
+# CoinCollect
+
+Manage your coin collection.
