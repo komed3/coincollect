@@ -65,33 +65,22 @@ export class DatabaseService {
     } {
         const out: any = {};
 
-        // name required on create
-        if ( creating ) {
-            if ( ! input.name || typeof input.name !== 'string' ) throw new Error( 'Name is required' );
-            out.name = input.name.trim();
-        } else if ( input.name ) out.name = String( input.name ).trim();
+        if ( input.name ) out.name = String( input.name ).trim();
+        else if ( creating ) throw new Error( 'Name is required' );
 
-        // type
         if ( input.type ) out.type = input.type as CoinType;
         else if ( creating ) out.type = 'other' as CoinType;
 
-        // grade
         if ( input.grade ) out.grade = input.grade as CoinGrade;
-        else if ( creating ) out.grade = 'UNC' as CoinGrade;
+        else if ( creating ) out.grade = 'unc' as CoinGrade;
 
-        // status
         if ( input.status ) out.status = input.status as CoinStatus;
         else if ( creating ) out.status = 'owned' as CoinStatus;
 
-        // optional string fields
-        for ( const f of [ 'country', 'series', 'description', 'note' ] as const ) {
-            if ( ( input as any )[ f ] != undefined ) out[ f ] = String( ( input as any )[ f ] );
-        }
-
-        // tags
-        if ( input.tags ) out.tags = Array.isArray( input.tags )
-            ? input.tags.map( String )
-            : String( input.tags ).split( ',' );
+        if ( input.country ) out.country = String( input.country ).trim();
+        if ( input.series ) out.series = String( input.series ).trim();
+        if ( input.tags ) out.tags = input.tags.filter( Boolean ).map( String );
+        if ( input.amount ) out.amount = Number( input.amount );
 
         return out;
     }
