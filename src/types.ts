@@ -1,3 +1,29 @@
+export interface Database {
+    _meta: {
+        schemaVersion: 1;
+        createdAt: string;
+        updatedAt: string;
+    };
+    coins: Coin[];
+    stats: CoinStats;
+}
+
+export interface CoinStats {
+    totalCoins: number;
+    totalPurchase: number;
+    totalOmv: number;
+    type: { [ K in CoinType ]?: CoinStatsItem };
+    country: Record< string, CoinStatsItem >;
+    currency: Record< string, CoinStatsItem >;
+    year: Record< string, CoinStatsItem >;
+}
+
+export interface CoinStatsItem {
+    coins: number;
+    purchase: number;
+    omv: number;
+}
+
 export interface Coin {
     id: string;
     name: string;
