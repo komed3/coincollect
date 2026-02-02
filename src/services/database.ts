@@ -59,6 +59,12 @@ export class DatabaseService {
         await this.db.read();
     }
 
+    public async resetDb () : Promise< void > {
+        if ( ! this.db ) await this.initDb();
+        this.db!.data = this.defaultData();
+        await this.flush();
+    }
+
     public static getInstance () : DatabaseService {
         return DatabaseService.instance ||= new DatabaseService();
     }
