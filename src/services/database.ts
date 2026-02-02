@@ -53,16 +53,25 @@ export class DatabaseService {
     }
 
     public async initDb () : Promise< void > {
-        this.adapter = new JSONFile< Database >( this.dbFile );
-        this.db = new Low< Database >( this.adapter, this.defaultData() );
+        try {
+            this.adapter = new JSONFile< Database >( this.dbFile );
+            this.db = new Low< Database >( this.adapter, this.defaultData() );
 
-        await this.db.read();
+            await this.db.read();
+        } catch ( err ) {
+            throw Error( 'DB not initialized', { cause: err } );
+        }
     }
 
     public async resetDb () : Promise< void > {
         if ( ! this.db ) await this.initDb();
         this.db!.data = this.defaultData();
         await this.flush();
+    }
+
+    public async exportCatalog ( asJson = true ) : Promise< string | Database > {
+        if ( ! this.db ) await this.initDb();
+        return asJson ? JSON.stringify( this.db!.data, null, 2 ) : this.db!.data;
     }
 
     public static getInstance () : DatabaseService {
