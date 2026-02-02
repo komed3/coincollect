@@ -3,12 +3,12 @@ import { useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { Link } from 'react-router-dom';
 import { FormField, Select } from '../components/common/FormComponents';
-import { useSettings } from '../context/SettingsContext';
+//import { useSettings } from '../context/SettingsContext';
 import { APIService } from '../services/APIService';
 
 export default function Settings() {
     const { t } = useTranslation();
-    const { settings, updateSettings } = useSettings();
+    //const { settings, updateSettings } = useSettings();
     const [ isWiping, setIsWiping ] = useState( false );
 
     const handleExport = async () => {
@@ -72,7 +72,7 @@ export default function Settings() {
                     </div>
                     <div className="space-y-6">
                         <FormField label={ t( 'currency' ) }>
-                            <Select value={settings.currency} onChange={ e => updateSettings( { currency: e.target.value } ) }>
+                            <Select value={0/*settings.currency*/} onChange={ () => {} /*e => updateSettings( { currency: e.target.value } )*/ }>
                                 <option value="EUR">{ t( 'EUR' ) }</option>
                                 <option value="USD">{ t( 'USD' ) }</option>
                                 <option value="CHF">{ t( 'CHF' ) }</option>
@@ -80,7 +80,7 @@ export default function Settings() {
                             </Select>
                         </FormField>
                         <FormField label={ t( 'language' ) }>
-                            <Select value={settings.language} onChange={ e => updateSettings( { language: e.target.value } ) }>
+                            <Select value={0/*settings.language*/} onChange={ () => {} /*e => updateSettings( { language: e.target.value } )*/ }>
                                 <option value="de">{ t( 'de' ) }</option>
                                 <option value="en">{ t( 'en' ) }</option>
                             </Select>
