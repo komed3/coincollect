@@ -22,3 +22,5 @@ export class DatabaseService {
     }
 
 }
+
+export const DB = DatabaseService.getInstance();
