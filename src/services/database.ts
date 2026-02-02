@@ -6,9 +6,7 @@ import { Coin, CoinGrade, CoinShape, CoinStats, CoinStatsItem, CoinStatus, CoinT
 
 const __dirname = dirname ( fileURLToPath( import.meta.url ) );
 
-type PartialCoinInput = Partial< Omit< Coin, 'id' | 'createdAt' | 'updatedAt' | 'omv' > > & {
-    omv?: { value: number; date: string };
-};
+type PartialCoinInput = Partial< Omit< Coin, 'id' | 'createdAt' | 'updatedAt' > >;
 
 export class DatabaseService {
 
@@ -109,12 +107,35 @@ export class DatabaseService {
             if ( input.design.edge ) out.design.edge = String( input.design.edge ).trim();
         }
 
+        if ( input.material?.length ) out.material = input.material.filter( Boolean ).map( m => ( {
+            name: String( m.name ).trim(),
+            fineness: m.fineness ? Number( m.fineness ) : undefined,
+            portion: Number( m.portion ?? 100 )
+        } ) );
+
         if ( input.dimensions ) {
             out.dimensions = {};
 
             if ( input.dimensions.diameter ) out.dimensions.diameter = Number( input.dimensions.diameter );
             if ( input.dimensions.thickness ) out.dimensions.thickness = Number( input.dimensions.thickness );
             if ( input.dimensions.weight ) out.dimensions.weight = Number( input.dimensions.weight );
+        }
+
+        if ( input.purchase?.value ) {
+            out.purchase = { value: Number( input.purchase.value ) };
+            if ( input.purchase.date ) out.purchase.date = new Date( input.purchase.date ).toISOString();
+        }
+
+        if ( input.omv?.length ) out.omv = input.omv.filter( Boolean ).map( o => ( {
+            value: Number( o.value ), date: new Date( o.date ).toISOString()
+        } ) );
+
+        if ( input.images ) {
+            out.images = {};
+
+            if ( input.images.obverse ) out.images.obverse = String( input.images.obverse ).trim();
+            if ( input.images.reverse ) out.images.reverse = String( input.images.reverse ).trim();
+            if ( input.images.other ) out.images.other = input.images.other.filter( Boolean ).map( String );
         }
 
         return out;
