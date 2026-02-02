@@ -1,5 +1,4 @@
 import { Smartphone, Globe, Shield, Database, Download, Trash2, AlertTriangle } from 'lucide-react';
-import randomstring from 'randomstring';
 import { useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { Link } from 'react-router-dom';
@@ -36,7 +35,7 @@ export default function Settings() {
     const handleWipe = async () => {
         if ( ! window.confirm( t( 'wipeConfirm' ) ) ) return;
 
-        const token = randomstring.generate( 7 );
+        const token = ( Math.random() + 1 ).toString( 36 ).substring( 4 );
         const confirm = window.prompt( t( 'wipePrompt', { token } ) );
         if ( confirm !== token ) {
             alert( t( 'wipeCancel' ) );

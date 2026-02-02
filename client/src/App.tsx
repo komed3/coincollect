@@ -2,6 +2,7 @@ import { Smartphone, Activity } from 'lucide-react';
 import { useEffect, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { BrowserRouter as Router, Routes, Route, Link } from 'react-router-dom';
+import Settings from './pages/Settings';
 import { deviceClient } from './services/DeviceClientService';
 
 const Layout = ( { children }: { children: React.ReactNode } ) => {
@@ -87,6 +88,7 @@ function App () {
                 <Route path="*" element={
                     <Layout>
                         <Routes>
+                            <Route path="/settings" element={ <Settings /> } />
                         </Routes>
                     </Layout>
                 } />
