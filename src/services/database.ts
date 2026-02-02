@@ -84,6 +84,17 @@ export class DatabaseService {
         return this.db!.data.coins.find( c => c.id === id );
     }
 
+    public async deleteCoin ( id: string ) : Promise< boolean > {
+        if ( ! this.db ) await this.initDb();
+        const idx = this.db!.data.coins.findIndex( c => c.id === id );
+        if ( idx === -1 ) return false;
+
+        this.db!.data.coins.splice( idx, 1 );
+        this.scheduleWrite();
+
+        return true;
+    }
+
     public static getInstance () : DatabaseService {
         return DatabaseService.instance ||= new DatabaseService();
     }
