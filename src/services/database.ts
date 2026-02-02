@@ -1,7 +1,9 @@
 import { dirname, join } from 'node:path';
 import { fileURLToPath } from 'node:url';
+import deepmerge from 'deepmerge';
 import { Low } from 'lowdb';
 import { JSONFile } from 'lowdb/node';
+import { v4 as uuidv4 } from 'uuid';
 import { Coin, CoinGrade, CoinShape, CoinStats, CoinStatsItem, CoinStatus, CoinType, Database } from '../types';
 
 const __dirname = dirname ( fileURLToPath( import.meta.url ) );
@@ -171,6 +173,22 @@ export class DatabaseService {
     public async getCoinById ( id: string ) : Promise< Coin | undefined > {
         if ( ! this.db ) await this.initDb();
         return this.db!.data.coins.find( c => c.id === id );
+    }
+
+    public async createCoin ( input: PartialCoinInput ) : Promise< Coin > {
+        if ( ! this.db ) await this.initDb();
+
+        const now = new Date().toISOString();
+        const validated = this.sanitizeAndValidateInput( input, true );
+        const coin: Coin = {
+            id: uuidv4(), createdAt: now, updatedAt: now,
+            ...deepmerge( { tags: [], amount: 1, omv: [] }, validated )
+        } as Coin;
+
+        this.db!.data.coins.push( coin );
+        this.computeStats();
+        this.scheduleWrite();
+        return coin;
     }
 
     public async deleteCoin ( id: string ) : Promise< boolean > {
