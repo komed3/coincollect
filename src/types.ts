@@ -36,7 +36,7 @@ export interface Coin {
 
     grade: CoinGrade;
     status: CoinStatus;
-    amount?: number;
+    amount: number;
 
     mint?: {
         year?: number;
