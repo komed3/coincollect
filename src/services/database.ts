@@ -2,7 +2,7 @@ import { dirname, join } from 'node:path';
 import { fileURLToPath } from 'node:url';
 import { Low } from 'lowdb';
 import { JSONFile } from 'lowdb/node';
-import { Coin, CoinStats, CoinStatsItem, Database } from '../types';
+import { Coin, CoinGrade, CoinStats, CoinStatsItem, CoinStatus, CoinType, Database } from '../types';
 
 const __dirname = dirname ( fileURLToPath( import.meta.url ) );
 
@@ -58,6 +58,42 @@ export class DatabaseService {
         if ( ! this.db ) return;
         this.db.data._meta.updatedAt = new Date().toISOString();
         await this.db.write();
+    }
+
+    private sanitizeAndValidateInput ( input: PartialCoinInput, creating = false ) : PartialCoinInput & {
+        name: string; type: CoinType; grade: CoinGrade; status: CoinStatus
+    } {
+        const out: any = {};
+
+        // name required on create
+        if ( creating ) {
+            if ( ! input.name || typeof input.name !== 'string' ) throw new Error( 'Name is required' );
+            out.name = input.name.trim();
+        } else if ( input.name ) out.name = String( input.name ).trim();
+
+        // type
+        if ( input.type ) out.type = input.type as CoinType;
+        else if ( creating ) out.type = 'other' as CoinType;
+
+        // grade
+        if ( input.grade ) out.grade = input.grade as CoinGrade;
+        else if ( creating ) out.grade = 'UNC' as CoinGrade;
+
+        // status
+        if ( input.status ) out.status = input.status as CoinStatus;
+        else if ( creating ) out.status = 'owned' as CoinStatus;
+
+        // optional string fields
+        for ( const f of [ 'country', 'series', 'description', 'note' ] as const ) {
+            if ( ( input as any )[ f ] != undefined ) out[ f ] = String( ( input as any )[ f ] );
+        }
+
+        // tags
+        if ( input.tags ) out.tags = Array.isArray( input.tags )
+            ? input.tags.map( String )
+            : String( input.tags ).split( ',' );
+
+        return out;
     }
 
     public async initDb () : Promise< void > {
