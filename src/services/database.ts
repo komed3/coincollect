@@ -81,6 +81,8 @@ export class DatabaseService {
         if ( input.series ) out.series = String( input.series ).trim();
         if ( input.tags ) out.tags = input.tags.filter( Boolean ).map( String );
         if ( input.amount ) out.amount = Number( input.amount );
+        if ( input.description ) out.description = String( input.description ).trim();
+        if ( input.note ) out.note = String( input.note ).trim();
 
         if ( input.mint ) {
             out.mint = {};
@@ -88,6 +90,15 @@ export class DatabaseService {
             if ( input.mint.mark ) out.mint.mark = String( input.mint.mark ).trim();
             if ( input.mint.issueDate ) out.mint.issueDate = new Date( input.mint.issueDate ).toISOString();
             if ( input.mint.mintage ) out.mint.mintage = Number( input.mint.mintage );
+        }
+
+        if ( input.nominalValue?.value && input.nominalValue?.unit ) {
+            out.nominalValue = {
+                value: Number( input.nominalValue?.value ),
+                unit: String( input.nominalValue?.unit ).trim()
+            };
+
+            if ( input.nominalValue.currency ) out.nominalValue.currency = String( out.nominalValue.currency ).trim();
         }
 
         return out;
