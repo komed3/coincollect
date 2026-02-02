@@ -39,8 +39,20 @@ export class DatabaseService {
         };
     }
 
-    public async initDb () : Promise<void> {
-        const now = new Date().toISOString();
+    private scheduleWrite ( immediate = false ) : void {
+        if ( ! this.db ) return;
+        if ( this.writeTimer ) clearTimeout( this.writeTimer );
+        if ( immediate ) { this.flush(); return }
+        this.writeTimer = setTimeout( () => this.flush(), this.writeDelay );
+    }
+
+    private async flush () : Promise< void > {
+        if ( ! this.db ) return;
+        this.db.data._meta.updatedAt = new Date().toISOString();
+        await this.db.write();
+    }
+
+    public async initDb () : Promise< void > {
         this.adapter = new JSONFile< Database >( this.dbFile );
         this.db = new Low< Database >( this.adapter, this.defaultData() );
 
