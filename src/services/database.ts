@@ -1,7 +1,7 @@
 import { join } from 'node:path';
 import { Low } from 'lowdb';
 import { JSONFile } from 'lowdb/node';
-import { Database } from '../types';
+import { Coin, Database } from '../types';
 
 export class DatabaseService {
 
@@ -72,6 +72,16 @@ export class DatabaseService {
     public async exportCatalog ( asJson = true ) : Promise< string | Database > {
         if ( ! this.db ) await this.initDb();
         return asJson ? JSON.stringify( this.db!.data, null, 2 ) : this.db!.data;
+    }
+
+    public async getAllCoins () : Promise< Coin[] > {
+        if ( ! this.db ) await this.initDb();
+        return this.db!.data.coins.slice();
+    }
+
+    public async getCoinById ( id: string ) : Promise< Coin | undefined > {
+        if ( ! this.db ) await this.initDb();
+        return this.db!.data.coins.find( c => c.id === id );
     }
 
     public static getInstance () : DatabaseService {
