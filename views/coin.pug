@@ -86,6 +86,11 @@ block main
                   label= t( 'coin.info.mintage' )
                   span= formatter.number( coin.mint.mintage, 0 )
 
+        if coin.description
+          div.cc-coin--desc
+            i.fa.fa-quote-left
+            p= coin.description
+
         if coin.design
           div.cc-coin--info.cc-box
             ul.cc-coin--info-list
