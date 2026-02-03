@@ -303,7 +303,7 @@ export class DatabaseService {
     public async getStats ( update: boolean = false ) : Promise< CoinStats > {
         if ( ! this.db ) await this.initDb();
 
-        if ( update ) return await this.computeStats();
+        if ( update ) await this.updateDb();
         return this.db!.data.stats;
     }
 
@@ -337,6 +337,11 @@ export class DatabaseService {
 
         this.db!.data.stats = stats;
         return stats;
+    }
+
+    public async updateDb () : Promise< void > {
+        await this.computeStats();
+        this.scheduleWrite();
     }
 
     public static getInstance () : DatabaseService {
