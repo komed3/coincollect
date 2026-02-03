@@ -5,5 +5,6 @@ const coins = Router();
 const coinController = new CoinController();
 
 coins.get( '/all', coinController.getAllCoins );
+coins.get( '/search', coinController.searchCatalog );
 
 export { coins };
