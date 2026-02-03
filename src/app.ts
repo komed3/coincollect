@@ -1,5 +1,5 @@
 import { join } from 'node:path';
-import express, { type NextFunction, type Request, static as serveStatic } from 'express';
+import express, { type NextFunction, type Request, type Response, static as serveStatic } from 'express';
 import i18next from 'i18next';
 import { apiRoutes } from './routes/APIRoutes';
 import { appRoutes } from './routes/AppRoutes';
@@ -33,6 +33,9 @@ app.use( '/images', serveStatic( join( cwd, 'public/images' ) ) );
 // Mount routes
 app.use( '/api', apiRoutes );
 app.use( '/', appRoutes );
+
+// Handle unknown paths
+app.get( '/{*splat}', ( _, res: Response ) => res.redirect( '/' ) );
 
 // Listen ...
 const PORT = process.env.PORT || 3001;
