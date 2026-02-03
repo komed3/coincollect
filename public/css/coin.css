@@ -62,6 +62,12 @@
     font-size: 0.8em;
 }
 
+.cc-coin--info-list-item a:hover {
+    text-decoration: underline;
+    text-underline-offset: 14%;
+    text-decoration-thickness: 1px;
+}
+
 .cc-coin--desc {
     display: grid;
     grid-template-columns: max-content 1fr;
