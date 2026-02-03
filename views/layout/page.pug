@@ -4,6 +4,10 @@ html( lang= lang )
     meta( charset= "UTF-8" )
     meta( name= "viewport", content= "width=device-width, initial-scale=1.0" )
     title= t( '_.title', { title } )
+
+    block styles
+      link( rel= "stylesheet", href= "/css/styles.css" )
+
   body#top.cc
     block prebody
     include ./header

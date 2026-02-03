@@ -1,4 +1,33 @@
+@font-face {
+    font-family: 'Inter';
+    src: url( ../fonts/Inter.woff2 ) format( 'woff2' );
+}
+
+@font-face {
+    font-family: 'Inter';
+    font-style: italic;
+    src: url( ../fonts/Inter-Italic.woff2 ) format( 'woff2' );
+}
+
 :root {
-    --bg-color: #fefdfc;
-    --text-color: #010203;
+    --bg-color: #eee;
+    --text-color: #000;
+}
+
+*, *::after, *::before {
+    box-sizing: border-box;
+    font-family: 'Inter', sans-serif;
+}
+
+img, input, select, button, .noselect {
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+}
+
+html, body {
+    margin: 0;
+    color: var( --text-color );
+    background: var( --bg-color );
 }
