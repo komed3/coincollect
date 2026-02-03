@@ -51,13 +51,13 @@
     },
     "info": {
       "country": "Herkunfsland",
-      "diameter": "Durchmesser",
+      "diameter": "Durchmesser (mm)",
       "grade": "Erhaltungsgrad",
       "series": "Serie",
       "status": "Status in Sammlung",
-      "thickness": "Stärke",
+      "thickness": "Stärke (mm)",
       "type": "Münztyp",
-      "weight": "Gewicht"
+      "weight": "Gewicht (g)"
     },
     "title": "{{name}}"
   },
