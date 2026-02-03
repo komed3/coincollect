@@ -108,7 +108,7 @@ export class DatabaseService {
                 unit: String( input.nominalValue?.unit ).trim()
             };
 
-            if ( input.nominalValue.currency ) out.nominalValue.currency = String( out.nominalValue.currency ).trim();
+            if ( input.nominalValue.currency ) out.nominalValue.currency = String( input.nominalValue.currency ).trim();
         }
 
         if ( input.design ) {
