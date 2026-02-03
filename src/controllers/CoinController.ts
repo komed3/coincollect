@@ -16,7 +16,8 @@ export class CoinController {
         try {
             const query = {
                 text: req.query.text ? req.query.text as string : undefined,
-                filters: {}, range: {},
+                filters: ( req.query.filters ?? {} ) as Record< string, any >,
+                range: ( req.query.range ?? {} ) as Record< string, { min?: number; max?: number } >,
                 pagination: {
                     limit: req.query.limit ? parseInt( req.query.limit as string ) : undefined,
                     offset: req.query.offset ? parseInt( req.query.offset as string ) : undefined
