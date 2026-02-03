@@ -1,0 +1,15 @@
+doctype html
+html( lang: lang )
+  head
+    meta( charset= "UTF-8" )
+    meta( name= "viewport", content= "width=device-width, initial-scale=1.0" )
+    title= t( '_.title', { title } )
+  body#top.cc
+    block prebody
+    block header
+
+    main#main.cc-main
+      block main
+
+    block footer
+    block postbody
