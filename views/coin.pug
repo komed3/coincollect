@@ -14,3 +14,13 @@ block main
         a.cc-btn( href= "/edit/" + coin.id )
           i.fa.fa-pencil
           span= t( 'coin.actions.edit' )
+
+    div.cc-coin--content
+      div.cc-coin--aside
+      div.cc-coin--main
+        div.cc-coin--info.cc-box
+          ul.cc-coin--info-list
+            if coin.country
+              li.cc-coin--info-list-item
+                label= t( 'coin.info.country' )
+                a( href= "/?country=" + coin.country )= coin.country

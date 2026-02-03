@@ -59,6 +59,13 @@ a, a:link, a:visited, a:hover, a:focus {
     margin: 3em 0;
 }
 
+.cc-box {
+    padding: 1.4em;
+    background: var( --box-bg );
+    border: 1px solid var( --border-color );
+    border-radius: var( --border-radius );
+}
+
 .cc-btn {
     display: inline-flex;
     align-items: center;
