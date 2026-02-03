@@ -2,7 +2,7 @@ import { join } from 'node:path';
 import express, { type Response, static as serveStatic } from 'express';
 import { apiRoutes } from './routes/APIRoutes';
 import { appRoutes } from './routes/AppRoutes';
-import { formatter } from './services/FormatterService';
+import { formatterService } from './services/FormatterService';
 import { I18nService } from './services/I18nService';
 
 // Express app
@@ -17,7 +17,7 @@ app.set( 'view engine', 'pug' );
 app.use( express.json() );
 app.use( express.urlencoded( { extended: true } ) );
 app.use( I18nService );
-app.use( formatter );
+app.use( formatterService );
 
 // Serve static files
 app.use( '/fonts', serveStatic( join( cwd, 'public/fonts' ) ) );
