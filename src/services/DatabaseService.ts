@@ -18,7 +18,7 @@ export class DatabaseService {
     private writeDelay = 150;
 
     private constructor () {
-        this.dbFile = join( process.cwd(), '../../db/db.json' );
+        this.dbFile = join( process.cwd(), 'data/db.json' );
     }
 
     private defaultData () : Database {
@@ -95,6 +95,7 @@ export class DatabaseService {
 
         if ( input.mint ) {
             out.mint = {};
+
             if ( input.mint.year ) out.mint.year = Number( input.mint.year );
             if ( input.mint.mark ) out.mint.mark = String( input.mint.mark ).trim();
             if ( input.mint.issueDate ) out.mint.issueDate = new Date( input.mint.issueDate ).toISOString();
@@ -111,7 +112,8 @@ export class DatabaseService {
         }
 
         if ( input.design ) {
-            out.mint = {};
+            out.design = {};
+
             if ( input.design.shape ) out.design.shape = input.design.shape as CoinShape;
             if ( input.design.obverse ) out.design.obverse = String( input.design.obverse ).trim();
             if ( input.design.reverse ) out.design.reverse = String( input.design.reverse ).trim();

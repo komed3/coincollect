@@ -88,7 +88,7 @@ export interface Coin {
 
 export enum CoinType {
     Circulation = 'circulation',
-    Commemorative = 'Commemorative',
+    Commemorative = 'commemorative',
     Bullion = 'bullion',
     Medal = 'medal',
     Pattern = 'pattern',
