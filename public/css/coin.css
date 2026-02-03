@@ -21,8 +21,30 @@
 
 .cc-coin--content {
     display: grid;
-    grid-template-columns: 420px 1fr;
+    grid-template-columns: 360px 1fr;
     gap: 2em;
+}
+
+.cc-coin--image {
+    margin: 0 0 2em 0;
+}
+
+.cc-coin--image img {
+    aspect-ratio: 1 / 1;
+    object-fit: cover;
+    object-position: center;
+    width: 100%;
+    height: auto;
+    border: 1px solid var( --border-color );
+    border-radius: var( --border-radius );
+}
+
+.cc-coin--image figcaption {
+    margin: 0.3em 0;
+    text-transform: uppercase;
+    font-size: 0.82em;
+    letter-spacing: 0.1em;
+    color: var( --text-muted );
 }
 
 .cc-coin--info-list {

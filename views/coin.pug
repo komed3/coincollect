@@ -17,6 +17,15 @@ block main
 
     div.cc-coin--content
       div.cc-coin--aside
+        if coin.images
+          if coin.images.obverse
+            figure.cc-coin--image
+              img( src= "/uploads/" + coin.images.obverse, alt= "Obverse" )
+              figcaption= t( 'coin.design.obverse' )
+          if coin.images.reverse
+            figure.cc-coin--image
+              img( src= "/uploads/" + coin.images.reverse, alt= "Reverse" )
+              figcaption= t( 'coin.design.reverse' )
 
       div.cc-coin--main
         div.cc-coin--info.cc-box
