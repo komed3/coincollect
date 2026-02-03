@@ -27,6 +27,11 @@ block main
               img( src= "/uploads/" + coin.images.reverse, alt= "Reverse" )
               figcaption= t( 'coin.design.reverse' )
 
+        if coin.tags
+          div.cc-coin--tags
+            each tag in coin.tags
+              a( href= "/?tag=" + tag )= tag
+
       div.cc-coin--main
         div.cc-coin--info.cc-box
           ul.cc-coin--info-list.col2

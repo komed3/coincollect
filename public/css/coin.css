@@ -22,11 +22,11 @@
 .cc-coin--content {
     display: grid;
     grid-template-columns: 360px 1fr;
-    gap: 2em;
+    gap: 3em;
 }
 
 .cc-coin--image {
-    margin: 0 0 2em 0;
+    margin: 0 0 2.4em 0;
 }
 
 .cc-coin--image img {
@@ -42,9 +42,24 @@
 .cc-coin--image figcaption {
     margin: 0.3em 0;
     text-transform: uppercase;
-    font-size: 0.82em;
+    font-size: 0.76em;
     letter-spacing: 0.1em;
     color: var( --text-muted );
+}
+
+.cc-coin--tags {
+    display: flex;
+    flex-flow: row wrap;
+    align-items: center;
+    gap: 0.6em;
+}
+
+.cc-coin--tags a {
+    padding: 0.6em 1em;
+    font-size: 0.8em;
+    color: #fff;
+    background: var( --accent-color );
+    border-radius: var( --border-radius );
 }
 
 .cc-coin--info-list {
