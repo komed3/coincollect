@@ -1,1 +1,11 @@
 header#header.cc-header
+  div.cc-header--inner.cc-content-wide
+    h1.cc-header--title
+      a( href= "/" )
+        b Coin
+        span Collect
+    nav.cc-header--nav
+      a( href= "/" )= t( '_.nav.home' )
+      a( href= "/add" )= t( '_.nav.add' )
+      a( href= "/stats" )= t( '_.nav.stats' )
+      a( href= "/settings" )= t( '_.nav.settings' )
