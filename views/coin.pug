@@ -20,6 +20,18 @@ block main
       div.cc-coin--main
         div.cc-coin--info.cc-box
           ul.cc-coin--info-list
+            if coin.type
+              li.cc-coin--info-list-item
+                label= t( 'coin.info.type' )
+                a( href= "/?type=" + coin.type )= t( '_.type.' + coin.type )
+            if coin.status
+              li.cc-coin--info-list-item
+                label= t( 'coin.info.status' )
+                a( href= "/?status=" + coin.status )= t( '_.status.' + coin.status )
+            if coin.grade
+              li.cc-coin--info-list-item
+                label= t( 'coin.info.grade' )
+                a( href= "/?grade=" + coin.grade )= t( '_.grade.' + coin.grade )
             if coin.country
               li.cc-coin--info-list-item
                 label= t( 'coin.info.country' )
