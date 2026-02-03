@@ -87,6 +87,7 @@ export class DatabaseService {
         else if ( creating ) out.status = 'owned' as CoinStatus;
 
         if ( input.country ) out.country = String( input.country ).trim();
+        if ( input.currency ) out.currency = String( input.currency ).trim();
         if ( input.series ) out.series = String( input.series ).trim();
         if ( input.tags ) out.tags = input.tags.filter( Boolean ).map( String );
         if ( input.amount ) out.amount = Number( input.amount );
@@ -107,8 +108,6 @@ export class DatabaseService {
                 value: Number( input.nominalValue?.value ),
                 unit: String( input.nominalValue?.unit ).trim()
             };
-
-            if ( input.nominalValue.currency ) out.nominalValue.currency = String( input.nominalValue.currency ).trim();
         }
 
         if ( input.design ) {
@@ -331,7 +330,7 @@ export class DatabaseService {
             c.type && updateStats( 'type', c.type );
             c.grade && updateStats( 'grade', c.grade );
             c.country && updateStats( 'country', c.country );
-            c.nominalValue?.currency && updateStats( 'currency', c.nominalValue.currency );
+            c.currency && updateStats( 'currency', c.currency );
             c.purchase?.date && updateStats( 'year', new Date( c.purchase.date ).getFullYear().toString() );
         }
 

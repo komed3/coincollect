@@ -45,10 +45,10 @@ export interface Coin {
         mintage?: number;
     };
 
+    currency?: string;
     nominalValue?: {
         value: number;
         unit: string;
-        currency?: string;
     };
 
     description?: string;
