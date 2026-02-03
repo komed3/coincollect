@@ -17,12 +17,12 @@
     margin: 0;
     text-transform: uppercase;
     font-size: 1.4em;
-    font-weight: 400;
+    font-weight: 300;
     letter-spacing: 0.08em;
 }
 
 .cc-header--title b {
-    font-weight: 800;
+    font-weight: 700;
     color: var( --accent-color );
 }
 
