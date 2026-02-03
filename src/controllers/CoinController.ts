@@ -11,21 +11,33 @@ export class CoinController {
         try { await fn() } catch ( err ) { res.status( 500 ).json( { msg, err } ) }
     }
 
-    public async getMeta ( _:Request, res: Response ) : Promise< void > {
+    public async getMeta ( _: Request, res: Response ) : Promise< void > {
         await this.catch( res, 'Failed to fetch meta', async () => {
             res.json( await this.dbService.getMetaData() );
         } );
     }
 
-    public async getLastModified ( _:Request, res: Response ) : Promise< void > {
+    public async lastModified ( _: Request, res: Response ) : Promise< void > {
         await this.catch( res, 'Failed to fetch modification date', async () => {
             res.json( ( await this.dbService.getDateUpdatedAt() ).toISOString() );
         } );
     }
 
-    public async getStats ( req:Request, res: Response ) : Promise< void > {
+    public async getStats ( req: Request, res: Response ) : Promise< void > {
         await this.catch( res, 'Failed to fetch stats', async () => {
             res.json( await this.dbService.getStats( Boolean( req.body.update ) ) );
+        } );
+    }
+
+    public async export ( _: Request, res: Response ) : Promise< void > {
+        await this.catch( res, 'Failed to export catalog', async () => {
+            res.json( await this.dbService.exportCatalog() );
+        } );
+    }
+
+    public async reset ( _: Request, res: Response ) : Promise< void > {
+        await this.catch( res, 'Failed to reset database', async () => {
+            res.json( await this.dbService.resetDb() );
         } );
     }
 
