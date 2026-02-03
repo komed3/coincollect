@@ -46,12 +46,12 @@ block main
               if coin.dimensions.diameter
                 li.cc-coin--info-list-item
                   label= t( 'coin.info.diameter' )
-                  span= formatter.number( coin.dimensions.diameter )
+                  span= formatter.unit( 'millimeter', coin.dimensions.diameter )
               if coin.dimensions.thickness
                 li.cc-coin--info-list-item
                   label= t( 'coin.info.thickness' )
-                  span= formatter.number( coin.dimensions.thickness )
+                  span= formatter.unit( 'millimeter', coin.dimensions.thickness )
               if coin.dimensions.weight
                 li.cc-coin--info-list-item
                   label= t( 'coin.info.weight' )
-                  span= formatter.number( coin.dimensions.weight )
+                  span= formatter.unit( 'gram', coin.dimensions.weight )
