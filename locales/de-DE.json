@@ -65,11 +65,13 @@
       "mintYear": "Prägejahr",
       "nominal": "Nennwert",
       "series": "Serie",
+      "shape": "Form",
       "status": "Status in Sammlung",
       "thickness": "Stärke",
       "type": "Münztyp",
       "weight": "Gewicht"
     },
+    "note": "Anmerkung",
     "title": "{{name}}"
   },
   "home": {

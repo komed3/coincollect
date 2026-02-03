@@ -51,6 +51,10 @@ block main
               li.cc-coin--info-list-item
                 label= t( 'coin.info.nominal' )
                 span= coin.nominalValue.value + ' ' + coin.nominalValue.unit
+            if coin.design && coin.design.shape
+              li.cc-coin--info-list-item
+                label= t( 'coin.info.shape' )
+                span= t( '_.shape.' + coin.design.shape )
           if coin.dimensions
             hr.cc-divider
             ul.cc-coin--info-list.col3
@@ -91,7 +95,7 @@ block main
             i.fa.fa-quote-left
             p= coin.description
 
-        if coin.design
+        if coin.design || coin.note
           div.cc-coin--info.cc-box
             ul.cc-coin--info-list
               if coin.design.obverse
@@ -106,3 +110,7 @@ block main
                 li.cc-coin--info-list-item
                   label= t( 'coin.design.edge' )
                   p= coin.design.edge
+              if coin.note
+                li.cc-coin--info-list-item
+                  label= t( 'coin.note' )
+                  p= coin.note
