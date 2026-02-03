@@ -1,4 +1,5 @@
-extends ./layout/page
+extends layout/page
+include components/material
 
 append styles
   link( rel= "stylesheet", href= "/css/coin.css" )
@@ -103,6 +104,12 @@ block main
                 li.cc-coin--info-list-item
                   label= t( 'coin.info.mintage' )
                   span= formatter.number( coin.mint.mintage, 0 )
+          if coin.material
+            hr.cc-divider
+            ul.cc-coin--info-list
+              li.cc-coin--info-list-item
+                label= t( 'coin.material' )
+                +material( coin.material )
 
         if coin.description
           div.cc-coin--desc

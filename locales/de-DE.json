@@ -71,6 +71,7 @@
       "type": "Münztyp",
       "weight": "Gewicht"
     },
+    "material": "Materialzusammensetzung",
     "note": "Anmerkung",
     "title": "{{name}}"
   },
