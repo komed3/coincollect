@@ -47,7 +47,7 @@ export class DatabaseService {
         };
     }
 
-    private scheduleWrite ( immediate = false ) : void {
+    private scheduleWrite ( immediate: boolean = false ) : void {
         if ( ! this.db ) return;
         if ( this.writeTimer ) clearTimeout( this.writeTimer );
         if ( immediate ) { this.flush(); return }
@@ -72,7 +72,7 @@ export class DatabaseService {
         return cur;
     }
 
-    private sanitizeAndValidateInput ( input: PartialCoinInput, creating = false ) : PartialCoinInput & {
+    private sanitizeAndValidateInput ( input: PartialCoinInput, creating: boolean = false ) : PartialCoinInput & {
         name: string; type: CoinType; grade: CoinGrade; status: CoinStatus
     } {
         const out: any = {};
@@ -172,7 +172,7 @@ export class DatabaseService {
         await this.flush();
     }
 
-    public async exportCatalog ( asJson = true ) : Promise< string | Database > {
+    public async exportCatalog ( asJson: boolean = true ) : Promise< string | Database > {
         if ( ! this.db ) await this.initDb();
         return asJson ? JSON.stringify( this.db!.data, null, 2 ) : this.db!.data;
     }
@@ -301,8 +301,10 @@ export class DatabaseService {
         return { result, total };
     }
 
-    public async getStats () : Promise< CoinStats > {
+    public async getStats ( update: boolean = false ) : Promise< CoinStats > {
         if ( ! this.db ) await this.initDb();
+
+        if ( update ) return await this.computeStats();
         return this.db!.data.stats;
     }
 
