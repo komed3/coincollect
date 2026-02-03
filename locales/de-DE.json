@@ -1,12 +1,48 @@
 {
   "_": {
+    "grade": {
+      "BU": "Unzirkuliert",
+      "F": "Schön",
+      "FDC": "Stempelglanz",
+      "G": "Gut erhalten",
+      "UNC": "Fast unzirkuliert",
+      "VF": "Sehr schön",
+      "VG": "Sehr gut erhalten",
+      "XF": "Vorzüglich"
+    },
     "nav": {
       "add": "Editor",
       "home": "Sammlung",
       "settings": "Einstellungen",
       "stats": "Statistik"
     },
-    "title": "{{title}} — CoinCollect"
+    "shape": {
+      "irregular": "Unregelmäßig",
+      "other": "Andere",
+      "oval": "Oval",
+      "polygonal": "Vielseitig",
+      "round": "Rund",
+      "square": "Quadratisch"
+    },
+    "status": {
+      "duplicate": "Duplikat",
+      "forSale": "Zum Verkauf",
+      "missing": "Fehlend",
+      "ordered": "Bestellt",
+      "owned": "Im Besitz",
+      "sold": "Verkauft",
+      "wanted": "Gewünscht"
+    },
+    "title": "{{title}} — CoinCollect",
+    "type": {
+      "bullion": "Anlagemünze",
+      "circulation": "Kursmünze",
+      "commemorative": "Gedenkmünze",
+      "ingot": "Barren",
+      "medal": "Medaille",
+      "other": "Andere",
+      "pattern": "Probemünze"
+    }
   },
   "coin": {
     "actions": {
@@ -15,7 +51,10 @@
     },
     "info": {
       "country": "Herkunfsland",
-      "series": "Serie"
+      "grade": "Erhaltungsgrad",
+      "series": "Serie",
+      "status": "Status in Sammlung",
+      "type": "Münztyp"
     },
     "title": "{{name}}"
   },
