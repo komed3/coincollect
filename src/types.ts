@@ -1,6 +1,6 @@
 export interface Database {
     _meta: {
-        schemaVersion: 1;
+        schemaVersion: '1';
         createdAt: string;
         updatedAt: string;
     };
