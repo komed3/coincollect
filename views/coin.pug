@@ -27,7 +27,9 @@ block main
             if coin.status
               li.cc-coin--info-list-item
                 label= t( 'coin.info.status' )
-                a( href= "/?status=" + coin.status )= t( '_.status.' + coin.status )
+                span
+                  a( href= "/?status=" + coin.status )= t( '_.status.' + coin.status )
+                  span= ' (' + coin.amount + 'x)'
             if coin.grade
               li.cc-coin--info-list-item
                 label= t( 'coin.info.grade' )
@@ -36,10 +38,18 @@ block main
               li.cc-coin--info-list-item
                 label= t( 'coin.info.country' )
                 a( href= "/?country=" + coin.country )= coin.country
+            if coin.currency
+              li.cc-coin--info-list-item
+                label= t( 'coin.info.currency' )
+                a( href= "/?currency=" + coin.currency )= coin.currency
             if coin.series
               li.cc-coin--info-list-item
                 label= t( 'coin.info.series' )
                 a( href= "/?series=" + coin.series )= coin.series
+            if coin.nominalValue
+              li.cc-coin--info-list-item
+                label= t( 'coin.info.nominal' )
+                span= coin.nominalValue.value + ' ' + coin.nominalValue.unit
           if coin.dimensions
             hr.cc-divider
             ul.cc-coin--info-list.col3
@@ -55,3 +65,22 @@ block main
                 li.cc-coin--info-list-item
                   label= t( 'coin.info.weight' )
                   span= formatter.unit( 'gram', coin.dimensions.weight )
+          if coin.mint
+            hr.cc-divider
+            ul.cc-coin--info-list.col3
+              if coin.mint.mark
+                li.cc-coin--info-list-item
+                  label= t( 'coin.info.mintMark' )
+                  span= coin.mint.mark
+              if coin.mint.issueDate
+                li.cc-coin--info-list-item
+                  label= t( 'coin.info.issueDate' )
+                  span= formatter.date( coin.mint.issueDate )
+              else if coin.mint.year
+                li.cc-coin--info-list-item
+                  label= t( 'coin.info.mintYear' )
+                  span= coin.mint.year
+              if coin.mint.mintage
+                li.cc-coin--info-list-item
+                  label= t( 'coin.info.mintage' )
+                  span= formatter.number( coin.mint.mintage, 0 )
