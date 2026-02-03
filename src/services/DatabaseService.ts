@@ -245,15 +245,16 @@ export class DatabaseService {
     }
 
     public async searchCatalog ( query: {
-        text?: string;
-        filters?: Record< string, any >;
+        text?: string; filters?: Record< string, any >;
         range?: Record< string, { min?: number; max?: number } >;
-    } ) : Promise< Coin[] > {
+        pagination?: { limit?: number; offset?: number };
+    } ) : Promise< { result: Coin[]; total: number; } > {
         if ( ! this.db ) await this.initDb();
         const coins = this.db!.data.coins;
         const text = query.text?.toLowerCase().trim();
 
-        return coins.filter( coin => {
+        // filter
+        let result = coins.filter( coin => {
             if ( text ) {
                 if ( ! [ coin.name, coin.description, coin.note, coin.series, coin.design?.obverse,
                     coin.design?.reverse, coin.design?.edge, ...( coin.tags ?? [] )
@@ -288,6 +289,16 @@ export class DatabaseService {
 
             return true;
         } );
+
+        const total = result.length;
+
+        // paginate
+        if ( query.pagination?.limit ) {
+            const offset = query.pagination?.offset ?? 0;
+            result = result.slice( offset, offset + query.pagination?.limit );
+        }
+
+        return { result, total };
     }
 
     public async getStats () : Promise< CoinStats > {
