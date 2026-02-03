@@ -19,7 +19,7 @@ block main
       div.cc-coin--aside
       div.cc-coin--main
         div.cc-coin--info.cc-box
-          ul.cc-coin--info-list
+          ul.cc-coin--info-list.col2
             if coin.type
               li.cc-coin--info-list-item
                 label= t( 'coin.info.type' )
@@ -40,3 +40,18 @@ block main
               li.cc-coin--info-list-item
                 label= t( 'coin.info.series' )
                 a( href= "/?series=" + coin.series )= coin.series
+          if coin.dimensions
+            hr.cc-divider
+            ul.cc-coin--info-list.col3
+              if coin.dimensions.diameter
+                li.cc-coin--info-list-item
+                  label= t( 'coin.info.diameter' )
+                  span= formatter.number( coin.dimensions.diameter )
+              if coin.dimensions.thickness
+                li.cc-coin--info-list-item
+                  label= t( 'coin.info.thickness' )
+                  span= formatter.number( coin.dimensions.thickness )
+              if coin.dimensions.weight
+                li.cc-coin--info-list-item
+                  label= t( 'coin.info.weight' )
+                  span= formatter.number( coin.dimensions.weight )
