@@ -27,20 +27,16 @@
 
 .cc-coin--info-list {
     list-style: none;
-    column-count: 2;
-    column-gap: 2em;
+    display: grid;
+    grid-template-columns: repeat( 2, 1fr );
+    gap: 1.6em 2.4em;
     margin: 0;
     padding: 0;
 }
 
 .cc-coin--info-list-item {
-    break-inside: avoid;
     font-size: 1.4em;
     font-weight: 300;
-}
-
-.cc-coin--info-list-item:not( :last-child ) {
-    margin-bottom: 1em;
 }
 
 .cc-coin--info-list-item label {
