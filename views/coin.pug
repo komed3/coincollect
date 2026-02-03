@@ -24,3 +24,7 @@ block main
               li.cc-coin--info-list-item
                 label= t( 'coin.info.country' )
                 a( href= "/?country=" + coin.country )= coin.country
+            if coin.series
+              li.cc-coin--info-list-item
+                label= t( 'coin.info.series' )
+                a( href= "/?series=" + coin.series )= coin.series

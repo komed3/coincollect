@@ -14,7 +14,8 @@
       "edit": "Bearbeiten"
     },
     "info": {
-      "country": "Herkunfsland"
+      "country": "Herkunfsland",
+      "series": "Serie"
     },
     "title": "{{name}}"
   },
