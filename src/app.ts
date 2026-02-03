@@ -1,6 +1,5 @@
 import { join } from 'node:path';
-import express, { type NextFunction, type Request, type Response, static as serveStatic } from 'express';
-import i18next from 'i18next';
+import express, { type Response, static as serveStatic } from 'express';
 import { apiRoutes } from './routes/APIRoutes';
 import { appRoutes } from './routes/AppRoutes';
 import { I18nService } from './services/i18nService';
@@ -17,12 +16,6 @@ app.set( 'view engine', 'pug' );
 app.use( express.urlencoded( { extended: true } ) );
 app.use( express.json() );
 app.use( I18nService );
-
-app.use( ( req: Request, _, next: NextFunction ) => {
-    req.language = i18next.language;
-    req.t = i18next.t.bind( i18next );
-    next();
-} );
 
 // Serve static files
 app.use( '/fonts', serveStatic( join( cwd, 'public/fonts' ) ) );
