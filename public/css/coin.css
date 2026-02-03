@@ -1,0 +1,14 @@
+.cc-coin--header {
+    display: flex;
+    flex-flow: row nowrap;
+    justify-content: space-between;
+    align-items: baseline;
+    gap: 3em;
+    margin: 0.4em 0 0.8em;
+}
+
+.cc-coin--name {
+    margin: 0;
+    font-size: 2.4em;
+    font-weight: 300;
+}

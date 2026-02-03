@@ -8,6 +8,13 @@
     },
     "title": "{{title}} — CoinCollect"
   },
+  "coin": {
+    "actions": {
+      "back": "Zurück",
+      "edit": "Bearbeiten"
+    },
+    "title": "{{name}}"
+  },
   "home": {
     "title": "Meine Münzsammlung"
   }

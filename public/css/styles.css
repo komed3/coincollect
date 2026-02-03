@@ -40,9 +40,15 @@ a, a:link, a:visited, a:hover, a:focus {
     color: inherit;
 }
 
-.cc-content-wide {
+.cc-content--wide {
     margin: 0 auto;
     max-width: 1600px;
+    padding: 0 1em;
+}
+
+.cc-content--normal {
+    margin: 0 auto;
+    max-width: 1200px;
     padding: 0 1em;
 }
 

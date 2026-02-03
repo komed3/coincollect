@@ -10,6 +10,7 @@ const appRoutes = Router();
 appRoutes.get( '/', home );
 appRoutes.get( '/coin/:id', coin );
 appRoutes.get( '/add', editor );
+appRoutes.get( '/edit/:id', editor );
 appRoutes.get( '/settings', settings );
 appRoutes.get( '/stats', stats );
 

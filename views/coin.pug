@@ -1,0 +1,12 @@
+extends ./layout/page
+
+append styles
+  link( rel= "stylesheet", href= "/css/coin.css" )
+
+block main
+  div.cc-coin.cc-content--normal
+    div.cc-coin--header
+      h2.cc-coin--name= coin.name
+    div.cc-coin--actions
+      a( href= "/" )= t( 'coin.actions.back' )
+      a( href= "/edit/" + coin.id )= t( 'coin.actions.edit' )
