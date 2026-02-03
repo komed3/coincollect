@@ -6,10 +6,12 @@ html( lang: lang )
     title= t( '_.title', { title } )
   body#top.cc
     block prebody
-    block header
+
+    include ./header
 
     main#main.cc-main
       block main
 
-    block footer
+    include ./footer
+
     block postbody
