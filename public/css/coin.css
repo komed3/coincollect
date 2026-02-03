@@ -12,3 +12,9 @@
     font-size: 2.4em;
     font-weight: 300;
 }
+
+.cc-coin--actions {
+    display: flex;
+    align-items: center;
+    gap: 0.6em;
+}

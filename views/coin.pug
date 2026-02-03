@@ -7,6 +7,10 @@ block main
   div.cc-coin.cc-content--normal
     div.cc-coin--header
       h2.cc-coin--name= coin.name
-    div.cc-coin--actions
-      a( href= "/" )= t( 'coin.actions.back' )
-      a( href= "/edit/" + coin.id )= t( 'coin.actions.edit' )
+      div.cc-coin--actions
+        a.cc-btn( href= "/" )
+          i.fa.fa-arrow-left
+          span= t( 'coin.actions.back' )
+        a.cc-btn( href= "/edit/" + coin.id )
+          i.fa.fa-pencil
+          span= t( 'coin.actions.edit' )

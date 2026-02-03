@@ -15,11 +15,13 @@
     --text-muted: #777;
     --accent-color: #c5851f;
     --box-bg: #fff;
+    --box-light: #f8f8f8;
+    --border-color: #e5e5e5;
+    --border-radius: 2px;
 }
 
 *, *::after, *::before {
     box-sizing: border-box;
-    font-family: 'Inter', sans-serif;
 }
 
 img, input, select, button, .noselect {
@@ -31,6 +33,7 @@ img, input, select, button, .noselect {
 
 html, body {
     margin: 0;
+    font-family: 'Inter', sans-serif;
     color: var( --text-color );
     background: var( --bg-color );
 }
@@ -54,4 +57,17 @@ a, a:link, a:visited, a:hover, a:focus {
 
 .cc-main {
     margin: 3em 0;
+}
+
+.cc-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.8em;
+    padding: 0.8em 1.2em;
+    text-transform: uppercase;
+    font-size: 0.9em;
+    font-weight: 300;
+    background: var( --box-light );
+    border: 1px solid var( --border-color );
+    border-radius: var( --border-radius );
 }
