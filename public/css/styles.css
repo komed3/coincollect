@@ -60,6 +60,7 @@ a, a:link, a:visited, a:hover, a:focus {
 }
 
 .cc-box {
+    margin-bottom: 1em;
     padding: 1.4em;
     background: var( --box-bg );
     border: 1px solid var( --border-color );

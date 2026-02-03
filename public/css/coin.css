@@ -55,3 +55,9 @@
     letter-spacing: 0.1em;
     color: var( --text-muted );
 }
+
+.cc-coin--info-list-item p {
+    margin: 0;
+    line-height: 1.4;
+    font-size: 0.8em;
+}

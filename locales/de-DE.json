@@ -49,6 +49,11 @@
       "back": "Zurück",
       "edit": "Bearbeiten"
     },
+    "design": {
+      "edge": "Rand",
+      "obverse": "Avers",
+      "reverse": "Revers"
+    },
     "info": {
       "country": "Herkunfsland",
       "currency": "Währung",

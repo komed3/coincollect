@@ -17,6 +17,7 @@ block main
 
     div.cc-coin--content
       div.cc-coin--aside
+
       div.cc-coin--main
         div.cc-coin--info.cc-box
           ul.cc-coin--info-list.col2
@@ -84,3 +85,19 @@ block main
                 li.cc-coin--info-list-item
                   label= t( 'coin.info.mintage' )
                   span= formatter.number( coin.mint.mintage, 0 )
+
+        if coin.design
+          div.cc-coin--info.cc-box
+            ul.cc-coin--info-list
+              if coin.design.obverse
+                li.cc-coin--info-list-item
+                  label= t( 'coin.design.obverse' )
+                  p= coin.design.obverse
+              if coin.design.reverse
+                li.cc-coin--info-list-item
+                  label= t( 'coin.design.reverse' )
+                  p= coin.design.reverse
+              if coin.design.edge
+                li.cc-coin--info-list-item
+                  label= t( 'coin.design.edge' )
+                  p= coin.design.edge
