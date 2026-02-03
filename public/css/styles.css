@@ -66,6 +66,12 @@ a, a:link, a:visited, a:hover, a:focus {
     border-radius: var( --border-radius );
 }
 
+.cc-divider {
+    margin: 1.4em 0;
+    border: 0;
+    border-bottom: 1px solid var( --border-color );
+}
+
 .cc-btn {
     display: inline-flex;
     align-items: center;

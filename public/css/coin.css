@@ -28,10 +28,17 @@
 .cc-coin--info-list {
     list-style: none;
     display: grid;
-    grid-template-columns: repeat( 2, 1fr );
     gap: 1.6em 2.4em;
     margin: 0;
     padding: 0;
+}
+
+.cc-coin--info-list.col2 {
+    grid-template-columns: repeat( 2, 1fr );
+}
+
+.cc-coin--info-list.col3 {
+    grid-template-columns: repeat( 3, 1fr );
 }
 
 .cc-coin--info-list-item {
