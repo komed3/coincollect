@@ -12,6 +12,9 @@
 :root {
     --bg-color: #eee;
     --text-color: #000;
+    --text-muted: #777;
+    --accent-color: #c5851f;
+    --box-bg: #fff;
 }
 
 *, *::after, *::before {
@@ -30,4 +33,15 @@ html, body {
     margin: 0;
     color: var( --text-color );
     background: var( --bg-color );
+}
+
+.cc-content-wide {
+    margin: 0 auto;
+    max-width: 1600px;
+    padding: 0 1em;
+}
+
+a, a:link, a:visited, a:hover, a:focus {
+    text-decoration: none;
+    color: inherit;
 }

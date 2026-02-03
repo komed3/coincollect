@@ -1,0 +1,42 @@
+.cc-header {
+    position: sticky;
+    top: 0;
+    background: var( --box-bg );
+    padding: 1.4em 0;
+}
+
+.cc-header--inner {
+    display: flex;
+    flex-flow: row nowrap;
+    justify-content: space-between;
+    align-items: center;
+    gap: 4em;
+}
+
+.cc-header--title {
+    margin: 0;
+    text-transform: uppercase;
+    font-size: 1.4em;
+    font-weight: 400;
+    letter-spacing: 0.08em;
+}
+
+.cc-header--title b {
+    font-weight: 800;
+    color: var( --accent-color );
+}
+
+.cc-header--nav {
+    display: flex;
+    flex-flow: row nowrap;
+    align-items: center;
+    gap: 1.2em;
+}
+
+.cc-header--nav a {
+    text-transform: uppercase;
+    font-size: 0.8em;
+    font-weight: 500;
+    letter-spacing: 0.08em;
+    color: var( --text-muted );
+}
