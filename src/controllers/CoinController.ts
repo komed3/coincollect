@@ -9,7 +9,7 @@ export class CoinController {
 
     public async getAllCoins ( _: Request, res: Response ) : Promise< void > {
         try { res.json( await this.dbService.getAllCoins() ) }
-        catch { res.status( 500 ).json( { error: 'Failed to fetch coins' } ) }
+        catch ( error ) { res.status( 500 ).json( { msg: 'Failed to fetch coins', error } ) }
     }
 
     public async searchCatalog ( req: Request, res: Response ) : Promise< void > {
@@ -27,7 +27,19 @@ export class CoinController {
             res.json( await this.dbService.searchCatalog( query ) );
         }
         catch ( error ) {
-            res.status( 500 ).json( { error: 'Failed to fetch coins', cause: error } );
+            res.status( 500 ).json( { msg: 'Failed to fetch coins', error } );
+        }
+    }
+
+    public async getCoin ( req: Request, res: Response ) : Promise< void > {
+        try {
+            const { id } = req.params;
+            const coin = await this.dbService.getCoinById( id as string );
+
+            if ( coin ) res.json( coin );
+            else res.status( 404 ).json( { error: 'Coin not found' } );
+        } catch ( error ) {
+            res.status( 500 ).json( { msg: 'Failed to fetch coin', error } );
         }
     }
 
