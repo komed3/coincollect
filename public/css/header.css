@@ -3,6 +3,8 @@
     top: 0;
     background: var( --box-bg );
     padding: 1.4em 0;
+    border-bottom: 1px solid var( --border-color );
+    z-index: 99;
 }
 
 .cc-header--inner {
