@@ -6,7 +6,7 @@ import { JSONFile } from 'lowdb/node';
 import { v4 as uuidv4 } from 'uuid';
 import { Coin, CoinGrade, CoinShape, CoinStats, CoinStatsItem, CoinStatus, CoinType, Database } from '../types';
 
-const __dirname = dirname ( fileURLToPath( import.meta.url ) );
+const __dirname = dirname( fileURLToPath( import.meta.url ) );
 
 type PartialCoinInput = Partial< Omit< Coin, 'id' | 'createdAt' | 'updatedAt' > >;
 
@@ -58,6 +58,18 @@ export class DatabaseService {
         if ( ! this.db ) return;
         this.db.data._meta.updatedAt = new Date().toISOString();
         await this.db.write();
+    }
+
+    private getNestedValue ( obj: any, pathStr: string ) : any {
+        const parts = pathStr.split( '.' );
+        let cur = obj;
+
+        for ( const p of parts ) {
+            if ( ! cur ) return undefined;
+            cur = cur[ p ];
+        }
+
+        return cur;
     }
 
     private sanitizeAndValidateInput ( input: PartialCoinInput, creating = false ) : PartialCoinInput & {
@@ -245,6 +257,52 @@ export class DatabaseService {
 
         this.db!.data.stats = stats;
         return stats;
+    }
+
+    public async searchCatalog ( query: {
+        text?: string;
+        filters?: Record< string, any >;
+        range?: Record< string, { min?: number; max?: number } >;
+    } ) : Promise< Coin[] > {
+        if ( ! this.db ) await this.initDb();
+        const coins = this.db!.data.coins;
+        const text = query.text?.toLowerCase().trim();
+
+        return coins.filter( coin => {
+            if ( text ) {
+                if ( ! [ coin.name, coin.description, coin.note, coin.series, coin.design?.obverse,
+                    coin.design?.reverse, coin.design?.edge, ...( coin.tags ?? [] )
+                ].filter( Boolean ).join( ' ' ).toLowerCase().includes( text ) ) return false;
+            }
+
+            if ( query.filters ) {
+                for ( const [ k, v ] of Object.entries( query.filters ) ) {
+                    if ( v == null ) continue;
+                    const val = this.getNestedValue( coin as any, k );
+
+                    if ( Array.isArray( v ) ) {
+                        if ( ! Array.isArray( val ) ) return false;
+                        if ( ! v.every( ( it: any ) => val.includes( it ) ) ) return false;
+                    } else if ( typeof v === 'string' || typeof v === 'number' || typeof v === 'boolean' ) {
+                        if ( String( val ).toLowerCase() !== String( v ).toLowerCase() ) return false;
+                    } else {
+                        if ( val !== v ) return false;
+                    }
+                }
+            }
+
+            if ( query.range ) {
+                for ( const [ k, r ] of Object.entries( query.range ) ) {
+                    const val = this.getNestedValue( coin as any, k );
+                    const num = typeof val === 'number' ? val : Number( val );
+                    if ( Number.isNaN( num ) ) return false;
+                    if ( r.min != null && num < r.min ) return false;
+                    if ( r.max != null && num > r.max ) return false;
+                }
+            }
+
+            return true;
+        } );
     }
 
     public static getInstance () : DatabaseService {
