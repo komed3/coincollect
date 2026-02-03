@@ -37,6 +37,7 @@
     "express": "^5.2.1",
     "i18next": "^25.8.0",
     "i18next-fs-backend": "^2.6.1",
+    "i18next-http-middleware": "^3.9.2",
     "lowdb": "^7.0.1",
     "pug": "^3.0.3",
     "uuid": "^13.0.0"
