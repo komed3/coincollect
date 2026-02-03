@@ -1,12 +1,9 @@
-import { dirname, join } from 'node:path';
-import { fileURLToPath } from 'node:url';
+import { join } from 'node:path';
 import deepmerge from 'deepmerge';
 import { Low } from 'lowdb';
 import { JSONFile } from 'lowdb/node';
 import { v4 as uuidv4 } from 'uuid';
 import { Coin, CoinGrade, CoinShape, CoinStats, CoinStatsItem, CoinStatus, CoinType, Database } from '../types';
-
-const __dirname = dirname( fileURLToPath( import.meta.url ) );
 
 type PartialCoinInput = Partial< Omit< Coin, 'id' | 'createdAt' | 'updatedAt' > >;
 
@@ -21,7 +18,7 @@ export class DatabaseService {
     private writeDelay = 150;
 
     private constructor () {
-        this.dbFile = join( __dirname, '../../db/db.json' );
+        this.dbFile = join( process.cwd(), '../../db/db.json' );
     }
 
     private defaultData () : Database {
