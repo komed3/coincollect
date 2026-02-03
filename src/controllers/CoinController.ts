@@ -80,4 +80,14 @@ export class CoinController {
         } );
     }
 
+    public async deleteCoin ( req: Request, res: Response ) : Promise< void > {
+        await this.catch( res, 'Failed to delete coin', async () => {
+            const { id } = req.params;
+
+            if ( typeof id !== 'string' ) res.status( 400 ).json( { error: 'Invalid ID' } );
+            else if ( await this.dbService.deleteCoin( id ) ) res.status( 204 ).send();
+            else res.status( 404 ).json( { msg: 'Coin not found', id } );
+        } );
+    }
+
 }
