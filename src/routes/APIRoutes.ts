@@ -1,5 +1,9 @@
 import { Router } from 'express';
+import { CoinController } from '../controllers/CoinController';
 
-const api = Router();
+const coins = Router();
+const coinController = new CoinController();
 
-export default api;
+coins.get( '/all', coinController.getAllCoins );
+
+export { coins };
