@@ -1,5 +1,11 @@
 {
   "_": {
+    "nav": {
+      "add": "Editor",
+      "home": "Collection",
+      "settings": "settings",
+      "stats": "Stats"
+    },
     "title": "{{title}} — CoinCollect"
   },
   "home": {
