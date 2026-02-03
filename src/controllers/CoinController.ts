@@ -17,6 +17,18 @@ export class CoinController {
         } );
     }
 
+    public async getLastModified ( _:Request, res: Response ) : Promise< void > {
+        await this.catch( res, 'Failed to fetch modification date', async () => {
+            res.json( ( await this.dbService.getDateUpdatedAt() ).toISOString() );
+        } );
+    }
+
+    public async getStats ( req:Request, res: Response ) : Promise< void > {
+        await this.catch( res, 'Failed to fetch stats', async () => {
+            res.json( await this.dbService.getStats( Boolean( req.body.update ) ) );
+        } );
+    }
+
     public async getAllCoins ( _: Request, res: Response ) : Promise< void > {
         await this.catch( res, 'Failed to fetch coins', async () => {
             res.json( await this.dbService.getAllCoins() );
