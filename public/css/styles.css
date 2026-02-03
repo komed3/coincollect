@@ -35,13 +35,17 @@ html, body {
     background: var( --bg-color );
 }
 
+a, a:link, a:visited, a:hover, a:focus {
+    text-decoration: none;
+    color: inherit;
+}
+
 .cc-content-wide {
     margin: 0 auto;
     max-width: 1600px;
     padding: 0 1em;
 }
 
-a, a:link, a:visited, a:hover, a:focus {
-    text-decoration: none;
-    color: inherit;
+.cc-main {
+    margin: 3em 0;
 }
