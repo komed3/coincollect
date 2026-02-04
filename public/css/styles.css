@@ -48,6 +48,7 @@
 
 *, *::after, *::before {
     box-sizing: border-box;
+    outline: 0 none;
 }
 
 img, input, select, button, .noselect {
