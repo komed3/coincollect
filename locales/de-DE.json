@@ -105,6 +105,17 @@
     "title": "Meine Münzsammlung"
   },
   "list": {
+    "empty": "Keine Münzen gefunden, die den Suchkriterien entsprechen.",
+    "filter": {
+      "country": "Herkunfsland",
+      "currency": "Währung",
+      "filter": "Münzen filtern:",
+      "grade": "Erhaltungsgrad",
+      "search": "Münzen nach Name, Land oder Serie suchen …",
+      "status": "Status in Sammlung",
+      "type": "Münztyp",
+      "year": "Jahr"
+    },
     "th": {
       "amount": "Anzahl",
       "coin": "Münze",
