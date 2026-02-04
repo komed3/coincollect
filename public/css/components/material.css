@@ -1,0 +1,47 @@
+.cc-mixin--material [item="0"] { --c: #835815; }
+.cc-mixin--material [item="1"] { --c: #996718; }
+.cc-mixin--material [item="2"] { --c: #af761c; }
+.cc-mixin--material [item="3"] { --c: #c5851f; }
+.cc-mixin--material [item="4"] { --c: #db9422; }
+.cc-mixin--material [item="5"] { --c: #e09f37; }
+.cc-mixin--material [item="6"] { --c: #e3a94d; }
+
+.cc-mixin--material-chart {
+    display: flex;
+    flex-flow: row nowrap;
+    gap: 1px;
+    margin: 0.6em 0;
+    width: 100%;
+    height: 20px;
+    border-radius: var( --border-radius );
+    overflow: hidden;
+}
+
+.cc-mixin--material-chart-item {
+    flex: var( --p, 1 );
+    background: var( --c );
+}
+
+.cc-mixin--material-legend {
+    list-style: none;
+    display: flex;
+    flex-flow: row nowrap;
+    align-items: center;
+    gap: 0.6em 1.8em;
+    margin: 0;
+    padding: 0;
+}
+
+.cc-mixin--material-legend-item {
+    font-size: 0.6em;
+}
+
+.cc-mixin--material-legend-item::before {
+    content: '';
+    display: inline-block;
+    margin-right: 0.6em;
+    width: 10px;
+    height: 10px;
+    background: var( --c );
+    border-radius: var( --border-radius );
+}
