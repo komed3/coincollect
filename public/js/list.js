@@ -69,30 +69,31 @@ class CCList {
     getFilterValues () {
         const selects = Array.from( this.filterSelects );
         return {
-            search: ( this.searchInput?.value || '' ).toLowerCase(),
-            type: selects[ 0 ]?.value || '',
-            status: selects[ 1 ]?.value || '',
-            grade: selects[ 2 ]?.value || '',
-            country: selects[ 3 ]?.value || '',
-            currency: selects[ 4 ]?.value || '',
-            year: selects[ 5 ]?.value || ''
+            search: ( this.searchInput?.value ).toLowerCase(),
+            type: selects[ 0 ]?.value,
+            status: selects[ 1 ]?.value,
+            grade: selects[ 2 ]?.value,
+            country: selects[ 3 ]?.value,
+            currency: selects[ 4 ]?.value,
+            year: selects[ 5 ]?.value
         };
     }
 
-    /*filterCoinsByValues ( filters ) {
-        return this.coins.filter( coin => {
-            const matchesSearch = !filters.search || 
-                coin.name.toLowerCase().includes( filters.search ) ||
-                coin.country?.toLowerCase().includes( filters.search ) ||
-                coin.series?.toLowerCase().includes( filters.search );
-
-            const matchesType = !filters.type || coin.type === filters.type;
-            const matchesStatus = !filters.status || coin.status === filters.status;
-            const matchesCountry = !filters.country || coin.country === filters.country;
-
-            return matchesSearch && matchesType && matchesStatus && matchesCountry;
-        } );
-    }*/
+    filterCoinsByValues ( filters ) {
+        return this.coins.filter( coin => ! (
+            filters.search && ! (
+                coin.name.includes( filters.search ) ||
+                Object.values( coin.design ?? {} ).includes( filters.search ) ||
+                coin.description?.includes( filters.search )
+            ) ||
+            filters.type && coin.type != filters.type ||
+            filters.status && coin.status != filters.status ||
+            filters.grade && coin.grade != filters.grade ||
+            filters.country && coin.country != filters.country ||
+            filters.currency && coin.currency != filters.currency ||
+            filters.year && coin.mint?.year != filters.year
+        ) );
+    }
 
     applyFilters () {
         const filters = this.getFilterValues();
@@ -101,8 +102,8 @@ class CCList {
         this.renderCoins();
     }
 
-    /*renderCoins () {
-        const endIndex = ( this.currentPage + 1 ) * this.pageSize;
+    renderCoins () {
+        /*const endIndex = ( this.currentPage + 1 ) * this.pageSize;
         const coinsToRender = this.filteredCoins.slice( 0, endIndex );
 
         if ( coinsToRender.length === 0 ) {
@@ -123,8 +124,8 @@ class CCList {
             fragment.appendChild( row );
         } );
 
-        this.tableContent.appendChild( fragment );
-    }*/
+        this.tableContent.appendChild( fragment );*/
+    }
 
     /*createCoinRow ( coin ) {
         const row = document.createElement( 'tr' );
