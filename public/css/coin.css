@@ -1,5 +1,3 @@
-@import 'components/material.css';
-
 .cc-coin--header {
     display: flex;
     flex-flow: row nowrap;
