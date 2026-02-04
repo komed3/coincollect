@@ -32,7 +32,7 @@
     display: flex;
     flex-flow: row nowrap;
     align-items: center;
-    gap: 1.2em;
+    gap: 1.6em;
 }
 
 .cc-header--nav a {
