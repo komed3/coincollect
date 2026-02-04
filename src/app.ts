@@ -1,8 +1,8 @@
 import { join } from 'node:path';
-import express, { type NextFunction, type Request, type Response, static as serveStatic } from 'express';
-import { v4 as uuidv4 } from 'uuid';
+import express, { type Response, static as serveStatic } from 'express';
 import { apiRoutes } from './routes/APIRoutes';
 import { appRoutes } from './routes/AppRoutes';
+import { appService } from './services/AppService';
 import { formatterService } from './services/FormatterService';
 import { I18nService } from './services/I18nService';
 
@@ -18,13 +18,8 @@ app.set( 'view engine', 'pug' );
 app.use( express.json() );
 app.use( express.urlencoded( { extended: true } ) );
 app.use( I18nService );
+app.use( appService );
 app.use( formatterService );
-
-app.use( ( req: Request, res: Response, next: NextFunction ) => {
-    res.locals.lang = req.language;
-    res.locals.uuid = uuidv4;
-    next();
-} );
 
 // Serve static files
 app.use( '/fonts', serveStatic( join( cwd, 'public/fonts' ) ) );
