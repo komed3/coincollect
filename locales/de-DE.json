@@ -74,7 +74,14 @@
     },
     "material": "Materialzusammensetzung",
     "note": "Anmerkung",
-    "title": "{{name}}"
+    "title": "{{name}}",
+    "value": {
+      "datetime": "Datum: {{date}}",
+      "growth": "Wertsteigerung",
+      "omv": "Markwert",
+      "percent": "In Prozent: {{growth}}",
+      "purchase": "Kaufpreis"
+    }
   },
   "home": {
     "title": "Meine Münzsammlung"

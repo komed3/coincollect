@@ -133,3 +133,40 @@
     font-size: 0.7em;
     color: var( --text-muted );
 }
+
+.cc-coin--value {
+    display: flex;
+    flex-flow: row wrap;
+    gap: 2em;
+    margin: 3em 0;
+}
+
+.cc-coin--value-item {
+    flex: 1;
+    display: flex;
+    flex-flow: column nowrap;
+    padding: 1.4em;
+    background: var( --box-light );
+    border-radius: var( --border-radius );
+}
+
+.cc-coin--value-item label {
+    margin-bottom: 0.8em;
+    text-transform: uppercase;
+    font-size: 0.8em;
+    font-weight: 600;
+    letter-spacing: 0.1em;
+    color: var( --text-muted );
+}
+
+.cc-coin--value-item b {
+    font-size: 2.4em;
+    font-weight: 600;
+    color: var( --accent-color );
+}
+
+.cc-coin--value-item span {
+    margin-top: 0.4em;
+    font-size: 0.76em;
+    color: var( --text-muted );
+}
