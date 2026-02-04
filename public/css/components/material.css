@@ -1,15 +1,22 @@
-.cc-mixin--material [item="0"] { --c: #835815; }
-.cc-mixin--material [item="1"] { --c: #996718; }
-.cc-mixin--material [item="2"] { --c: #af761c; }
-.cc-mixin--material [item="3"] { --c: #c5851f; }
-.cc-mixin--material [item="4"] { --c: #db9422; }
-.cc-mixin--material [item="5"] { --c: #e09f37; }
-.cc-mixin--material [item="6"] { --c: #e3a94d; }
+.cc-mixin--material [color="gold"] { --c: #c5851f; }
+.cc-mixin--material [color="silver"] { --c: #c3c6c9; }
+.cc-mixin--material [color="bronze"] { --c: #9e764e; }
+.cc-mixin--material [color="copper"] { --c: #759e5c; }
+.cc-mixin--material [color="aluminum"] { --c: #d3d3d3; }
+.cc-mixin--material [color="nickel"] { --c: #727472; }
+.cc-mixin--material [color="zinc"] { --c: #7f7f7f; }
+.cc-mixin--material [color="platinum"] { --c: #e5e4e2; }
+.cc-mixin--material [color="palladium"] { --c: #ced0d4; }
+.cc-mixin--material [color="iron"] { --c: #48494b; }
+.cc-mixin--material [color="steel"] { --c: #7a7f84; }
+.cc-mixin--material [color="tin"] { --c: #b0b0b0; }
+.cc-mixin--material [color="lead"] { --c: #4c4c4c; }
+.cc-mixin--material [color="cobalt"] { --c: #435f86; }
 
 .cc-mixin--material-chart {
     display: flex;
     flex-flow: row nowrap;
-    gap: 1px;
+    gap: 2px;
     margin: 0.6em 0;
     width: 100%;
     height: 20px;
@@ -19,7 +26,7 @@
 
 .cc-mixin--material-chart-item {
     flex: var( --p, 1 );
-    background: var( --c );
+    background: var( --c, var( --text-muted ) );
 }
 
 .cc-mixin--material-legend {
@@ -42,6 +49,6 @@
     margin-right: 0.6em;
     width: 10px;
     height: 10px;
-    background: var( --c );
+    background: var( --c, var( --text-muted ) );
     border-radius: var( --border-radius );
 }

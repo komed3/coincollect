@@ -130,4 +130,5 @@ export interface CoinMaterial {
     name: string;
     fineness?: number;
     portion?: number;
+    color?: string;
 }
