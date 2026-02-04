@@ -4,7 +4,7 @@ append scripts
 
 mixin chart( type, data = {} )
   - let id = uuid()
-  div.cc-mixin.cc-mixin--chart( uuid= id )
+  div.cc-mixin.cc-mixin--chart( uuid= id, type= type )
     script( type= 'application/json', uuid= id )
      | !{ JSON.stringify( data ) }
-    chart.cc-chart( type= type, uuid= id )
+    canvas.cc-chart( uuid= id )
