@@ -58,8 +58,8 @@ class CCChart {
 
         Chart.defaults.plugins.tooltip.bodyFont = {
             family: Chart.defaults.font.family,
-            size: 14,
-            weight: 300
+            size: 16,
+            weight: 500
         };
 
         Chart.defaults.plugins.tooltip.footerFont = {
@@ -93,7 +93,6 @@ class CCChart {
             type: 'line',
             data: {
                 datasets: [ {
-                    label: 'OMV',
                     data: omv,
                     borderWidth: 2,
                     borderColor: '#c5851f',
@@ -104,7 +103,6 @@ class CCChart {
                     pointHoverRadius: 5,
                     pointHoverBackgroundColor: '#fff'
                 }, {
-                    label: 'Purchase',
                     data: th,
                     borderWidth: 0,
                     hoverBorderWidth: 0,
