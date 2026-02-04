@@ -115,6 +115,8 @@
     height: 48px;
     object-fit: cover;
     object-position: center;
+    border: 1px solid var( --border-color );
+    border-radius: var( --border-radius );
 }
 
 .cc-list--table-empty td {
