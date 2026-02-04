@@ -13,6 +13,8 @@ html( lang= lang )
       link( rel= "stylesheet", href= "/css/footer.css" )
 
     block scripts
+      script.
+        const I18N = !{ JSON.stringify( translations ) };
 
   body#top.cc
     block prebody
