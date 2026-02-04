@@ -23,9 +23,9 @@ export class CoinController {
         } );
     }
 
-    public async getStats ( req: Request, res: Response ) : Promise< void > {
+    public async getStats ( _: Request, res: Response ) : Promise< void > {
         await this.catch( res, 'Failed to fetch stats', async () => {
-            res.json( await this.dbService.getStats( Boolean( req.body.update ) ) );
+            res.json( await this.dbService.getStats() );
         } );
     }
 
