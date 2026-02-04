@@ -1,8 +1,30 @@
 append styles
   link( rel= "stylesheet", href= "/css/components/list.css" )
 
+append scripts
+  script( src= "/js/list.js", defer )
+
 mixin list()
   div.cc-list
+    div.cc-list--filter
+      div.cc-list--filter-search
+        i.fa.fa-search
+        input.cc-list--search-input( type= "text", autocomplete= "off", placeholder= t( 'list.filter.search' ) )
+      div.cc-list--filter-controls
+        i.fa.fa-filter
+        label= t( 'list.filter.label' )
+        select.cc-list--filter-select( filter= "type" )
+          option( value= "" )= t( 'list.filter.type' )
+        select.cc-list--filter-select( filter= "status" )
+          option( value= "" )= t( 'list.filter.status' )
+        select.cc-list--filter-select( filter= "grade" )
+          option( value= "" )= t( 'list.filter.grade' )
+        select.cc-list--filter-select( filter= "country" )
+          option( value= "" )= t( 'list.filter.country' )
+        select.cc-list--filter-select( filter= "currency" )
+          option( value= "" )= t( 'list.filter.currency' )
+        select.cc-list--filter-select( filter= "year" )
+          option( value= "" )= t( 'list.filter.year' )
     div.cc-list--table-container
       table.cc-list--table
         thead.cc-list--table-header
@@ -19,3 +41,6 @@ mixin list()
             th._amount= t( 'list.th.amount' )
             th._omv= t( 'list.th.omv' )
         tbody.cc-list--table-content
+        tfoot.cc-list--table-empty
+          tr
+            td( colspan= "11" )= t( 'list.empty' )
