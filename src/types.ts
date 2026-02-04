@@ -71,10 +71,7 @@ export interface Coin {
         value: number;
         date?: string;
     };
-    omv: {
-        value: number;
-        date: string;
-    }[];
+    omv: OMV[];
 
     images?: {
         obverse?: string;
@@ -131,4 +128,9 @@ export interface CoinMaterial {
     fineness?: number;
     portion?: number;
     color?: string;
+}
+
+export interface OMV {
+    value: number;
+    date: string;
 }
