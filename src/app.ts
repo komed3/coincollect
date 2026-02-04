@@ -1,5 +1,6 @@
 import { join } from 'node:path';
-import express, { type Response, static as serveStatic } from 'express';
+import express, { type NextFunction, type Request, type Response, static as serveStatic } from 'express';
+import { v4 as uuidv4 } from 'uuid';
 import { apiRoutes } from './routes/APIRoutes';
 import { appRoutes } from './routes/AppRoutes';
 import { formatterService } from './services/FormatterService';
@@ -18,6 +19,12 @@ app.use( express.json() );
 app.use( express.urlencoded( { extended: true } ) );
 app.use( I18nService );
 app.use( formatterService );
+
+app.use( ( req: Request, res: Response, next: NextFunction ) => {
+    res.locals.lang = req.language;
+    res.locals.uuid = uuidv4;
+    next();
+} );
 
 // Serve static files
 app.use( '/fonts', serveStatic( join( cwd, 'public/fonts' ) ) );
