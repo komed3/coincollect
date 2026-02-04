@@ -147,6 +147,7 @@
     flex-flow: column nowrap;
     padding: 1.4em;
     background: var( --box-light );
+    border: 1px solid var( --border-color );
     border-radius: var( --border-radius );
 }
 
