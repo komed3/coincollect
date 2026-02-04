@@ -69,6 +69,16 @@ class CCList {
         }
     }
 
+    toHash ( filters ) {
+        const hash = new URLSearchParams();
+        for( const [ k, v ] of Object.entries( filters ) ) {
+            if ( v ) hash.set( k, encodeURIComponent( v ) );
+        }
+        window.location.hash = hash.toString();
+    }
+
+    fromHash () {}
+
     getFilterValues () {
         const selects = Array.from( this.filterSelects );
         return {
@@ -102,6 +112,7 @@ class CCList {
         const filters = this.getFilterValues();
         this.filteredCoins = this.filterCoinsByValues( filters );
         this.currentPage = 0;
+        this.toHash( filters );
         this.renderCoins();
     }
 
