@@ -103,5 +103,20 @@
   },
   "home": {
     "title": "Meine Münzsammlung"
+  },
+  "list": {
+    "th": {
+      "amount": "Anzahl",
+      "coin": "Münze",
+      "country": "Land",
+      "currency": "Währung",
+      "grade": "Grad",
+      "omv": "Markwert",
+      "nominal": "Nennwert",
+      "series": "Serie",
+      "status": "Status",
+      "type": "Münztyp",
+      "year": "Jahr"
+    }
   }
 }
