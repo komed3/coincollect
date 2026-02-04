@@ -45,6 +45,8 @@ class CCList {
             this.populateSelectFromKeys( selects[ 3 ], stats.country );
             this.populateSelectFromKeys( selects[ 4 ], stats.currency );
             this.populateSelectFromKeys( selects[ 5 ], stats.year );
+
+            this.fromHash();
         } catch { /** silent */ }
     }
 
@@ -77,7 +79,22 @@ class CCList {
         window.location.hash = hash.toString();
     }
 
-    fromHash () {}
+    fromHash ( apply = false ) {
+        const hash = window.location.hash.substring( 1 );
+        const filters = new URLSearchParams( hash );
+
+        this.searchInput.value = filters.get( 'search' ) ?? '';
+
+        const selects = Array.from( this.filterSelects );
+        selects[ 0 ].value = filters.get( 'type' ) ?? '';
+        selects[ 1 ].value = filters.get( 'status' ) ?? '';
+        selects[ 2 ].value = filters.get( 'grade' ) ?? '';
+        selects[ 3 ].value = filters.get( 'country' ) ?? '';
+        selects[ 4 ].value = filters.get( 'currency' ) ?? '';
+        selects[ 5 ].value = filters.get( 'year' ) ?? '';
+
+        if ( apply ) this.applyFilters();
+    }
 
     getFilterValues () {
         const selects = Array.from( this.filterSelects );
