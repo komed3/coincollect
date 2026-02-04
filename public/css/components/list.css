@@ -119,6 +119,11 @@
     border-radius: var( --border-radius );
 }
 
+.cc-list--table ._amount,
+.cc-list--table ._omv {
+    text-align: right;
+}
+
 .cc-list--table-empty td {
     display: none;
     padding: 3em;
