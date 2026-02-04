@@ -9,7 +9,7 @@ class CCChart {
         Chart.defaults.interaction.mode = 'index';
         Chart.defaults.offset = true;
         Chart.defaults.clip = false;
-        Chart.defaults.layout.padding = 6;
+        Chart.defaults.layout.padding = 0;
 
         Chart.defaults.font.family = '"Inter", sans-serif';
         Chart.defaults.font.size = 12;
