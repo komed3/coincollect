@@ -66,11 +66,6 @@ class CCList {
         }
     }
 
-    /*async init () {
-        await this.loadStats();
-        await this.loadCoins();
-    }*/
-
     /*getFilterValues () {
         const selects = Array.from( this.filterSelects );
         return {
@@ -180,17 +175,19 @@ class CCList {
         return String( text ).replace( /[&<>"']/g, m => map[ m ] );
     }*/
 
-    /*checkForInfiniteScroll () {
+    checkForInfiniteScroll () {
         const scrollThreshold = 200;
         const scrollPosition = window.innerHeight + window.scrollY;
         const pageHeight = document.documentElement.scrollHeight;
 
-        if ( scrollPosition >= pageHeight - scrollThreshold && 
-             ( this.currentPage + 1 ) * this.pageSize < this.filteredCoins.length ) {
+        if (
+            scrollPosition >= pageHeight - scrollThreshold &&
+            ( this.currentPage + 1 ) * this.pageSize < this.filteredCoins.length
+        ) {
             this.currentPage++;
             this.renderCoins();
         }
-    }*/
+    }
 
 }
 
