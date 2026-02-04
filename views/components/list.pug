@@ -9,7 +9,10 @@ mixin list()
     div.cc-list--filter
       div.cc-list--filter-search
         i.fa.fa-search
-        input.cc-list--search-input( type= "text", autocomplete= "off", placeholder= t( 'list.filter.search' ) )
+        input.cc-list--filter-search-input(
+          filter= "search", type= "text", autocomplete= "off",
+          placeholder= t( 'list.filter.search' )
+        )
       div.cc-list--filter-controls
         i.fa.fa-filter
         label= t( 'list.filter.label' )

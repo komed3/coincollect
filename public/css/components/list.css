@@ -1,3 +1,57 @@
+.cc-list--filter {
+    display: flex;
+    flex-flow: column nowrap;
+    gap: 1em;
+    margin-bottom: 2.4em;
+}
+
+.cc-list--filter-search {
+    position: relative;
+}
+
+.cc-list--filter-search i {
+    position: absolute;
+    top: 50%;
+    left: 1rem;
+    transform: translateY( -50% );
+    color: var( --text-muted );
+}
+
+.cc-list--filter-search-input {
+    width: 100%;
+    padding: 0.8rem 1rem 0.8em 3em;
+    font-family: inherit;
+    font-size: 0.96em;
+    color: var( --text-color );
+    background: var( --box-bg );
+    border: 1px solid var( --border-color );
+    border-radius: var( --border-radius );
+}
+
+.cc-list--filter-controls {
+    display: flex;
+    flex-flow: row nowrap;
+    justify-content: flex-end;
+    align-items: center;
+    gap: 1rem;
+}
+
+.cc-list--filter-controls label {
+    font-size: 0.96em;
+    font-weight: 300;
+}
+
+.cc-list--filter-select {
+    padding: 0.8rem 1rem;
+    font-family: inherit;
+    font-size: 0.96em;
+    color: var( --text-color );
+    background: var( --box-bg );
+    border: 1px solid var( --border-color );
+    border-radius: var( --border-radius );
+    cursor: pointer;
+}
+
 .cc-list--table-container {
     width: 100%;
     white-space: nowrap;
@@ -61,4 +115,17 @@
     height: 48px;
     object-fit: cover;
     object-position: center;
+}
+
+.cc-list--table-empty td {
+    display: none;
+    padding: 3em;
+    text-align: center;
+    font-size: 1.4em;
+    font-weight: 300;
+    color: var( --text-muted );
+}
+
+.cc-list--table-empty.show td {
+    display: unset;
 }
