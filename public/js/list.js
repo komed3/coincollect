@@ -1,6 +1,9 @@
 class CCList {
 
     constructor () {
+        this.locale = document.documentElement.getAttribute( 'lang' );
+        this.money = Intl.NumberFormat( this.locale, { style: 'currency', currency: 'EUR' } );
+
         this.coins = [];
         this.filteredCoins = [];
         this.pageSize = 50;
@@ -124,12 +127,13 @@ class CCList {
         this.tableContent.appendChild( fragment );
     }
 
-    /*createCoinRow ( coin ) {
+    createCoinRow ( coin ) {
         const row = document.createElement( 'tr' );
+
         row.innerHTML = `
             <td class="_coin">
                 <a href="/coin/${ coin.id }">
-                    ${ coin.images?.obverse ? `<img src="/uploads/${ coin.images.obverse }" alt="${ coin.name }" loading="lazy">` : '' }
+                    ${ coin.images?.obverse ? `<img src="/uploads/${ coin.images.obverse }" alt="${ coin.name }" loading="lazy" />` : '' }
                     <b>${ this.escapeHtml( coin.name ) }</b>
                 </a>
             </td>
@@ -141,16 +145,17 @@ class CCList {
             <td class="_year">${ coin.mint?.year || '—' }</td>
             <td class="_nominal">${ coin.nominalValue ? `${ coin.nominalValue.value } ${ coin.nominalValue.unit }` : '—' }</td>
             <td class="_grade">${ this.escapeHtml( coin.grade ) }</td>
-            <td class="_amount">${ coin.amount }</td>
-            <td class="_omv">${ coin.omv.length > 0 ? coin.omv.length : '—' }</td>
+            <td class="_amount">${ coin.amount }x</td>
+            <td class="_omv">${ coin.omv.length > 0 ? this.money.format( coin.omv.length ) : '—' }</td>
         `;
-        return row;
-    }*/
 
-    /*escapeHtml ( text ) {
+        return row;
+    }
+
+    escapeHtml ( text ) {
         const map = { '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#039;' };
         return String( text ).replace( /[&<>"']/g, m => map[ m ] );
-    }*/
+    }
 
     checkForInfiniteScroll () {
         const scrollThreshold = 200;

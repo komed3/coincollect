@@ -129,5 +129,5 @@
 }
 
 .cc-list--table-empty.show td {
-    display: unset;
+    display: table-cell;
 }
