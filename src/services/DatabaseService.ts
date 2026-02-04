@@ -40,6 +40,7 @@ export class DatabaseService {
                 totalPurchase: 0,
                 totalOmv: 0,
                 type: {},
+                status: {},
                 grade: {},
                 country: {},
                 currency: {},
@@ -339,6 +340,7 @@ export class DatabaseService {
             };
 
             c.type && updateStats( 'type', c.type );
+            c.status && updateStats( 'status', c.status );
             c.grade && updateStats( 'grade', c.grade );
             c.country && updateStats( 'country', c.country );
             c.currency && updateStats( 'currency', c.currency );

@@ -13,6 +13,7 @@ export interface CoinStats {
     totalPurchase: number;
     totalOmv: number;
     type: { [ T in CoinType ]?: CoinStatsItem };
+    status: { [ S in CoinStatus ]?: CoinStatsItem };
     grade: { [ G in CoinGrade ]?: CoinStatsItem };
     country: Record< string, CoinStatsItem >;
     currency: Record< string, CoinStatsItem >;
