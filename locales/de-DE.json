@@ -109,9 +109,9 @@
     "filter": {
       "country": "Herkunfsland",
       "currency": "Währung",
-      "filter": "Münzen filtern:",
       "grade": "Erhaltungsgrad",
-      "search": "Münzen nach Name, Land oder Serie suchen …",
+      "label": "Münzen filtern:",
+      "search": "Münzen nach Name, Beschreibung oder Serie suchen …",
       "status": "Status in Sammlung",
       "type": "Münztyp",
       "year": "Jahr"
