@@ -26,7 +26,7 @@ export interface CoinStatsItem {
 }
 
 export interface Coin {
-    id: string;
+    readonly id: string;
     name: string;
 
     type: CoinType;
@@ -124,10 +124,10 @@ export enum CoinShape {
 }
 
 export interface CoinMaterial {
+    key: string;
     name: string;
     fineness?: number;
     portion?: number;
-    color?: string;
 }
 
 export interface OMV {
