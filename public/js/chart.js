@@ -1,6 +1,10 @@
 class CCChart {
 
     constructor () {
+        this.charts = new Map();
+        this.locale = document.documentElement.getAttribute( 'lang' );
+
+        Chart.defaults.locale = this.locale;
         Chart.defaults.responsive = true;
         Chart.defaults.maintainAspectRatio = false;
         Chart.defaults.interaction.intersect = false;
@@ -74,9 +78,6 @@ class CCChart {
             duration: 150,
             easing: 'easeOutBack'
         };
-
-        this.charts = new Map();
-        this.locale = document.documentElement.getAttribute( 'lang' );
     }
 
     renderChart ( type, uuid, data, ctx ) {
