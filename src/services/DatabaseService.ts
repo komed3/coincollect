@@ -3,7 +3,11 @@ import deepmerge from 'deepmerge';
 import { Low } from 'lowdb';
 import { JSONFile } from 'lowdb/node';
 import { v4 as uuidv4 } from 'uuid';
-import { Coin, CoinGrade, CoinShape, CoinStats, CoinStatsItem, CoinStatus, CoinType, Database } from '../types';
+
+import type {
+    Coin, CoinGrade, CoinShape, CoinStats, CoinStatsItem,
+    CoinStatus, CoinType, Database, OMV
+} from '../types';
 
 type PartialCoinInput = Partial< Omit< Coin, 'id' | 'createdAt' | 'updatedAt' > >;
 
@@ -224,7 +228,13 @@ export class DatabaseService {
         if ( ! coin ) return;
 
         const validated = this.sanitizeAndValidateInput( updates, false );
-        Object.assign( coin, deepmerge( coin, validated ), { updatedAt: new Date().toISOString() } );
+        Object.assign( coin, deepmerge( coin, validated, { arrayMerge: ( target: OMV[], source: OMV[] ) => {
+            const omv = new Map< string, OMV >();
+            for ( const t of target ) if ( ! omv.has( t.date ) ) omv.set( t.date, t );
+            for ( const s of source ) if ( ! omv.has( s.date ) ) omv.set( s.date, s );
+            return [ ...omv.values() ].sort( ( a: OMV, b: OMV ) => b.date.localeCompare( a.date ) );
+        } } ), { updatedAt: new Date().toISOString() } );
+
         this.computeStats();
         this.scheduleWrite();
         return coin;
