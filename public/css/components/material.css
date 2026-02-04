@@ -1,18 +1,3 @@
-.cc-mixin--material [color="gold"] { --c: #c5851f; }
-.cc-mixin--material [color="silver"] { --c: #c3c6c9; }
-.cc-mixin--material [color="bronze"] { --c: #9e764e; }
-.cc-mixin--material [color="copper"] { --c: #759e5c; }
-.cc-mixin--material [color="aluminum"] { --c: #d3d3d3; }
-.cc-mixin--material [color="nickel"] { --c: #727472; }
-.cc-mixin--material [color="zinc"] { --c: #7f7f7f; }
-.cc-mixin--material [color="platinum"] { --c: #e5e4e2; }
-.cc-mixin--material [color="palladium"] { --c: #ced0d4; }
-.cc-mixin--material [color="iron"] { --c: #48494b; }
-.cc-mixin--material [color="steel"] { --c: #7a7f84; }
-.cc-mixin--material [color="tin"] { --c: #b0b0b0; }
-.cc-mixin--material [color="lead"] { --c: #4c4c4c; }
-.cc-mixin--material [color="cobalt"] { --c: #435f86; }
-
 .cc-mixin--material-chart {
     display: flex;
     flex-flow: row nowrap;

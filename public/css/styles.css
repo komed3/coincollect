@@ -20,6 +20,32 @@
     --border-radius: 2px;
 }
 
+[color="gold"]        { --c: #c5851f; }
+[color="silver"]      { --c: #b7bcc3; }
+[color="platinum"]    { --c: #a9adb3; }
+[color="palladium"]   { --c: #9fa6ac; }
+
+[color="copper"]      { --c: #b8734a; }
+[color="bronze"]      { --c: #9e764e; }
+[color="brass"]       { --c: #b5a642; }
+
+[color="aluminum"]    { --c: #c7cbd0; }
+[color="steel"]       { --c: #6f7a86; }
+[color="stainless"]   { --c: #8a9198; }
+[color="nickel"]      { --c: #8f9391; }
+[color="zinc"]        { --c: #9aa3a6; }
+[color="tin"]         { --c: #c2c6c9; }
+
+[color="lead"]        { --c: #6b6f74; }
+[color="iron"]        { --c: #5f666d; }
+[color="cobalt"]      { --c: #435f86; }
+[color="titanium"]    { --c: #7b828a; }
+
+[color="cupronickel"] { --c: #9da38f; }
+[color="chrome"]      { --c: #aeb3b8; }
+[color="inconel"]     { --c: #8c7f73; }
+
+
 *, *::after, *::before {
     box-sizing: border-box;
 }
