@@ -135,3 +135,5 @@ block main
                 li.cc-coin--info-list-item
                   label= t( 'coin.note' )
                   p= coin.note
+
+        p.cc-coin--modified= t( '_.modified', { date: formatter.date( coin.updatedAt ) } )

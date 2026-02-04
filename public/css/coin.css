@@ -126,3 +126,10 @@
     font-size: 1.4em;
     font-weight: 300;
 }
+
+.cc-coin--modified {
+    margin: 0;
+    text-align: right;
+    font-size: 0.7em;
+    color: var( --text-muted );
+}

@@ -10,6 +10,7 @@
       "VG": "Sehr gut erhalten",
       "XF": "Vorzüglich"
     },
+    "modified": "Zuletzt geändert am {{date}}",
     "nav": {
       "add": "Editor",
       "home": "Sammlung",
