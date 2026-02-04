@@ -1,5 +1,19 @@
 {
   "_": {
+    "diff": {
+      "day_one": "{{count}} Tag",
+      "day_other": "{{count}} Tage",
+      "hour_one": "{{count}} Stunde",
+      "hour_other": "{{count}} Stunden",
+      "minute_one": "{{count}} Minute",
+      "minute_other": "{{count}} Minuten",
+      "month_one": "{{count}} Monat",
+      "month_other": "{{count}} Monate",
+      "second_one": "{{count}} Sekunde",
+      "second_other": "{{count}} Sekunden",
+      "year_one": "{{count}} Jahr",
+      "year_other": "{{count}} Jahre"
+    },
     "grade": {
       "BU": "Unzirkuliert",
       "F": "Schön",
@@ -56,6 +70,7 @@
       "reverse": "Revers"
     },
     "info": {
+      "age": "Alter der Münze",
       "country": "Herkunfsland",
       "currency": "Währung",
       "diameter": "Durchmesser",
@@ -67,6 +82,7 @@
       "nominal": "Nennwert",
       "series": "Serie",
       "shape": "Form",
+      "since": "In der Sammlung",
       "status": "Status in Sammlung",
       "thickness": "Stärke",
       "type": "Münztyp",

@@ -71,6 +71,14 @@ block main
               li.cc-coin--info-list-item
                 label= t( 'coin.info.shape' )
                 span= t( '_.shape.' + coin.design.shape )
+            if coin.mint && ( coin.mint.issueDate || coin.mint.mintYear )
+              li.cc-coin--info-list-item
+                label= t( 'coin.info.age' )
+                span= formatter.dateDiff( coin.mint.issueDate || coin.mint.mintYear, t )
+            if coin.purchase && coin.purchase.date
+              li.cc-coin--info-list-item
+                label= t( 'coin.info.since' )
+                span= formatter.dateDiff( coin.purchase.date, t )
           if coin.dimensions
             hr.cc-divider
             ul.cc-coin--info-list.col3
