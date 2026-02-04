@@ -17,7 +17,7 @@ class CCList {
 
     async init () {
         await this.loadFilter();
-        //await this.loadCoins();
+        await this.loadCoins();
     }
 
     initializeEvents () {
@@ -54,17 +54,17 @@ class CCList {
         } );
     }
 
-    /*async loadCoins () {
+    async loadCoins () {
         try {
             const response = await fetch( '/api/coin/all' );
-            if ( !response.ok ) throw new Error( 'Failed to load coins' );
-            
+            if ( ! response.ok ) throw new Error( 'Failed to load coins' );
+
             this.coins = await response.json();
             this.applyFilters();
         } catch ( error ) {
             console.error( 'Error loading coins:', error );
         }
-    }*/
+    }
 
     /*async init () {
         await this.loadStats();
