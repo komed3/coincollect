@@ -1,0 +1,26 @@
+.cc-list--table-container {
+    width: 100%;
+    overflow-x: auto;
+}
+
+.cc-list--table {
+    min-width: 100%;
+    text-align: left;
+    font-size: 0.86em;
+    background: var( --box-bg );
+    border-collapse: collapse;
+    border-spacing: 0;
+}
+
+.cc-list--table th,
+.cc-list--table td {
+    padding: 0.8rem 1rem;
+}
+
+.cc-list--table-header th {
+    text-transform: uppercase;
+    font-size: 0.82em;
+    font-weight: 500;
+    letter-spacing: 0.1em;
+    border-bottom: 1px solid var( --border-color );
+}
