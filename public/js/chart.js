@@ -1,7 +1,5 @@
 class CCChart {
 
-    charts = new Map();
-
     constructor () {
         Chart.defaults.responsive = true;
         Chart.defaults.maintainAspectRatio = false;
@@ -76,6 +74,9 @@ class CCChart {
             duration: 150,
             easing: 'easeOutBack'
         };
+
+        this.charts = new Map();
+        this.locale = document.documentElement.getAttribute( 'lang' );
     }
 
     renderChart ( type, uuid, data, ctx ) {
@@ -101,13 +102,14 @@ class CCChart {
                     pointRadius: 5,
                     pointBackgroundColor: '#fff',
                     pointHoverRadius: 5,
-                    pointHoverBackgroundColor: '#fff'
+                    pointHoverBackgroundColor: '#fff',
+                    tension: 0.1
                 }, {
                     data: th,
                     borderWidth: 0,
                     hoverBorderWidth: 0,
                     fill: true,
-                    backgroundColor: '#c5321f33',
+                    backgroundColor: '#c5321f25',
                     pointRadius: 0,
                     pointHoverRadius: 0
                 } ]
@@ -115,6 +117,11 @@ class CCChart {
             options: {
                 plugins: {
                     tooltip: {
+                        callbacks: {
+                            label: ( item ) => Intl.NumberFormat( this.locale, {
+                                style: 'currency', currency: 'EUR'
+                            } ).format( item.raw.y )
+                        },
                         filter ( item ) {
                             return item.datasetIndex !== 1;
                         }
@@ -130,12 +137,21 @@ class CCChart {
                         grid: {
                             drawOnChartArea: false,
                             tickLength: 6
-                        }
+                        },
+                        ticks: { autoSkip: true }
                     },
                     y: {
                         beginAtZero: true,
                         border: { dash: [ 5, 5 ] },
-                        ticks: { maxTicksLimit: 4 }
+                        position: 'left',
+                        ticks: {
+                            padding: 6,
+                            maxTicksLimit: 4,
+                            align: 'center',
+                            callback: ( value ) => Intl.NumberFormat( this.locale, {
+                                style: 'currency', currency: 'EUR'
+                            } ).format( value )
+                        }
                     }
                 }
             }
