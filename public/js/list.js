@@ -11,13 +11,22 @@ class CCList {
         this.searchInput = document.querySelector( '.cc-list--filter-search-input' );
         this.filterSelects = document.querySelectorAll( '.cc-list--filter-select' );
 
-        //this.initializeEvents();
+        this.initializeEvents();
         this.init();
     }
 
     async init () {
         await this.loadFilter();
         //await this.loadCoins();
+    }
+
+    initializeEvents () {
+        this.searchInput?.addEventListener( 'input', () => this.applyFilters() );
+        this.filterSelects.forEach( select => {
+            select.addEventListener( 'change', () => this.applyFilters() );
+        } );
+
+        window.addEventListener( 'scroll', () => this.checkForInfiniteScroll() );
     }
 
     async loadFilter () {
@@ -44,15 +53,6 @@ class CCList {
             select.appendChild( o );
         } );
     }
-
-    /*initializeEvents () {
-        this.searchInput?.addEventListener( 'input', () => this.applyFilters() );
-        this.filterSelects.forEach( select => {
-            select.addEventListener( 'change', () => this.applyFilters() );
-        } );
-
-        window.addEventListener( 'scroll', () => this.checkForInfiniteScroll() );
-    }*/
 
     /*async loadCoins () {
         try {
