@@ -66,15 +66,18 @@ class CCList {
         }
     }
 
-    /*getFilterValues () {
+    getFilterValues () {
         const selects = Array.from( this.filterSelects );
         return {
             search: ( this.searchInput?.value || '' ).toLowerCase(),
             type: selects[ 0 ]?.value || '',
             status: selects[ 1 ]?.value || '',
-            country: selects[ 2 ]?.value || ''
+            grade: selects[ 2 ]?.value || '',
+            country: selects[ 3 ]?.value || '',
+            currency: selects[ 4 ]?.value || '',
+            year: selects[ 5 ]?.value || ''
         };
-    }*/
+    }
 
     /*filterCoinsByValues ( filters ) {
         return this.coins.filter( coin => {
@@ -91,36 +94,12 @@ class CCList {
         } );
     }*/
 
-    /*applyFilters () {
+    applyFilters () {
         const filters = this.getFilterValues();
         this.filteredCoins = this.filterCoinsByValues( filters );
         this.currentPage = 0;
         this.renderCoins();
-        this.updateCountryFilter();
-    }*/
-
-    /*updateCountryFilter () {
-        const selects = Array.from( this.filterSelects );
-        const countrySelect = selects[ 2 ];
-        const filters = this.getFilterValues();
-        const filteredForCountry = this.filterCoinsByValues( { ...filters, country: '' } );
-        const countries = [ ...new Set( filteredForCountry.map( c => c.country ).filter( Boolean ) ) ].sort();
-        this.replaceOptions( countrySelect, countries );
-    }*/
-
-    /*replaceOptions ( select, items ) {
-        if ( !select ) return;
-        const current = select.value;
-        // remove old options except first
-        Array.from( select.querySelectorAll( 'option' ) ).forEach( ( opt, idx ) => { if ( idx > 0 ) opt.remove(); } );
-        items.forEach( it => {
-            const o = document.createElement( 'option' );
-            o.value = it;
-            o.textContent = it;
-            select.appendChild( o );
-        } );
-        select.value = current;
-    }*/
+    }
 
     /*renderCoins () {
         const endIndex = ( this.currentPage + 1 ) * this.pageSize;
