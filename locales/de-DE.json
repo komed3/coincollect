@@ -1,5 +1,6 @@
 {
   "_": {
+    "copyright": "Copyright © 2026 CoinCollect. Entwickelt für Enthusiasten von komed3. Alle Rechte vorbehalten.",
     "diff": {
       "day_one": "{{count}} Tag",
       "day_other": "{{count}} Tage",
@@ -39,6 +40,7 @@
       "round": "Rund",
       "square": "Quadratisch"
     },
+    "support": "Unterstützen",
     "status": {
       "duplicate": "Duplikat",
       "forSale": "Zum Verkauf",
