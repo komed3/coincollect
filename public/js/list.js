@@ -103,20 +103,17 @@ class CCList {
     }
 
     renderCoins () {
-        /*const endIndex = ( this.currentPage + 1 ) * this.pageSize;
+        const endIndex = ( this.currentPage + 1 ) * this.pageSize;
         const coinsToRender = this.filteredCoins.slice( 0, endIndex );
 
         if ( coinsToRender.length === 0 ) {
             this.tableContent.innerHTML = '';
-            this.emptyState?.removeAttribute( 'hidden' );
+            this.emptyState?.classList.add( 'show' );
             return;
         }
 
-        this.emptyState?.setAttribute( 'hidden', '' );
-
-        if ( this.currentPage === 0 ) {
-            this.tableContent.innerHTML = '';
-        }
+        this.emptyState?.classList.remove( 'show' );
+        if ( this.currentPage === 0 ) this.tableContent.innerHTML = '';
 
         const fragment = document.createDocumentFragment();
         coinsToRender.slice( this.currentPage * this.pageSize, endIndex ).forEach( coin => {
@@ -124,7 +121,7 @@ class CCList {
             fragment.appendChild( row );
         } );
 
-        this.tableContent.appendChild( fragment );*/
+        this.tableContent.appendChild( fragment );
     }
 
     /*createCoinRow ( coin ) {
