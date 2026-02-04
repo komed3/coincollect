@@ -1,4 +1,5 @@
 extends layout/page
+include components/chart
 include components/material
 
 append styles
@@ -138,22 +139,25 @@ block main
 
         p.cc-coin--modified= t( '_.modified', { date: formatter.date( coin.updatedAt ) } )
 
-        div.cc-coin--value
-          if coin.purchase
-            div.cc-coin--value-item.purchase
-              label= t( 'coin.value.purchase' )
-              b= formatter.money( 'EUR', coin.purchase.value )
-              if coin.purchase.date
-                span= t( 'coin.value.datetime', { date: formatter.date( coin.purchase.date ) } )
-          if coin.omv
-            div.cc-coin--value-item.omv
-              label= t( 'coin.value.omv' )
-              b= formatter.money( 'EUR', coin.omv[0].value )
-              if coin.omv[0].date
-                span= t( 'coin.value.datetime', { date: formatter.date( coin.omv[0].date ) } )
-          if coin.purchase && coin.omv
-            - let o = coin.omv[0], p = coin.purchase;
-            div.cc-coin--value-item.growth
-              label= t( 'coin.value.growth' )
-              b= formatter.money( 'EUR', o.value - p.value )
-              span= t( 'coin.value.percent', { growth: formatter.percent( o.value / p.value * 100, 1, { signDisplay: 'exceptZero' } ) } )
+        if coin.purchase || coin.omv
+          div.cc-coin--value
+            if coin.purchase
+              div.cc-coin--value-item.purchase
+                label= t( 'coin.value.purchase' )
+                b= formatter.money( 'EUR', coin.purchase.value )
+                if coin.purchase.date
+                  span= t( 'coin.value.datetime', { date: formatter.date( coin.purchase.date ) } )
+            if coin.omv
+              div.cc-coin--value-item.omv
+                label= t( 'coin.value.omv' )
+                b= formatter.money( 'EUR', coin.omv[0].value )
+                if coin.omv[0].date
+                  span= t( 'coin.value.datetime', { date: formatter.date( coin.omv[0].date ) } )
+            if coin.purchase && coin.omv
+              - let o = coin.omv[0], p = coin.purchase;
+              div.cc-coin--value-item.growth
+                label= t( 'coin.value.growth' )
+                b= formatter.money( 'EUR', o.value - p.value )
+                span= t( 'coin.value.percent', { growth: formatter.percent( o.value / p.value * 100, 1, { signDisplay: 'exceptZero' } ) } )
+          div.cc-coin--value-chart
+            +chart( 'value', { purchase: coin.purchase, omv: coin.omv, material: coin.material } )

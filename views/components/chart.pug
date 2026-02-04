@@ -1,0 +1,10 @@
+append scripts
+  script( src= "https://cdn.jsdelivr.net/npm/chart.js@4.5.1/dist/chart.umd.min.js" )
+  script( src= "/js/chart.js", defer )
+
+mixin chart( type, data = {} )
+  - let id = uuid()
+  div.cc-mixin.cc-mixin--chart( uuid= id )
+    script( type= 'application/json', uuid= id )
+     | !{ JSON.stringify( data ) }
+    chart.cc-chart( type= type, uuid= id )
