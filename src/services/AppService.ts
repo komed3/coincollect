@@ -6,7 +6,7 @@ export const appService = async ( req: Request, res: Response, next: NextFunctio
     res.locals.lang = req.language;
     res.locals.updatedAt = await DB.getDateUpdatedAt();
     res.locals.currency = await DB.getCurrency();
-    res.locals.supportedLngs = req.languages;
+    res.locals.supportedLngs = [ 'de-DE', 'en-US' ];
     res.locals.translations = req.t( '_', { returnObjects: true } );
     res.locals.uuid = uuidv4;
     next();
