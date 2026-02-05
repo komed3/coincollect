@@ -36,6 +36,22 @@ document.addEventListener( 'DOMContentLoaded', function () {
             console.error( 'Export error:', err );
         } finally {
             e.target.disabled = false;
+            console.log( 'Database successfully exported' );
+        }
+    } );
+
+    document.querySelector( '#updateDb' ).addEventListener( 'click', async ( e ) => {
+        e.preventDefault();
+        e.target.disabled = true;
+
+        try {
+            const res = await fetch( '/api/db/update', { method: 'POST' } );
+            if ( ! res.ok ) throw new Error( 'Update failed' );
+        } catch ( err ) {
+            console.error( 'Update error:', err );
+        } finally {
+            e.target.disabled = false;
+            console.log( 'Database successfully updated' );
         }
     } );
 } );
