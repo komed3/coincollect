@@ -109,7 +109,7 @@ class CCChart {
                     borderWidth: 0,
                     hoverBorderWidth: 0,
                     fill: true,
-                    backgroundColor: '#c5321f25',
+                    backgroundColor: '#c5851f25',
                     pointRadius: 0,
                     pointHoverRadius: 0
                 } ]
