@@ -1,4 +1,5 @@
 extends layout/page
+include components/chart
 
 append styles
   link( rel= "stylesheet", href= "/css/stats.css" )
@@ -25,7 +26,9 @@ block main
         b= formatter.unit( 'kilogram', stats.totalWeight / 1000, 2 )
         span= t( 'stats.overview.weightinfo' )
 
-    div.cc-stats--value
+    div.cc-stats--history
       h3.cc-page-subtitle
         i.fa.fa-diamond
         span= t( 'stats.value' )
+      div.cc-stats--box.cc-box
+        +chart( 'history', value )
