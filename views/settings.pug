@@ -1,1 +1,8 @@
 extends layout/page
+
+append styles
+  link( rel= "stylesheet", href= "/css/settings.css" )
+
+block main
+  div.cc-settings.cc-content--normal
+    h2.cc-page-title= t( 'settings.title' )

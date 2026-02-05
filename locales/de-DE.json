@@ -136,6 +136,9 @@
       "year": "Jahr"
     }
   },
+  "settings": {
+    "title": "Einstellungen"
+  },
   "stats": {
     "country": "Herkunfsland",
     "currency": "Währung",
