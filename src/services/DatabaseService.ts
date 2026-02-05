@@ -60,7 +60,13 @@ export class DatabaseService {
 
     private async flush () : Promise< void > {
         if ( ! this.db ) return;
+
         this.db.data._meta.updatedAt = new Date().toISOString();
+        this.db.data.coins.sort( ( a, b ) => (
+            new Date( b.purchase?.date ?? b.mint?.issueDate ?? b.mint?.year ?? b.createdAt ).getTime() -
+            new Date( a.purchase?.date ?? a.mint?.issueDate ?? a.mint?.year ?? a.createdAt ).getTime()
+        ) );
+
         await this.db.write();
     }
 
