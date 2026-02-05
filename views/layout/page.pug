@@ -1,5 +1,5 @@
 doctype html
-html( lang= lang )
+html( lang= lang, currency= currency )
   head
     meta( charset= "UTF-8" )
     meta( name= "viewport", content= "width=device-width, initial-scale=1.0" )
@@ -15,6 +15,8 @@ html( lang= lang )
     block scripts
       script.
         const I18N = !{ JSON.stringify( translations ) };
+        const LANG = "!{ lang }";
+        const CURRENCY = "!{ currency }";
 
   body#top.cc
     block prebody
