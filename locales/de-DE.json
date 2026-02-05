@@ -130,5 +130,8 @@
       "type": "Münztyp",
       "year": "Jahr"
     }
+  },
+  "stats": {
+    "title": "Statistik"
   }
 }
