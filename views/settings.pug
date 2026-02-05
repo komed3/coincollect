@@ -16,7 +16,7 @@ block main
         select#languageSelect
           each lng in supportedLngs
             option( value= lng, selected= ( lang === lng ) )= t( '_.lang.' + lng )
-
+      hr.cc-divider
       h3.cc-settings--box-hl= t( 'settings.currency' )
       div.cc-settings--item
         select#currencySelect
@@ -25,17 +25,14 @@ block main
 
     div.cc-settings--box.cc-box
       h3.cc-settings--box-hl= t( 'settings.database' )
-
       div.cc-settings--item
         button.cc-settings--button._primary#exportDb
           span= t( 'settings.export' )
           small= t( 'settings.exportinfo' )
-
       div.cc-settings--item
         button.cc-settings--button._primary#updateDb
           span= t( 'settings.update' )
           small= t( 'settings.updateinfo' )
-
       div.cc-settings--item
         button.cc-settings--button._danger#resetDb
           span= t( 'settings.reset' )

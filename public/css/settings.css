@@ -1,0 +1,45 @@
+.cc-settings--box-hl {
+    margin: 0 0 0.8em;
+    text-transform: uppercase;
+    font-size: 0.76em;
+    font-weight: 600;
+    letter-spacing: 0.1em;
+    color: var( --text-muted );
+}
+
+.cc-settings--item select {
+    padding: 0.8rem 1rem;
+    font-family: inherit;
+    font-size: 0.96em;
+    color: var( --text-color );
+    background: var( --box-bg );
+    border: 1px solid var( --border-color );
+    border-radius: var( --border-radius );
+    cursor: pointer;
+}
+
+.cc-settings--button {
+    margin: 0.4em 0;
+    padding: 0.8rem 1rem;
+    text-align: left;
+    font-family: inherit;
+    font-size: 1.2em;
+    font-weight: 300;
+    color: #fff;
+    border: 0;
+    border-radius: var( --border-radius );
+    cursor: pointer;
+}
+
+.cc-settings--button small {
+    display: block;
+    font-size: 0.6em;
+}
+
+.cc-settings--button._primary {
+    background: var( --accent-color );
+}
+
+.cc-settings--button._danger {
+    background: var( --danger-color );
+}
