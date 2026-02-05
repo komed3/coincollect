@@ -136,3 +136,13 @@
 .cc-list--table-empty.show td {
     display: table-cell;
 }
+
+.cc-list--eol {
+    margin: 2em 0;
+    text-align: center;
+    text-transform: uppercase;
+    font-size: 0.76em;
+    font-weight: 500;
+    letter-spacing: 0.1em;
+    color: var( --text-muted );
+}

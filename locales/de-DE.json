@@ -40,7 +40,6 @@
       "round": "Rund",
       "square": "Quadratisch"
     },
-    "support": "Unterstützen",
     "status": {
       "duplicate": "Duplikat",
       "forSale": "Zum Verkauf",
@@ -50,6 +49,7 @@
       "sold": "Verkauft",
       "wanted": "Gewünscht"
     },
+    "support": "Unterstützen",
     "title": "{{title}} — CoinCollect",
     "type": {
       "bullion": "Anlagemünze",
@@ -106,6 +106,7 @@
   },
   "list": {
     "empty": "Keine Münzen gefunden, die den Suchkriterien entsprechen.",
+    "eol": "Ende des Katalogs",
     "filter": {
       "country": "Herkunfsland",
       "currency": "Währung",
@@ -122,8 +123,8 @@
       "country": "Land",
       "currency": "Währung",
       "grade": "Grad",
-      "omv": "Markwert",
       "nominal": "Nennwert",
+      "omv": "Markwert",
       "series": "Serie",
       "status": "Status",
       "type": "Münztyp",
