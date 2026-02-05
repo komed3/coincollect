@@ -5,7 +5,7 @@ import { JSONFile } from 'lowdb/node';
 import { v4 as uuidv4 } from 'uuid';
 
 import type {
-    Coin, CoinGrade, CoinShape, CoinStats, CoinStatsItem,
+    Coin, CoinGrade, CoinShape, CoinStats, CoinStatsItem, CoinStatsRecord,
     CoinStatus, CoinType, Database, OMV
 } from '../types';
 
@@ -352,17 +352,54 @@ export class DatabaseService {
         return stats;
     }
 
-    public async getValue ( update: boolean = false ) : Promise< Record< string, CoinStatsItem > > {
+    public async getValue ( update: boolean = false ) : Promise< CoinStatsRecord > {
         if ( ! this.db ) await this.initDb();
 
         if ( update ) await this.updateDb();
         return this.db!.data.value;
     }
 
-    public async calculateValue () : Promise< Record< string, CoinStatsItem > > {
+    public async calculateValue () : Promise< CoinStatsRecord > {
         if ( ! this.db ) await this.initDb();
         const coins = this.db!.data.coins;
-        const value: Record< string, CoinStatsItem > = {};
+        const value: CoinStatsRecord = {};
+        const years = new Set< string >();
+
+        for ( const coin of coins ) {
+            if ( coin.purchase?.date ) years.add( new Date( coin.purchase.date ).getFullYear().toString() );
+            for ( const omv of coin.omv ) years.add( new Date( omv.date ).getFullYear().toString() );
+        }
+
+        for ( const year of years ) {
+            const yearEnd = new Date( `${ year }-12-31T23:59:59.999Z` ).getTime();
+            const stats: CoinStatsItem = { coins: 0, purchase: 0, omv: 0 };
+
+            for ( const coin of coins ) {
+                const amount = coin.amount || 1;
+
+                let coinValue = 0;
+                for ( let i = coin.omv.length - 1; i >= 0; i-- ) {
+                    if ( new Date( coin.omv[ i ].date ).getTime() <= yearEnd ) {
+                        coinValue = coin.omv[ i ].value * amount;
+                        break;
+                    }
+                }
+
+                if ( ! coinValue && coin.purchase?.value && coin.purchase?.date ) {
+                    if ( new Date( coin.purchase.date ).getTime() <= yearEnd ) {
+                        coinValue = coin.purchase.value * amount;
+                        stats.purchase += coin.purchase.value * amount;
+                    }
+                }
+
+                if ( coinValue ) {
+                    stats.coins += amount;
+                    stats.omv += coinValue;
+                }
+            }
+
+            if ( stats.coins > 0 ) value[ year ] = stats;
+        }
 
         this.db!.data.value = value;
         return value;
