@@ -1,8 +1,7 @@
 class CCList {
 
     constructor () {
-        this.locale = document.documentElement.getAttribute( 'lang' );
-        this.money = Intl.NumberFormat( this.locale, { style: 'currency', currency: 'EUR' } );
+        this.money = Intl.NumberFormat( LANG, { style: 'currency', currency: CURRENCY } );
 
         this.coins = [];
         this.filteredCoins = [];

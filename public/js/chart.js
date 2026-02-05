@@ -2,9 +2,8 @@ class CCChart {
 
     constructor () {
         this.charts = new Map();
-        this.locale = document.documentElement.getAttribute( 'lang' );
 
-        Chart.defaults.locale = this.locale;
+        Chart.defaults.locale = LANG;
         Chart.defaults.responsive = true;
         Chart.defaults.maintainAspectRatio = false;
         Chart.defaults.interaction.intersect = false;
@@ -119,8 +118,8 @@ class CCChart {
                 plugins: {
                     tooltip: {
                         callbacks: {
-                            label: ( item ) => Intl.NumberFormat( this.locale, {
-                                style: 'currency', currency: 'EUR'
+                            label: ( item ) => Intl.NumberFormat( LANG, {
+                                style: 'currency', currency: CURRENCY
                             } ).format( item.raw.y )
                         },
                         filter ( item ) {
@@ -149,8 +148,8 @@ class CCChart {
                             padding: 6,
                             maxTicksLimit: 4,
                             align: 'center',
-                            callback: ( value ) => Intl.NumberFormat( this.locale, {
-                                style: 'currency', currency: 'EUR'
+                            callback: ( value ) => Intl.NumberFormat( LANG, {
+                                style: 'currency', currency: CURRENCY
                             } ).format( value )
                         }
                     }
