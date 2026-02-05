@@ -5,6 +5,7 @@ export interface Database {
         updatedAt: string;
     };
     coins: Coin[];
+    value: Record< string, CoinStatsItem >;
     stats: CoinStats;
 }
 

@@ -35,6 +35,7 @@ export class DatabaseService {
                 updatedAt: now
             },
             coins: [],
+            value: {},
             stats: {
                 totalCoins: 0,
                 totalPurchase: 0,
@@ -351,8 +352,16 @@ export class DatabaseService {
         return stats;
     }
 
+    public async calculateValue () : Promise< Record< string, CoinStatsItem > > {
+        const value: Record< string, CoinStatsItem > = {};
+
+        this.db!.data.value = value;
+        return value;
+    }
+
     public async updateDb () : Promise< void > {
         await this.computeStats();
+        await this.calculateValue();
         this.scheduleWrite();
     }
 
