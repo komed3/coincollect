@@ -87,6 +87,25 @@ a, a:link, a:visited, a:hover, a:focus {
     min-height: 80dvh;
 }
 
+.cc-page-title {
+    display: flex;
+    flex-flow: row nowrap;
+    align-items: center;
+    gap: 2em;
+    margin: 2em 0;
+    text-transform: uppercase;
+    font-size: 1.4em;
+    font-weight: 500;
+    letter-spacing: 0.1em;
+}
+
+.cc-page-title::after {
+    content: '';
+    flex: 1;
+    height: 4px;
+    background: var( --accent-color );
+}
+
 .cc-box {
     margin-bottom: 1em;
     padding: 1.4em;
