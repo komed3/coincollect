@@ -352,7 +352,16 @@ export class DatabaseService {
         return stats;
     }
 
+    public async getValue ( update: boolean = false ) : Promise< Record< string, CoinStatsItem > > {
+        if ( ! this.db ) await this.initDb();
+
+        if ( update ) await this.updateDb();
+        return this.db!.data.value;
+    }
+
     public async calculateValue () : Promise< Record< string, CoinStatsItem > > {
+        if ( ! this.db ) await this.initDb();
+        const coins = this.db!.data.coins;
         const value: Record< string, CoinStatsItem > = {};
 
         this.db!.data.value = value;
