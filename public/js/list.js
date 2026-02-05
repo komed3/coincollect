@@ -110,11 +110,15 @@ class CCList {
     }
 
     filterCoinsByValues ( filters ) {
+        if ( ! filters || ! Object.values( filters ).filter( Boolean ) ) return this.coins.slice();
+
         return this.coins.filter( coin => ! (
             filters.search && ! (
-                coin.name.includes( filters.search ) ||
-                Object.values( coin.design ?? {} ).includes( filters.search ) ||
-                coin.description?.includes( filters.search )
+                coin.name.toLowerCase().includes( filters.search ) ||
+                coin.series.toLowerCase().includes( filters.search ) ||
+                ( coin.tags ?? [] ).some( t => t.toLowerCase().includes( filters.search ) ) ||
+                Object.values( coin.design ?? {} ).some( d => d.toLowerCase().includes( filters.search ) ) ||
+                coin.description?.toLowerCase().includes( filters.search )
             ) ||
             filters.type && coin.type != filters.type ||
             filters.status && coin.status != filters.status ||
