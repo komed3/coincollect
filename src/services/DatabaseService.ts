@@ -32,6 +32,7 @@ export class DatabaseService {
         return {
             _meta: {
                 schemaVersion: '1',
+                currency: 'USD',
                 createdAt: now,
                 updatedAt: now
             },
@@ -182,6 +183,17 @@ export class DatabaseService {
         if ( ! this.db ) await this.initDb();
         this.db!.data = this.defaultData();
         await this.flush();
+    }
+
+    public async setCurrency ( cur: string ) : Promise< void > {
+        if ( ! this.db ) await this.initDb();
+        this.db!.data._meta.currency = cur.trim();
+        await this.flush();
+    }
+
+    public async getCurrency () : Promise< string > {
+        if ( ! this.db ) await this.initDb();
+        return this.db!.data._meta.currency;
     }
 
     public async exportCatalog ( asJson: boolean = true ) : Promise< string | Database > {
