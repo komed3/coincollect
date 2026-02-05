@@ -10,14 +10,14 @@
 }
 
 :root {
-    --bg-color: #eee;
     --text-color: #000;
     --text-muted: #777;
     --accent-color: #c5851f;
+    --bg-color: #fefcf9;
     --box-bg: #fff;
-    --box-light: #f8f8f8;
-    --border-color: #e5e5e5;
-    --border-radius: 2px;
+    --box-light: #faf1e3;
+    --border-color: #f2dbb8;
+    --border-radius: 4px;
 }
 
 [color="gold"]        { --c: #c5851f; }
