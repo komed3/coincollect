@@ -32,11 +32,12 @@ document.addEventListener( 'DOMContentLoaded', function () {
             link.click();
             document.body.removeChild( link );
             URL.revokeObjectURL( url );
+
+            console.log( 'Database successfully exported' );
         } catch ( err ) {
             console.error( 'Export error:', err );
         } finally {
             e.target.disabled = false;
-            console.log( 'Database successfully exported' );
         }
     } );
 
@@ -47,11 +48,37 @@ document.addEventListener( 'DOMContentLoaded', function () {
         try {
             const res = await fetch( '/api/db/update', { method: 'POST' } );
             if ( ! res.ok ) throw new Error( 'Update failed' );
+
+            console.log( 'Database successfully updated' );
         } catch ( err ) {
             console.error( 'Update error:', err );
         } finally {
             e.target.disabled = false;
-            console.log( 'Database successfully updated' );
+        }
+    } );
+
+    document.querySelector( '#resetDb' ).addEventListener( 'click', async ( e ) => {
+        e.preventDefault();
+        e.target.disabled = true;
+
+        try {
+            if ( ! confirm( 'WARNING: All coins will be deleted!\nThis action cannot be undone.\n\nContinue?' ) ) {
+                throw new Error( 'Reset canceled' );
+            }
+
+            const nonce = ( Math.random() + 1 ).toString( 36 ).substring( 4 );
+            const check = prompt( `To confirm, enter “${nonce}”:` );
+            if ( nonce !== check ) throw new Error( 'Confirmation failed' );
+
+            const res = await fetch( '/api/db/reset', { method: 'DELETE' } );
+            if ( ! res.ok ) throw new Error( 'Reset failed' );
+
+            console.log( 'Database successfully cleared' );
+        } catch ( err ) {
+            e.target.disabled = false;
+            console.error( 'Reset error:', err );
+        } finally {
+            e.target.disabled = false;
         }
     } );
 } );
