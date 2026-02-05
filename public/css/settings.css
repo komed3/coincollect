@@ -28,7 +28,6 @@
     font-family: inherit;
     font-size: 1.2em;
     font-weight: 300;
-    color: #fff;
     border: 0;
     border-radius: var( --border-radius );
     cursor: pointer;
@@ -40,9 +39,11 @@
 }
 
 .cc-settings--button._primary {
-    background: var( --accent-color );
+    background: #fff;
+    border: 1px solid var( --border-color );
 }
 
 .cc-settings--button._danger {
+    color: #fff;
     background: var( --danger-color );
 }
