@@ -5,7 +5,7 @@ export interface Database {
         updatedAt: string;
     };
     coins: Coin[];
-    value: Record< string, CoinStatsItem >;
+    value: CoinStatsRecord;
     stats: CoinStats;
 }
 
@@ -16,10 +16,12 @@ export interface CoinStats {
     type: { [ T in CoinType ]?: CoinStatsItem };
     status: { [ S in CoinStatus ]?: CoinStatsItem };
     grade: { [ G in CoinGrade ]?: CoinStatsItem };
-    country: Record< string, CoinStatsItem >;
-    currency: Record< string, CoinStatsItem >;
-    year: Record< string, CoinStatsItem >;
+    country: CoinStatsRecord;
+    currency: CoinStatsRecord;
+    year: CoinStatsRecord;
 }
+
+export type CoinStatsRecord = Record< string, CoinStatsItem >;
 
 export interface CoinStatsItem {
     coins: number;
