@@ -106,6 +106,16 @@ a, a:link, a:visited, a:hover, a:focus {
     background: var( --accent-color );
 }
 
+.cc-page-subtitle {
+    display: flex;
+    flex-flow: row nowrap;
+    align-items: center;
+    gap: 1em;
+    margin: 3em 0 1.6em;
+    font-size: 1.26em;
+    font-weight: 500;
+}
+
 .cc-box {
     margin-bottom: 1em;
     padding: 1.4em;

@@ -142,6 +142,7 @@
       "weight": "Gesamtgewicht",
       "weightinfo": "Gewicht aller Münzen"
     },
-    "title": "Statistik"
+    "title": "Statistik",
+    "value": "Wertsteigerung"
   }
 }

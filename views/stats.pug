@@ -24,3 +24,8 @@ block main
         label= t( 'stats.overview.weight' )
         b= formatter.unit( 'kilogram', stats.totalWeight / 1000, 2 )
         span= t( 'stats.overview.weightinfo' )
+
+    div.cc-stats--value
+      h3.cc-page-subtitle
+        i.fa.fa-diamond
+        span= t( 'stats.value' )
