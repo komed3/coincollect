@@ -23,6 +23,20 @@ export class CoinController {
         } );
     }
 
+    public async getCurrency ( _: Request, res: Response ) : Promise< void > {
+        await this.catch( res, 'Failed to fetch currency', async () => {
+            res.json( await this.dbService.getCurrency() );
+        } );
+    }
+
+    public async setCurrency ( req: Request, res: Response ) : Promise< void > {
+        await this.catch( res, 'Failed to set currency', async () => {
+            if ( typeof req.body.currency !== 'string' ) throw new Error( 'Invalid currency' );
+            await this.dbService.setCurrency( req.body.currency );
+            res.status( 200 ).send();
+        } );
+    }
+
     public async getStats ( _: Request, res: Response ) : Promise< void > {
         await this.catch( res, 'Failed to fetch stats', async () => {
             res.json( await this.dbService.getStats() );
