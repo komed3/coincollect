@@ -29,6 +29,12 @@ export class CoinController {
         } );
     }
 
+    public async getValue ( _: Request, res: Response ) : Promise< void > {
+        await this.catch( res, 'Failed to fetch collection value', async () => {
+            res.json( await this.dbService.getValue() );
+        } );
+    }
+
     public async export ( _: Request, res: Response ) : Promise< void > {
         await this.catch( res, 'Failed to export catalog', async () => {
             res.json( await this.dbService.exportCatalog() );
