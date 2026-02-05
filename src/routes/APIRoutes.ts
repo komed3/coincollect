@@ -7,6 +7,7 @@ const cc = new CoinController();
 apiRoutes.get( '/coin/meta', cc.getMeta.bind( cc ) );
 apiRoutes.get( '/coin/modified', cc.lastModified.bind( cc ) );
 apiRoutes.get( '/coin/stats', cc.getStats.bind( cc ) );
+apiRoutes.get( '/coin/value', cc.getValue.bind( cc ) );
 apiRoutes.get( '/coin/export', cc.export.bind( cc ) );
 apiRoutes.get( '/coin/all', cc.getAllCoins.bind( cc ) );
 apiRoutes.get( '/coin/search', cc.searchCatalog.bind( cc ) );
