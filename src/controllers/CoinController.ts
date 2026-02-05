@@ -55,6 +55,13 @@ export class CoinController {
         } );
     }
 
+    public async update ( _: Request, res: Response ) : Promise< void > {
+        await this.catch( res, 'Failed to update database', async () => {
+            await this.dbService.updateDb();
+            res.status( 200 ).send();
+        } );
+    }
+
     public async reset ( _: Request, res: Response ) : Promise< void > {
         await this.catch( res, 'Failed to reset database', async () => {
             res.json( await this.dbService.resetDb() );

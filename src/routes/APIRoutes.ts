@@ -12,8 +12,9 @@ apiRoutes.post( '/currency', cc.setCurrency.bind( cc ) );
 apiRoutes.get( '/coin/stats', cc.getStats.bind( cc ) );
 apiRoutes.get( '/coin/value', cc.getValue.bind( cc ) );
 
-apiRoutes.get( '/coin/export', cc.export.bind( cc ) );
-apiRoutes.delete( '/coin/reset', cc.reset.bind( cc ) );
+apiRoutes.get( '/db/export', cc.export.bind( cc ) );
+apiRoutes.post( '/db/update', cc.update.bind( cc ) );
+apiRoutes.delete( '/db/reset', cc.reset.bind( cc ) );
 
 apiRoutes.get( '/coin/all', cc.getAllCoins.bind( cc ) );
 apiRoutes.get( '/coin/search', cc.searchCatalog.bind( cc ) );
