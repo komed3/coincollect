@@ -81,85 +81,10 @@ class CCChart {
 
     renderChart ( type, uuid, data, ctx ) {
         switch ( type ) {
-            case 'value': return this.renderValueChart( uuid, data, ctx );
             case 'history': return this.renderHistoryChart( uuid, data, ctx );
+            case 'portion': return this.renderPortionChart( uuid, data, ctx );
+            case 'value': return this.renderValueChart( uuid, data, ctx );
         }
-    }
-
-    renderValueChart ( uuid, data, ctx ) {
-        const omv = ( data.omv ?? [] ).map( o => ( { x: o.date, y: o.value } ) );
-        if ( data.purchase?.date ) omv.push( { x: data.purchase.date, y: data.purchase.value } );
-        const th = data.purchase ? omv.map( o => ( { x: o.x, y: data.purchase.value } ) ) : [];
-
-        const chart = new Chart( ctx, {
-            type: 'line',
-            data: {
-                datasets: [ {
-                    data: omv,
-                    borderWidth: 2,
-                    borderColor: '#c5851f',
-                    hoverBorderWidth: 2,
-                    hoverBorderColor: '#c5851f',
-                    pointRadius: 5,
-                    pointBackgroundColor: '#fff',
-                    pointHoverRadius: 5,
-                    pointHoverBackgroundColor: '#fff',
-                    tension: 0.1
-                }, {
-                    data: th,
-                    borderWidth: 0,
-                    hoverBorderWidth: 0,
-                    fill: true,
-                    backgroundColor: '#c5851f25',
-                    pointRadius: 0,
-                    pointHoverRadius: 0
-                } ]
-            },
-            options: {
-                plugins: {
-                    tooltip: {
-                        callbacks: {
-                            label: ( item ) => Intl.NumberFormat( LANG, {
-                                style: 'currency', currency: CURRENCY
-                            } ).format( item.raw.y )
-                        },
-                        filter ( item ) {
-                            return item.datasetIndex !== 1;
-                        }
-                    }
-                },
-                scales: {
-                    x: {
-                        type: 'time',
-                        time: {
-                            unit: 'year',
-                            tooltipFormat: 'PP'
-                        },
-                        grid: {
-                            drawOnChartArea: false,
-                            tickLength: 6
-                        },
-                        ticks: { autoSkip: true }
-                    },
-                    y: {
-                        beginAtZero: true,
-                        border: { dash: [ 5, 5 ] },
-                        position: 'left',
-                        ticks: {
-                            padding: 6,
-                            maxTicksLimit: 4,
-                            align: 'center',
-                            callback: ( value ) => Intl.NumberFormat( LANG, {
-                                style: 'currency', currency: CURRENCY
-                            } ).format( value )
-                        }
-                    }
-                }
-            }
-        } );
-
-        this.charts.set( uuid, chart );
-        return chart;
     }
 
     renderHistoryChart ( uuid, data, ctx ) {
@@ -244,6 +169,89 @@ class CCChart {
                         display: false,
                         min: 0,
                         max: ( coins.at( -1 ) ?? 0 ) * 3
+                    }
+                }
+            }
+        } );
+
+        this.charts.set( uuid, chart );
+        return chart;
+    }
+
+    renderPortionChart ( uuid, data, ctx ) {
+        const chart = new Chart( ctx, {} );
+
+        this.charts.set( uuid, chart );
+        return chart;
+    }
+
+    renderValueChart ( uuid, data, ctx ) {
+        const omv = ( data.omv ?? [] ).map( o => ( { x: o.date, y: o.value } ) );
+        if ( data.purchase?.date ) omv.push( { x: data.purchase.date, y: data.purchase.value } );
+        const th = data.purchase ? omv.map( o => ( { x: o.x, y: data.purchase.value } ) ) : [];
+
+        const chart = new Chart( ctx, {
+            type: 'line',
+            data: {
+                datasets: [ {
+                    data: omv,
+                    borderWidth: 2,
+                    borderColor: '#c5851f',
+                    hoverBorderWidth: 2,
+                    hoverBorderColor: '#c5851f',
+                    pointRadius: 5,
+                    pointBackgroundColor: '#fff',
+                    pointHoverRadius: 5,
+                    pointHoverBackgroundColor: '#fff',
+                    tension: 0.1
+                }, {
+                    data: th,
+                    borderWidth: 0,
+                    hoverBorderWidth: 0,
+                    fill: true,
+                    backgroundColor: '#c5851f25',
+                    pointRadius: 0,
+                    pointHoverRadius: 0
+                } ]
+            },
+            options: {
+                plugins: {
+                    tooltip: {
+                        callbacks: {
+                            label: ( item ) => Intl.NumberFormat( LANG, {
+                                style: 'currency', currency: CURRENCY
+                            } ).format( item.raw.y )
+                        },
+                        filter ( item ) {
+                            return item.datasetIndex !== 1;
+                        }
+                    }
+                },
+                scales: {
+                    x: {
+                        type: 'time',
+                        time: {
+                            unit: 'year',
+                            tooltipFormat: 'PP'
+                        },
+                        grid: {
+                            drawOnChartArea: false,
+                            tickLength: 6
+                        },
+                        ticks: { autoSkip: true }
+                    },
+                    y: {
+                        beginAtZero: true,
+                        border: { dash: [ 5, 5 ] },
+                        position: 'left',
+                        ticks: {
+                            padding: 6,
+                            maxTicksLimit: 4,
+                            align: 'center',
+                            callback: ( value ) => Intl.NumberFormat( LANG, {
+                                style: 'currency', currency: CURRENCY
+                            } ).format( value )
+                        }
                     }
                 }
             }
