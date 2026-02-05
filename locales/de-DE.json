@@ -15,6 +15,11 @@
       "year_one": "{{count}} Jahr",
       "year_other": "{{count}} Jahre"
     },
+    "label": {
+      "coins": "Münzen",
+      "omv": "Markwert",
+      "purchase": "Kaufpreis"
+    },
     "grade": {
       "BU": "Unzirkuliert",
       "F": "Schön",

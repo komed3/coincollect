@@ -82,6 +82,7 @@ class CCChart {
     renderChart ( type, uuid, data, ctx ) {
         switch ( type ) {
             case 'value': return this.renderValueChart( uuid, data, ctx );
+            case 'history': return this.renderHistoryChart( uuid, data, ctx );
         }
     }
 
@@ -152,6 +153,97 @@ class CCChart {
                                 style: 'currency', currency: CURRENCY
                             } ).format( value )
                         }
+                    }
+                }
+            }
+        } );
+
+        this.charts.set( uuid, chart );
+        return chart;
+    }
+
+    renderHistoryChart ( uuid, data, ctx ) {
+        const labels = [], coins = [], omv = [], purchase = [];
+        for ( const [ year, row ] of Object.entries( data ) ) {
+            labels.push( year );
+            coins.push( row.coins );
+            omv.push( row.omv );
+            purchase.push( row.purchase );
+        };
+
+        const chart = new Chart( ctx, {
+            type: 'line',
+            data: {
+                labels,
+                datasets: [ {
+                    label: I18N.label.omv,
+                    data: omv,
+                    borderWidth: 2,
+                    borderColor: '#c5851f',
+                    hoverBorderWidth: 2,
+                    hoverBorderColor: '#c5851f',
+                    pointRadius: 5,
+                    pointBackgroundColor: '#fff',
+                    pointHoverRadius: 5,
+                    pointHoverBackgroundColor: '#fff',
+                    tension: 0.1
+                }, {
+                    label: I18N.label.purchase,
+                    data: purchase,
+                    borderWidth: 2,
+                    borderColor: '#777',
+                    hoverBorderWidth: 2,
+                    hoverBorderColor: '#777',
+                    borderDash: [ 5, 5 ],
+                    pointRadius: 0,
+                    pointHoverRadius: 0,
+                    tension: 0.1
+                }, {
+                    label: I18N.label.coins,
+                    type: 'bar',
+                    yAxisID: 'c',
+                    data: coins,
+                    backgroundColor: '#ccc3',
+                    barThickness: 24
+                } ]
+            },
+            options: {
+                plugins: {
+                    tooltip: {
+                        callbacks: {
+                            label: ( item ) => item.dataset.label + ': ' + (
+                                item.datasetIndex === 2 ? item.raw : Intl.NumberFormat( LANG, {
+                                    style: 'currency', currency: CURRENCY
+                                } ).format( item.raw )
+                            )
+                        }
+                    }
+                },
+                scales: {
+                    x: {
+                        grid: {
+                            drawOnChartArea: false,
+                            tickLength: 6
+                        },
+                        ticks: { autoSkip: true }
+                    },
+                    y: {
+                        beginAtZero: false,
+                        border: { dash: [ 5, 5 ] },
+                        position: 'left',
+                        ticks: {
+                            padding: 6,
+                            maxTicksLimit: 4,
+                            align: 'center',
+                            callback: ( value ) => Intl.NumberFormat( LANG, {
+                                style: 'currency', currency: CURRENCY
+                            } ).format( value )
+                        }
+                    },
+                    c: {
+                        display: false,
+                        min: 0,
+                        max: ( coins.at( -1 ) ?? 0 ) * 3
                     }
                 }
             }
