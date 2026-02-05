@@ -24,12 +24,9 @@ class CCList {
     }
 
     initializeEvents () {
-        this.searchInput?.addEventListener( 'input', () => this.applyFilters() );
-        this.filterSelects.forEach( select => {
-            select.addEventListener( 'change', () => this.applyFilters() );
-        } );
-
-        window.addEventListener( 'scroll', () => this.checkForInfiniteScroll() );
+        this.searchInput?.addEventListener( 'input', this.applyFilters.bind( this ) );
+        this.filterSelects.forEach( s => s.addEventListener( 'change', this.applyFilters.bind( this ) ) );
+        window.addEventListener( 'scroll', this.checkForInfiniteScroll.bind( this ) );
     }
 
     async loadFilter () {
