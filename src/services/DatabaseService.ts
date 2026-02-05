@@ -204,9 +204,9 @@ export class DatabaseService {
         return this.db!.data._meta.currency;
     }
 
-    public async exportCatalog ( asJson: boolean = true ) : Promise< string | Database > {
+    public async exportCatalog ( asJson: boolean = false ) : Promise< string | Database > {
         if ( ! this.db ) await this.initDb();
-        return asJson ? JSON.stringify( this.db!.data, null, 2 ) : this.db!.data;
+        return asJson ? JSON.stringify( this.db!.data ) : this.db!.data;
     }
 
     public async getMetaData () : Promise< Database[ '_meta' ] > {
