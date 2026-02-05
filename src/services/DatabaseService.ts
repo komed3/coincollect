@@ -15,6 +15,11 @@ type PartialCoinInput = Partial< Omit< Coin, 'id' | 'createdAt' | 'updatedAt' > 
 export class DatabaseService {
 
     private static instance: DatabaseService;
+    private static readonly validStatus: CoinStatus[] = [
+        CoinStatus.Owned,
+        CoinStatus.Duplicate,
+        CoinStatus.ForSale
+    ];
 
     private dbFile: string;
     private adapter: JSONFile< Database > | undefined;
@@ -344,6 +349,8 @@ export class DatabaseService {
         const stats: CoinStats = this.defaultData().stats;
 
         for ( const c of coins ) {
+            if ( ! DatabaseService.validStatus.includes( c.status ) ) continue;
+
             const amount = c.amount || 1;
             let purchase: number, omv: number;
             stats.totalCoins += amount;
@@ -381,27 +388,19 @@ export class DatabaseService {
     public async calculateValue () : Promise< CoinStatsRecord > {
         if ( ! this.db ) await this.initDb();
 
-        const value: CoinStatsRecord = {};
-        const validStatus: CoinStatus[] = [
-            CoinStatus.Owned,
-            CoinStatus.Duplicate,
-            CoinStatus.ForSale
-        ];
-
         const endOfYear = ( year: number ): number => Date.UTC( year, 11, 31, 23, 59, 59, 999 );
 
+        const value: CoinStatsRecord = {};
         const preparedCoins = [];
         const years = new Set< number >();
 
-        for ( const coin of this.db!.data.coins ) {
-            if ( ! validStatus.includes( coin.status ) ) continue;
+        for ( const c of this.db!.data.coins ) {
+            if ( ! DatabaseService.validStatus.includes( c.status ) ) continue;
 
-            const amount = coin.amount ?? 1;
-            const purchaseTime = coin.purchase?.date
-                ? Date.parse( coin.purchase.date )
-                : undefined;
+            const purchaseTime = c.purchase?.date ? Date.parse( c.purchase.date ) : undefined;
+            const amount = c.amount ?? 1;
 
-            const omv = coin.omv
+            const omv = c.omv
                 .map( o => ( { time: Date.parse( o.date ), value: o.value } ) )
                 .sort( ( a, b ) => a.time - b.time );
 
@@ -417,8 +416,8 @@ export class DatabaseService {
 
             preparedCoins.push( {
                 amount, firstKnownTime, purchaseTime, omv, omvIndex: 0,
-                currentOmv: coin.purchase?.value ?? 0,
-                purchaseValue: coin.purchase?.value
+                currentOmv: c.purchase?.value ?? 0,
+                purchaseValue: c.purchase?.value
             } );
         }
 
