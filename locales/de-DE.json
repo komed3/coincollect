@@ -15,11 +15,6 @@
       "year_one": "{{count}} Jahr",
       "year_other": "{{count}} Jahre"
     },
-    "label": {
-      "coins": "Münzen",
-      "omv": "Markwert",
-      "purchase": "Kaufpreis"
-    },
     "grade": {
       "BU": "Unzirkuliert",
       "F": "Schön",
@@ -29,6 +24,11 @@
       "VF": "Sehr schön",
       "VG": "Sehr gut erhalten",
       "XF": "Vorzüglich"
+    },
+    "label": {
+      "coins": "Münzen",
+      "omv": "Markwert",
+      "purchase": "Kaufpreis"
     },
     "modified": "Zuletzt geändert am {{date}}",
     "nav": {
@@ -137,17 +137,24 @@
     }
   },
   "stats": {
+    "country": "Herkunfsland",
+    "currency": "Währung",
+    "grade": "Erhaltungsgrad",
     "overview": {
       "coins": "Anzahl Münzen",
-      "since": "Gesammelt über {{age}}",
       "growth": "Wertsteigerung",
-      "purchase": "Erworben für {{purchase}}",
       "omv": "Gesamtwert",
+      "purchase": "Erworben für {{purchase}}",
+      "since": "Gesammelt über {{age}}",
       "updated": "Aktualisiert: {{date}}",
       "weight": "Gesamtgewicht",
       "weightinfo": "Gewicht aller Münzen"
     },
+    "portions": "Kategorisierung",
+    "status": "Status in Sammlung",
     "title": "Statistik",
-    "value": "Wertsteigerung"
+    "type": "Münztyp",
+    "value": "Wertsteigerung",
+    "year": "Prägejahr"
   }
 }
