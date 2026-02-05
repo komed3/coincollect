@@ -132,6 +132,16 @@
     }
   },
   "stats": {
+    "overview": {
+      "coins": "Anzahl Münzen",
+      "since": "Gesammelt über {{age}}",
+      "growth": "Wertsteigerung",
+      "purchase": "Erworben für {{purchase}}",
+      "omv": "Gesamtwert",
+      "updated": "Aktualisiert: {{date}}",
+      "weight": "Gesamtgewicht",
+      "weightinfo": "Gewicht aller Münzen"
+    },
     "title": "Statistik"
   }
 }

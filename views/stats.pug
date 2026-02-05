@@ -1,5 +1,26 @@
 extends layout/page
 
+append styles
+  link( rel= "stylesheet", href= "/css/stats.css" )
+
 block main
   div.cc-stats.cc-content--normal
     h2.cc-page-title= t( 'stats.title' )
+
+    div.cc-stats--overview
+      div.cc-stats--overview-item.cc-box
+        label= t( 'stats.overview.omv' )
+        b= formatter.money( currency, stats.totalOmv, stats.totalOmv >= 1e6 ? 2 : 0, { notation: 'compact' } )
+        span= t( 'stats.overview.purchase', { purchase: formatter.money( currency, stats.totalPurchase, stats.totalPurchase >= 1e6 ? 1 : 0 ) } )
+      div.cc-stats--overview-item.cc-box
+        label= t( 'stats.overview.coins' )
+        b= formatter.number( stats.totalCoins, 0 )
+        span= t( 'stats.overview.since', { age: formatter.dateDiff( stats.collectionAge, t ) } )
+      div.cc-stats--overview-item.cc-box
+        label= t( 'stats.overview.growth' )
+        b= formatter.percent( stats.growth )
+        span= t( 'stats.overview.updated', { date: formatter.date( updatedAt ) } )
+      div.cc-stats--overview-item.cc-box
+        label= t( 'stats.overview.weight' )
+        b= formatter.unit( 'kilogram', stats.totalWeight / 1000, 2 )
+        span= t( 'stats.overview.weightinfo' )
