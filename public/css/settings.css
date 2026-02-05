@@ -7,8 +7,10 @@
     color: var( --text-muted );
 }
 
-.cc-settings--item {
-    margin-top: 0.6em;
+.cc-settings--grid {
+    display: grid;
+    grid-template-columns: repeat( 2, 1fr );
+    gap: 3em;
 }
 
 .cc-settings--item select {
@@ -22,7 +24,16 @@
     cursor: pointer;
 }
 
+.cc-settings--item p {
+    margin-bottom: 0;
+    line-height: 1.4;
+    font-size: 0.86em;
+    color: var( --text-muted );
+}
+
 .cc-settings--button {
+    display: inline-block;
+    margin-top: 0.46em;
     padding: 0.8rem 1rem;
     text-align: left;
     font-family: inherit;

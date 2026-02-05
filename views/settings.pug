@@ -10,30 +10,30 @@ block main
   div.cc-settings.cc-content--normal
     h2.cc-page-title= t( 'settings.title' )
 
-    div.cc-settings--box.cc-box
-      h3.cc-settings--box-hl= t( 'settings.language' )
+    div.cc-settings--box.cc-settings--grid.cc-box
       div.cc-settings--item
+        h3.cc-settings--box-hl= t( 'settings.language' )
         select#languageSelect
           each lng in supportedLngs
             option( value= lng, selected= ( lang === lng ) )= t( '_.lang.' + lng )
-      hr.cc-divider
-      h3.cc-settings--box-hl= t( 'settings.currency' )
+        p= t( 'settings.languageinfo' )
       div.cc-settings--item
+        h3.cc-settings--box-hl= t( 'settings.currency' )
         select#currencySelect
           each cur in [ 'USD', 'EUR', 'GBP', 'CHF', 'JPY' ]
             option( value= cur, selected= ( currency === cur ) )= t( '_.currency.' + cur )
+        p= t( 'settings.currencyinfo' )
 
     div.cc-settings--box.cc-box
       h3.cc-settings--box-hl= t( 'settings.database' )
-      div.cc-settings--item
-        button.cc-settings--button._primary#exportDb
-          span= t( 'settings.export' )
-          small= t( 'settings.exportinfo' )
-      div.cc-settings--item
-        button.cc-settings--button._primary#updateDb
-          span= t( 'settings.update' )
-          small= t( 'settings.updateinfo' )
-      div.cc-settings--item
-        button.cc-settings--button._danger#resetDb
-          span= t( 'settings.reset' )
-          small= t( 'settings.resetinfo' )
+      button.cc-settings--button._primary#exportDb
+        span= t( 'settings.export' )
+        small= t( 'settings.exportinfo' )
+      br
+      button.cc-settings--button._primary#updateDb
+        span= t( 'settings.update' )
+        small= t( 'settings.updateinfo' )
+      br
+      button.cc-settings--button._danger#resetDb
+        span= t( 'settings.reset' )
+        small= t( 'settings.resetinfo' )
