@@ -4,9 +4,10 @@ import { Low } from 'lowdb';
 import { JSONFile } from 'lowdb/node';
 import { v4 as uuidv4 } from 'uuid';
 
+import { CoinStatus } from '../types';
 import type {
-    Coin, CoinGrade, CoinShape, CoinStats, CoinStatsItem, CoinStatsRecord,
-    CoinStatus, CoinType, Database, OMV
+    Coin, CoinGrade, CoinShape, CoinStats, CoinStatsItem,
+    CoinStatsRecord, CoinType, Database, OMV
 } from '../types';
 
 type PartialCoinInput = Partial< Omit< Coin, 'id' | 'createdAt' | 'updatedAt' > >;
@@ -361,44 +362,77 @@ export class DatabaseService {
 
     public async calculateValue () : Promise< CoinStatsRecord > {
         if ( ! this.db ) await this.initDb();
-        const coins = this.db!.data.coins;
-        const value: CoinStatsRecord = {};
-        const years = new Set< string >();
 
-        for ( const coin of coins ) {
-            if ( coin.purchase?.date ) years.add( new Date( coin.purchase.date ).getFullYear().toString() );
-            for ( const omv of coin.omv ) years.add( new Date( omv.date ).getFullYear().toString() );
+        const value: CoinStatsRecord = {};
+        const validStatus: CoinStatus[] = [
+            CoinStatus.Owned,
+            CoinStatus.Duplicate,
+            CoinStatus.ForSale
+        ];
+
+        const endOfYear = ( year: number ): number => Date.UTC( year, 11, 31, 23, 59, 59, 999 );
+
+        const preparedCoins = [];
+        const years = new Set< number >();
+
+        for ( const coin of this.db!.data.coins ) {
+            if ( ! validStatus.includes( coin.status ) ) continue;
+
+            const amount = coin.amount ?? 1;
+            const purchaseTime = coin.purchase?.date
+                ? Date.parse( coin.purchase.date )
+                : undefined;
+
+            const omv = coin.omv
+                .map( o => ( { time: Date.parse( o.date ), value: o.value } ) )
+                .sort( ( a, b ) => a.time - b.time );
+
+            if ( purchaseTime ) years.add( new Date( purchaseTime ).getUTCFullYear() );
+            for ( const o of omv ) years.add( new Date( o.time ).getUTCFullYear() );
+
+            const firstKnownTime = Math.min(
+                ...( purchaseTime !== undefined ? [ purchaseTime ] : [] ),
+                ...omv.map( o => o.time )
+            );
+
+            if ( ! Number.isFinite( firstKnownTime ) ) continue;
+
+            preparedCoins.push( {
+                amount, firstKnownTime, purchaseTime, omv, omvIndex: 0,
+                currentOmv: coin.purchase?.value ?? 0,
+                purchaseValue: coin.purchase?.value
+            } );
         }
 
-        for ( const year of years ) {
-            const yearEnd = new Date( `${ year }-12-31T23:59:59.999Z` ).getTime();
-            const stats: CoinStatsItem = { coins: 0, purchase: 0, omv: 0 };
+        let coinsCount = 0;
+        let purchaseSum = 0;
+        let omvSum = 0;
 
-            for ( const coin of coins ) {
-                const amount = coin.amount || 1;
+        for ( const year of Array.from( years ).sort( ( a, b ) => a - b ) ) {
+            const cutoff = endOfYear(year);
 
-                let coinValue = 0;
-                for ( let i = coin.omv.length - 1; i >= 0; i-- ) {
-                    if ( new Date( coin.omv[ i ].date ).getTime() <= yearEnd ) {
-                        coinValue = coin.omv[ i ].value * amount;
-                        break;
-                    }
+            for ( const coin of preparedCoins ) {
+                if ( coin.firstKnownTime > cutoff ) continue;
+
+                if ( coin.firstKnownTime <= cutoff && coin.firstKnownTime > endOfYear( year - 1 ) ) {
+                    if ( coin.purchaseTime !== undefined ) purchaseSum += coin.purchaseValue! * coin.amount;
+                    coinsCount += coin.amount;
+                    omvSum += coin.currentOmv * coin.amount;
                 }
 
-                if ( ! coinValue && coin.purchase?.value && coin.purchase?.date ) {
-                    if ( new Date( coin.purchase.date ).getTime() <= yearEnd ) {
-                        coinValue = coin.purchase.value * amount;
-                        stats.purchase += coin.purchase.value * amount;
-                    }
-                }
-
-                if ( coinValue ) {
-                    stats.coins += amount;
-                    stats.omv += coinValue;
+                while ( coin.omvIndex < coin.omv.length && coin.omv[ coin.omvIndex ].time <= cutoff ) {
+                    const nextOmv = coin.omv[ coin.omvIndex ].value;
+                    omvSum += ( nextOmv - coin.currentOmv ) * coin.amount;
+                    coin.currentOmv = nextOmv;
+                    coin.omvIndex++;
                 }
             }
 
-            if ( stats.coins > 0 ) value[ year ] = stats;
+            value[ String( year ) ] = {
+                coins: coinsCount,
+                purchase: Number( purchaseSum.toFixed( 2 ) ),
+                omv: Number( omvSum.toFixed( 2 ) )
+            };
         }
 
         this.db!.data.value = value;
