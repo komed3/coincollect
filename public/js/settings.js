@@ -11,4 +11,31 @@ document.addEventListener( 'DOMContentLoaded', function () {
             body: JSON.stringify( { currency: e.target.value } )
         } );
     } );
+
+    document.querySelector( '#exportDb' ).addEventListener( 'click', async ( e ) => {
+        e.preventDefault();
+        e.target.disabled = true;
+
+        try {
+            const res = await fetch( '/api/db/export' );
+            if ( ! res.ok ) throw new Error( 'Export failed' );
+
+            const data = await res.json();
+            const blob = new Blob( [ JSON.stringify( data ) ], { type: 'application/json' } );
+            const url = URL.createObjectURL( blob );
+
+            const link = document.createElement( 'a' );
+            link.download = `coin-collection-${ new Date().toISOString() }.json`;
+            link.href = url;
+
+            document.body.appendChild( link );
+            link.click();
+            document.body.removeChild( link );
+            URL.revokeObjectURL( url );
+        } catch ( err ) {
+            console.error( 'Export error:', err );
+        } finally {
+            e.target.disabled = false;
+        }
+    } );
 } );
