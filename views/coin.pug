@@ -147,7 +147,7 @@ block main
 
         p.cc-coin--modified= t( '_.modified', { date: formatter.date( coin.updatedAt ) } )
 
-        if coin.purchase || coin.omv
+        if coin.purchase || ( coin.omv && coin.omv.length )
           div.cc-coin--value
             if coin.purchase
               div.cc-coin--value-item.purchase
@@ -155,13 +155,13 @@ block main
                 b= formatter.money( 'EUR', coin.purchase.value )
                 if coin.purchase.date
                   span= t( 'coin.value.datetime', { date: formatter.date( coin.purchase.date ) } )
-            if coin.omv
+            if coin.omv && coin.omv.length
               div.cc-coin--value-item.omv
                 label= t( 'coin.value.omv' )
                 b= formatter.money( 'EUR', coin.omv[0].value )
                 if coin.omv[0].date
                   span= t( 'coin.value.datetime', { date: formatter.date( coin.omv[0].date ) } )
-            if coin.purchase && coin.omv
+            if coin.purchase && coin.omv && coin.omv.length
               - let o = coin.omv[0], p = coin.purchase;
               div.cc-coin--value-item.growth
                 label= t( 'coin.value.growth' )
