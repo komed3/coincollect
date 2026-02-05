@@ -149,10 +149,12 @@
   },
   "settings": {
     "currency": "Währung",
+    "currencyinfo": "Benutzte Währung für Kaufpreis und Markwert; die Umstellung verändert keine Werte, führt keine Währungsumrechnung durch.",
     "database": "Datenbank",
     "export": "Münzsammlung exportieren",
     "exportinfo": "Den gesamten Katalog als JSON Datei exportieren (ohne Fotografien)",
     "language": "Sprache",
+    "languageinfo": "CoinCollect unterstützt Mehrsprachigkeit. Wähle aus den verfügbaren Sprachen aus. Helfe bei der Übersetzung von CoinCollect via GitHub.",
     "reset": "Datenbank zurücksetzen",
     "resetinfo": "Alle Münzdaten werden gelöscht und die Statistik zurückgesetzt",
     "title": "Einstellungen",
