@@ -14,6 +14,9 @@ export interface CoinStats {
     totalCoins: number;
     totalPurchase: number;
     totalOmv: number;
+    growth: number;
+    totalWeight: number;
+    collectionAge: string;
     type: { [ T in CoinType ]?: CoinStatsItem };
     status: { [ S in CoinStatus ]?: CoinStatsItem };
     grade: { [ G in CoinGrade ]?: CoinStatsItem };

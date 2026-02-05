@@ -47,6 +47,9 @@ export class DatabaseService {
                 totalCoins: 0,
                 totalPurchase: 0,
                 totalOmv: 0,
+                growth: 0,
+                totalWeight: 0,
+                collectionAge: '',
                 type: {},
                 status: {},
                 grade: {},
@@ -347,16 +350,21 @@ export class DatabaseService {
         if ( ! this.db ) await this.initDb();
         const coins = this.db!.data.coins;
         const stats: CoinStats = this.defaultData().stats;
+        let first = Infinity;
 
         for ( const c of coins ) {
             if ( ! DatabaseService.validStatus.includes( c.status ) ) continue;
 
             const amount = c.amount || 1;
-            let purchase: number, omv: number;
+            let purchase: number | undefined, omv: number | undefined;
             stats.totalCoins += amount;
 
             if ( c.purchase?.value ) stats.totalPurchase += ( purchase = c.purchase.value * amount );
-            if ( c.omv?.length ) stats.totalOmv += ( omv = c.omv.reduce( ( p, n ) => p.date > n.date ? p : n ).value * amount );
+
+            if ( c.omv?.length ) stats.totalOmv += ( omv = c.omv[ 0 ].value * amount );
+            else if ( purchase ) stats.totalOmv += ( omv = purchase );
+
+            if ( c.dimensions?.weight ) stats.totalWeight += c.dimensions.weight * amount;
 
             const updateStats = ( obj: keyof CoinStats, key: string ) => {
                 ( stats as any )[ obj ][ key ] ??= { coins: 0, purchase: 0, omv: 0 } as CoinStatsItem;
@@ -371,9 +379,16 @@ export class DatabaseService {
             c.grade && updateStats( 'grade', c.grade );
             c.country && updateStats( 'country', c.country );
             c.currency && updateStats( 'currency', c.currency );
-            c.purchase?.date && updateStats( 'year', new Date( c.purchase.date ).getFullYear().toString() );
+
+            if ( c.purchase?.date ) {
+                const date = new Date( c.purchase.date );
+                updateStats( 'year', date.getFullYear().toString() );
+                first = Math.min( first, date.getTime() );
+            }
         }
 
+        stats.growth = Number( ( stats.totalOmv / stats.totalPurchase * 100 ).toFixed( 2 ) );
+        stats.collectionAge = new Date( first ).toISOString();
         this.db!.data.stats = stats;
         return stats;
     }
