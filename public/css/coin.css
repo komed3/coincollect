@@ -143,10 +143,7 @@
     flex: 1;
     display: flex;
     flex-flow: column nowrap;
-    padding: 1.4em;
-    background: var( --box-bg );
-    border: 1px solid var( --border-color );
-    border-radius: var( --border-radius );
+    margin-bottom: 0;
 }
 
 .cc-coin--value-item label {
