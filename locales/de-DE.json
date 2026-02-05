@@ -1,6 +1,13 @@
 {
   "_": {
     "copyright": "Copyright © 2026 CoinCollect. Entwickelt für Enthusiasten von komed3. Alle Rechte vorbehalten.",
+    "currency": {
+      "USD": "USD ($)",
+      "EUR": "EUR (€)",
+      "GBP": "GBP (£)",
+      "CHF": "CHF (₣)",
+      "JPY": "JPY (¥)"
+    },
     "diff": {
       "day_one": "{{count}} Tag",
       "day_other": "{{count}} Tage",
@@ -29,6 +36,10 @@
       "coins": "Münzen",
       "omv": "Markwert",
       "purchase": "Kaufpreis"
+    },
+    "lang": {
+      "de-DE": "Deutsch (DE)",
+      "en-US": "Englisch (US)"
     },
     "modified": "Zuletzt geändert am {{date}}",
     "nav": {
@@ -137,7 +148,16 @@
     }
   },
   "settings": {
-    "title": "Einstellungen"
+    "currency": "Währung",
+    "database": "Datenbank",
+    "export": "Münzsammlung exportieren",
+    "exportinfo": "Den gesamten Katalog als JSON Datei exportieren (ohne Fotografien)",
+    "language": "Sprache",
+    "reset": "Datenbank zurücksetzen",
+    "resetinfo": "Alle Münzdaten werden gelöscht und die Statistik zurückgesetzt",
+    "title": "Einstellungen",
+    "update": "Datenbank aktualisieren",
+    "updateinfo": "Alle Statistik und den Wert der Sammlung neu berechnen"
   },
   "stats": {
     "country": "Herkunfsland",
