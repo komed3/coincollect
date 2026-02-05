@@ -169,16 +169,16 @@ class CCList {
                     <b>${ this.escapeHtml( coin.name ) }</b>
                 </a>
             </td>
-            <td class="_type">${ this.escapeHtml( I18N.type[ coin.type ] ) }</td>
-            <td class="_status">${ this.escapeHtml( I18N.status[ coin.status ] ) }</td>
+            <td class="_type">${ this.escapeHtml( coin.type ? I18N.type[ coin.type ] : '—' ) }</td>
+            <td class="_status">${ this.escapeHtml( coin.status ? I18N.status[ coin.status ] : '—' ) }</td>
             <td class="_series">${ this.escapeHtml( coin.series || '—' ) }</td>
             <td class="_country">${ this.escapeHtml( coin.country || '—' ) }</td>
             <td class="_currency">${ this.escapeHtml( coin.currency || '—' ) }</td>
             <td class="_year">${ coin.mint?.year || '—' }</td>
             <td class="_nominal">${ coin.nominalValue ? `${ coin.nominalValue.value } ${ coin.nominalValue.unit }` : '—' }</td>
-            <td class="_grade">${ this.escapeHtml( I18N.grade[ coin.grade ] ) }</td>
-            <td class="_amount">${ coin.amount.toString().padStart( 3, '*' ) }</td>
-            <td class="_omv">${ coin.omv.length > 0 ? this.money.format( coin.omv.length ) : '—' }</td>
+            <td class="_grade">${ this.escapeHtml( coin.grade ? I18N.grade[ coin.grade ] : '—' ) }</td>
+            <td class="_amount">${ ( coin.amount ?? 1 ).toString().padStart( 3, '*' ) }</td>
+            <td class="_omv">${ coin.omv?.length > 0 ? this.money.format( coin.omv[ 0 ].value ) : '—' }</td>
         `;
 
         return row;
