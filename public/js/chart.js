@@ -1,5 +1,7 @@
 class CCChart {
 
+    colors = [ '#c5851f', '#5a78a6', '#4f8f8b', '#6f8b6a', '#b36a3e', '#7a5c6e', '#6b6f6a' ];
+
     constructor () {
         this.charts = new Map();
 
@@ -179,7 +181,67 @@ class CCChart {
     }
 
     renderPortionChart ( uuid, data, ctx ) {
-        const chart = new Chart( ctx, {} );
+        const labels = [], coins = [], omv = [], purchase = [], colors = [];
+        let i = 0;
+
+        for ( const [ key, item ] of Object.entries( data.data ) ) {
+            labels.push( data.key ? I18N[ data.key ][ key ] : key );
+            coins.push( item.coins );
+            omv.push( item.omv );
+            purchase.push( item.purchase );
+            colors.push( this.colors[ i % this.colors.length ] );
+            i++;
+        };
+
+        const chart = new Chart( ctx, {
+            type: 'doughnut',
+            data: {
+                labels,
+                datasets: [ {
+                    label: I18N.label.coins,
+                    data: coins,
+                    backgroundColor: colors,
+                    hoverBackgroundColor: colors,
+                    borderColor: '#fff',
+                    hoverBorderColor: '#fff',
+                    borderWidth: 2
+                }, {
+                    label: I18N.label.omv,
+                    data: omv,
+                    backgroundColor: colors,
+                    hoverBackgroundColor: colors,
+                    borderColor: '#fff',
+                    hoverBorderColor: '#fff',
+                    borderWidth: 2
+                }, {
+                    label: I18N.label.purchase,
+                    data: purchase,
+                    backgroundColor: colors,
+                    hoverBackgroundColor: colors,
+                    borderColor: '#fff',
+                    hoverBorderColor: '#fff',
+                    borderWidth: 2
+                } ]
+            },
+            options: {
+                cutout: '50%',
+                plugins: {
+                    tooltip: {
+                        titleColor: '#000',
+                        titleFont: { size: 15 },
+                        bodyColor: '#777',
+                        bodyFont: { size: 13 },
+                        callbacks: {
+                            label: ( item ) => item.dataset.label + ': ' + (
+                                item.datasetIndex === 0 ? item.raw : Intl.NumberFormat( LANG, {
+                                    style: 'currency', currency: CURRENCY
+                                } ).format( item.raw )
+                            )
+                        }
+                    }
+                }
+            }
+        } );
 
         this.charts.set( uuid, chart );
         return chart;
