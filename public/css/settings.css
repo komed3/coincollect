@@ -7,6 +7,10 @@
     color: var( --text-muted );
 }
 
+.cc-settings--item {
+    margin-top: 0.6em;
+}
+
 .cc-settings--item select {
     padding: 0.8rem 1rem;
     font-family: inherit;
@@ -19,7 +23,6 @@
 }
 
 .cc-settings--button {
-    margin: 0.4em 0;
     padding: 0.8rem 1rem;
     text-align: left;
     font-family: inherit;
