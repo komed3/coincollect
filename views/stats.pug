@@ -32,3 +32,27 @@ block main
         span= t( 'stats.value' )
       div.cc-stats--box.cc-box
         +chart( 'history', value )
+
+    div.cc-stats--charts
+      h3.cc-page-subtitle
+        i.fa.fa-database
+        span= t( 'stats.portions' )
+      div.cc-stats--charts-grid
+        div.cc-stats--box.cc-box
+          h4.cc-stats--box-hl= t( 'stats.type' )
+          +chart( 'portion', stats.type )
+        div.cc-stats--box.cc-box
+          h4.cc-stats--box-hl= t( 'stats.status' )
+          +chart( 'portion', stats.status )
+        div.cc-stats--box.cc-box
+          h4.cc-stats--box-hl= t( 'stats.grade' )
+          +chart( 'portion', stats.grade )
+        div.cc-stats--box.cc-box
+          h4.cc-stats--box-hl= t( 'stats.country' )
+          +chart( 'portion', stats.country )
+        div.cc-stats--box.cc-box
+          h4.cc-stats--box-hl= t( 'stats.currency' )
+          +chart( 'portion', stats.currency )
+        div.cc-stats--box.cc-box
+          h4.cc-stats--box-hl= t( 'stats.year' )
+          +chart( 'portion', stats.year )
