@@ -11,6 +11,7 @@ append styles
 
 block main
   form.cc-editor.cc-content--normal( autocomplete= "on" )
+    input( type= "hidden", name= "id", value= coin && coin.id )
     h2.cc-page-title= t( 'editor.title' )
 
     div.cc-editor--content
