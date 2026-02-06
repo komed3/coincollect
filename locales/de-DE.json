@@ -128,6 +128,11 @@
       "shape": "Form",
       "title": "Design & Beschreibung"
     },
+    "file": {
+      "delete": "Löschen",
+      "obverse": "Avers (Vorderseite)",
+      "reverse": "Revers (Rückseite)"
+    },
     "images": {
       "title": "Fotografien"
     },
