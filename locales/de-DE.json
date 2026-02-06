@@ -121,11 +121,6 @@
     "design": {
       "title": "Design & Beschreibung"
     },
-    "dimensions": {
-      "diameter": "Durchmesser (mm)",
-      "thickness": "Stärke (mm)",
-      "weight": "Gewicht (g)"
-    },
     "images": {
       "title": "Fotografien"
     },
@@ -141,6 +136,7 @@
       },
       "series": "Serie",
       "status": "Status",
+      "tags": "Schlagworte (Komma-getrennt)",
       "title": "Eigenschaften",
       "type": "Münztyp"
     },
@@ -149,9 +145,12 @@
     },
     "mint": {
       "date": "Ausgabedatum",
+      "diameter": "Durchmesser (mm)",
       "mark": "Prägestätte",
       "mintage": "Auflage",
+      "thickness": "Stärke (mm)",
       "title": "Münzprägung",
+      "weight": "Gewicht (g)",
       "year": "Prägejahr"
     },
     "select": "Auswählen",

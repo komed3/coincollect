@@ -60,6 +60,10 @@ block main
                 type= "text", name= "nominalValue.unit",
                 value= coin && coin.nominalValue && coin.nominalValue.unit
               )
+          div.cc-editor--row
+            div.cc-editor--item
+              label= t( 'editor.info.tags' )
+              input( type= "text", name= "tags", value= ( coin && coin.tags || [] ).join( ', ' ) )
 
         div.cc-editor--mint.cc-editor--box.cc-box
           h3.cc-box--hl= t( 'editor.mint.title' )
@@ -91,19 +95,19 @@ block main
               )
           div.cc-editor--row
             div.cc-editor--item
-              label= t( 'editor.dimensions.diameter' )
+              label= t( 'editor.mint.diameter' )
               input(
                 type= "number", name= "dimensions.diameter", min= 0, step= 0.1,
                 value= coin && coin.dimensions && coin.dimensions.diameter
               )
             div.cc-editor--item
-              label= t( 'editor.dimensions.thickness' )
+              label= t( 'editor.mint.thickness' )
               input(
                 type= "number", name= "dimensions.thickness", min= 0, step= 0.01,
                 value= coin && coin.dimensions && coin.dimensions.thickness
               )
             div.cc-editor--item
-              label= t( 'editor.dimensions.weight' )
+              label= t( 'editor.mint.weight' )
               input(
                 type= "number", name= "dimensions.weight", min= 0, step= 0.01,
                 value= coin && coin.dimensions && coin.dimensions.weight
