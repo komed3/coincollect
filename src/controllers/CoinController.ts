@@ -129,4 +129,33 @@ export class CoinController {
         } );
     }
 
+    public async uploadImages ( req: Request, res: Response ) : Promise< void > {
+        await this.catch( res, 'Failed to upload images', async () => {
+            const { id } = req.params;
+            if ( typeof id !== 'string' ) throw new Error( 'Invalid ID' );
+
+            const coin = await this.dbService.getCoinById( id );
+            if ( ! coin ) {
+                res.status( 404 ).json( { msg: 'Coin not found', id } );
+                return;
+            }
+
+            const files = req.files as
+                | { obverse?: Express.Multer.File[]; reverse?: Express.Multer.File[] }
+                | undefined;
+
+            if ( ! files || ( ! files.obverse && ! files.reverse ) ) {
+                res.status( 400 ).json( { msg: 'No files uploaded' } );
+                return;
+            }
+
+            const updates: any = { images: { ...( coin.images ?? {} ) } };
+            if ( files.obverse?.[ 0 ] ) updates.images.obverse = files.obverse[ 0 ].filename;
+            if ( files.reverse?.[ 0 ] ) updates.images.reverse = files.reverse[ 0 ].filename;
+
+            const updated = this.dbService.updateCoin( id, updates );
+            res.json( updated );
+        } );
+    }
+
 }
