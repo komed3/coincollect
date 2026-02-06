@@ -10,7 +10,7 @@ append styles
   link( rel= "stylesheet", href= "/css/editor.css" )
 
 block main
-  form.cc-editor.cc-content--normal( autocomplete= "on" )
+  form.cc-editor.cc-content--normal( enctype= "multipart/form-data", autocomplete= "on" )
     input( type= "hidden", name= "id", value= coin && coin.id )
     h2.cc-page-title= t( 'editor.title' )
 
@@ -207,6 +207,18 @@ block main
       div.cc-editor--aside
         div.cc-editor--images.cc-editor--box.cc-box
           h3.cc-box--hl= t( 'editor.images.title' )
+          div.cc-editor--image#obverse
+            input( type= "file", name= "file.obverse" )
+            label
+              i.fa.fa-upload
+              span= t( 'editor.file.obverse' )
+            button( title= t( 'editor.file.delete' ) ): i.fa.fa-trash-o
+          div.cc-editor--image#reverse
+            input( type= "file", name= "file.reverse" )
+            label
+              i.fa.fa-upload
+              span= t( 'editor.file.reverse' )
+            button( title= t( 'editor.file.delete' ) ): i.fa.fa-trash-o
 
         div.cc-editor--actions
           button( type= "submit" )= t( 'editor.submit' )
