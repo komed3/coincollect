@@ -118,7 +118,22 @@
     }
   },
   "editor": {
-    "title": "Editor"
+    "design": {
+      "title": "Design & Beschreibung"
+    },
+    "material": {
+      "title": "Materialzusammensetzung"
+    },
+    "mint": {
+      "title": "Münzprägung"
+    },
+    "info": {
+      "title": "Eigenschaften"
+    },
+    "title": "Editor",
+    "value": {
+      "title": "Markwert"
+    }
   },
   "home": {
     "title": "Meine Münzsammlung"
