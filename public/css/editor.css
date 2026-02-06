@@ -4,6 +4,10 @@
     gap: 3em;
 }
 
+.cc-editor--box .cc-divider {
+    margin: 3em 0;
+}
+
 .cc-editor--row {
     display: flex;
     flex-flow: row nowrap;
