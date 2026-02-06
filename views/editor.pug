@@ -1,5 +1,11 @@
 extends layout/page
 
+mixin selector( name, keys, val )
+  select( name= name )
+    option( value= "" )= t( 'editor.select' )
+    each k in keys
+      option( value= k, selected= ( k === val ) )= t( '_.' + name + '.' + k )
+
 append styles
   link( rel= "stylesheet", href= "/css/editor.css" )
 
@@ -11,10 +17,14 @@ block main
       div.cc-editor--main
         div.cc-editor--info.cc-editor--box.cc-box
           h3.cc-box--hl= t( 'editor.info.title' )
+          p= t( 'editor.info.help' )
           div.cc-editor--row
-            div.cc-editor--item
+            div.cc-editor--item.x2
               label= t( 'editor.info.name' )
               input( type= "text", name= "name", value= coin && coin.name )
+            div.cc-editor--item
+              label= t( 'editor.info.type' )
+              +selector( 'type', selectors.type, coin && coin.type )
           div.cc-editor--row
             div.cc-editor--item
               label= t( 'editor.info.series' )
@@ -25,10 +35,10 @@ block main
           div.cc-editor--row
             div.cc-editor--item.x2
               label= t( 'editor.info.status' )
-              input( type= "text", name= "status", value= coin && coin.status )
+              +selector( 'status', selectors.status, coin && coin.status )
             div.cc-editor--item.x2
               label= t( 'editor.info.grade' )
-              input( type= "text", name= "grade", value= coin && coin.grade )
+              +selector( 'grade', selectors.grade, coin && coin.grade )
             div.cc-editor--item
               label= t( 'editor.info.amount' )
               input( type= "number", name= "amount", min= 1, step= 1, value= coin && coin.amount )
