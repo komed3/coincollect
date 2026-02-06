@@ -1,5 +1,6 @@
 import { Router } from 'express';
 import { CoinController } from '../controllers/CoinController';
+import { upload } from '../middlewares/Upload';
 
 const apiRoutes = Router();
 const cc = new CoinController();
@@ -23,5 +24,14 @@ apiRoutes.get( '/coin/:id/get', cc.getCoin.bind( cc ) );
 apiRoutes.put( '/coin/:id/update', cc.updateCoin.bind( cc ) );
 apiRoutes.delete( '/coin/:id/delete', cc.deleteCoin.bind( cc ) );
 apiRoutes.post( '/coin/add', cc.createCoin.bind( cc ) );
+
+apiRoutes.post(
+    '/coin/:id/upload',
+    upload.fields( [
+        { name: 'obverse', maxCount: 1 },
+        { name: 'reverse', maxCount: 1 }
+    ] ),
+    cc.uploadImages.bind( cc )
+);
 
 export { apiRoutes };
