@@ -39,20 +39,20 @@ block main
         span= t( 'stats.portions' )
       div.cc-stats--charts-grid
         div.cc-stats--box.cc-box
-          h4.cc-stats--box-hl= t( 'stats.type' )
+          h4.cc-box--hl= t( 'stats.type' )
           +chart( 'portion', { key: 'type', data: stats.type } )
         div.cc-stats--box.cc-box
-          h4.cc-stats--box-hl= t( 'stats.status' )
+          h4.cc-box--hl= t( 'stats.status' )
           +chart( 'portion', { key: 'status', data: stats.status } )
         div.cc-stats--box.cc-box
-          h4.cc-stats--box-hl= t( 'stats.grade' )
+          h4.cc-box--hl= t( 'stats.grade' )
           +chart( 'portion', { key: 'grade', data: stats.grade } )
         div.cc-stats--box.cc-box
-          h4.cc-stats--box-hl= t( 'stats.country' )
+          h4.cc-box--hl= t( 'stats.country' )
           +chart( 'portion', { data: stats.country } )
         div.cc-stats--box.cc-box
-          h4.cc-stats--box-hl= t( 'stats.currency' )
+          h4.cc-box--hl= t( 'stats.currency' )
           +chart( 'portion', { data: stats.currency } )
         div.cc-stats--box.cc-box
-          h4.cc-stats--box-hl= t( 'stats.year' )
+          h4.cc-box--hl= t( 'stats.year' )
           +chart( 'portion', { data: stats.year } )

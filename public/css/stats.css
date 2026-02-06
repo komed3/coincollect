@@ -38,12 +38,3 @@
     grid-template-columns: repeat( 2, 1fr );
     gap: 2em;
 }
-
-.cc-stats--box-hl {
-    margin: 0 0 0.8em;
-    text-transform: uppercase;
-    font-size: 0.76em;
-    font-weight: 600;
-    letter-spacing: 0.1em;
-    color: var( --text-muted );
-}

@@ -12,20 +12,20 @@ block main
 
     div.cc-settings--box.cc-settings--grid.cc-box
       div.cc-settings--item
-        h3.cc-settings--box-hl= t( 'settings.language' )
+        h3.cc-box--hl= t( 'settings.language' )
         select#languageSelect
           each lng in supportedLngs
             option( value= lng, selected= ( lang === lng ) )= t( '_.lang.' + lng )
         p= t( 'settings.languageinfo' )
       div.cc-settings--item
-        h3.cc-settings--box-hl= t( 'settings.currency' )
+        h3.cc-box--hl= t( 'settings.currency' )
         select#currencySelect
           each cur in [ 'USD', 'EUR', 'GBP', 'CHF', 'JPY' ]
             option( value= cur, selected= ( currency === cur ) )= t( '_.currency.' + cur )
         p= t( 'settings.currencyinfo' )
 
     div.cc-settings--box.cc-box
-      h3.cc-settings--box-hl= t( 'settings.database' )
+      h3.cc-box--hl= t( 'settings.database' )
       button.cc-settings--button._primary#exportDb
         span= t( 'settings.export' )
         small= t( 'settings.exportinfo' )

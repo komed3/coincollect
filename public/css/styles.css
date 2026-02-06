@@ -125,6 +125,15 @@ a, a:link, a:visited, a:hover, a:focus {
     border-radius: var( --border-radius );
 }
 
+.cc-box--hl {
+    margin: 0 0 0.8em;
+    text-transform: uppercase;
+    font-size: 0.76em;
+    font-weight: 600;
+    letter-spacing: 0.1em;
+    color: var( --text-muted );
+}
+
 .cc-divider {
     margin: 1.4em 0;
     border: 0;
