@@ -2,11 +2,11 @@
   "_": {
     "copyright": "Copyright © 2026 CoinCollect. Entwickelt für Enthusiasten von komed3. Alle Rechte vorbehalten.",
     "currency": {
-      "USD": "USD ($)",
+      "CHF": "CHF (₣)",
       "EUR": "EUR (€)",
       "GBP": "GBP (£)",
-      "CHF": "CHF (₣)",
-      "JPY": "JPY (¥)"
+      "JPY": "JPY (¥)",
+      "USD": "USD ($)"
     },
     "diff": {
       "day_one": "{{count}} Tag",
