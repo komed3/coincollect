@@ -32,6 +32,7 @@
 }
 
 .cc-editor--item input,
+.cc-editor--item textarea,
 .cc-editor--item select {
     padding: 0.74em 0.86em;
     font-family: inherit;
@@ -40,6 +41,11 @@
     background: #fff;
     border: 1px solid var( --border-color );
     border-radius: var( --border-radius );
+}
+
+.cc-editor--item textarea {
+    height: 120px;
+    resize: none;
 }
 
 .cc-editor--item select {
