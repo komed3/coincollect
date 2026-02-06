@@ -10,6 +10,7 @@ await i18next.use( I18NexFsBackend ).use( LanguageDetector ).init( {
     cleanCode: true,
     saveMissing: false,
     debug: false,
+    showSupportNotice: false,
     backend: {
         loadPath: join( process.cwd(), 'locales/{{lng}}.json' ),
     },
