@@ -79,21 +79,21 @@ block main
               li.cc-coin--info-list-item
                 label= t( 'coin.info.since' )
                 span= formatter.dateDiff( coin.purchase.date, t )
-          if coin.dimensions
+          if coin.dimension
             hr.cc-divider
             ul.cc-coin--info-list.col3
-              if coin.dimensions.diameter
+              if coin.dimension.diameter
                 li.cc-coin--info-list-item
                   label= t( 'coin.info.diameter' )
-                  span= formatter.unit( 'millimeter', coin.dimensions.diameter )
-              if coin.dimensions.thickness
+                  span= formatter.unit( 'millimeter', coin.dimension.diameter )
+              if coin.dimension.thickness
                 li.cc-coin--info-list-item
                   label= t( 'coin.info.thickness' )
-                  span= formatter.unit( 'millimeter', coin.dimensions.thickness )
-              if coin.dimensions.weight
+                  span= formatter.unit( 'millimeter', coin.dimension.thickness )
+              if coin.dimension.weight
                 li.cc-coin--info-list-item
                   label= t( 'coin.info.weight' )
-                  span= formatter.unit( 'gram', coin.dimensions.weight )
+                  span= formatter.unit( 'gram', coin.dimension.weight )
           if coin.mint
             hr.cc-divider
             ul.cc-coin--info-list.col3

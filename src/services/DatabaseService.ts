@@ -148,12 +148,12 @@ export class DatabaseService {
             portion: Number( m.portion ?? 100 )
         } ) );
 
-        if ( input.dimensions ) {
-            out.dimensions = {};
+        if ( input.dimension ) {
+            out.dimension = {};
 
-            if ( input.dimensions.diameter ) out.dimensions.diameter = Number( input.dimensions.diameter );
-            if ( input.dimensions.thickness ) out.dimensions.thickness = Number( input.dimensions.thickness );
-            if ( input.dimensions.weight ) out.dimensions.weight = Number( input.dimensions.weight );
+            if ( input.dimension.diameter ) out.dimension.diameter = Number( input.dimension.diameter );
+            if ( input.dimension.thickness ) out.dimension.thickness = Number( input.dimension.thickness );
+            if ( input.dimension.weight ) out.dimension.weight = Number( input.dimension.weight );
         }
 
         if ( input.purchase?.value ) {
@@ -364,7 +364,7 @@ export class DatabaseService {
             if ( c.omv?.length ) stats.totalOmv += ( omv = c.omv[ 0 ].value * amount );
             else if ( purchase ) stats.totalOmv += ( omv = purchase );
 
-            if ( c.dimensions?.weight ) stats.totalWeight += c.dimensions.weight * amount;
+            if ( c.dimension?.weight ) stats.totalWeight += c.dimension.weight * amount;
 
             const updateStats = ( obj: keyof CoinStats, key: string ) => {
                 ( stats as any )[ obj ][ key ] ??= { coins: 0, purchase: 0, omv: 0 } as CoinStatsItem;

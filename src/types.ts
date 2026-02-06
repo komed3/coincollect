@@ -69,7 +69,7 @@ export interface Coin {
     };
 
     material?: CoinMaterial[];
-    dimensions?: {
+    dimension?: {
         diameter?: number;
         thickness?: number;
         weight?: number;
