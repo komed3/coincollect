@@ -117,6 +117,9 @@
       "purchase": "Kaufpreis"
     }
   },
+  "editor": {
+    "title": "Editor"
+  },
   "home": {
     "title": "Meine Münzsammlung"
   },

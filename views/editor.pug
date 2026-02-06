@@ -1,1 +1,27 @@
 extends layout/page
+
+append styles
+  link( rel= "stylesheet", href= "/css/editor.css" )
+
+block main
+  div.cc-editor.cc-content--normal
+    h2.cc-page-title= t( 'editor.title' )
+
+    div.cc-editor--content
+      div.cc-editor--main
+        div.cc-editor--info.cc-editor--box.cc-box
+          h3.cc-editor--box-hl= t( 'editor.info.headline' )
+
+        div.cc-editor--mint.cc-editor--box.cc-box
+          h3.cc-editor--box-hl= t( 'editor.mint.headline' )
+
+        div.cc-editor--material.cc-editor--box.cc-box
+          h3.cc-editor--box-hl= t( 'editor.mint.material' )
+
+        div.cc-editor--design.cc-editor--box.cc-box
+          h3.cc-editor--box-hl= t( 'editor.mint.design' )
+
+        div.cc-editor--value.cc-editor--box.cc-box
+          h3.cc-editor--box-hl= t( 'editor.mint.value' )
+
+      div.cc-editor--aside
