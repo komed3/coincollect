@@ -1,7 +1,6 @@
 extends layout/page
 
 mixin selector( name, keys, val, req = false )
-  - console.log( req )
   select( name= name, required= req )
     option= t( 'editor.select' )
     each k in keys
@@ -64,6 +63,51 @@ block main
 
         div.cc-editor--mint.cc-editor--box.cc-box
           h3.cc-box--hl= t( 'editor.mint.title' )
+          div.cc-editor--row
+            div.cc-editor--item.x2
+              label= t( 'editor.mint.mark' )
+              input(
+                type= "text", name= "mint.mark",
+                value= coin && coin.mint && coin.mint.mark
+              )
+            div.cc-editor--item
+              label= t( 'editor.mint.year' )
+              input(
+                type= "number", name= "mint.year", min= 0, max= 2100, step= 1,
+                value= coin && coin.mint && coin.mint.year
+              )
+            div.cc-editor--item
+              label= t( 'editor.mint.date' )
+              input(
+                type= "date", name= "mint.issueDate",
+                value= ( coin && coin.mint && coin.mint.issueDate || '' ).split( 'T' )[ 0 ]
+              )
+          div.cc-editor--row
+            div.cc-editor--item
+              label= t( 'editor.mint.mintage' )
+              input(
+                type= "number", name= "mint.mintage", min= 0,
+                value= coin && coin.mint && coin.mint.mintage
+              )
+          div.cc-editor--row
+            div.cc-editor--item
+              label= t( 'editor.dimensions.diameter' )
+              input(
+                type= "number", name= "dimensions.diameter", min= 0, step= 0.1,
+                value= coin && coin.dimensions && coin.dimensions.diameter
+              )
+            div.cc-editor--item
+              label= t( 'editor.dimensions.thickness' )
+              input(
+                type= "number", name= "dimensions.thickness", min= 0, step= 0.01,
+                value= coin && coin.dimensions && coin.dimensions.thickness
+              )
+            div.cc-editor--item
+              label= t( 'editor.dimensions.weight' )
+              input(
+                type= "number", name= "dimensions.weight", min= 0, step= 0.01,
+                value= coin && coin.dimensions && coin.dimensions.weight
+              )
 
         div.cc-editor--material.cc-editor--box.cc-box
           h3.cc-box--hl= t( 'editor.material.title' )

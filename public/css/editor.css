@@ -6,7 +6,7 @@
 
 .cc-editor--row {
     display: flex;
-    flex-flow: row wrap;
+    flex-flow: row nowrap;
     align-items: baseline;
     gap: 1.2em 1.6em;
     margin-top: 1.2em;

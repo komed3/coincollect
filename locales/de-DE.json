@@ -121,6 +121,11 @@
     "design": {
       "title": "Design & Beschreibung"
     },
+    "dimensions": {
+      "diameter": "Durchmesser (mm)",
+      "thickness": "Stärke (mm)",
+      "weight": "Gewicht (g)"
+    },
     "images": {
       "title": "Fotografien"
     },
@@ -143,7 +148,11 @@
       "title": "Materialzusammensetzung"
     },
     "mint": {
-      "title": "Münzprägung"
+      "date": "Ausgabedatum",
+      "mark": "Prägestätte",
+      "mintage": "Auflage",
+      "title": "Münzprägung",
+      "year": "Prägejahr"
     },
     "select": "Auswählen",
     "title": "Editor",
