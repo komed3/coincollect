@@ -1,0 +1,5 @@
+.cc-editor--content {
+    display: grid;
+    grid-template-columns: 1fr 360px;
+    gap: 3em;
+}
