@@ -118,6 +118,7 @@
     }
   },
   "editor": {
+    "abort": "Abbrechen",
     "design": {
       "description": "Beschreibung",
       "edge": "Rand",
@@ -160,6 +161,7 @@
       "year": "Prägejahr"
     },
     "select": "Auswählen",
+    "submit": "Speichern",
     "title": "Editor",
     "value": {
       "title": "Markwert"
