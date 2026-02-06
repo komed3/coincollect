@@ -9,6 +9,9 @@ mixin selector( name, keys, val, req = false )
 append styles
   link( rel= "stylesheet", href= "/css/editor.css" )
 
+append scripts
+  script( src= "/js/editor.js", defer )
+
 block main
   form.cc-editor.cc-content--normal( enctype= "multipart/form-data", autocomplete= "on" )
     input( type= "hidden", name= "id", value= coin && coin.id )
