@@ -168,6 +168,14 @@
     "submit": "Speichern",
     "title": "Editor",
     "value": {
+      "omv": {
+        "date": "Datum",
+        "value": "Marktwert in {{currency}}"
+      },
+      "purchase": {
+        "date": "Kaufdatum",
+        "value": "Kaufpreis in {{currency}}"
+      },
       "title": "Marktwert"
     }
   },

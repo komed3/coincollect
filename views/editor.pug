@@ -83,8 +83,9 @@ block main
             div.cc-editor--item
               label= t( 'editor.mint.date' )
               input(
-                type= "date", name= "mint.issueDate",
-                value= ( coin && coin.mint && coin.mint.issueDate || '' ).split( 'T' )[ 0 ]
+                type= "date", name= "mint.issueDate", value= (
+                  coin && coin.mint && coin.mint.issueDate || ''
+                ).split( 'T' )[ 0 ]
               )
           div.cc-editor--row
             div.cc-editor--item
@@ -93,6 +94,7 @@ block main
                 type= "number", name= "mint.mintage", min= 0,
                 value= coin && coin.mint && coin.mint.mintage
               )
+          hr.cc-divider
           div.cc-editor--row
             div.cc-editor--item
               label= t( 'editor.mint.diameter' )
@@ -132,14 +134,14 @@ block main
               div.cc-editor--item
                 label= t( 'editor.material.fineness' )
                 input(
-                    type= "number", name= "material.fineness[]", min= 0, max= 1000, step= 0.1,
-                    value= coin && coin.material && coin.material[ i ] && coin.material[ i ].fineness
+                  type= "number", name= "material.fineness[]", min= 0, max= 1000, step= 0.1,
+                  value= coin && coin.material && coin.material[ i ] && coin.material[ i ].fineness
                 )
               div.cc-editor--item
                 label= t( 'editor.material.portion' )
                 input(
-                    type= "number", name= "material.portion[]", min= 0, max= 100, step= 0.1,
-                    value= coin && coin.material && coin.material[ i ] && coin.material[ i ].portion
+                  type= "number", name= "material.portion[]", min= 0, max= 100, step= 0.1,
+                  value= coin && coin.material && coin.material[ i ] && coin.material[ i ].portion
                 )
 
         div.cc-editor--design.cc-editor--box.cc-box
@@ -170,6 +172,36 @@ block main
 
         div.cc-editor--value.cc-editor--box.cc-box
           h3.cc-box--hl= t( 'editor.value.title' )
+          div.cc-editor--row
+            div.cc-editor--item
+              label= t( 'editor.value.purchase.date' )
+              input(
+                type= "date", name= "purchase.date", value= (
+                  coin && coin.purchase && coin.purchase.date || ''
+                ).split( 'T' )[ 0 ]
+              )
+            div.cc-editor--item
+              label= t( 'editor.value.purchase.value', { currency } )
+              input(
+                type= "number", name= "purchase.value", min= 0, step= 0.01,
+                value= coin && coin.purchase && coin.purchase.value
+              )
+          hr.cc-divider
+          each i in [ 0, 1, 2, 3, 4, 5, 6, 7, 8, 9 ]
+            div.cc-editor--row
+              div.cc-editor--item
+                label= t( 'editor.value.omv.date' )
+                input(
+                  type= "date", name= "omv.date[]", value= (
+                    coin && coin.omv && coin.omv[ i ] && coin.omv[ i ].date || ''
+                  ).split( 'T' )[ 0 ]
+                )
+              div.cc-editor--item
+                label= t( 'editor.value.omv.value', { currency } )
+                input(
+                  type= "number", name= "omv.value[]", min= 0, step= 0.01,
+                  value= coin && coin.omv && coin.omv[ i ] && coin.omv[ i ].value
+                )
 
       div.cc-editor--aside
         div.cc-editor--images.cc-editor--box.cc-box
