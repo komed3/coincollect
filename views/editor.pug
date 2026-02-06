@@ -208,13 +208,13 @@ block main
         div.cc-editor--images.cc-editor--box.cc-box
           h3.cc-box--hl= t( 'editor.images.title' )
           div.cc-editor--image#obverse
-            input( type= "file", name= "file.obverse" )
+            input( type= "file", name= "file.obverse", value= coin && coin.images && coin.images.obverse )
             label
               i.fa.fa-upload
               span= t( 'editor.file.obverse' )
             button( title= t( 'editor.file.delete' ) ): i.fa.fa-trash-o
           div.cc-editor--image#reverse
-            input( type= "file", name= "file.reverse" )
+            input( type= "file", name= "file.reverse", value= coin && coin.images && coin.images.reverse )
             label
               i.fa.fa-upload
               span= t( 'editor.file.reverse' )
