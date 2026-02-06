@@ -35,7 +35,7 @@
   "dependencies": {
     "deepmerge": "^4.3.1",
     "express": "^5.2.1",
-    "i18next": "^25.8.0",
+    "i18next": "^25.8.4",
     "i18next-fs-backend": "^2.6.1",
     "i18next-http-middleware": "^3.9.2",
     "lowdb": "^7.0.1",
@@ -46,7 +46,7 @@
   "devDependencies": {
     "@types/express": "^5.0.6",
     "@types/multer": "^2.0.0",
-    "@types/node": "^25.2.0",
+    "@types/node": "^25.2.1",
     "concurrently": "^9.2.1",
     "nodemon": "^3.1.11",
     "tsc-alias": "^1.8.16",
