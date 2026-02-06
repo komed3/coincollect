@@ -119,6 +119,10 @@
   },
   "editor": {
     "design": {
+      "edge": "Rand",
+      "obverse": "Avers",
+      "reverse": "Revers",
+      "shape": "Form",
       "title": "Design & Beschreibung"
     },
     "images": {
