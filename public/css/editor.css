@@ -68,15 +68,22 @@
     width: 100%;
     height: auto;
     padding: 0.8em;
+    background-size: cover;
+    background-position: center;
+    background-color: #fff;
     border: 2px dashed var( --border-color );
     border-radius: var( --border-radius );
+    transition: all 0.3s ease;
+    cursor: pointer;
 }
 
 .cc-editor--image label {
+    pointer-events: none;
     display: flex;
     flex-flow: column nowrap;
     align-items: center;
     gap: 1em;
+    text-align: center;
     color: var( --text-muted );
 }
 
@@ -108,12 +115,16 @@
     position: absolute;
     top: 0.4em;
     right: 0.4em;
+    display: none;
     width: 42px;
     height: 42px;
+    padding: 0;
     font-size: 1.6em;
+    color: var( --text-color );
     background: #fff;
     border: 0;
     border-radius: var( --border-radius );
+    box-shadow: 0 0 4px rgba( 0, 0, 0, 0.05 );
     cursor: pointer;
     z-index: 2;
 }
