@@ -148,6 +148,10 @@
       "type": "Münztyp"
     },
     "material": {
+      "fineness": "Feinheit",
+      "key": "Schlüssel / Farbe",
+      "name": "Material",
+      "portion": "Anteil (%)",
       "title": "Materialzusammensetzung"
     },
     "mint": {
