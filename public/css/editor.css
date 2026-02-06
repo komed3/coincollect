@@ -58,6 +58,66 @@
     cursor: pointer;
 }
 
+.cc-editor--image {
+    position: relative;
+    margin-top: 1em;
+    aspect-ratio: 1 / 1;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    height: auto;
+    padding: 0.8em;
+    border: 2px dashed var( --border-color );
+    border-radius: var( --border-radius );
+}
+
+.cc-editor--image label {
+    display: flex;
+    flex-flow: column nowrap;
+    align-items: center;
+    gap: 1em;
+    color: var( --text-muted );
+}
+
+.cc-editor--image label i {
+    font-size: 3em;
+    opacity: 0.6;
+}
+
+.cc-editor--image label span {
+    text-transform: uppercase;
+    font-size: 0.76em;
+    font-weight: 500;
+    letter-spacing: 0.1em;
+    color: var( --text-muted );
+}
+
+.cc-editor--image input {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    cursor: pointer;
+    opacity: 0;
+    z-index: 1;
+}
+
+.cc-editor--image button {
+    position: absolute;
+    top: 0.4em;
+    right: 0.4em;
+    width: 42px;
+    height: 42px;
+    font-size: 1.6em;
+    background: #fff;
+    border: 0;
+    border-radius: var( --border-radius );
+    cursor: pointer;
+    z-index: 2;
+}
+
 .cc-editor--actions {
     display: flex;
     flex-flow: row nowrap;
