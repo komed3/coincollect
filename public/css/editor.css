@@ -13,14 +13,14 @@
 }
 
 .cc-editor--item {
-    flex: 1;
+    flex: 1 0 0;
     display: flex;
-    flex-flow: column nowrap;
+    flex-flow: column wrap;
     gap: 0.4em;
 }
 
 .cc-editor--item.x2 {
-    flex: 2;
+    flex: 2 0 0;
 }
 
 .cc-editor--item label {
@@ -34,6 +34,8 @@
 .cc-editor--item input,
 .cc-editor--item textarea,
 .cc-editor--item select {
+    min-width: 0;
+    width: 100%;
     padding: 0.74em 0.86em;
     font-family: inherit;
     font-size: 0.92em;
