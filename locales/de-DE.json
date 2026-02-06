@@ -121,18 +121,32 @@
     "design": {
       "title": "Design & Beschreibung"
     },
+    "images": {
+      "title": "Fotografien"
+    },
+    "info": {
+      "amount": "Anzahl",
+      "country": "Herkunfsland",
+      "currency": "Währung",
+      "grade": "Erhaltungsgrad",
+      "help": "Münzeigenschaften und Klassifikation",
+      "name": "Name",
+      "nominal": {
+        "unit": "Einheit",
+        "value": "Nennwert"
+      },
+      "series": "Serie",
+      "status": "Status",
+      "title": "Eigenschaften",
+      "type": "Münztyp"
+    },
     "material": {
       "title": "Materialzusammensetzung"
     },
     "mint": {
       "title": "Münzprägung"
     },
-    "images": {
-      "title": "Fotografien"
-    },
-    "info": {
-      "title": "Eigenschaften"
-    },
+    "select": "Auswählen",
     "title": "Editor",
     "value": {
       "title": "Markwert"
