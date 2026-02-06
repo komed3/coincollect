@@ -129,7 +129,6 @@
       "country": "Herkunfsland",
       "currency": "Währung",
       "grade": "Erhaltungsgrad",
-      "help": "Münzeigenschaften und Klassifikation",
       "name": "Name",
       "nominal": {
         "unit": "Einheit",
