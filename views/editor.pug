@@ -124,9 +124,16 @@ block main
               +selector( 'shape', selectors.shape, coin && coin.design && coin.design.shape )
           div.cc-editor--row
             div.cc-editor--item
+              label= t( 'editor.design.description' )
+              textarea( name= "description" )= coin && coin.description
+          div.cc-editor--row
+            div.cc-editor--item
+              label= t( 'editor.design.note' )
+              textarea( name= "note" )= coin && coin.note
+          div.cc-editor--row
+            div.cc-editor--item
               label= t( 'editor.design.obverse' )
               textarea( name= "design.obverse" )= coin && coin.design && coin.design.obverse
-          div.cc-editor--row
             div.cc-editor--item
               label= t( 'editor.design.reverse' )
               textarea( name= "design.reverse" )= coin && coin.design && coin.design.reverse

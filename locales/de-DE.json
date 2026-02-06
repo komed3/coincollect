@@ -119,7 +119,9 @@
   },
   "editor": {
     "design": {
+      "description": "Beschreibung",
       "edge": "Rand",
+      "note": "Anmerkung",
       "obverse": "Avers",
       "reverse": "Revers",
       "shape": "Form",
