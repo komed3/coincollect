@@ -4,13 +4,50 @@ append styles
   link( rel= "stylesheet", href= "/css/editor.css" )
 
 block main
-  div.cc-editor.cc-content--normal
+  form.cc-editor.cc-content--normal
     h2.cc-page-title= t( 'editor.title' )
 
     div.cc-editor--content
       div.cc-editor--main
         div.cc-editor--info.cc-editor--box.cc-box
           h3.cc-box--hl= t( 'editor.info.title' )
+          div.cc-editor--row
+            div.cc-editor--item
+              label= t( 'editor.info.name' )
+              input( type= "text", name= "name", value= coin && coin.name )
+          div.cc-editor--row
+            div.cc-editor--item
+              label= t( 'editor.info.series' )
+              input( type= "text", name= "series", value= coin && coin.series )
+            div.cc-editor--item
+              label= t( 'editor.info.country' )
+              input( type= "text", name= "country", value= coin && coin.country )
+          div.cc-editor--row
+            div.cc-editor--item.x2
+              label= t( 'editor.info.status' )
+              input( type= "text", name= "status", value= coin && coin.status )
+            div.cc-editor--item.x2
+              label= t( 'editor.info.grade' )
+              input( type= "text", name= "grade", value= coin && coin.grade )
+            div.cc-editor--item
+              label= t( 'editor.info.amount' )
+              input( type= "number", name= "amount", min= 1, step= 1, value= coin && coin.amount )
+          div.cc-editor--row
+            div.cc-editor--item.x2
+              label= t( 'editor.info.currency' )
+              input( type= "text", name= "currency", value= coin && coin.currency )
+            div.cc-editor--item
+              label= t( 'editor.info.nominal.value' )
+              input(
+                type= "number", name= "nominalValue.value", min= 0,
+                value= coin && coin.nominalValue && coin.nominalValue.value
+              )
+            div.cc-editor--item
+              label= t( 'editor.info.nominal.unit' )
+              input(
+                type= "text", name= "nominalValue.unit",
+                value= coin && coin.nominalValue && coin.nominalValue.unit
+              )
 
         div.cc-editor--mint.cc-editor--box.cc-box
           h3.cc-box--hl= t( 'editor.mint.title' )
