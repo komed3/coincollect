@@ -34,7 +34,7 @@
     },
     "label": {
       "coins": "Münzen",
-      "omv": "Markwert",
+      "omv": "Marktwert",
       "purchase": "Kaufpreis"
     },
     "lang": {
@@ -112,7 +112,7 @@
     "value": {
       "datetime": "Datum: {{date}}",
       "growth": "Wertsteigerung",
-      "omv": "Markwert",
+      "omv": "Marktwert",
       "percent": "In Prozent: {{growth}}",
       "purchase": "Kaufpreis"
     }
@@ -168,7 +168,7 @@
     "submit": "Speichern",
     "title": "Editor",
     "value": {
-      "title": "Markwert"
+      "title": "Marktwert"
     }
   },
   "home": {
@@ -194,7 +194,7 @@
       "currency": "Währung",
       "grade": "Grad",
       "nominal": "Nennwert",
-      "omv": "Markwert",
+      "omv": "Marktwert",
       "series": "Serie",
       "status": "Status",
       "type": "Münztyp",
@@ -203,7 +203,7 @@
   },
   "settings": {
     "currency": "Währung",
-    "currencyinfo": "Benutzte Währung für Kaufpreis und Markwert; die Umstellung verändert keine Werte, führt keine Währungsumrechnung durch.",
+    "currencyinfo": "Benutzte Währung für Kaufpreis und Marktwert; die Umstellung verändert keine Werte, führt keine Währungsumrechnung durch.",
     "database": "Datenbank",
     "export": "Münzsammlung exportieren",
     "exportinfo": "Den gesamten Katalog als JSON Datei exportieren (ohne Fotografien)",
