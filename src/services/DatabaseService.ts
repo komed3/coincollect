@@ -7,7 +7,7 @@ import { v4 as uuidv4 } from 'uuid';
 import { CoinStatus } from '../types';
 import type {
     Coin, CoinGrade, CoinShape, CoinStats, CoinStatsItem,
-    CoinStatsRecord, CoinType, Database, OMV
+    CoinStatsRecord, CoinType, Database
 } from '../types';
 
 type PartialCoinInput = Partial< Omit< Coin, 'id' | 'createdAt' | 'updatedAt' > >;
@@ -256,12 +256,9 @@ export class DatabaseService {
         if ( ! coin ) return;
 
         const validated = this.sanitizeAndValidateInput( updates, false );
-        Object.assign( coin, deepmerge( coin, validated, { arrayMerge: ( target: OMV[], source: OMV[] ) => {
-            const omv = new Map< string, OMV >();
-            for ( const t of target ) if ( ! omv.has( t.date ) ) omv.set( t.date, t );
-            for ( const s of source ) if ( ! omv.has( s.date ) ) omv.set( s.date, s );
-            return [ ...omv.values() ].sort( ( a: OMV, b: OMV ) => b.date.localeCompare( a.date ) );
-        } } ), { updatedAt: new Date().toISOString() } );
+        Object.assign( coin, deepmerge( coin, validated, { arrayMerge: ( _, s ) => s } ), {
+            updatedAt: new Date().toISOString()
+        } );
 
         await this.updateDb();
         return coin;
