@@ -75,7 +75,7 @@ block main
             each v, m in stats.material
               tr( material= m )
                 td._material: span= t( '_.material.' + m )
-                td= formatter.number( v.coins, 0 ).padStart( 3, '*' )
+                td= formatter.number( v.coins, 0 ).padStart( 4, '*' )
                 td= formatter.number( v.weight / 1000, 3 )
                 td= formatter.number( v.pureWeight / 1000, 3 )
                 td= formatter.number( v.fineness, 1 )
