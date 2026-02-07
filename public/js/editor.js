@@ -134,7 +134,11 @@ document.addEventListener( 'DOMContentLoaded', () => {
                 value: val( fd.get( 'purchase.value' ), 'number' ),
                 date: val( fd.get( 'purchase.date' ), 'date' )
             },
-            omv
+            omv,
+            images: {
+                obverse: val( $( '#obverse' ).getAttribute( 'image' ), 'string' ),
+                reverse: val( $( '#reverse' ).getAttribute( 'image' ), 'string' )
+            }
         };
 
         try {

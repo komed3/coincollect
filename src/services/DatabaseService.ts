@@ -277,13 +277,9 @@ export class DatabaseService {
 
         const now = new Date().toISOString();
         const validated = this.sanitizeAndValidateInput( input, false );
-        const updated: Coin = delta ? {
+        const updated: Coin = {
             id: coin.id, createdAt: coin.createdAt, updatedAt: now,
-            ...deepmerge( coin, validated )
-        } : {
-            id: coin.id, createdAt: coin.createdAt, updatedAt: now,
-            ...{ images: coin.images },
-            ...deepmerge( { tags: [], amount: 1, omv: [] }, validated )
+            ...deepmerge( delta ? coin : { tags: [], amount: 1, omv: [] }, validated )
         };
 
         this.db!.data.coins = this.db!.data.coins.map( c => updated.id === c.id ? updated : c );
