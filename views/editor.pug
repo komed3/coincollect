@@ -1,10 +1,10 @@
 extends layout/page
 
-mixin selector( name, keys, val, req = false )
+mixin selector( name, keys, val, req = false, n = undefined )
   select( name= name, required= req )
     option= t( 'editor.select' )
     each k in keys
-      option( value= k, selected= ( k === val ) )= t( '_.' + name + '.' + k )
+      option( value= k, selected= ( k === val ) )= t( '_.' + ( n || name ) + '.' + k )
 
 append styles
   link( rel= "stylesheet", href= "/css/editor.css" )
@@ -124,16 +124,11 @@ block main
           each i in [ 0, 1, 2, 3 ]
             div.cc-editor--row
               div.cc-editor--item.x2
-                label= t( 'editor.material.name' )
-                input(
-                  type= "text", name= "material.name[]",
-                  value= coin && coin.material && coin.material[ i ] && coin.material[ i ].name
-                )
-              div.cc-editor--item
-                label= t( 'editor.material.key' )
-                input(
-                  type= "text", name= "material.key[]",
-                  value= coin && coin.material && coin.material[ i ] && coin.material[ i ].key
+                label= t( 'editor.material.material' )
+                +selector(
+                  'material.material[]', selectors.material,
+                  coin && coin.material && coin.material[ i ] && coin.material[ i ].material,
+                  false, 'material'
                 )
               div.cc-editor--item
                 label= t( 'editor.material.fineness' )

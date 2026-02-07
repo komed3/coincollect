@@ -190,8 +190,7 @@
     },
     "material": {
       "fineness": "Feinheit",
-      "key": "Schlüssel",
-      "name": "Material",
+      "material": "Material",
       "portion": "Anteil (%)",
       "title": "Materialzusammensetzung"
     },
