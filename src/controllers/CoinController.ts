@@ -1,3 +1,5 @@
+import { readdir, unlink } from 'node:fs/promises';
+import { join } from 'node:path';
 import type { Request, Response } from 'express';
 import DB from '../services/DatabaseService';
 
@@ -156,6 +158,24 @@ export class CoinController {
 
             const updated = this.dbService.updateCoin( id, updates, true );
             res.json( updated );
+        } );
+    }
+
+    public async cleanupImages ( _: Request, res: Response ) : Promise< void > {
+        await this.catch( res, 'Failed to cleanup images', async () => {
+            const images = new Set();
+            ( await this.dbService.getAllCoins() ).forEach( c => {
+                if ( c.images?.obverse ) images.add( c.images.obverse );
+                if ( c.images?.reverse ) images.add( c.images.reverse );
+                for ( const img of c.images?.other ?? [] ) images.add( img );
+            } );
+
+            const uploadDir = join( process.cwd(), 'uploads' );
+            for ( const file of await readdir( uploadDir ) ) if ( ! images.has( file ) ) {
+                await unlink( join( uploadDir, file ) );
+            }
+
+            res.status( 200 ).send();
         } );
     }
 

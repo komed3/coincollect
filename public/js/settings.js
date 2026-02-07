@@ -57,6 +57,23 @@ document.addEventListener( 'DOMContentLoaded', function () {
         }
     } );
 
+    document.querySelector( '#cleanUp' ).addEventListener( 'click', async ( e ) => {
+        e.preventDefault();
+        e.target.disabled = true;
+
+        try {
+            const res = await fetch( '/api/db/cleanup', { method: 'DELETE' } );
+            if ( ! res.ok ) throw new Error( 'Clean up failed' );
+
+            console.log( 'Database clean up succeeded' );
+        } catch ( err ) {
+            e.target.disabled = false;
+            console.error( 'Clean up error:', err );
+        } finally {
+            e.target.disabled = false;
+        }
+    } );
+
     document.querySelector( '#resetDb' ).addEventListener( 'click', async ( e ) => {
         e.preventDefault();
         e.target.disabled = true;
