@@ -74,48 +74,65 @@ document.addEventListener( 'DOMContentLoaded', () => {
     form.addEventListener( 'submit', async ( e ) => {
         e.preventDefault();
 
-        const form = new FormData( e.target );
+        const fd = new FormData( e.target );
+        const id = val( fd.get( 'id' ), 'string' );
+
+        const material = [];
+        fd.getAll( 'material.material[]' ).forEach( ( m, i ) => {
+            if ( m = val( m, 'string' ) ) material.push( {
+                material: m,
+                fineness: val( fd.getAll( 'material.fineness[]' )[ i ], 'number' ),
+                portion: val( fd.getAll( 'material.portion[]' )[ i ], 'number' )
+            } );
+        } );
+
+        const omv = [];
+        fd.getAll( 'omv.date[]' ).forEach( ( d, i ) => {
+            if ( d = val( d, 'date' ) ) omv.push( {
+                date: d, value: val( fd.getAll( 'omv.value[]' )[ i ], 'number' )
+            } );
+        } );
 
         const coin = {
-            name: val( form.get( 'name' ), 'string' ),
-            type: val( form.get( 'type' ), 'string' ),
-            country: val( form.get( 'country' ), 'string' ),
-            series: val( form.get( 'series' ), 'string' ),
-            tags: val( form.get( 'tags' ), 'string' ).split( ',' ).map( t => t.trim() ),
-            grade: val( form.get( 'grade' ), 'string' ),
-            status: val( form.get( 'status' ), 'string' ),
-            amount: val( form.get( 'amount' ), 'number', 1 ),
+            name: val( fd.get( 'name' ), 'string' ),
+            type: val( fd.get( 'type' ), 'string' ),
+            country: val( fd.get( 'country' ), 'string' ),
+            series: val( fd.get( 'series' ), 'string' ),
+            tags: val( fd.get( 'tags' ), 'string' ).split( ',' ).map( t => t.trim() ),
+            grade: val( fd.get( 'grade' ), 'string' ),
+            status: val( fd.get( 'status' ), 'string' ),
+            amount: val( fd.get( 'amount' ), 'number', 1 ),
             mint: {
-                year: val( form.get( 'mint.year' ), 'number' ),
-                mark: val( form.get( 'mint.mark' ), 'string' ),
-                issueDate: val( form.get( 'mint.issueDate' ), 'date' ),
-                mintage: val( form.get( 'mint.mintage' ), 'number' )
+                year: val( fd.get( 'mint.year' ), 'number' ),
+                mark: val( fd.get( 'mint.mark' ), 'string' ),
+                issueDate: val( fd.get( 'mint.issueDate' ), 'date' ),
+                mintage: val( fd.get( 'mint.mintage' ), 'number' )
             },
-            currency: val( form.get( 'currency' ), 'string' ),
+            currency: val( fd.get( 'currency' ), 'string' ),
             nominalValue: {
-                value: val( form.get( 'nominalValue.value' ), 'number' ),
-                unit: val( form.get( 'nominalValue.value' ), 'string' )
+                value: val( fd.get( 'nominalValue.value' ), 'number' ),
+                unit: val( fd.get( 'nominalValue.value' ), 'string' )
             },
-            description: val( form.get( 'description' ), 'string' ),
-            note: val( form.get( 'note' ), 'string' ),
+            description: val( fd.get( 'description' ), 'string' ),
+            note: val( fd.get( 'note' ), 'string' ),
             design: {
-                shape: val( form.get( 'shape' ), 'string' ),
-                obverse: val( form.get( 'design.obverse' ), 'string' ),
-                reverse: val( form.get( 'design.reverse' ), 'string' ),
-                edge: val( form.get( 'design.edge' ), 'string' )
+                shape: val( fd.get( 'shape' ), 'string' ),
+                obverse: val( fd.get( 'design.obverse' ), 'string' ),
+                reverse: val( fd.get( 'design.reverse' ), 'string' ),
+                edge: val( fd.get( 'design.edge' ), 'string' )
             },
+            material,
             dimension: {
-                diameter: val( form.get( 'dimension.diameter' ), 'number' ),
-                thickness: val( form.get( 'dimension.thickness' ), 'number' ),
-                weight: val( form.get( 'dimension.weight' ), 'number' )
+                diameter: val( fd.get( 'dimension.diameter' ), 'number' ),
+                thickness: val( fd.get( 'dimension.thickness' ), 'number' ),
+                weight: val( fd.get( 'dimension.weight' ), 'number' )
             },
             purchase: {
-                value: val( form.get( 'purchase.value' ), 'number' ),
-                date: val( form.get( 'purchase.date' ), 'date' )
-            }
+                value: val( fd.get( 'purchase.value' ), 'number' ),
+                date: val( fd.get( 'purchase.date' ), 'date' )
+            },
+            omv
         };
-
-        console.log( coin );
     } );
 
     /** Reset form */
