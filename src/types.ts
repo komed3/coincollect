@@ -23,6 +23,11 @@ export interface CoinStats {
     country: CoinStatsRecord;
     currency: CoinStatsRecord;
     year: CoinStatsRecord;
+    material: { [ M in CoinMaterial ]?: {
+        coins: number;
+        weight: number;
+        portion: number;
+    } };
 }
 
 export type CoinStatsRecord = Record< string, CoinStatsItem >;

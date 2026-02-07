@@ -55,7 +55,8 @@ export class DatabaseService {
                 grade: {},
                 country: {},
                 currency: {},
-                year: {}
+                year: {},
+                material: {}
             }
         };
     }
@@ -457,7 +458,7 @@ export class DatabaseService {
         let omvSum = 0;
 
         for ( const year of Array.from( years ).sort( ( a, b ) => a - b ) ) {
-            const cutoff = endOfYear(year);
+            const cutoff = endOfYear( year );
 
             for ( const coin of preparedCoins ) {
                 if ( coin.firstKnownTime > cutoff ) continue;
