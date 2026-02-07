@@ -161,7 +161,10 @@ class CCList {
         row.innerHTML = `
             <td class="_coin">
                 <a href="/coin/${ coin.id }">
-                    ${ coin.images?.obverse ? `<img src="/uploads/${ coin.images.obverse }" alt="${ coin.name }" loading="lazy" />` : '' }
+                    <img src="${ coin.images?.obverse
+                        ? `/uploads/${coin.images.obverse}`
+                        : `/images/missing.jpg`
+                    }" alt="${ coin.name }" loading="lazy" />
                     <b>${ this.escapeHtml( coin.name ) }</b>
                 </a>
             </td>
