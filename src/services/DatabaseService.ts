@@ -411,12 +411,12 @@ export class DatabaseService {
                         coins: 0, weight: 0, pureWeight: 0, fineness: undefined, portion: 0
                     };
 
-                    stats.material[ m.material ]!.coins++;
+                    stats.material[ m.material ]!.coins += amount;
                     stats.material[ m.material ]!.weight += Number( (
-                        c.dimension.weight * ( ( m.portion ?? 100 ) / 100 )
+                        amount * c.dimension.weight * ( ( m.portion ?? 100 ) / 100 )
                     ).toFixed( 4 ) );
                     stats.material[ m.material ]!.pureWeight += Number( (
-                        c.dimension.weight *
+                        amount * c.dimension.weight *
                         ( ( m.fineness ?? 999 ) / 1000 ) *
                         ( ( m.portion ?? 100 ) / 100 )
                     ).toFixed( 4 ) );
