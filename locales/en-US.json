@@ -1,14 +1,299 @@
 {
   "_": {
+    "copyright": "Copyright © 2026 CoinCollect. Developed for enthusiasts by komed3. All rights reserved.",
+    "currency": {
+      "CHF": "CHF (₣)",
+      "EUR": "EUR (€)",
+      "GBP": "GBP (£)",
+      "JPY": "JPY (¥)",
+      "USD": "USD ($)"
+    },
+    "diff": {
+      "day_one": "{{count}} day",
+      "day_other": "{{count}} days",
+      "hour_one": "{{count}} hour",
+      "hour_other": "{{count}} hours",
+      "minute_one": "{{count}} minute",
+      "minute_other": "{{count}} minutes",
+      "month_one": "{{count}} month",
+      "month_other": "{{count}} months",
+      "second_one": "{{count}} second",
+      "second_other": "{{count}} seconds",
+      "year_one": "{{count}} year",
+      "year_other": "{{count}} years"
+    },
+    "grade": {
+      "BU": "Brilliant Uncirculated",
+      "F": "Fine",
+      "FDC": "Fleur de Coin",
+      "G": "Good",
+      "UNC": "Almost Uncirculated",
+      "VF": "Very Fine",
+      "VG": "Very Good",
+      "XF": "Extremely Fine"
+    },
+    "label": {
+      "coins": "Coins",
+      "omv": "Market value",
+      "purchase": "Purchase price"
+    },
+    "lang": {
+      "de-DE": "German (DE)",
+      "en-US": "English (US)"
+    },
+    "material": {
+      "aluminum": "Aluminum",
+      "brass": "Brass",
+      "bronze": "Bronze",
+      "chrome": "Chromium",
+      "cobalt": "Cobalt",
+      "copper": "Copper",
+      "cupronickel": "Copper-nickel",
+      "duralumin": "Duralumin",
+      "gold": "Gold",
+      "hastelloy": "Hastelloy",
+      "inconel": "Inconel",
+      "iridium": "Iridium",
+      "iron": "Iron",
+      "lead": "Lead",
+      "magnesium": "Magnesium",
+      "mixed": "Mixed",
+      "molybdenum": "Molybdenum",
+      "monel": "Monel",
+      "nickel": "Nickel",
+      "osmium": "Osmium",
+      "palladium": "Palladium",
+      "platinum": "Platinum",
+      "rhodium": "Rhodium",
+      "ruthenium": "Ruthenium",
+      "silver": "Silver",
+      "stainless": "Stainless steel",
+      "steel": "Steel",
+      "synthetic": "Synthetic",
+      "tin": "Tin",
+      "titanium": "Titanium",
+      "tungsten": "Tungsten",
+      "unknown": "Unknown",
+      "vanadium": "Vanadium",
+      "zinc": "Zinc"
+    },
+    "modified": "Last modified on {{date}}",
     "nav": {
       "add": "Editor",
       "home": "Collection",
-      "settings": "settings",
-      "stats": "Stats"
+      "settings": "Settings",
+      "stats": "Statistics"
     },
-    "title": "{{title}} — CoinCollect"
+    "shape": {
+      "irregular": "Irregular",
+      "other": "Other",
+      "oval": "Oval",
+      "polygonal": "Polygonal",
+      "round": "Round",
+      "square": "Square"
+    },
+    "status": {
+      "duplicate": "Duplicate",
+      "forSale": "For sale",
+      "missing": "Missing",
+      "ordered": "Ordered",
+      "owned": "Owned",
+      "sold": "Sold",
+      "wanted": "Wanted"
+    },
+    "support": "Support",
+    "title": "{{title}} — CoinCollect",
+    "type": {
+      "bullion": "Bullion coin",
+      "circulation": "Circulation coin",
+      "commemorative": "Commemorative coin",
+      "ingot": "Ingot",
+      "medal": "Medal",
+      "other": "Other",
+      "pattern": "Pattern coin"
+    }
+  },
+  "coin": {
+    "actions": {
+      "back": "Back",
+      "delete": "Delete",
+      "edit": "Edit"
+    },
+    "design": {
+      "edge": "Edge",
+      "obverse": "Obverse",
+      "reverse": "Reverse"
+    },
+    "info": {
+      "age": "Coin age",
+      "country": "Country of origin",
+      "currency": "Currency",
+      "diameter": "Diameter",
+      "grade": "Grade",
+      "issueDate": "Issue date",
+      "mintage": "Mintage",
+      "mintMark": "Mint",
+      "mintYear": "Mint year",
+      "nominal": "Denomination",
+      "series": "Series",
+      "shape": "Shape",
+      "since": "In collection since",
+      "status": "Collection status",
+      "thickness": "Thickness",
+      "type": "Coin type",
+      "weight": "Weight"
+    },
+    "material": "Material composition",
+    "note": "Note",
+    "title": "{{name}}",
+    "value": {
+      "datetime": "Date: {{date}}",
+      "growth": "Value growth",
+      "omv": "Market value",
+      "percent": "In percent: {{growth}}",
+      "purchase": "Purchase price"
+    }
+  },
+  "editor": {
+    "abort": "Cancel",
+    "design": {
+      "description": "Description",
+      "edge": "Edge",
+      "note": "Note",
+      "obverse": "Obverse",
+      "reverse": "Reverse",
+      "shape": "Shape",
+      "title": "Design & Description"
+    },
+    "file": {
+      "delete": "Delete",
+      "obverse": "Obverse (front)",
+      "reverse": "Reverse (back)"
+    },
+    "images": {
+      "title": "Photographs"
+    },
+    "info": {
+      "amount": "Quantity",
+      "country": "Country of origin",
+      "currency": "Currency",
+      "grade": "Grade",
+      "name": "Name",
+      "nominal": {
+        "unit": "Unit",
+        "value": "Denomination"
+      },
+      "series": "Series",
+      "status": "Status",
+      "tags": "Tags (comma-separated)",
+      "title": "Properties",
+      "type": "Coin type"
+    },
+    "material": {
+      "fineness": "Fineness",
+      "material": "Material",
+      "portion": "Share (%)",
+      "title": "Material composition"
+    },
+    "mint": {
+      "date": "Issue date",
+      "diameter": "Diameter (mm)",
+      "mark": "Mint",
+      "mintage": "Mintage",
+      "thickness": "Thickness (mm)",
+      "title": "Minting",
+      "weight": "Weight (g)",
+      "year": "Mint year"
+    },
+    "select": "Select",
+    "submit": "Save",
+    "title": "Editor",
+    "value": {
+      "omv": {
+        "date": "Date",
+        "value": "Market value in {{currency}}"
+      },
+      "purchase": {
+        "date": "Purchase date",
+        "value": "Purchase price in {{currency}}"
+      },
+      "title": "Market value"
+    }
   },
   "home": {
-    "title": "My Collection"
+    "title": "My coin collection"
+  },
+  "list": {
+    "empty": "No coins found matching the search criteria.",
+    "eol": "End of catalog",
+    "filter": {
+      "country": "Country of origin",
+      "currency": "Currency",
+      "grade": "Grade",
+      "label": "Filter coins:",
+      "search": "Search coins by name, description or design …",
+      "status": "Collection status",
+      "type": "Coin type",
+      "year": "Year"
+    },
+    "th": {
+      "amount": "Quantity",
+      "coin": "Coin",
+      "country": "Country",
+      "currency": "Currency",
+      "grade": "Grade",
+      "nominal": "Denomination",
+      "omv": "Market value",
+      "series": "Series",
+      "status": "Status",
+      "type": "Coin type",
+      "year": "Year"
+    }
+  },
+  "settings": {
+    "cleanup": "Clean up database",
+    "cleanupinfo": "Photographs that are not referenced in the catalog will be deleted",
+    "currency": "Currency",
+    "currencyinfo": "Currency used for purchase price and market value; changing it does not modify values and does not perform currency conversion.",
+    "database": "Database",
+    "export": "Export coin collection",
+    "exportinfo": "Export the entire catalog as a JSON file (without photographs)",
+    "language": "Language",
+    "languageinfo": "CoinCollect supports multiple languages. Choose from the available languages. Help translate CoinCollect via GitHub.",
+    "reset": "Reset database",
+    "resetinfo": "All coin data will be deleted and statistics reset",
+    "title": "Settings",
+    "update": "Update database",
+    "updateinfo": "Recalculate all statistics and the total value of the collection"
+  },
+  "stats": {
+    "country": "Country of origin",
+    "currency": "Currency",
+    "grade": "Grade",
+    "material": "Coin materials",
+    "overview": {
+      "coins": "Number of coins",
+      "growth": "Value growth",
+      "omv": "Total value",
+      "purchase": "Acquired for {{purchase}}",
+      "since": "Collected over {{age}}",
+      "updated": "Updated: {{date}}",
+      "weight": "Total weight",
+      "weightinfo": "Weight of all coins"
+    },
+    "portions": "Categorization",
+    "status": "Collection status",
+    "table": {
+      "coins": "Coins",
+      "fineness": "Fineness",
+      "material": "Material",
+      "portion": "Share (%)",
+      "pureWeight": "Pure weight (kg)",
+      "weight": "Weight (kg)"
+    },
+    "title": "Statistics",
+    "type": "Coin type",
+    "value": "Value growth",
+    "year": "Mint year"
   }
 }
