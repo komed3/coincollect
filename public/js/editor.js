@@ -103,6 +103,15 @@ document.addEventListener( 'DOMContentLoaded', () => {
                 obverse: val( form.get( 'design.obverse' ), 'string' ),
                 reverse: val( form.get( 'design.reverse' ), 'string' ),
                 edge: val( form.get( 'design.edge' ), 'string' )
+            },
+            dimension: {
+                diameter: val( form.get( 'dimension.diameter' ), 'number' ),
+                thickness: val( form.get( 'dimension.thickness' ), 'number' ),
+                weight: val( form.get( 'dimension.weight' ), 'number' )
+            },
+            purchase: {
+                value: val( form.get( 'purchase.value' ), 'number' ),
+                date: val( form.get( 'purchase.date' ), 'date' )
             }
         };
 
