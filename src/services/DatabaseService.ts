@@ -425,10 +425,14 @@ export class DatabaseService {
         stats.growth = Number( ( stats.totalOmv / stats.totalPurchase * 100 ).toFixed( 2 ) );
         stats.collectionAge = new Date( first ).toISOString();
 
-        const pureWeight = Object.values( stats ).reduce( ( s, i ) => s + ( ( i as any ).pureWeight ?? 0 ), 0 );
+        const pureWeight = Object.values( stats.material ).reduce(
+            ( s, i ) => s + ( ( i as any ).pureWeight ?? 0 ), 0
+        );
+
         for ( const m of Object.keys( stats.material ) ) {
             ( stats.material as any )[ m ]!.fineness = Number( (
-                ( stats.material as any )[ m ]!.pureWeight / ( stats.material as any )[ m ]!.weight * 1000
+                ( stats.material as any )[ m ]!.pureWeight /
+                ( stats.material as any )[ m ]!.weight * 1000
             ).toFixed( 1 ) );
 
             ( stats.material as any )[ m ]!.portion = pureWeight ? Number( (
