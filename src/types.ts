@@ -69,8 +69,7 @@ export interface Coin {
     };
 
     material?: {
-        key: string;
-        name: string;
+        material: CoinMaterial;
         fineness?: number;
         portion?: number;
     }[];

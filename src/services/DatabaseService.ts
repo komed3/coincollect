@@ -142,8 +142,7 @@ export class DatabaseService {
         }
 
         if ( input.material?.length ) out.material = input.material.filter( Boolean ).map( m => ( {
-            key: String( m.key ).trim(),
-            name: String( m.name ).trim(),
+            material: String( m.material ).trim(),
             fineness: m.fineness ? Number( m.fineness ) : undefined,
             portion: Number( m.portion ?? 100 )
         } ) );
