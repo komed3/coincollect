@@ -390,8 +390,8 @@ export class DatabaseService {
                 ( stats as any )[ obj ][ key ] ??= { coins: 0, purchase: 0, omv: 0 } as CoinStatsItem;
 
                 ( stats as any )[ obj ][ key ].coins += amount;
-                ( stats as any )[ obj ][ key ].purchase += purchase;
-                ( stats as any )[ obj ][ key ].omv += omv;
+                ( stats as any )[ obj ][ key ].purchase += purchase ?? 0;
+                ( stats as any )[ obj ][ key ].omv += omv ?? 0;
             };
 
             c.type && updateStats( 'type', c.type );
