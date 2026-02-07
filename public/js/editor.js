@@ -59,4 +59,14 @@ document.addEventListener( 'DOMContentLoaded', () => {
 
     $$( '.cc-editor--image' ).forEach( setupImageBox );
 
+    /** Reset form */
+
+    $( 'button[type="reset"]' ).addEventListener( 'click', e => {
+        e.preventDefault();
+
+        if ( confirm( 'Do you really want to discard all changes?' ) ) {
+            location.reload();
+        }
+    } );
+
 } );
