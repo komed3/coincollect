@@ -15,6 +15,7 @@ apiRoutes.get( '/coin/value', cc.getValue.bind( cc ) );
 
 apiRoutes.get( '/db/export', cc.export.bind( cc ) );
 apiRoutes.post( '/db/update', cc.update.bind( cc ) );
+apiRoutes.delete( '/db/cleanup', cc.cleanupImages.bind( cc ) );
 apiRoutes.delete( '/db/reset', cc.reset.bind( cc ) );
 
 apiRoutes.get( '/coin/all', cc.getAllCoins.bind( cc ) );
