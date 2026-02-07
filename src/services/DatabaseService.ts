@@ -96,80 +96,84 @@ export class DatabaseService {
     } {
         const out: any = {};
 
-        if ( input.name ) out.name = String( input.name ).trim();
-        else if ( creating ) throw new Error( 'Name is required' );
+        const has = ( o: any, k: string ) => Object.prototype.hasOwnProperty.call( o, k );
+        const str = ( v: any ) => v === null ? null : String( v ).trim();
+        const num = ( v: any ) => v === null ? null : Number( v );
+        const obj = ( key: string, fn: ( v: any ) => any ) => {
+            if ( ! has( input, key ) ) return;
+            out[ key ] = ( input as any )[key] === null ? null : fn( ( input as any )[ key ] );
+        };
 
-        if ( input.type ) out.type = input.type as CoinType;
-        else if ( creating ) out.type = 'other' as CoinType;
+        if ( has( input, 'name' ) && input.name !== null ) out.name = str( input.name );
+        else throw new Error( 'Name is required' );
 
-        if ( input.grade ) out.grade = input.grade as CoinGrade;
-        else if ( creating ) out.grade = 'unc' as CoinGrade;
-
-        if ( input.status ) out.status = input.status as CoinStatus;
-        else if ( creating ) out.status = 'owned' as CoinStatus;
-
-        if ( input.country ) out.country = String( input.country ).trim();
-        if ( input.currency ) out.currency = String( input.currency ).trim();
-        if ( input.series ) out.series = String( input.series ).trim();
-        if ( input.tags ) out.tags = input.tags.filter( Boolean ).map( String );
-        if ( input.amount ) out.amount = Number( input.amount );
-        if ( input.description ) out.description = String( input.description ).trim();
-        if ( input.note ) out.note = String( input.note ).trim();
-
-        if ( input.mint ) {
-            out.mint = {};
-
-            if ( input.mint.year ) out.mint.year = Number( input.mint.year );
-            if ( input.mint.mark ) out.mint.mark = String( input.mint.mark ).trim();
-            if ( input.mint.issueDate ) out.mint.issueDate = new Date( input.mint.issueDate ).toISOString();
-            if ( input.mint.mintage ) out.mint.mintage = Number( input.mint.mintage );
+        for ( const k of [ 'type', 'grade', 'status' ] as const ) {
+            if ( has( input, k ) ) out[ k ] = input[ k ] === null ? null : input[ k ];
+            else if ( creating ) out[ k ] = k === 'type' ? 'other' : k === 'grade' ? 'unc' : 'owned';
         }
 
-        if ( input.nominalValue?.value && input.nominalValue?.unit ) {
-            out.nominalValue = {
-                value: Number( input.nominalValue?.value ),
-                unit: String( input.nominalValue?.unit ).trim()
+        for ( const k of [ 'country', 'currency', 'series', 'description', 'note' ] as const ) {
+            if ( has( input, k ) ) out[ k ] = str( input[ k ] );
+        }
+
+        if ( has( input, 'amount' ) ) out.amount = num( input.amount );
+        if ( has( input, 'tags' ) ) out.tags = input.tags === null ? null : input.tags!.filter( Boolean ).map( String );
+
+        obj( 'mint', m => ( {
+            year: has( m, 'year' ) ? num( m.year ) : undefined,
+            mark: has( m, 'mark' ) ? str( m.mark ) : undefined,
+            issueDate: has( m, 'issueDate' ) && m.issueDate !== null
+                ? new Date( m.issueDate ).toISOString()
+                : m.issueDate,
+            mintage: has( m, 'mintage' ) ? num( m.mintage ) : undefined
+        } ) );
+
+        obj( 'nominalValue', n => ( {
+            value: has( n, 'value' ) ? num( n.value ) : undefined,
+            unit: has( n, 'unit' ) ? str( n.unit ) : undefined
+        } ) );
+
+        obj( 'dimension', d => ( {
+            diameter: has( d, 'diameter' ) ? num( d.diameter ) : undefined,
+            thickness: has( d, 'thickness' ) ? num( d.thickness ) : undefined,
+            weight: has( d, 'weight' ) ? num( d.weight ) : undefined
+        } ) );
+
+        obj( 'design', d => ( {
+            shape: has( d, 'shape' ) ? d.shape : undefined,
+            obverse: has( d, 'obverse' ) ? str( d.obverse ) : undefined,
+            reverse: has( d, 'reverse' ) ? str( d.reverse ) : undefined,
+            edge: has( d, 'edge' ) ? str( d.edge ) : undefined
+        } ) );
+
+        obj( 'purchase', p => ( {
+            value: has( p,'value' ) ? num( p.value ) : undefined,
+            date: has( p,'date' ) && p.date !== null
+                ? new Date( p.date ).toISOString()
+                : p.date
+        } ) );
+
+        if ( has( input, 'material' ) ) {
+            out.material = input.material === null ? null : input.material!.filter( Boolean ).map( m => ( {
+                material: str( m.material ),
+                fineness: m.fineness ?? null,
+                portion: m.portion ?? 100
+            } ) );
+        }
+
+        if ( has( input, 'omv' ) ) {
+            out.omv = input.omv === null ? null : input.omv!.filter( Boolean ).map( o => ( {
+                value: Number( o.value ),
+                date: new Date( o.date ).toISOString()
+            } ) );
+        }
+
+        if ( has( input, 'images' ) ) {
+            out.images = input.images === null ? null : {
+                obverse: has( input.images, 'obverse' ) ? str( input.images!.obverse ) : undefined,
+                reverse: has( input.images, 'reverse' ) ? str( input.images!.reverse ) : undefined,
+                other: has( input.images, 'other' ) ? input.images!.other!.filter( Boolean ).map( String ) : undefined
             };
-        }
-
-        if ( input.design ) {
-            out.design = {};
-
-            if ( input.design.shape ) out.design.shape = input.design.shape as CoinShape;
-            if ( input.design.obverse ) out.design.obverse = String( input.design.obverse ).trim();
-            if ( input.design.reverse ) out.design.reverse = String( input.design.reverse ).trim();
-            if ( input.design.edge ) out.design.edge = String( input.design.edge ).trim();
-        }
-
-        if ( input.material?.length ) out.material = input.material.filter( Boolean ).map( m => ( {
-            material: String( m.material ).trim(),
-            fineness: m.fineness ? Number( m.fineness ) : undefined,
-            portion: Number( m.portion ?? 100 )
-        } ) );
-
-        if ( input.dimension ) {
-            out.dimension = {};
-
-            if ( input.dimension.diameter ) out.dimension.diameter = Number( input.dimension.diameter );
-            if ( input.dimension.thickness ) out.dimension.thickness = Number( input.dimension.thickness );
-            if ( input.dimension.weight ) out.dimension.weight = Number( input.dimension.weight );
-        }
-
-        if ( input.purchase?.value ) {
-            out.purchase = { value: Number( input.purchase.value ) };
-            if ( input.purchase.date ) out.purchase.date = new Date( input.purchase.date ).toISOString();
-        }
-
-        if ( input.omv?.length ) out.omv = input.omv.filter( Boolean ).map( o => ( {
-            value: Number( o.value ), date: new Date( o.date ).toISOString()
-        } ) );
-
-        if ( input.images ) {
-            out.images = {};
-
-            if ( input.images.obverse ) out.images.obverse = String( input.images.obverse ).trim();
-            if ( input.images.reverse ) out.images.reverse = String( input.images.reverse ).trim();
-            if ( input.images.other ) out.images.other = input.images.other.filter( Boolean ).map( String );
         }
 
         return out;
@@ -255,10 +259,12 @@ export class DatabaseService {
         if ( ! coin ) return;
 
         const validated = this.sanitizeAndValidateInput( updates, false );
-        Object.assign( coin, deepmerge( coin, validated, { arrayMerge: ( _, s ) => s } ), {
-            updatedAt: new Date().toISOString()
+        const merged = deepmerge( coin, validated, {
+            arrayMerge: ( _, s ) => s,
+            customMerge: () => ( a, b ) => b === null ? null : b ?? a
         } );
 
+        Object.assign( coin, merged, { updatedAt: new Date().toISOString() } );
         await this.updateDb();
         return coin;
     }
