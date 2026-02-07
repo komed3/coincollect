@@ -12,15 +12,16 @@
 }
 
 :root {
-    --text-color: #000;
-    --text-muted: #777;
+    --text-color: #2c2c2c;
+    --text-muted: #666666;
     --accent-color: #c5851f;
     --danger-color: #d9534f;
-    --bg-color: #fefcf9;
-    --box-bg: #fff;
-    --box-light: #faf1e3;
-    --border-color: #f2dbb8;
-    --border-radius: 4px;
+    --bg-color: #fcfcfc;
+    --box-bg: #ffffff;
+    --box-light: #f8f8f8;
+    --border-color: #e0e0e0;
+    --border-radius: 2px;
+    --box-shadow: 0 2px 4px rgba( 0 0 0 / 0.04 );
 }
 
 *, *::after, *::before {
@@ -40,6 +41,7 @@ html, body {
     font-family: 'Inter', sans-serif;
     color: var( --text-color );
     background: var( --bg-color );
+    line-height: 1.6;
 }
 
 a, a:link, a:visited, a:hover, a:focus {
@@ -99,6 +101,7 @@ a, a:link, a:visited, a:hover, a:focus {
     background: var( --box-bg );
     border: 1px solid var( --border-color );
     border-radius: var( --border-radius );
+    box-shadow: var( --box-shadow );
 }
 
 .cc-box--hl {
@@ -120,11 +123,18 @@ a, a:link, a:visited, a:hover, a:focus {
     display: inline-flex;
     align-items: center;
     gap: 0.8em;
-    padding: 0.8em 1.2em;
+    padding: 0.6em 1em;
     text-transform: uppercase;
-    font-size: 0.9em;
-    font-weight: 300;
-    background: var( --box-light );
+    font-size: 0.76em;
+    font-weight: 500;
+    letter-spacing: 0.05em;
+    background: var( --box-bg );
     border: 1px solid var( --border-color );
     border-radius: var( --border-radius );
+    cursor: pointer;
+}
+
+.cc-btn:hover {
+    border-color: var( --accent-color );
+    color: var( --accent-color );
 }

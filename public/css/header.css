@@ -1,9 +1,10 @@
 .cc-header {
     position: sticky;
     top: 0;
-    background: var( --box-bg );
-    padding: 1.4em 0;
+    padding: 1.2em 0;
     border-bottom: 1px solid var( --border-color );
+    background: rgba( 255 255 255 / 0.8 );
+    backdrop-filter: blur( 10px );
     z-index: 99;
 }
 
@@ -37,9 +38,9 @@
 
 .cc-header--nav a {
     text-transform: uppercase;
-    font-size: 0.8em;
+    font-size: 0.86em;
     font-weight: 500;
-    letter-spacing: 0.08em;
+    letter-spacing: 0.1em;
     color: var( --text-muted );
 }
 
