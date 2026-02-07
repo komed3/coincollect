@@ -5,8 +5,8 @@ mixin material( materials )
   div.cc-mixin.cc-mixin--material
     div.cc-mixin--material-chart
       each m, i in materials
-        div.cc-mixin--material-chart-item( color= m.key, style= "--p: " + m.portion )
+        div.cc-mixin--material-chart-item( material= m.key, style= "--p: " + m.portion )
     ul.cc-mixin--material-legend
       each m, i in materials
-        li.cc-mixin--material-legend-item( color= m.key )
+        li.cc-mixin--material-legend-item( material= m.key )
           span= ( m.fineness ? formatter.number( m.fineness, 1 ) + ' ' : '' ) + m.name + ' (' + formatter.percent( m.portion, 1 ) + ')'
