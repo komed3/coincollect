@@ -91,9 +91,19 @@ export class DatabaseService {
         return cur;
     }
 
+    private removeNull ( obj: any ) : PartialCoinInput {
+        return Object.fromEntries( Object.entries( obj )
+            .filter( ( [ _, value ] ) => value != null )
+            .map( ( [ key, value ] ) => [ key,
+                value === Object( value ) ? this.removeNull( value ) : value
+            ] )
+        );
+    }
+
     private sanitizeAndValidateInput ( input: PartialCoinInput, creating: boolean = false ) : PartialCoinInput & {
         name: string; type: CoinType; grade: CoinGrade; status: CoinStatus
     } {
+        input = this.removeNull( this.removeNull( input ) );
         const out: any = {};
 
         if ( input.name ) out.name = String( input.name ).trim();
@@ -243,21 +253,23 @@ export class DatabaseService {
         const coin: Coin = {
             id: uuidv4(), createdAt: now, updatedAt: now,
             ...deepmerge( { tags: [], amount: 1, omv: [] }, validated )
-        } as Coin;
+        };
 
         this.db!.data.coins.push( coin );
         await this.updateDb();
         return coin;
     }
 
-    public async updateCoin ( id: string, updates: PartialCoinInput ) : Promise< Coin | undefined > {
-        const coin = await this.getCoinById( id );
+    public async updateCoin ( id: string, input: PartialCoinInput ) : Promise< Coin | undefined > {
+        let coin = await this.getCoinById( id );
         if ( ! coin ) return;
 
-        const validated = this.sanitizeAndValidateInput( updates, false );
-        Object.assign( coin, deepmerge( coin, validated, { arrayMerge: ( _, s ) => s } ), {
-            updatedAt: new Date().toISOString()
-        } );
+        const now = new Date().toISOString();
+        const validated = this.sanitizeAndValidateInput( input, false );
+        coin = {
+            id: coin.id, createdAt: coin.createdAt, updatedAt: now,
+            ...deepmerge( { tags: [], amount: 1, omv: [] }, validated )
+        };
 
         await this.updateDb();
         return coin;
