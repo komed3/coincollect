@@ -174,20 +174,20 @@
       "title": "Fotografien"
     },
     "info": {
-      "amount": "Anzahl",
+      "amount": "Anzahl*",
       "country": "Herkunfsland",
       "currency": "Währung",
-      "grade": "Erhaltungsgrad",
-      "name": "Name",
+      "grade": "Erhaltungsgrad*",
+      "name": "Name*",
       "nominal": {
         "unit": "Einheit",
         "value": "Nennwert"
       },
       "series": "Serie",
-      "status": "Status",
+      "status": "Status*",
       "tags": "Schlagworte (Komma-getrennt)",
       "title": "Eigenschaften",
-      "type": "Münztyp"
+      "type": "Münztyp*"
     },
     "material": {
       "fineness": "Feinheit",

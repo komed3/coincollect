@@ -174,20 +174,20 @@
       "title": "Photographs"
     },
     "info": {
-      "amount": "Quantity",
+      "amount": "Quantity*",
       "country": "Country of origin",
       "currency": "Currency",
-      "grade": "Grade",
-      "name": "Name",
+      "grade": "Grade*",
+      "name": "Name*",
       "nominal": {
         "unit": "Unit",
         "value": "Denomination"
       },
       "series": "Series",
-      "status": "Status",
+      "status": "Status*",
       "tags": "Tags (comma-separated)",
       "title": "Properties",
-      "type": "Coin type"
+      "type": "Coin type*"
     },
     "material": {
       "fineness": "Fineness",
