@@ -5,6 +5,9 @@ include components/material
 append styles
   link( rel= "stylesheet", href= "/css/coin.css" )
 
+append scripts
+  script( src= "/js/coin.js", defer )
+
 block main
   div.cc-coin.cc-content--normal
     div.cc-coin--header
@@ -16,7 +19,7 @@ block main
         a.cc-btn( href= "/edit/" + coin.id )
           i.fa.fa-pencil
           span= t( 'coin.actions.edit' )
-        a.cc-btn( href= "#delete" )
+        a.cc-btn( href= "#delete", coin= coin.id )
           i.fa.fa-trash-o
           span= t( 'coin.actions.delete' )
 
