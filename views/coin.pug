@@ -172,7 +172,7 @@ block main
               div.cc-coin--value-item.cc-box.growth
                 label= t( 'coin.value.growth' )
                 b= formatter.money( currency, o.value - p.value )
-                span= t( 'coin.value.percent', { growth: formatter.percent( o.value / p.value * 100, 1, { signDisplay: 'exceptZero' } ) } )
+                span= t( 'coin.value.percent', { growth: formatter.percent( o.value / p.value * 100 - 100, 1, { signDisplay: 'exceptZero' } ) } )
 
           if coin.omv.length > 1
             div.cc-coin--value-chart.cc-box
