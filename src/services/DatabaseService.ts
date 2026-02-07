@@ -247,8 +247,7 @@ export class DatabaseService {
         } as Coin;
 
         this.db!.data.coins.push( coin );
-        await this.computeStats();
-        this.scheduleWrite();
+        await this.updateDb();
         return coin;
     }
 
@@ -264,8 +263,7 @@ export class DatabaseService {
             return [ ...omv.values() ].sort( ( a: OMV, b: OMV ) => b.date.localeCompare( a.date ) );
         } } ), { updatedAt: new Date().toISOString() } );
 
-        await this.computeStats();
-        this.scheduleWrite();
+        await this.updateDb();
         return coin;
     }
 
@@ -276,9 +274,7 @@ export class DatabaseService {
         if ( idx === -1 ) return false;
 
         this.db!.data.coins.splice( idx, 1 );
-        await this.computeStats();
-        this.scheduleWrite();
-
+        await this.updateDb();
         return true;
     }
 
