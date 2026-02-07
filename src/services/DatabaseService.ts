@@ -269,13 +269,18 @@ export class DatabaseService {
         return coin;
     }
 
-    public async updateCoin ( id: string, input: PartialCoinInput ) : Promise< Coin | undefined > {
+    public async updateCoin (
+        id: string, input: PartialCoinInput, delta: boolean = false
+    ) : Promise< Coin | undefined > {
         const coin = await this.getCoinById( id );
         if ( ! coin ) return;
 
         const now = new Date().toISOString();
         const validated = this.sanitizeAndValidateInput( input, false );
-        const updated = {
+        const updated: Coin = delta ? {
+            id: coin.id, createdAt: coin.createdAt, updatedAt: now,
+            ...deepmerge( coin, validated )
+        } : {
             id: coin.id, createdAt: coin.createdAt, updatedAt: now,
             ...{ images: coin.images },
             ...deepmerge( { tags: [], amount: 1, omv: [] }, validated )

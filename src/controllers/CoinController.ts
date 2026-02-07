@@ -154,7 +154,7 @@ export class CoinController {
             if ( files.obverse?.[ 0 ] ) updates.images.obverse = files.obverse[ 0 ].filename;
             if ( files.reverse?.[ 0 ] ) updates.images.reverse = files.reverse[ 0 ].filename;
 
-            const updated = this.dbService.updateCoin( id, updates );
+            const updated = this.dbService.updateCoin( id, updates, true );
             res.json( updated );
         } );
     }
