@@ -1,3 +1,5 @@
+@import './materials.css';
+
 .cc-stats--overview {
     display: flex;
     flex-flow: row wrap;
@@ -37,4 +39,49 @@
     display: grid;
     grid-template-columns: repeat( 2, 1fr );
     gap: 2em;
+}
+
+.cc-stats--material-table {
+    min-width: 100%;
+    text-align: right;
+    font-size: 0.92em;
+    border-collapse: separate;
+    border-spacing: 0;
+}
+
+.cc-stats--material-table th,
+.cc-stats--material-table td {
+    padding: 0.8rem 0.6rem;
+}
+
+.cc-stats--material-table thead th {
+    text-transform: uppercase;
+    font-size: 0.82em;
+    font-weight: 500;
+    letter-spacing: 0.1em;
+    border-bottom: 1px solid var( --border-color );
+}
+
+.cc-stats--material-table ._material {
+    text-align: left;
+}
+
+.cc-stats--material-table ._material span {
+    display: inline-flex;
+    flex-flow: row nowrap;
+    align-items: center;
+    gap: 0.6em;
+}
+
+.cc-stats--material-table ._material span::before {
+    content: '';
+    display: inline-block;
+    width: 1em;
+    height: 1em;
+    background-color: var( --c, var( --text-muted ) );
+    border-radius: var( --border-radius );
+}
+
+.cc-stats--material-table tbody tr:not( :last-child ) td {
+    border-bottom: 1px dashed var( --border-color );
 }

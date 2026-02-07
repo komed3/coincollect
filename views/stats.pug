@@ -65,7 +65,7 @@ block main
         table.cc-stats--material-table
           thead
             tr
-              th= t( 'stats.table.material' )
+              th._material= t( 'stats.table.material' )
               th= t( 'stats.table.coins' )
               th= t( 'stats.table.weight' )
               th= t( 'stats.table.pureWeight' )
@@ -73,9 +73,9 @@ block main
               th= t( 'stats.table.portion' )
           tbody
             each v, m in stats.material
-              tr
-                td= t( '_.material.' + m )
-                td= formatter.number( v.coins, 0 )
+              tr( material= m )
+                td._material: span= t( '_.material.' + m )
+                td= formatter.number( v.coins, 0 ).padStart( 3, '*' )
                 td= formatter.number( v.weight / 1000, 3 )
                 td= formatter.number( v.pureWeight / 1000, 3 )
                 td= formatter.number( v.fineness, 1 )
