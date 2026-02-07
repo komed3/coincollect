@@ -270,6 +270,7 @@
     "country": "Herkunfsland",
     "currency": "Währung",
     "grade": "Erhaltungsgrad",
+    "material": "Münzmaterialien",
     "overview": {
       "coins": "Anzahl Münzen",
       "growth": "Wertsteigerung",
@@ -282,6 +283,14 @@
     },
     "portions": "Kategorisierung",
     "status": "Status in Sammlung",
+    "table": {
+      "coins": "Münzen",
+      "fineness": "Feinheit",
+      "material": "Material",
+      "portion": "Anteil (%)",
+      "pureWeight": "Reingewicht (g)",
+      "weight": "Gewicht (g)"
+    },
     "title": "Statistik",
     "type": "Münztyp",
     "value": "Wertsteigerung",
