@@ -133,8 +133,3 @@ a, a:link, a:visited, a:hover, a:focus {
     border-radius: var( --border-radius );
     cursor: pointer;
 }
-
-.cc-btn:hover {
-    border-color: var( --accent-color );
-    color: var( --accent-color );
-}
