@@ -150,7 +150,22 @@ document.addEventListener( 'DOMContentLoaded', () => {
             }
 
             const saved = await res.json();
-            if ( !saved?.id ) throw new Error( 'Invalid save response' );
+            if ( ! saved?.id ) throw new Error( 'Invalid save response' );
+
+            const obv = fd.get( 'images.obverse' );
+            const rev = fd.get( 'images.reverse' );
+
+            const upload = new FormData();
+            if ( obv?.name?.length ) upload.append( 'obverse', obv );
+            if ( rev?.name?.length ) upload.append( 'reverse', rev );
+
+            if ( [ ...upload.keys() ].length ) {
+                const up = await fetch( `/api/coin/${saved.id}/upload`, {
+                    method: 'POST', body: upload
+                } );
+
+                if ( ! up.ok ) throw new Error( 'Image upload failed' );
+            }
 
             window.location.href = `/coin/${saved.id}`;
         } catch ( err ) {
