@@ -91,19 +91,28 @@ export class DatabaseService {
         return cur;
     }
 
-    private removeNull ( obj: any ) : PartialCoinInput {
-        return Object.fromEntries( Object.entries( obj )
-            .filter( ( [ _, value ] ) => value != null )
-            .map( ( [ key, value ] ) => [ key,
-                value === Object( value ) ? this.removeNull( value ) : value
-            ] )
-        );
+    private cleanData ( o: any ) : any {
+        if ( Array.isArray( o ) ) {
+            const a = o.map( this.cleanData.bind( this ) ).filter( v => v !== undefined );
+            return a.length ? a : undefined;
+        }
+
+        if ( o === '' || o === undefined ) return undefined;
+        if ( o === null ) return null;
+        if ( typeof o !== 'object' ) return o;
+
+        Object.keys( o ).forEach( k => {
+            o[k] = this.cleanData( o[ k ] );
+            if ( o[ k ] === undefined ) delete o[ k ];
+        } );
+
+        return Object.keys( o ).length ? o : undefined;
     }
 
     private sanitizeAndValidateInput ( input: PartialCoinInput, creating: boolean = false ) : PartialCoinInput & {
         name: string; type: CoinType; grade: CoinGrade; status: CoinStatus
     } {
-        input = this.removeNull( this.removeNull( input ) );
+        input = this.cleanData( input );
         const out: any = {};
 
         if ( input.name ) out.name = String( input.name ).trim();
@@ -261,16 +270,18 @@ export class DatabaseService {
     }
 
     public async updateCoin ( id: string, input: PartialCoinInput ) : Promise< Coin | undefined > {
-        let coin = await this.getCoinById( id );
+        const coin = await this.getCoinById( id );
         if ( ! coin ) return;
 
         const now = new Date().toISOString();
         const validated = this.sanitizeAndValidateInput( input, false );
-        coin = {
+        const updated = {
             id: coin.id, createdAt: coin.createdAt, updatedAt: now,
+            ...{ images: coin.images },
             ...deepmerge( { tags: [], amount: 1, omv: [] }, validated )
         };
 
+        this.db!.data.coins = this.db!.data.coins.map( c => updated.id === c.id ? updated : c );
         await this.updateDb();
         return coin;
     }
