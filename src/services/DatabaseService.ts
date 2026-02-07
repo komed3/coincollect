@@ -182,7 +182,9 @@ export class DatabaseService {
 
         if ( input.omv?.length ) out.omv = input.omv.filter( Boolean ).map( o => ( {
             value: Number( o.value ), date: new Date( o.date ).toISOString()
-        } ) );
+        } ) ).sort( ( a, b ) => (
+            new Date( b.date ).getTime() - new Date( a.date ).getTime()
+        ) );
 
         if ( input.images ) {
             out.images = {};
