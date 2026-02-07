@@ -422,7 +422,7 @@ export class DatabaseService {
             }
         }
 
-        stats.growth = Number( ( stats.totalOmv / stats.totalPurchase * 100 ).toFixed( 2 ) );
+        stats.growth = Number( ( stats.totalOmv / stats.totalPurchase * 100 - 100 ).toFixed( 2 ) );
         stats.collectionAge = new Date( first ).toISOString();
 
         const pureWeight = Object.values( stats.material ).reduce(
