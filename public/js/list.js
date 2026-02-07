@@ -110,8 +110,8 @@ class CCList {
 
         return this.coins.filter( coin => ! (
             filters.search && ! (
-                coin.name.toLowerCase().includes( filters.search ) ||
-                coin.series.toLowerCase().includes( filters.search ) ||
+                coin.name?.toLowerCase().includes( filters.search ) ||
+                coin.series?.toLowerCase().includes( filters.search ) ||
                 ( coin.tags ?? [] ).some( t => t.toLowerCase().includes( filters.search ) ) ||
                 Object.values( coin.design ?? {} ).some( d => d.toLowerCase().includes( filters.search ) ) ||
                 coin.description?.toLowerCase().includes( filters.search )
