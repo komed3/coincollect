@@ -2,7 +2,7 @@ extends layout/page
 
 mixin selector( name, keys, val, req = false, n = undefined )
   select( name= name, required= req )
-    option= t( 'editor.select' )
+    option( value= "" )= t( 'editor.select' )
     each k in keys
       option( value= k, selected= ( k === val ) )= t( '_.' + ( n || name ) + '.' + k )
 
