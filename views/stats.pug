@@ -56,3 +56,27 @@ block main
         div.cc-stats--box.cc-box
           h4.cc-box--hl= t( 'stats.year' )
           +chart( 'portion', { data: stats.year } )
+
+    div.cc-stats--material
+      h3.cc-page-subtitle
+        i.fa.fa-balance-scale
+        span= t( 'stats.material' )
+      div.cc-stats--box.cc-box
+        table.cc-stats--material-table
+          thead
+            tr
+              th= t( 'stats.table.material' )
+              th= t( 'stats.table.coins' )
+              th= t( 'stats.table.weight' )
+              th= t( 'stats.table.pureWeight' )
+              th= t( 'stats.table.fineness' )
+              th= t( 'stats.table.portion' )
+          tbody
+            each v, m in stats.material
+              tr
+                td= t( '_.material.' + m )
+                td= formatter.number( v.coins, 0 )
+                td= formatter.number( v.weight / 1000, 3 )
+                td= formatter.number( v.pureWeight / 1000, 3 )
+                td= formatter.number( v.fineness, 1 )
+                td= formatter.number( v.portion, 2 )

@@ -288,8 +288,8 @@
       "fineness": "Feinheit",
       "material": "Material",
       "portion": "Anteil (%)",
-      "pureWeight": "Reingewicht (g)",
-      "weight": "Gewicht (g)"
+      "pureWeight": "Reingewicht (kg)",
+      "weight": "Gewicht (kg)"
     },
     "title": "Statistik",
     "type": "Münztyp",
