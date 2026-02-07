@@ -1,0 +1,39 @@
+[material="gold"]        { --c: #c5851f; }
+[material="silver"]      { --c: #c0c5cc; }
+[material="platinum"]    { --c: #aeb3ba; }
+[material="palladium"]   { --c: #9ea6af; }
+[material="rhodium"]     { --c: #c6cbd0; }
+[material="ruthenium"]   { --c: #8a8e93; }
+[material="iridium"]     { --c: #767b82; }
+[material="osmium"]      { --c: #545a62; }
+
+[material="copper"]      { --c: #b76a45; }
+[material="bronze"]      { --c: #9c744c; }
+[material="brass"]       { --c: #b1a23e; }
+[material="cupronickel"] { --c: #9aa28c; }
+[material="monel"]       { --c: #8a867c; }
+
+[material="aluminum"]    { --c: #cdd2d7; }
+[material="magnesium"]   { --c: #d6dade; }
+[material="titanium"]    { --c: #7e858e; }
+[material="steel"]       { --c: #6a7582; }
+[material="stainless"]   { --c: #8d949c; }
+[material="chrome"]      { --c: #b4b9bf; }
+[material="nickel"]      { --c: #8c918f; }
+[material="zinc"]        { --c: #9ea7ab; }
+[material="tin"]         { --c: #c7ccd0; }
+[material="duralumin"]   { --c: #bcc3ca; }
+
+[material="iron"]        { --c: #596068; }
+[material="lead"]        { --c: #676c72; }
+[material="cobalt"]      { --c: #3f5b82; }
+[material="vanadium"]    { --c: #676d76; }
+[material="molybdenum"]  { --c: #747a80; }
+[material="tungsten"]    { --c: #5f666d; }
+
+[material="inconel"]     { --c: #887b6f; }
+[material="hastelloy"]   { --c: #7a7168; }
+
+[material="mixed"]       { --c: #9f927c; }
+[material="synthetic"]   { --c: #766b8d; }
+[material="unknown"]     { --c: #868686; }
