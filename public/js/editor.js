@@ -29,12 +29,13 @@ document.addEventListener( 'DOMContentLoaded', () => {
 
             if ( input.files?.length ) {
                 const r = new FileReader();
+
+                r.readAsDataURL( input.files[ 0 ] );
                 r.onload = ( e ) => {
                     box.style.backgroundImage = `url(${e.target.result})`;
                     label.style.display = 'none';
                     btn.style.display = 'block';
                 };
-                r.readAsDataURL( input.files[ 0 ] );
             } else if ( existing ) {
                 box.style.backgroundImage = `url(/uploads/${existing})`;
                 label.style.display = 'none';
@@ -94,7 +95,8 @@ document.addEventListener( 'DOMContentLoaded', () => {
             } );
         } );
 
-        const coin = {
+        const coinData = {
+            id,
             name: val( fd.get( 'name' ), 'string' ),
             type: val( fd.get( 'type' ), 'string' ),
             country: val( fd.get( 'country' ), 'string' ),
@@ -112,7 +114,7 @@ document.addEventListener( 'DOMContentLoaded', () => {
             currency: val( fd.get( 'currency' ), 'string' ),
             nominalValue: {
                 value: val( fd.get( 'nominalValue.value' ), 'number' ),
-                unit: val( fd.get( 'nominalValue.value' ), 'string' )
+                unit: val( fd.get( 'nominalValue.unit' ), 'string' )
             },
             description: val( fd.get( 'description' ), 'string' ),
             note: val( fd.get( 'note' ), 'string' ),
@@ -134,6 +136,27 @@ document.addEventListener( 'DOMContentLoaded', () => {
             },
             omv
         };
+
+        try {
+            const res = await fetch( id ? `/api/coin/${id}/update` : `/api/coin/add`, {
+                method: id ? 'PUT' : 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify( coinData )
+            } );
+
+            if ( ! res.ok ) {
+                const err = await res.json();
+                throw new Error( err.msg || err.error || 'Save failed' );
+            }
+
+            const saved = await res.json();
+            if ( !saved?.id ) throw new Error( 'Invalid save response' );
+
+            window.location.href = `/coin/${saved.id}`;
+        } catch ( err ) {
+            console.error( err );
+            alert( err.message || 'Unexpected error' );
+        }
     } );
 
     /** Reset form */
