@@ -100,7 +100,8 @@ export class CoinController {
 
     public async createCoin ( req: Request, res: Response ) : Promise< void > {
         await this.catch( res, 'Failed to create coin', async () => {
-            res.status( 201 ).json( await this.dbService.createCoin( req.body ) );
+            const coin = await this.dbService.createCoin( req.body );
+            res.status( 201 ).json( coin );
         } );
     }
 
@@ -112,7 +113,7 @@ export class CoinController {
             if ( typeof id !== 'string' ) res.status( 400 ).json( { error: 'Invalid ID' } );
             else if ( id !== data.id ) res.status( 400 ).json( { error: 'ID mismatch' } );
             else {
-                const coin = this.dbService.updateCoin( id, data );
+                const coin = await this.dbService.updateCoin( id, data );
                 if ( coin ) res.json( coin );
                 else res.status( 404 ).json( { msg: 'Coin not found', id } );
             }

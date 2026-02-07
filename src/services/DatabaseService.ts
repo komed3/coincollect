@@ -247,7 +247,7 @@ export class DatabaseService {
         } as Coin;
 
         this.db!.data.coins.push( coin );
-        this.computeStats();
+        await this.computeStats();
         this.scheduleWrite();
         return coin;
     }
@@ -264,7 +264,7 @@ export class DatabaseService {
             return [ ...omv.values() ].sort( ( a: OMV, b: OMV ) => b.date.localeCompare( a.date ) );
         } } ), { updatedAt: new Date().toISOString() } );
 
-        this.computeStats();
+        await this.computeStats();
         this.scheduleWrite();
         return coin;
     }
