@@ -16,6 +16,9 @@ block main
         a.cc-btn( href= "/edit/" + coin.id )
           i.fa.fa-pencil
           span= t( 'coin.actions.edit' )
+        a.cc-btn( href= "#delete" )
+          i.fa.fa-trash-o
+          span= t( 'coin.actions.delete' )
 
     div.cc-coin--content
       div.cc-coin--aside

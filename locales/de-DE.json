@@ -116,6 +116,7 @@
   "coin": {
     "actions": {
       "back": "Zurück",
+      "delete": "Löschen",
       "edit": "Bearbeiten"
     },
     "design": {
