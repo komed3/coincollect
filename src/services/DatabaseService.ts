@@ -440,6 +440,12 @@ export class DatabaseService {
             ).toFixed( 2 ) ) : 0;
         }
 
+        stats.material = Object.fromEntries(
+            Object.entries( stats.material ).sort( ( a, b ) =>
+                ( b[ 1 ].portion ?? 0 ) - ( a[ 1 ].portion ?? 0 )
+            )
+        );
+
         this.db!.data.stats = stats;
         return stats;
     }
