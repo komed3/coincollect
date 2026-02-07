@@ -59,6 +59,14 @@ document.addEventListener( 'DOMContentLoaded', () => {
 
     $$( '.cc-editor--image' ).forEach( setupImageBox );
 
+    /** Submit form */
+
+    form.addEventListener( 'submit', async ( e ) => {
+        e.preventDefault();
+
+        // ...
+    } );
+
     /** Reset form */
 
     $( 'button[type="reset"]' ).addEventListener( 'click', e => {
