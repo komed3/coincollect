@@ -251,6 +251,8 @@
     }
   },
   "settings": {
+    "cleanup": "Datenbank bereinigen",
+    "cleanupinfo": "Fotografien, die nicht im Katalog referenziert werden, werden gelöscht",
     "currency": "Währung",
     "currencyinfo": "Benutzte Währung für Kaufpreis und Marktwert; die Umstellung verändert keine Werte, führt keine Währungsumrechnung durch.",
     "database": "Datenbank",
