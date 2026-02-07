@@ -26,6 +26,8 @@ export interface CoinStats {
     material: { [ M in CoinMaterial ]?: {
         coins: number;
         weight: number;
+        pureWeight: number;
+        fineness: number | undefined;
         portion: number;
     } };
 }

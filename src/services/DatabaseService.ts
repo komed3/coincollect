@@ -402,10 +402,40 @@ export class DatabaseService {
                 updateStats( 'year', date.getFullYear().toString() );
                 first = Math.min( first, date.getTime() );
             }
+
+            if ( c.dimension?.weight ) {
+                for ( const m of c.material ?? [] ) {
+                    if ( ! ( m.material in stats.material ) ) stats.material[ m.material ] = {
+                        coins: 0, weight: 0, pureWeight: 0, fineness: undefined, portion: 0
+                    };
+
+                    stats.material[ m.material ]!.coins++;
+                    stats.material[ m.material ]!.weight += Number( (
+                        c.dimension.weight * ( ( m.portion ?? 100 ) / 100 )
+                    ).toFixed( 4 ) );
+                    stats.material[ m.material ]!.pureWeight += Number( (
+                        c.dimension.weight *
+                        ( ( m.fineness ?? 999 ) / 1000 ) *
+                        ( ( m.portion ?? 100 ) / 100 )
+                    ).toFixed( 4 ) );
+                }
+            }
         }
 
         stats.growth = Number( ( stats.totalOmv / stats.totalPurchase * 100 ).toFixed( 2 ) );
         stats.collectionAge = new Date( first ).toISOString();
+
+        const pureWeight = Object.values( stats ).reduce( ( s, i ) => s + ( ( i as any ).pureWeight ?? 0 ), 0 );
+        for ( const m of Object.keys( stats.material ) ) {
+            ( stats.material as any )[ m ]!.fineness = Number( (
+                ( stats.material as any )[ m ]!.pureWeight / ( stats.material as any )[ m ]!.weight * 1000
+            ).toFixed( 1 ) );
+
+            ( stats.material as any )[ m ]!.portion = pureWeight ? Number( (
+                ( stats.material as any )[ m ]!.pureWeight / pureWeight * 100
+            ).toFixed( 2 ) ) : 0;
+        }
+
         this.db!.data.stats = stats;
         return stats;
     }
