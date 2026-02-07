@@ -10,6 +10,7 @@ document.addEventListener( 'DOMContentLoaded', () => {
         if ( ! v || ! v.length || v === '' ) return d;
         switch ( type ) {
             case 'string': return String( v ).trim();
+            case 'list': return String( v ).split( ',' ).map( t => t.trim() ).filter( Boolean );
             case 'number': return Number( v );
             case 'date': return new Date( v ).toISOString();
             default: return d;
@@ -98,7 +99,7 @@ document.addEventListener( 'DOMContentLoaded', () => {
             type: val( fd.get( 'type' ), 'string' ),
             country: val( fd.get( 'country' ), 'string' ),
             series: val( fd.get( 'series' ), 'string' ),
-            tags: val( fd.get( 'tags' ), 'string' ).split( ',' ).map( t => t.trim() ),
+            tags: val( fd.get( 'tags' ), 'list' ) ?? [],
             grade: val( fd.get( 'grade' ), 'string' ),
             status: val( fd.get( 'status' ), 'string' ),
             amount: val( fd.get( 'amount' ), 'number', 1 ),
