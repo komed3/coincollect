@@ -9,4 +9,4 @@ mixin material( materials )
     ul.cc-mixin--material-legend
       each m, i in materials
         li.cc-mixin--material-legend-item( color= m.key )
-          span= formatter.number( m.fineness, 1 ) + ' ' + m.name + ' (' + formatter.percent( m.portion, 1 ) + ')'
+          span= ( m.fineness ? formatter.number( m.fineness, 1 ) + ' ' : '' ) + m.name + ' (' + formatter.percent( m.portion, 1 ) + ')'

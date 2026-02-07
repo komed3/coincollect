@@ -125,7 +125,7 @@ block main
             i.fa.fa-quote-left
             p= coin.description
 
-        if coin.design || coin.note
+        if coin.design.obverse || coin.design.reverse || coin.design.edge || coin.note
           div.cc-coin--info.cc-box
             ul.cc-coin--info-list
               if coin.design.obverse
