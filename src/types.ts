@@ -68,7 +68,12 @@ export interface Coin {
         edge?: string;
     };
 
-    material?: CoinMaterial[];
+    material?: {
+        key: string;
+        name: string;
+        fineness?: number;
+        portion?: number;
+    }[];
     dimension?: {
         diameter?: number;
         thickness?: number;
@@ -131,11 +136,41 @@ export enum CoinShape {
     Other = 'other'
 }
 
-export interface CoinMaterial {
-    key: string;
-    name: string;
-    fineness?: number;
-    portion?: number;
+export enum CoinMaterial {
+    Gold = 'gold',
+    Silver = 'silver',
+    Platinum = 'platinum',
+    Palladium = 'palladium',
+    Rhodium = 'rhodium',
+    Ruthenium = 'ruthenium',
+    Iridium = 'iridium',
+    Osmium = 'osmium',
+    Copper = 'copper',
+    Bronze = 'bronze',
+    Brass = 'brass',
+    Cupronickel = 'cupronickel',
+    Monel = 'monel',
+    Aluminum = 'aluminum',
+    Magnesium = 'magnesium',
+    Titanium = 'titanium',
+    Steel = 'steel',
+    Stainless = 'stainless',
+    Chrome = 'chrome',
+    Nickel = 'nickel',
+    Zinc = 'zinc',
+    Tin = 'tin',
+    Duralumin = 'duralumin',
+    Iron = 'iron',
+    Lead = 'lead',
+    Cobalt = 'cobalt',
+    Vanadium = 'vanadium',
+    Molybdenum = 'molybdenum',
+    Tungsten = 'tungsten',
+    Inconel = 'inconel',
+    Hastelloy = 'hastelloy',
+    Mixed = 'mixed',
+    Synthetic = 'synthetic',
+    Unknown = 'unknown'
 }
 
 export interface OMV {
