@@ -83,10 +83,31 @@ class CCChart {
 
     renderChart ( type, uuid, data, ctx ) {
         switch ( type ) {
+            case 'growth': return this.renderGrowthChart( uuid, data, ctx );
             case 'history': return this.renderHistoryChart( uuid, data, ctx );
             case 'portion': return this.renderPortionChart( uuid, data, ctx );
             case 'value': return this.renderValueChart( uuid, data, ctx );
         }
+    }
+
+    renderGrowthChart ( uuid, data, ctx ) {
+        const labels = [];
+        for ( const [ year, row ] of Object.entries( data ) ) {
+            labels.push( year );
+        };
+
+        const chart = new Chart( ctx, {
+            type: 'bar',
+            data: {
+                labels,
+                dataset: [ {
+                    data: []
+                } ]
+            }
+        } );
+
+        this.charts.set( uuid, chart );
+        return chart;
     }
 
     renderHistoryChart ( uuid, data, ctx ) {
