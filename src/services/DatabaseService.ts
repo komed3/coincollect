@@ -520,14 +520,18 @@ export class DatabaseService {
                 }
             }
 
+            const change = prev ? omvSum - prev.omv : 0;
+            const percent = prev ? omvSum / prev.omv * 100 - 100 : 0;
+            const growth = prev ? ( omvSum - purchaseSum ) - ( prev.omv - prev.purchase ) : 0;
+
             value[ String( year ) ] = prev = {
                 coins: coinsCount,
                 purchase: Number( purchaseSum.toFixed( 2 ) ),
                 omv: Number( omvSum.toFixed( 2 ) ),
-                change: Number( ( prev ? omvSum - prev.omv : 0 ).toFixed( 2 ) ),
-                percent: Number( ( prev ? omvSum / prev.omv * 100 - 100 : 0 ).toFixed( 2 ) ),
-                adjustedGrowth: 0,
-                ratio: 0
+                change: Number( change.toFixed( 2 ) ),
+                percent: Number( percent.toFixed( 3 ) ),
+                adjustedGrowth: Number( growth.toFixed( 2 ) ),
+                ratio: Number( ( change ? growth / change : 0 ).toFixed( 3 ) )
             };
         }
 
