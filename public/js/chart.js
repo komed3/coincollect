@@ -95,7 +95,7 @@ class CCChart {
         for ( const [ year, row ] of Object.entries( data ) ) {
             labels.push( year );
             growth.push( Math.abs( row.adjustedGrowth ) );
-            colors.push( row.adjustedGrowth < 0 ? '#d9534f' : '#2cc97f' );
+            colors.push( row.adjustedGrowth < 0 ? '#d9534f' : '#4f8f8b' );
         };
 
         const chart = new Chart( ctx, {
@@ -106,18 +106,17 @@ class CCChart {
                     label: I18N.label.growth,
                     type: 'bar',
                     data: growth,
-                    backgroundColor: colors
+                    backgroundColor: colors,
+                    hoverBackgroundColor: colors
                 } ]
             },
             options: {
                 plugins: {
                     tooltip: {
                         callbacks: {
-                            label: ( item ) => item.dataset.label + ': ' + (
-                                item.datasetIndex === 2 ? item.raw : Intl.NumberFormat( LANG, {
-                                    style: 'currency', currency: CURRENCY
-                                } ).format( item.raw )
-                            )
+                            label: ( item ) => Intl.NumberFormat( LANG, {
+                                style: 'currency', currency: CURRENCY
+                            } ).format( item.raw )
                         }
                     }
                 },
@@ -138,7 +137,8 @@ class CCChart {
                             maxTicksLimit: 4,
                             align: 'center',
                             callback: ( value ) => Intl.NumberFormat( LANG, {
-                                style: 'currency', currency: CURRENCY
+                                style: 'currency', currency: CURRENCY,
+                                maximumFractionDigits: 0
                             } ).format( value )
                         }
                     }
@@ -224,7 +224,8 @@ class CCChart {
                             maxTicksLimit: 4,
                             align: 'center',
                             callback: ( value ) => Intl.NumberFormat( LANG, {
-                                style: 'currency', currency: CURRENCY
+                                style: 'currency', currency: CURRENCY,
+                                maximumFractionDigits: 0
                             } ).format( value )
                         }
                     },
