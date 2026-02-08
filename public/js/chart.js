@@ -249,7 +249,6 @@ class CCChart {
 
     renderValueChart ( uuid, data, ctx ) {
         const omv = ( data.omv ?? [] ).map( o => ( { x: o.date, y: o.value } ) );
-        if ( data.purchase?.date ) omv.push( { x: data.purchase.date, y: data.purchase.value } );
         const th = data.purchase ? omv.map( o => ( { x: o.x, y: data.purchase.value } ) ) : [];
 
         const chart = new Chart( ctx, {
