@@ -7,7 +7,7 @@ import { v4 as uuidv4 } from 'uuid';
 import { CoinStatus } from '../types';
 import type {
     Coin, CoinGrade, CoinShape, CoinStats, CoinStatsItem,
-    CoinStatsRecord, CoinType, Database
+    CoinStatsRecord, CoinType, CoinValue, Database
 } from '../types';
 
 type PartialCoinInput = Partial< Omit< Coin, 'id' | 'createdAt' | 'updatedAt' > >;
@@ -459,12 +459,12 @@ export class DatabaseService {
         return this.db!.data.value;
     }
 
-    public async calculateValue () : Promise< CoinStatsRecord > {
+    public async calculateValue () : Promise< CoinValue > {
         if ( ! this.db ) await this.initDb();
 
         const endOfYear = ( year: number ): number => Date.UTC( year, 11, 31, 23, 59, 59, 999 );
 
-        const value: CoinStatsRecord = {};
+        const value: CoinValue = {};
         const preparedCoins = [];
         const years = new Set< number >();
 
@@ -498,6 +498,7 @@ export class DatabaseService {
         let coinsCount = 0;
         let purchaseSum = 0;
         let omvSum = 0;
+        let prev: any = undefined;
 
         for ( const year of Array.from( years ).sort( ( a, b ) => a - b ) ) {
             const cutoff = endOfYear( year );
@@ -519,10 +520,14 @@ export class DatabaseService {
                 }
             }
 
-            value[ String( year ) ] = {
+            value[ String( year ) ] = prev = {
                 coins: coinsCount,
                 purchase: Number( purchaseSum.toFixed( 2 ) ),
-                omv: Number( omvSum.toFixed( 2 ) )
+                omv: Number( omvSum.toFixed( 2 ) ),
+                change: Number( ( prev ? omvSum - prev.omv : 0 ).toFixed( 2 ) ),
+                percent: Number( ( prev ? omvSum / prev.omv * 100 - 100 : 0 ).toFixed( 2 ) ),
+                adjustedGrowth: 0,
+                ratio: 0
             };
         }
 
