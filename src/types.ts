@@ -14,6 +14,7 @@ export type CoinValue = Record< string, CoinStatsItem & {
     change: number;
     percent: number;
     adjustedGrowth: number;
+    adjustedPercent: number;
     ratio: number;
 } >;
 
