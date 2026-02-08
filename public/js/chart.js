@@ -95,9 +95,10 @@ class CCChart {
     }
 
     renderGrowthChart ( uuid, data, ctx ) {
-        const labels = [], growth = [], colors = [];
+        const labels = [], change = [], growth = [], colors = [];
         for ( const [ year, row ] of Object.entries( data ) ) {
             labels.push( year );
+            change.push( row.change );
             growth.push( Math.abs( row.adjustedGrowth ) );
             colors.push( this.colors[ row.adjustedGrowth < 0 ? 8 : 2 ] );
         };
@@ -107,6 +108,11 @@ class CCChart {
             data: {
                 labels,
                 datasets: [ {
+                    label: I18N.label.change,
+                    type: 'bar',
+                    data: change,
+                    backgroundColor: '#ccc5'
+                }, {
                     label: I18N.label.growth,
                     type: 'bar',
                     data: growth,
@@ -195,8 +201,7 @@ class CCChart {
                     type: 'bar',
                     yAxisID: 'c',
                     data: coins,
-                    backgroundColor: '#ccc3',
-                    barThickness: 24
+                    backgroundColor: '#ccc5'
                 } ]
             },
             options: {
