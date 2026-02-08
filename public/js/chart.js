@@ -124,7 +124,7 @@ class CCChart {
                 plugins: {
                     tooltip: {
                         callbacks: {
-                            label: ( item ) => Intl.NumberFormat( LANG, {
+                            label: ( item ) => item.dataset.label + ': ' + Intl.NumberFormat( LANG, {
                                 style: 'currency', currency: CURRENCY
                             } ).format( item.raw )
                         }
