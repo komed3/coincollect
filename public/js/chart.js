@@ -226,6 +226,11 @@ class CCChart {
             options: {
                 cutout: '50%',
                 plugins: {
+                    legend: {
+                        display: labels.length < 10 ? true : false,
+                        position: 'right',
+                        labels: { padding: 2 }
+                    },
                     tooltip: {
                         titleColor: '#000',
                         titleFont: { size: 15 },
