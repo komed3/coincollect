@@ -1,6 +1,10 @@
 class CCChart {
 
-    colors = [ '#c5851f', '#5a78a6', '#4f8f8b', '#6f8b6a', '#b36a3e', '#7a5c6e', '#6b6f6a' ];
+    colors = [
+        '#c5851f', '#5a78a6', '#4f8f8b', '#6f8b6a',
+        '#b36a3e', '#7a5c6e', '#6b6f6a', '#a69d7a',
+        '#d9534f', '#5bc0de', '#f0ad4e', '#777777'
+    ];
 
     constructor () {
         this.charts = new Map();
@@ -95,7 +99,7 @@ class CCChart {
         for ( const [ year, row ] of Object.entries( data ) ) {
             labels.push( year );
             growth.push( Math.abs( row.adjustedGrowth ) );
-            colors.push( row.adjustedGrowth < 0 ? '#d9534f' : '#4f8f8b' );
+            colors.push( this.colors[ row.adjustedGrowth < 0 ? 8 : 2 ] );
         };
 
         const chart = new Chart( ctx, {
