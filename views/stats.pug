@@ -32,6 +32,8 @@ block main
         span= t( 'stats.value' )
       div.cc-stats--box.cc-box
         +chart( 'history', value )
+      div.cc-stats--box.cc-box
+        +chart( 'growth', value )
 
     div.cc-stats--charts
       h3.cc-page-subtitle
