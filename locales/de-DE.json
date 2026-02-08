@@ -33,7 +33,9 @@
       "XF": "Vorzüglich"
     },
     "label": {
+      "change": "Zukauf",
       "coins": "Münzen",
+      "growth": "Wertsteigerung",
       "omv": "Marktwert",
       "purchase": "Kaufpreis"
     },

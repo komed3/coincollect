@@ -33,7 +33,9 @@
       "XF": "Extremely Fine"
     },
     "label": {
+      "change": "Purchase",
       "coins": "Coins",
+      "growth": "Value growth",
       "omv": "Market value",
       "purchase": "Purchase price"
     },
