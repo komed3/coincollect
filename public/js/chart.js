@@ -91,18 +91,58 @@ class CCChart {
     }
 
     renderGrowthChart ( uuid, data, ctx ) {
-        const labels = [];
+        const labels = [], growth = [], colors = [];
         for ( const [ year, row ] of Object.entries( data ) ) {
             labels.push( year );
+            growth.push( Math.abs( row.adjustedGrowth ) );
+            colors.push( row.adjustedGrowth < 0 ? '#d9534f' : '#2cc97f' );
         };
 
         const chart = new Chart( ctx, {
-            type: 'bar',
+            type: 'line',
             data: {
                 labels,
-                dataset: [ {
-                    data: []
+                datasets: [ {
+                    label: I18N.label.growth,
+                    type: 'bar',
+                    data: growth,
+                    backgroundColor: colors
                 } ]
+            },
+            options: {
+                plugins: {
+                    tooltip: {
+                        callbacks: {
+                            label: ( item ) => item.dataset.label + ': ' + (
+                                item.datasetIndex === 2 ? item.raw : Intl.NumberFormat( LANG, {
+                                    style: 'currency', currency: CURRENCY
+                                } ).format( item.raw )
+                            )
+                        }
+                    }
+                },
+                scales: {
+                    x: {
+                        grid: {
+                            drawOnChartArea: false,
+                            tickLength: 6
+                        },
+                        ticks: { autoSkip: true }
+                    },
+                    y: {
+                        type: 'logarithmic',
+                        border: { dash: [ 5, 5 ] },
+                        position: 'left',
+                        ticks: {
+                            padding: 6,
+                            maxTicksLimit: 4,
+                            align: 'center',
+                            callback: ( value ) => Intl.NumberFormat( LANG, {
+                                style: 'currency', currency: CURRENCY
+                            } ).format( value )
+                        }
+                    }
+                }
             }
         } );
 
