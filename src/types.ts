@@ -6,9 +6,16 @@ export interface Database {
         updatedAt: string;
     };
     coins: Coin[];
-    value: CoinStatsRecord;
+    value: CoinValue;
     stats: CoinStats;
 }
+
+export type CoinValue = Record< string, CoinStatsItem & {
+    change: number;
+    percent: number;
+    adjustedGrowth: number;
+    ratio: number;
+} >;
 
 export interface CoinStats {
     totalCoins: number;
