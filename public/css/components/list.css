@@ -94,6 +94,7 @@
 .cc-list--table ._coin {
     position: sticky;
     left: 0;
+    max-width: 320px;
     border-right: 1px solid var( --border-color );
     opacity: 98;
 }
@@ -103,11 +104,16 @@
     flex-flow: row nowrap;
     align-items: center;
     gap: 0.8em;
+    width: 100%;
+    overflow: hidden;
 }
 
 .cc-list--table ._coin a b {
+    min-width: 0;
+    text-overflow: ellipsis;
     font-weight: 500;
     color: var( --accent-color );
+    overflow: hidden;
 }
 
 .cc-list--table ._coin a img {
