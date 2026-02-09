@@ -170,7 +170,6 @@ class CCList {
             </td>
             <td class="_type">${ this.escapeHtml( coin.type ? I18N.type[ coin.type ] : '—' ) }</td>
             <td class="_status">${ this.escapeHtml( coin.status ? I18N.status[ coin.status ] : '—' ) }</td>
-            <td class="_series">${ this.escapeHtml( coin.series || '—' ) }</td>
             <td class="_country">${ this.escapeHtml( coin.country || '—' ) }</td>
             <td class="_currency">${ this.escapeHtml( coin.currency || '—' ) }</td>
             <td class="_year">${ coin.mint?.year || '—' }</td>
