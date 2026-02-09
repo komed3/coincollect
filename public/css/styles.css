@@ -36,6 +36,10 @@ img, input, select, button, .noselect {
     user-select: none;
 }
 
+input:focus, select:focus, textarea:focus {
+    outline: 2px solid var( --accent-color );
+}
+
 html, body {
     margin: 0;
     font-family: 'Inter', sans-serif;
