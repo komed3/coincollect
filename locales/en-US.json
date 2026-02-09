@@ -246,7 +246,6 @@
       "grade": "Grade",
       "nominal": "Denomination",
       "omv": "Market value",
-      "series": "Series",
       "status": "Status",
       "type": "Coin type",
       "year": "Year"
