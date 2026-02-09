@@ -98,7 +98,7 @@ class CCChart {
         const labels = [], change = [], growth = [], colors = [];
         for ( const [ year, row ] of Object.entries( data ) ) {
             labels.push( year );
-            change.push( row.change );
+            change.push( row.change - row.adjustedGrowth );
             growth.push( Math.abs( row.adjustedGrowth ) );
             colors.push( this.colors[ row.adjustedGrowth < 0 ? 8 : 2 ] );
         };
