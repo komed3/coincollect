@@ -114,6 +114,7 @@ export enum CoinType {
     Commemorative = 'commemorative',
     Bullion = 'bullion',
     Medal = 'medal',
+    Temporary = 'temporary',
     Pattern = 'pattern',
     Ingot = 'ingot',
     Other = 'other'
