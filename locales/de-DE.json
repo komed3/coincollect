@@ -112,7 +112,8 @@
       "ingot": "Barren",
       "medal": "Medaille",
       "other": "Andere",
-      "pattern": "Probemünze"
+      "pattern": "Probemünze",
+      "temporary": "Notmünze"
     }
   },
   "coin": {

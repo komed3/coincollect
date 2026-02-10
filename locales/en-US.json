@@ -112,7 +112,8 @@
       "ingot": "Ingot",
       "medal": "Medal",
       "other": "Other",
-      "pattern": "Pattern coin"
+      "pattern": "Pattern coin",
+      "temporary": "Temporary coin"
     }
   },
   "coin": {
