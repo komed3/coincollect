@@ -35,5 +35,7 @@
 [material="hastelloy"]   { --c: #7a7168; }
 
 [material="mixed"]       { --c: #9f927c; }
+[material="porcelain"]   { --c: #9e5d32; }
+[material="ceramics"]    { --c: #dcdcdc; }
 [material="synthetic"]   { --c: #766b8d; }
 [material="unknown"]     { --c: #868686; }
