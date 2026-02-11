@@ -183,6 +183,8 @@ export enum CoinMaterial {
     Inconel = 'inconel',
     Hastelloy = 'hastelloy',
     Mixed = 'mixed',
+    Porcelain = 'porcelain',
+    Ceramics = 'ceramics',
     Synthetic = 'synthetic',
     Unknown = 'unknown'
 }
