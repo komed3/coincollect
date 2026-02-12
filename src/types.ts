@@ -29,7 +29,12 @@ export interface SingleCoin {
     refId: string;
     status: CoinStatus;
     amount: number;
+
     grade: CoinGrade;
+
+    mintMark?: string;
+    mintYear?: number;
+    mintage?: number;
 }
 
 export enum CoinType {
