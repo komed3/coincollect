@@ -22,6 +22,18 @@ export interface CoinBase {
         reverse?: string;
         edge?: string;
     };
+
+    material?: {
+        material: CoinMaterial;
+        fineness?: number;
+        portion?: number;
+    }[];
+
+    dimension?: {
+        diameter?: number;
+        thickness?: number;
+        weight?: number;
+    };
 }
 
 export interface SingleCoin {
