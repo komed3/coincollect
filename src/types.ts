@@ -4,6 +4,7 @@ export interface CoinBase {
 
     type: CoinType;
     country?: string;
+    issuer?: string;
     series?: string;
     tags?: string[];
 
