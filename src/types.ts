@@ -23,6 +23,9 @@ export interface CoinBase extends Meta {
     issuer?: string;
     issueDate?: string;
     devaluationDate?: string;
+    mintStartYear?: number;
+    mintEndYear?: number;
+    mintLocations?: string[];
 
     design?: {
         shape?: CoinShape;
