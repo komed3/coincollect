@@ -63,6 +63,7 @@ export interface SingleCoin extends Meta {
     status: CoinStatus;
     certified: boolean;
     amount: number;
+    note?: string;
 
     grade: CoinGrade;
     acquisition: {
@@ -71,6 +72,11 @@ export interface SingleCoin extends Meta {
         price?: number;
         notes?: string;
     };
+
+    omv: {
+        date: string;
+        value: string;
+    }[];
 
     mintMark?: string;
     mintYear?: number;
