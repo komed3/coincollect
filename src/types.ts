@@ -1,6 +1,8 @@
 export interface CoinBase {
     readonly id: string;
     name: string;
+    description?: string;
+    note?: string;
 
     type: CoinType;
     country?: string;
@@ -12,6 +14,13 @@ export interface CoinBase {
     nominal?: {
         value: string;
         unit?: string;
+    };
+
+    design?: {
+        shape?: CoinShape;
+        obverse?: string;
+        reverse?: string;
+        edge?: string;
     };
 }
 
