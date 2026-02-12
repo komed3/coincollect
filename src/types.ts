@@ -1,5 +1,10 @@
-export interface CoinBase {
+export interface Meta {
     readonly id: string;
+    createdAt: string;
+    updatedAt: string;
+}
+
+export interface CoinBase extends Meta {
     name: string;
     description?: string;
     note?: string;
@@ -37,10 +42,15 @@ export interface CoinBase {
         thickness?: number;
         weight?: number;
     };
+
+    images?: {
+        obverse?: string;
+        reverse?: string;
+        other?: string[];
+    };
 }
 
-export interface SingleCoin {
-    readonly id: string;
+export interface SingleCoin extends Meta {
     refId: string;
     status: CoinStatus;
     amount: number;
