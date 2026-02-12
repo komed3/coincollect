@@ -1,6 +1,11 @@
-export interface CoinBase {}
+export interface CoinBase {
+    readonly id: string;
+}
 
-export interface SingleCoin {}
+export interface SingleCoin {
+    readonly id: string;
+    refId: string;
+}
 
 export enum CoinType {
     Circulation = 'circulation',
