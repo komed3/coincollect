@@ -25,7 +25,10 @@
   },
   "type": "module",
   "scripts": {
-    "start": "node dist/app.js"
+    "start": "node dist/app.js",
+    "dev": "nodemon dist/app.js",
+    "build": "tsc && tsc-alias",
+    "build:watch": "tsc && (concurrently \"tsc -w\" \"tsc-alias -w\")"
   },
   "dependencies": {
     "express": "^5.2.1",
