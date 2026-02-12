@@ -24,7 +24,9 @@
     "node": ">=18.0.0"
   },
   "type": "module",
-  "scripts": {},
+  "scripts": {
+    "start": "node dist/app.js"
+  },
   "dependencies": {
     "express": "^5.2.1",
     "lowdb": "^7.0.1",
