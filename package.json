@@ -32,8 +32,12 @@
   },
   "dependencies": {
     "express": "^5.2.1",
+    "i18next": "^25.8.6",
+    "i18next-fs-backend": "^2.6.1",
+    "i18next-http-middleware": "^3.9.2",
     "lowdb": "^7.0.1",
-    "multer": "^2.0.2"
+    "multer": "^2.0.2",
+    "pug": "^3.0.3"
   },
   "devDependencies": {
     "@types/express": "^5.0.6"
