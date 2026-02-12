@@ -10,7 +10,9 @@
     "url": "https://komed3.de"
   },
   "homepage": "https://github.com/komed3/coincollect",
-  "keywords": [ "coin-collection" ],
+  "keywords": [
+    "coin-collection"
+  ],
   "repository": {
     "type": "git",
     "url": "git+https://github.com/komed3/coincollect.git"
@@ -23,6 +25,9 @@
   },
   "type": "module",
   "scripts": {},
-  "dependencies": {},
-  "devDependencies": {}
+  "dependencies": {
+    "express": "^5.2.1",
+    "lowdb": "^7.0.1",
+    "multer": "^2.0.2"
+  }
 }
