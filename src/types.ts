@@ -1,6 +1,12 @@
 export interface CoinBase {
     readonly id: string;
+    name: string;
+
     type: CoinType;
+    country?: string;
+    series?: string;
+    tags?: string[];
+
     currency?: string;
     nominal?: {
         value: string;
@@ -12,6 +18,7 @@ export interface SingleCoin {
     readonly id: string;
     refId: string;
     status: CoinStatus;
+    amount: number;
     grade: CoinGrade;
 }
 
