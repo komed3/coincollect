@@ -112,7 +112,7 @@ export interface CoinBase extends Meta {
 }
 
 export interface SingleCoin extends Meta {
-    refId: string;
+    readonly baseId: string;
     status: CoinStatus;
     certified: boolean;
     amount: number;
