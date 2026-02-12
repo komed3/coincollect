@@ -26,3 +26,22 @@ export enum CoinGrade {
     BU = 'BU',
     FDC = 'FDC'
 }
+
+export enum CoinStatus {
+    Owned = 'owned',
+    Duplicate = 'duplicate',
+    Missing = 'missing',
+    Wanted = 'wanted',
+    Ordered = 'ordered',
+    ForSale = 'sale',
+    Sold = 'sold'
+}
+
+export enum CoinShape {
+    Round = 'round',
+    Oval = 'oval',
+    Square = 'square',
+    Polygonal = 'polygonal',
+    Irregular = 'irregular',
+    Other = 'other'
+}
