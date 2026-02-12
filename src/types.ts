@@ -11,6 +11,8 @@ export interface CoinBase {
 export interface SingleCoin {
     readonly id: string;
     refId: string;
+    status: CoinStatus;
+    grade: CoinGrade;
 }
 
 export enum CoinType {
