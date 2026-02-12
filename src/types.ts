@@ -1,5 +1,11 @@
 export interface CoinBase {
     readonly id: string;
+    type: CoinType;
+    currency?: string;
+    nominal?: {
+        value: string;
+        unit?: string;
+    };
 }
 
 export interface SingleCoin {
