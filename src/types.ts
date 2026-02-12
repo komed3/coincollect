@@ -15,8 +15,8 @@ export interface Database {
 
 export type CoinValue = Record< string, {
     coins: number;
-    value: number;
     acquisition: number;
+    value: number;
     change: number;
     percent: number;
     growth: number;
@@ -34,6 +34,15 @@ export interface CoinStats {
     status: { [ S in CoinStatus ]?: CoinStatsItem };
     grade: { [ G in CoinGrade ]?: CoinStatsItem };
     acquisition: { [ A in Acquisition ]?: CoinStatsItem };
+    country: Record< string, CoinStatsItem >;
+    currency: Record< string, CoinStatsItem >;
+    year: Record< string, CoinStatsItem >;
+    material: { [ M in CoinMaterial ]?: CoinStatsItem & {
+        weight: number;
+        pureWeight: number;
+        fineness: number | undefined;
+        portion: number;
+    } };
 }
 
 export interface CoinStatsItem {
