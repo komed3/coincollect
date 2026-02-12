@@ -40,6 +40,12 @@
     "pug": "^3.0.3"
   },
   "devDependencies": {
-    "@types/express": "^5.0.6"
+    "@types/express": "^5.0.6",
+    "@types/multer": "^2.0.0",
+    "@types/node": "^25.2.3",
+    "concurrently": "^9.2.1",
+    "nodemon": "^3.1.11",
+    "tsc-alias": "^1.8.16",
+    "typescript": "^5.9.3"
   }
 }
