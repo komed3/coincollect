@@ -1,0 +1,28 @@
+{
+  "name": "@komed3/coincollect",
+  "description": "Web app for managing coin collections",
+  "private": true,
+  "license": "MIT",
+  "version": "0.2.0-alpha",
+  "author": {
+    "name": "komed3 (Paul Köhler)",
+    "email": "webmaster@komed3.de",
+    "url": "https://komed3.de"
+  },
+  "homepage": "https://github.com/komed3/coincollect",
+  "keywords": [ "coin-collection" ],
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/komed3/coincollect.git"
+  },
+  "bugs": {
+    "url": "https://github.com/komed3/coincollect/issues"
+  },
+  "engines": {
+    "node": ">=18.0.0"
+  },
+  "type": "module",
+  "scripts": {},
+  "dependencies": {},
+  "devDependencies": {}
+}
