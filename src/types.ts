@@ -17,6 +17,7 @@ export interface CoinBase {
 
     issuer?: string;
     issueDate?: string;
+    devaluationDate?: string;
 
     design?: {
         shape?: CoinShape;
