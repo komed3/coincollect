@@ -149,6 +149,7 @@ export enum CoinMaterial {
     Bronze = 'bronze',
     Brass = 'brass',
     Cupronickel = 'cupronickel',
+    Nickelsilver = 'nickelsilver',
     Monel = 'monel',
     Aluminum = 'aluminum',
     Magnesium = 'magnesium',
