@@ -6,7 +6,6 @@ export interface CoinBase {
 
     type: CoinType;
     country?: string;
-    issuer?: string;
     series?: string;
     tags?: string[];
 
@@ -15,6 +14,9 @@ export interface CoinBase {
         value: string;
         unit?: string;
     };
+
+    issuer?: string;
+    issueDate?: string;
 
     design?: {
         shape?: CoinShape;
