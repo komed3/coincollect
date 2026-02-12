@@ -56,6 +56,12 @@ export interface SingleCoin extends Meta {
     amount: number;
 
     grade: CoinGrade;
+    acquisition: {
+        method: Acquisition;
+        date: string;
+        price?: number;
+        notes?: string;
+    };
 
     mintMark?: string;
     mintYear?: number;
@@ -95,6 +101,15 @@ export enum CoinStatus {
     Ordered = 'ordered',
     ForSale = 'sale',
     Sold = 'sold'
+}
+
+export enum Acquisition {
+    Purchase = 'purchase',
+    Gift = 'gift',
+    Inheritance = 'inheritance',
+    Exchange = 'exchange',
+    Found = 'found',
+    Other = 'other'
 }
 
 export enum CoinShape {
