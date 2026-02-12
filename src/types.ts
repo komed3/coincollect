@@ -1,3 +1,16 @@
+export interface Database {
+    _meta: {
+        schemaVersion: '1';
+        currency: string;
+        createdAt: string;
+        updatedAt: string;
+    };
+    collection: {
+        coins: CoinBase[];
+        items: SingleCoin[];
+    };
+}
+
 export interface Meta {
     readonly id: string;
     createdAt: string;
