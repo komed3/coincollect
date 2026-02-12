@@ -52,7 +52,7 @@ export interface CoinBase extends Meta {
         other?: string[];
     };
 
-    identifiers: {
+    identifiers?: {
         catalog: CoinCatalog | string;
         id: string;
     }[];
