@@ -51,11 +51,14 @@ export interface CoinBase extends Meta {
         reverse?: string;
         other?: string[];
     };
+
+    identifiers: {}[];
 }
 
 export interface SingleCoin extends Meta {
     refId: string;
     status: CoinStatus;
+    certified: boolean;
     amount: number;
 
     grade: CoinGrade;
