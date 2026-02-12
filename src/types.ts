@@ -52,7 +52,10 @@ export interface CoinBase extends Meta {
         other?: string[];
     };
 
-    identifiers: {}[];
+    identifiers: {
+        catalog: CoinCatalog | string;
+        id: string;
+    }[];
 }
 
 export interface SingleCoin extends Meta {
@@ -164,4 +167,9 @@ export enum CoinMaterial {
     Ceramics = 'ceramics',
     Synthetic = 'synthetic',
     Unknown = 'unknown'
+}
+
+export enum CoinCatalog {
+    Muenzkatalog = 'muenzkatalog',
+    Numista = 'numista'
 }
