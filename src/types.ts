@@ -9,7 +9,21 @@ export interface Database {
         coins: CoinBase[];
         items: SingleCoin[];
     };
+    value: CoinValue;
+    stats: CoinStats;
 }
+
+export type CoinValue = Record< string, {
+    coins: number;
+    value: number;
+    acquisition: number;
+    change: number;
+    percent: number;
+    growth: number;
+    ratio: number;
+} >
+
+export interface CoinStats {}
 
 export interface Meta {
     readonly id: string;
