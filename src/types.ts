@@ -23,7 +23,24 @@ export type CoinValue = Record< string, {
     ratio: number;
 } >
 
-export interface CoinStats {}
+export interface CoinStats {
+    totalCoins: number;
+    totalAcquisition: number;
+    totalOmv: number;
+    growth: number;
+    totalWeight: number;
+    collectionAge: string;
+    type: { [ T in CoinType ]?: CoinStatsItem };
+    status: { [ S in CoinStatus ]?: CoinStatsItem };
+    grade: { [ G in CoinGrade ]?: CoinStatsItem };
+    acquisition: { [ A in Acquisition ]?: CoinStatsItem };
+}
+
+export interface CoinStatsItem {
+    coins: number;
+    acquisition: number;
+    value: number;
+}
 
 export interface Meta {
     readonly id: string;
@@ -100,9 +117,9 @@ export interface SingleCoin extends Meta {
         notes?: string;
     };
 
-    omv: {
+    value: {
         date: string;
-        value: string;
+        price: string;
     }[];
 
     mintMark?: string;
@@ -124,6 +141,16 @@ export enum CoinType {
     Other = 'other'
 }
 
+export enum CoinStatus {
+    Owned = 'owned',
+    Duplicate = 'duplicate',
+    Missing = 'missing',
+    Wanted = 'wanted',
+    Ordered = 'ordered',
+    ForSale = 'sale',
+    Sold = 'sold'
+}
+
 export enum CoinGrade {
     G = 'G',
     VG = 'VG',
@@ -133,16 +160,6 @@ export enum CoinGrade {
     UNC = 'UNC',
     BU = 'BU',
     FDC = 'FDC'
-}
-
-export enum CoinStatus {
-    Owned = 'owned',
-    Duplicate = 'duplicate',
-    Missing = 'missing',
-    Wanted = 'wanted',
-    Ordered = 'ordered',
-    ForSale = 'sale',
-    Sold = 'sold'
 }
 
 export enum Acquisition {
