@@ -2,7 +2,52 @@
     position: sticky;
     top: 0;
     width: 100%;
-    background: var( --box-bg );
+    padding: 20px 0;
+    background: rgba( 255 255 255 / 0.8 );
+    backdrop-filter: blur( 10px );
     border-bottom: 1px solid var( --border-color );
     z-index: 99;
+}
+
+.cc-header--inner {
+    display: flex;
+    flex-flow: row nowrap;
+    justify-content: space-between;
+    align-items: center;
+    gap: 48px;
+}
+
+.cc-header--title {
+    margin: 0;
+    text-transform: uppercase;
+    font-size: 22px;
+    font-weight: 300;
+    letter-spacing: 0.8px;
+}
+
+.cc-header--title b {
+    font-weight: 700;
+    color: var( --accent-main );
+}
+
+.cc-header--nav {
+    display: flex;
+    flex-flow: row nowrap;
+    align-items: center;
+    gap: 12px;
+}
+
+.cc-header--nav a {
+    padding: 8px 14px;
+    text-transform: uppercase;
+    font-size: 12px;
+    font-weight: 400;
+    letter-spacing: 0.5px;
+    color: var( --text-muted );
+    background: var( --main-bg );
+    border-radius: var( --border-radius );
+}
+
+.cc-header--nav a:hover {
+    color: var( --accent-main );
 }
