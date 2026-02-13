@@ -177,6 +177,16 @@ export class DatabaseService {
             if ( raw.dimension.weight ) coin.dimension.weight = this.num( raw.dimension.weight, 3 );
         }
 
+        if ( raw.images ) {
+            coin.images = {};
+
+            if ( raw.images.obverse ) coin.images.obverse = this.str( raw.images.obverse );
+            if ( raw.images.reverse ) coin.images.reverse = this.str( raw.images.reverse );
+            if ( raw.images.other ) coin.images.other = [
+                ...raw.images.other.filter( Boolean ).map( this.str.bind( this ) )
+            ];
+        }
+
         return coin;
     }
 
