@@ -39,4 +39,5 @@ mixin select( name, label, keys, val, req = false, classes = '' )
       option( value= "" )= t( 'editor.select' )
       option( disabled ) ──────────
       each k in keys
-        option( value= k, selected= ( k === val ) )= t( '_.' + name + '.' + k )
+        - let n = name.split( '__' )[ 0 ]
+        option( value= k, selected= ( k === val ) )= t( '_.' + n + '.' + k )

@@ -1,5 +1,44 @@
 {
   "_": {
+    "material": {
+      "aluminum": "Aluminium",
+      "brass": "Messing",
+      "bronze": "Bronze",
+      "ceramics": "Keramik",
+      "chrome": "Chrome",
+      "cobalt": "Cobalt",
+      "copper": "Kupfer",
+      "cupronickel": "Kupfer-Nickel",
+      "duralumin": "Duraluminium",
+      "gold": "Gold",
+      "hastelloy": "Hastelloy",
+      "inconel": "Inconel",
+      "iridium": "Iridium",
+      "iron": "Eisen",
+      "lead": "Blei",
+      "magnesium": "Magnesium",
+      "mixed": "Gemischt",
+      "molybdenum": "Molybdän",
+      "monel": "Monel",
+      "nickel": "Nickel",
+      "nickelsilver": "Neusilber",
+      "osmium": "Osmium",
+      "palladium": "Palladium",
+      "platinum": "Platin",
+      "porcelain": "Porzellan",
+      "rhodium": "Rhodium",
+      "ruthenium": "Ruthenium",
+      "silver": "Silber",
+      "stainless": "Edelstahl",
+      "steel": "Stahl",
+      "synthetic": "Synthetisch",
+      "tin": "Zinn",
+      "titanium": "Titan",
+      "tungsten": "Wolfram",
+      "unknown": "Unbekannt",
+      "vanadium": "Vanadium",
+      "zinc": "Zink"
+    },
     "nav": {
       "add": "Eintragen",
       "dashboard": "Sammlung",
@@ -37,23 +76,39 @@
       "design": {
         "description": "Beschreibung",
         "edge": "Rand",
-        "headline": "Design",
+        "headline": "Design / Merkmale",
         "obverse": "Avers (Vorderseite)",
         "reverse": "Revers (Rückseite)",
         "shape": "Mümzform"
       },
+      "extra": {
+        "headline": "Zusätzliche Informationen",
+        "notes": "Notizen"
+      },
+      "identifiers": {
+        "catalog": "Münzkatalog / Plattform",
+        "headline": "Katalognummern",
+        "id": "Katalognummer"
+      },
+      "images": {
+        "headline": "Abbildungen"
+      },
       "info": {
-        "country": "Land/Region",
+        "country": "Land / Region",
         "currency": "Münzwährung",
         "headline": "Grundinformationen",
-        "name": "Münzbezeichnung/Anlass",
-        "nominal": {
-          "unit": "Einheit",
-          "value": "Nominalwert"
-        },
+        "name": "Münzbezeichnung / Anlass",
+        "nominalUnit": "Einheit",
+        "nominalValue": "Nominalwert",
         "series": "Serie/Münzreihe",
         "tags": "Schlagworte/Themen (getrennt durch Kommata)",
         "type": "Münztyp"
+      },
+      "material": {
+        "fineness": "Feinheit (‰)",
+        "headline": "Materialzusammensetzung",
+        "material": "Material",
+        "portion": "Anteil (%)"
       },
       "specs": {
         "devaluationDate": "Entwertungsdatum",
