@@ -1,6 +1,8 @@
 import { join } from 'node:path';
 import express, { static as serveStatic } from 'express';
 
+import { i18n } from './middlewares/i18n';
+
 
 // express app
 const cwd = process.cwd();
@@ -13,6 +15,7 @@ app.set( 'view engine', 'pug' );
 // middleware
 app.use( express.json() );
 app.use( express.urlencoded( { extended: true } ) );
+app.use( i18n );
 
 // serve static files
 app.use( '/fonts', serveStatic( join( cwd, 'public/fonts' ) ) );
