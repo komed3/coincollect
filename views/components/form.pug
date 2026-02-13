@@ -1,5 +1,13 @@
-mixin select( name, keys, val, req = false )
-  select( name= name, required= req )
-    option( value= "" )= t( 'editor.select' )
-    each k in keys
-      option( value= k, selected= ( k === val ) )= t( '_.' + name + '.' + k )
+mixin text( name, label, val, req = false, classes = '' )
+  div.cc-form--field( class= classes )
+    label( for= name )= label + ( req ? ' *' : '' )
+    input( type= "text", name= name, value= value, required= req )
+
+mixin select( name, label, keys, val, req = false, classes = '' )
+  div.cc-form--field( class= classes )
+    label( for= name )= label + ( req ? ' *' : '' )
+    select( name= name, required= req )
+      option( value= "" )= t( 'editor.select' )
+      option( disabled ) ──────────
+      each k in keys
+        option( value= k, selected= ( k === val ) )= t( '_.' + name + '.' + k )

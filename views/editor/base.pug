@@ -13,9 +13,8 @@ block main
     form.cc-editor--form.cc-box( autocomplete= "on" )
       h3.cc-box--hl= t( 'editor.base.info.headline' )
       div.cc-form--row
-        div.cc-form--field
-          label( for= "name" )= t( 'editor.base.info.name' ) + '*'
-          input( type= "text", name= "name", required )
-        div.cc-form--field
-          label( for= "type" )= t( 'editor.base.info.type' ) + '*'
-          +select( 'type', [] )
+        +text( 'name', t( 'editor.base.info.name' ), undefined, true, 'x2' )
+        +select( 'type', t( 'editor.base.info.type' ), keys.type, undefined, true )
+      div.cc-form--row
+        +text( 'series', t( 'editor.base.info.series' ) )
+        +text( 'country', t( 'editor.base.info.country' ) )

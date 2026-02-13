@@ -6,7 +6,20 @@
       "settings": "Einstellungen",
       "stats": "Statistik"
     },
-    "title": "{{title}} — CoinCollection"
+    "title": "{{title}} — CoinCollection",
+    "type": {
+      "banknote": "Banknote",
+      "bullion": "Anlagemünze",
+      "circulation": "Kursmünze",
+      "commemorative": "Gedenkmünze",
+      "ingot": "Barren",
+      "medal": "Medaille",
+      "other": "Andere",
+      "pattern": "Probemünze",
+      "special": "Sonderumlaufmünze",
+      "stamp": "Briefmarke",
+      "temporary": "Notmünze"
+    }
   },
   "dashboard": {
     "title": "Meine Münzsammlung"
@@ -14,8 +27,11 @@
   "editor": {
     "base": {
       "info": {
+        "country": "Land/Region",
         "headline": "Grundinformationen",
-        "name": "Münzbezeichnung"
+        "name": "Münzbezeichnung/Anlass",
+        "series": "Serie",
+        "type": "Münztyp"
       },
       "title": "Münzbasis bearbeiten"
     },
@@ -25,6 +41,7 @@
     "nav": {
       "base": "Münzbasis",
       "coin": "Einzelmünze"
-    }
+    },
+    "select": "Wählen"
   }
 }
