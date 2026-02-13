@@ -244,6 +244,10 @@ export class DatabaseService {
             if ( raw.acquisition.notes ) coin.acquisition.notes = this.str( raw.acquisition.notes );
         }
 
+        if ( raw.value?.length ) coin.value = raw.value.filter( Boolean ).map( v => ( {
+            date: this.date( v.date ), price: this.num( v.price )
+        } ) ).sort( ( a, b ) => new Date( b.date ).getTime() - new Date( a.date ).getTime() );
+
         return coin;
     }
 
