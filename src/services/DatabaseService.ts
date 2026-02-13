@@ -196,6 +196,10 @@ export class DatabaseService {
             ];
         }
 
+        if ( raw.identifiers?.length ) coin.identifiers = raw.identifiers.filter( Boolean ).map(
+            i => ( { catalog: this.str( i.catalog ), id: this.str( i.id ) } )
+        );
+
         return coin;
     }
 
