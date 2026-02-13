@@ -1,0 +1,15 @@
+append styles
+  link( rel= "stylesheet", href= "/css/header.css" )
+
+header#header.cc-header
+  div.cc-header--inner.cc-content--wide
+    h1.cc-header--title
+      a( href= "/" )
+        span.coin Coin
+        span.collect Collect
+    nav.cc-header--nav
+      a( href= "/" )= t( '_.nav.dashboard' )
+      a( href= "/add/base" )= t( '_.nav.add_base' )
+      a( href= "/add/coin" )= t( '_.nav.add_coin' )
+      a( href= "/stats" )= t( '_.nav.stats' )
+      a( href= "/settings" )= t( '_.nav.settings' )

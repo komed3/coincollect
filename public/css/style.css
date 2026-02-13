@@ -1,0 +1,38 @@
+@font-face {
+    font-family: 'Inter';
+    src: url( ../fonts/Inter.woff2 ) format( 'woff2' );
+}
+
+@font-face {
+    font-family: 'Inter';
+    font-style: italic;
+    src: url( ../fonts/Inter-Italic.woff2 ) format( 'woff2' );
+}
+
+@font-face {
+    font-family: 'FiraCode';
+    src: url( ../fonts/FiraCode.woff2 ) format( 'woff2' );
+}
+
+:root {
+    --font-sans: 'Inter', sans-serif;
+    --font-mono: 'FiraCode', monospace;
+
+    --text-color: #1a1a1a;
+    --bg-color: #f8f9fa;
+    --accent-main: #0066cc;
+    --accent-secondary: #004999;
+}
+
+*, *::after, *::before {
+    box-sizing: border-box;
+    outline: 0 none;
+}
+
+html, body {
+    margin: 0;
+    font-family: var( --font-sans );
+    color: var( --text-color );
+    background: var( --bg-color );
+    line-height: 1.5;
+}
