@@ -31,6 +31,14 @@ export class DatabaseService {
         return String( v ).trim();
     }
 
+    private num ( v: any, d: number = 2 ) : number {
+        return Number( parseFloat( v ).toFixed( d ) );
+    }
+
+    private date ( v: any ) : string {
+        return new Date( v ).toISOString();
+    }
+
     // init db
 
     public async init () : Promise< void > {
@@ -128,6 +136,14 @@ export class DatabaseService {
 
         [ 'description', 'note', 'country', 'series', 'currency', 'issuer' ].forEach( k => {
             if ( k in raw && ( raw as any )[ k ] ) ( coin as any )[ k ] = this.str( ( raw as any )[ k ] );
+        } );
+
+        [ 'mintStartYear', 'mintEndYear' ].forEach( k => {
+            if ( k in raw && ( raw as any )[ k ] ) ( coin as any )[ k ] = this.num( ( raw as any )[ k ] );
+        } );
+
+        [ 'issueDate', 'devaluationDate' ].forEach( k => {
+            if ( k in raw && ( raw as any )[ k ] ) ( coin as any )[ k ] = this.date( ( raw as any )[ k ] );
         } );
 
         return coin;
