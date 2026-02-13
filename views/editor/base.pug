@@ -8,3 +8,10 @@ block main
     div.cc-editor--nav
       a.current( href= "/add/base" )= t( 'editor.nav.base' )
       a( href= "/add/coin" )= t( 'editor.nav.coin' )
+
+    form.cc-editor--form.cc-box( autocomplete= "on" )
+      h3.cc-box--hl= t( 'editor.base.info.headline' )
+      div.cc-form--row
+        div.cc-form--field
+          label( for= "name" )= t( 'editor.base.info.name' ) + '*'
+          input( type= "text", name= "name", required )

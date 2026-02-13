@@ -34,6 +34,17 @@
     outline: 0 none;
 }
 
+img, input, select, button, .noselect {
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+}
+
+input:focus, select:focus, textarea:focus {
+    outline: 2px solid var( --accent-main );
+}
+
 html, body {
     margin: 0;
     font-family: var( --font-sans );
@@ -62,4 +73,68 @@ a, a:link, a:visited, a:hover, a:focus {
 .cc-main {
     margin: 32px 0;
     min-height: 80dvh;
+}
+
+.cc-box {
+    margin-bottom: 24px;
+    padding: 20px;
+    background: var( --box-bg );
+    border: 1px solid var( --border-color );
+    border-radius: var( --border-radius );
+}
+
+.cc-box--hl {
+    margin: 0 0 16px;
+    text-transform: uppercase;
+    font-size: 12px;
+    font-weight: 600;
+    letter-spacing: 1px;
+    color: var( --text-muted );
+}
+
+.cc-form--row {
+    display: flex;
+    flex-flow: row nowrap;
+    align-items: baseline;
+    gap: 12px 20px;
+    margin-top: 12px;
+}
+
+.cc-form--field {
+    flex: 1 0 0;
+    display: flex;
+    flex-flow: column wrap;
+    gap: 6px;
+}
+
+.cc-form--field.x2 {
+    flex: 2 0 0;
+}
+
+.cc-form--field label {
+    font-size: 14px;
+    font-weight: 500;
+}
+
+.cc-form--field input,
+.cc-form--field textarea,
+.cc-form--field select {
+    min-width: 0;
+    width: 100%;
+    padding: 12px;
+    font-family: inherit;
+    font-size: 15px;
+    color: var( --text-color );
+    background: #fff;
+    border: 1px solid var( --border-color );
+    border-radius: var( --border-radius );
+}
+
+.cc-form--field textarea {
+    height: 120px;
+    resize: none;
+}
+
+.cc-form--field select {
+    cursor: pointer;
 }

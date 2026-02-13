@@ -13,6 +13,10 @@
   },
   "editor": {
     "base": {
+      "info": {
+        "headline": "Grundinformationen",
+        "name": "Münzbezeichnung"
+      },
       "title": "Münzbasis bearbeiten"
     },
     "coin": {
