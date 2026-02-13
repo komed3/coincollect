@@ -1,6 +1,5 @@
 import { join } from 'node:path';
-
-import express from 'express';
+import express, { static as serveStatic } from 'express';
 
 
 // express app
@@ -14,6 +13,13 @@ app.set( 'view engine', 'pug' );
 // middleware
 app.use( express.json() );
 app.use( express.urlencoded( { extended: true } ) );
+
+// serve static files
+app.use( '/fonts', serveStatic( join( cwd, 'public/fonts' ) ) );
+app.use( '/js', serveStatic( join( cwd, 'public/js' ) ) );
+app.use( '/css', serveStatic( join( cwd, 'public/css' ) ) );
+app.use( '/images', serveStatic( join( cwd, 'public/images' ) ) );
+app.use( '/uploads', serveStatic( join( cwd, 'uploads' ) ) );
 
 // listen ...
 app.listen( 3001 );
