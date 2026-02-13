@@ -122,7 +122,9 @@
         "id": "Katalognummer"
       },
       "images": {
-        "headline": "Abbildungen"
+        "headline": "Abbildungen",
+        "obverse": "Avers (Vorderseite)",
+        "reverse": "Revers (Rückseite)"
       },
       "info": {
         "country": "Land / Region",
@@ -185,6 +187,7 @@
         "price": "Wert"
       }
     },
+    "delete": "Löschen",
     "nav": {
       "base": "Münzbasis",
       "coin": "Einzelmünze"

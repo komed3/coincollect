@@ -48,3 +48,11 @@ mixin select( name, label, keys, val, req = false, classes = '' )
       each k in keys
         - let n = name.split( '__' )[ 0 ]
         option( value= k, selected= ( k === val ) )= t( '_.' + n + '.' + k )
+
+mixin file( name, label, val, req = false, classes = '' )
+  div.cc-form--field.cc-editor--image( id= name )
+    input( type= 'file', name= name, id= '__' + name )
+    label( for= '__' + name )
+      i.fa.fa-upload
+      span= label
+    button( title= t( 'editor.delete' ) ): i.fa.fa-trash-o
