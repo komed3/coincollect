@@ -255,7 +255,7 @@ export class DatabaseService {
 
     // coin base
 
-    public getCoinBaseById ( id: string ) : CoinBase | undefined {
+    public getCoinBase ( id: string ) : CoinBase | undefined {
         return this.db.data.collection.coins.find( c => c.id === id );
     }
 
@@ -275,7 +275,7 @@ export class DatabaseService {
     }
 
     public async setCoinBase ( id: string, raw: CoinBaseRaw ) : Promise< CoinBase > {
-        const coin = this.getCoinBaseById( id );
+        const coin = this.getCoinBase( id );
         if ( ! coin ) throw new Error( `Base coin ${ id } not found` );
 
         const updated = {
@@ -292,7 +292,7 @@ export class DatabaseService {
     }
 
     public async updateCoinBase ( id: string, raw: CoinBaseRaw ) : Promise< CoinBase > {
-        const coin = this.getCoinBaseById( id );
+        const coin = this.getCoinBase( id );
         if ( ! coin ) throw new Error( `Base coin ${ id } not found` );
 
         const updated = this.validateCoinBase( { ...coin, ...raw } );
@@ -300,6 +300,16 @@ export class DatabaseService {
         await this.save();
 
         return coin;
+    }
+
+    public async deleteCoinBase ( id: string ) : Promise< void > {
+        const index = this.db.data.collection.coins.findIndex( c => c.id === id );
+        if ( index === -1 ) throw new Error( `Base coin ${ id } not found` );
+
+        this.db.data.collection.items = this.db.data.collection.items.filter( i => i.baseId !== id );
+        this.db.data.collection.coins.splice( index, 1 );
+
+        await this.save();
     }
 
 }
