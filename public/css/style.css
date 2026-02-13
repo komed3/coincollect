@@ -130,11 +130,16 @@ a, a:link, a:visited, a:hover, a:focus {
     border-radius: var( --border-radius );
 }
 
-.cc-form--field textarea {
-    height: 120px;
-    resize: none;
+.cc-form--field input,
+.cc-form--field select {
+    height: 48px;
 }
 
 .cc-form--field select {
     cursor: pointer;
+}
+
+.cc-form--field textarea {
+    height: 120px;
+    resize: none;
 }
