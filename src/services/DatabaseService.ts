@@ -346,4 +346,32 @@ export class DatabaseService {
         return coin;
     }
 
+    public async setSingleCoin ( id: string, raw: SingleCoinRaw ) : Promise< SingleCoin > {
+        const coin = this.getSingleCoin( id );
+        if ( ! coin ) throw new Error( `Single coin ${ id } not found` );
+
+        const updated: SingleCoin = {
+            ...this.validateSingleCoin( raw ),
+            id: coin.id,
+            createdAt: coin.createdAt,
+            updatedAt: this.now()
+        } as SingleCoin;
+
+        this.db.data.collection.items = this.db.data.collection.items.map( c => updated.id === c.id ? updated : c );
+        await this.save();
+
+        return coin;
+    }
+
+    public async updateSingleCoin ( id: string, raw: SingleCoinRaw ) : Promise< SingleCoin > {
+        const coin = this.getSingleCoin( id );
+        if ( ! coin ) throw new Error( `Single coin ${ id } not found` );
+
+        const updated = this.validateSingleCoin( { ...coin, ...raw } );
+        Object.assign( coin, updated, { updatedAt: this.now() } );
+        await this.save();
+
+        return coin;
+    }
+
 }
