@@ -4,7 +4,10 @@ import { join } from 'node:path';
 import { Low } from 'lowdb';
 import { JSONFile } from 'lowdb/node';
 
-import type { CoinBase, CoinMaterial, CoinShape, CoinStats, CoinType, Database, SingleCoin } from '../types';
+import type {
+    CoinBase, CoinGrade, CoinMaterial, CoinShape, CoinStats, CoinStatus,
+    CoinType, Database, SingleCoin
+} from '../types';
 
 
 const DATA_DIR = join( process.cwd(), 'data' );
@@ -216,6 +219,20 @@ export class DatabaseService {
             certified: this.bool( raw.certified ?? false ),
             amount: this.num( raw.amount ?? 1, 0 )
         };
+
+        if ( raw.status ) coin.status = coin.status as CoinStatus;
+        else coin.status = 'owned' as CoinStatus;
+
+        if ( raw.grade ) coin.grade = coin.grade as CoinGrade;
+        else coin.grade = 'unc' as CoinGrade;
+
+        [ 'note', 'mintMark' ].forEach( k => {
+            if ( k in raw && ( raw as any )[ k ] ) ( coin as any )[ k ] = this.str( ( raw as any )[ k ] );
+        } );
+
+        [ 'mintYear', 'mintage' ].forEach( k => {
+            if ( k in raw && ( raw as any )[ k ] ) ( coin as any )[ k ] = this.num( ( raw as any )[ k ], 0 );
+        } );
 
         return coin;
     }
