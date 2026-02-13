@@ -2,6 +2,7 @@ import { join } from 'node:path';
 import express, { static as serveStatic } from 'express';
 
 import { i18n } from './middlewares/i18n';
+import { routes } from './routes';
 
 
 // express app
@@ -23,6 +24,9 @@ app.use( '/js', serveStatic( join( cwd, 'public/js' ) ) );
 app.use( '/css', serveStatic( join( cwd, 'public/css' ) ) );
 app.use( '/images', serveStatic( join( cwd, 'public/images' ) ) );
 app.use( '/uploads', serveStatic( join( cwd, 'uploads' ) ) );
+
+// mount routes
+app.use( '/', routes );
 
 // listen ...
 app.listen( 3001 );
