@@ -2,6 +2,7 @@ import { join } from 'node:path';
 import express, { type Response, static as serveStatic } from 'express';
 
 import { i18n } from './middlewares/i18n';
+import { api } from './api';
 import { routes } from './routes';
 
 
@@ -26,6 +27,7 @@ app.use( '/images', serveStatic( join( cwd, 'public/images' ) ) );
 app.use( '/uploads', serveStatic( join( cwd, 'uploads' ) ) );
 
 // mount routes
+app.use( '/api', api );
 app.use( '/', routes );
 
 // handle unknown paths
