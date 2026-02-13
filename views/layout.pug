@@ -1,0 +1,26 @@
+doctype html
+html( lang= lang, currency= currency )
+  head
+    meta( charset= "UTF-8" )
+    meta( name= "viewport", content= "width=device-width, initial-scale=1.0" )
+    link( rel= "icon" href= "/images/favicon.ico" sizes= "128x128" type= "image/x-icon" )
+    title= t( '_.title', { title } )
+
+    block styles
+      link( rel= "stylesheet", href= "https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" )
+
+    block scripts
+      script.
+        const I18N = !{ JSON.stringify( translations ) };
+        const LANG = "!{ lang }";
+        const CURRENCY = "!{ currency }";
+
+  body#top.cc
+    block prebody
+    include header
+
+    main#main.cc-main
+      block main
+
+    include footer
+    block postbody
