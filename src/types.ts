@@ -60,7 +60,7 @@ export interface Meta {
 export interface CoinBase extends Meta {
     name: string;
     description?: string;
-    note?: string;
+    notes?: string;
 
     type: CoinType;
     country?: string;
@@ -116,7 +116,7 @@ export interface SingleCoin extends Meta {
     status: CoinStatus;
     certified: boolean;
     amount: number;
-    note?: string;
+    notes?: string;
 
     grade: CoinGrade;
     acquisition: {

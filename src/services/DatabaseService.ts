@@ -5,7 +5,7 @@ import { Low } from 'lowdb';
 import { JSONFile } from 'lowdb/node';
 
 import type {
-    CoinBase, CoinGrade, CoinMaterial, CoinShape, CoinStats, CoinStatus,
+    Acquisition, CoinBase, CoinGrade, CoinMaterial, CoinShape, CoinStats, CoinStatus,
     CoinType, Database, SingleCoin
 } from '../types';
 
@@ -146,7 +146,7 @@ export class DatabaseService {
         if ( raw.type ) coin.type = coin.type as CoinType;
         else coin.type = 'other' as CoinType;
 
-        [ 'description', 'note', 'country', 'series', 'currency', 'issuer' ].forEach( k => {
+        [ 'description', 'notes', 'country', 'series', 'currency', 'issuer' ].forEach( k => {
             if ( k in raw && ( raw as any )[ k ] ) ( coin as any )[ k ] = this.str( ( raw as any )[ k ] );
         } );
 
@@ -226,13 +226,23 @@ export class DatabaseService {
         if ( raw.grade ) coin.grade = coin.grade as CoinGrade;
         else coin.grade = 'unc' as CoinGrade;
 
-        [ 'note', 'mintMark' ].forEach( k => {
+        [ 'notes', 'mintMark' ].forEach( k => {
             if ( k in raw && ( raw as any )[ k ] ) ( coin as any )[ k ] = this.str( ( raw as any )[ k ] );
         } );
 
         [ 'mintYear', 'mintage' ].forEach( k => {
             if ( k in raw && ( raw as any )[ k ] ) ( coin as any )[ k ] = this.num( ( raw as any )[ k ], 0 );
         } );
+
+        if ( raw.acquisition?.method && raw.acquisition?.date ) {
+            coin.acquisition = {
+                method: raw.acquisition.method as Acquisition,
+                date: this.date( raw.acquisition.date )
+            };
+
+            if ( raw.acquisition.price ) coin.acquisition.price = this.num( raw.acquisition.price );
+            if ( raw.acquisition.notes ) coin.acquisition.notes = this.str( raw.acquisition.notes );
+        }
 
         return coin;
     }
