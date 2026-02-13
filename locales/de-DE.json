@@ -5,6 +5,10 @@
       "dashboard": "Sammlung",
       "settings": "Einstellungen",
       "stats": "Statistik"
-    }
+    },
+    "title": "{{title}} — CoinCollection"
+  },
+  "dashboard": {
+    "title": "Meine Münzsammlung"
   }
 }
