@@ -4,7 +4,7 @@ import { join } from 'node:path';
 import { Low } from 'lowdb';
 import { JSONFile } from 'lowdb/node';
 
-import type { CoinBase, CoinStats, Database, SingleCoin } from '../types';
+import type { CoinBase, CoinStats, CoinType, Database, SingleCoin } from '../types';
 
 
 const DATA_DIR = join( process.cwd(), 'data' );
@@ -25,6 +25,10 @@ export class DatabaseService {
 
     private now () : string {
         return new Date().toISOString();
+    }
+
+    private str ( v: any ) : string {
+        return String( v ).trim();
     }
 
     // init db
@@ -113,8 +117,20 @@ export class DatabaseService {
 
     // validation
 
-    private validateCoinBase ( coin: Partial< CoinBase > ) : Partial< CoinBase > {
-        return {};
+    private validateCoinBase ( raw: Partial< CoinBase > ) : Partial< CoinBase > {
+        const coin: Partial< CoinBase > = {};
+
+        if ( ! raw.name?.trim().length ) throw new Error( 'Name is required' );
+        else coin.name = this.str( raw.name );
+
+        if ( raw.type ) coin.type = coin.type as CoinType;
+        else coin.type = 'other' as CoinType;
+
+        [ 'description', 'note', 'country', 'series', 'currency', 'issuer' ].forEach( k => {
+            if ( k in raw && ( raw as any )[ k ] ) ( coin as any )[ k ] = this.str( ( raw as any )[ k ] );
+        } );
+
+        return coin;
     }
 
     private validateSingleCoin ( coin: Partial< SingleCoin > ) : Partial< SingleCoin > {
