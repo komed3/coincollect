@@ -1,5 +1,5 @@
 import { join } from 'node:path';
-import express, { static as serveStatic } from 'express';
+import express, { type Response, static as serveStatic } from 'express';
 
 import { i18n } from './middlewares/i18n';
 import { routes } from './routes';
@@ -27,6 +27,9 @@ app.use( '/uploads', serveStatic( join( cwd, 'uploads' ) ) );
 
 // mount routes
 app.use( '/', routes );
+
+// handle unknown paths
+app.get( '/{*splat}', ( _, res: Response ) => res.redirect( '/' ) );
 
 // listen ...
 app.listen( 3001 );
