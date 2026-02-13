@@ -28,9 +28,15 @@
     "base": {
       "info": {
         "country": "Land/Region",
+        "currency": "Münzwährung",
         "headline": "Grundinformationen",
         "name": "Münzbezeichnung/Anlass",
-        "series": "Serie",
+        "nominal": {
+          "unit": "Einheit",
+          "value": "Nominalwert"
+        },
+        "series": "Serie/Münzreihe",
+        "tags": "Schlagworte (getrennt durch Kommata)",
         "type": "Münztyp"
       },
       "title": "Münzbasis bearbeiten"

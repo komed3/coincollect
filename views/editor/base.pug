@@ -16,5 +16,11 @@ block main
         +text( 'name', t( 'editor.base.info.name' ), undefined, true, 'x2' )
         +select( 'type', t( 'editor.base.info.type' ), keys.type, undefined, true )
       div.cc-form--row
-        +text( 'series', t( 'editor.base.info.series' ) )
-        +text( 'country', t( 'editor.base.info.country' ) )
+        +text( 'series', t( 'editor.base.info.series' ), undefined, false, 'x2' )
+        +text( 'country', t( 'editor.base.info.country' ), undefined, false )
+      div.cc-form--row
+        +text( 'currency', t( 'editor.base.info.currency' ), undefined, false, 'x2' )
+        +text( 'nominal.value', t( 'editor.base.info.nominal.value' ), undefined, false )
+        +text( 'nominal.unit', t( 'editor.base.info.nominal.unit' ), undefined, false )
+      div.cc-form--row
+        +text( 'tags', t( 'editor.base.info.tags' ), undefined, false )
