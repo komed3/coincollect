@@ -153,7 +153,7 @@ export class DatabaseService {
             if ( k in raw && ( raw as any )[ k ] ) ( coin as any )[ k ] = this.str( ( raw as any )[ k ] );
         } );
 
-        [ 'tags', 'mintLocations' ].forEach( k => {
+        [ 'tags', 'mintMarks' ].forEach( k => {
             if ( k in raw && ( raw as any )[ k ] ) ( coin as any )[ k ] = this.list( ( raw as any )[ k ] );
         } );
 

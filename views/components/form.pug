@@ -1,12 +1,31 @@
 mixin text( name, label, val, req = false, classes = '' )
   div.cc-form--field( class= classes )
-    label( for= name )= label + ( req ? ' *' : '' )
-    input( type= "text", name= name, value= value, required= req )
+    label( for= '__' + name )= label + ( req ? ' *' : '' )
+    input(
+      type= "text", name= name, value= value,
+      required= req, id= '__' + name
+    )
+
+mixin number( name, label, val, req = false, classes = '', min = 0, max = undefined, step = 0.01 )
+  div.cc-form--field( class= classes )
+    label( for= '__' + name )= label + ( req ? ' *' : '' )
+    input(
+      type= "number", name= name, value= value, min= min, max= max, step= step,
+      required= req, id= '__' + name
+    )
+
+mixin date( name, label, val, req = false, classes = '' )
+  div.cc-form--field( class= classes )
+    label( for= '__' + name )= label + ( req ? ' *' : '' )
+    input(
+      type= "date", name= name, value= value && new Date( value ).toISOString().split( 'T' )[ 0 ],
+      required= req, id= '__' + name
+    )
 
 mixin select( name, label, keys, val, req = false, classes = '' )
   div.cc-form--field( class= classes )
-    label( for= name )= label + ( req ? ' *' : '' )
-    select( name= name, required= req )
+    label( for= '__' + name )= label + ( req ? ' *' : '' )
+    select( name= name, required= req, id= '__' + name )
       option( value= "" )= t( 'editor.select' )
       option( disabled ) ──────────
       each k in keys

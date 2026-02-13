@@ -78,7 +78,7 @@ export interface CoinBase extends Meta {
     devaluationDate?: string;
     mintStartYear?: number;
     mintEndYear?: number;
-    mintLocations?: string[];
+    mintMarks?: string[];
 
     design?: {
         shape?: CoinShape;

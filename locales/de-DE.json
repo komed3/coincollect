@@ -39,6 +39,18 @@
         "tags": "Schlagworte (getrennt durch Kommata)",
         "type": "Münztyp"
       },
+      "specs": {
+        "devaluationDate": "Entwertungsdatum",
+        "diameter": "Durchmesser (mm)",
+        "headline": "Technische Daten",
+        "issueDate": "Ausgabedatum",
+        "issuer": "Emittent",
+        "mintMarks": "Prägestätten (getrennt durch Kommata)",
+        "mintEndYear": "Letzter Jahrgang",
+        "mintStartYear": "Erster Jahrgang",
+        "thickness": "Stärke (mm)",
+        "weight": "Gewicht (g)"
+      },
       "title": "Münzbasis bearbeiten"
     },
     "coin": {

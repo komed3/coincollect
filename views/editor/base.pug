@@ -10,17 +10,33 @@ block main
       a.current( href= "/add/base" )= t( 'editor.nav.base' )
       a( href= "/add/coin" )= t( 'editor.nav.coin' )
 
-    form.cc-editor--form.cc-box( autocomplete= "on" )
-      h3.cc-box--hl= t( 'editor.base.info.headline' )
-      div.cc-form--row
-        +text( 'name', t( 'editor.base.info.name' ), undefined, true, 'x2' )
-        +select( 'type', t( 'editor.base.info.type' ), keys.type, undefined, true )
-      div.cc-form--row
-        +text( 'series', t( 'editor.base.info.series' ), undefined, false, 'x2' )
-        +text( 'country', t( 'editor.base.info.country' ), undefined, false )
-      div.cc-form--row
-        +text( 'currency', t( 'editor.base.info.currency' ), undefined, false, 'x2' )
-        +text( 'nominal.value', t( 'editor.base.info.nominal.value' ), undefined, false )
-        +text( 'nominal.unit', t( 'editor.base.info.nominal.unit' ), undefined, false )
-      div.cc-form--row
-        +text( 'tags', t( 'editor.base.info.tags' ), undefined, false )
+    form.cc-editor--form( autocomplete= "on" )
+      div.cc-box
+        h3.cc-box--hl= t( 'editor.base.info.headline' )
+        div.cc-form--row
+          +text( 'name', t( 'editor.base.info.name' ), undefined, true, 'x2' )
+          +select( 'type', t( 'editor.base.info.type' ), keys.type, undefined, true )
+        div.cc-form--row
+          +text( 'series', t( 'editor.base.info.series' ), undefined, false, 'x2' )
+          +text( 'country', t( 'editor.base.info.country' ), undefined, false )
+        div.cc-form--row
+          +text( 'currency', t( 'editor.base.info.currency' ), undefined, false, 'x2' )
+          +text( 'nominal.value', t( 'editor.base.info.nominal.value' ), undefined, false )
+          +text( 'nominal.unit', t( 'editor.base.info.nominal.unit' ), undefined, false )
+        div.cc-form--row
+          +text( 'tags', t( 'editor.base.info.tags' ), undefined, false )
+
+      div.cc-box
+        h3.cc-box--hl= t( 'editor.base.specs.headline' )
+        div.cc-form--row
+          +number( 'diameter', t( 'editor.base.specs.diameter' ), undefined, false )
+          +number( 'thickness', t( 'editor.base.specs.thickness' ), undefined, false )
+          +number( 'weight', t( 'editor.base.specs.weight' ), undefined, false )
+        div.cc-form--row
+          +text( 'issuer', t( 'editor.base.specs.issuer' ), undefined, false, 'x2' )
+          +date( 'issueDate', t( 'editor.base.specs.issueDate' ), undefined, false )
+          +date( 'devaluationDate', t( 'editor.base.specs.devaluationDate' ), undefined, false )
+        div.cc-form--row
+          +text( 'mintMarks', t( 'editor.base.specs.mintMarks' ), undefined, false, 'x2' )
+          +number( 'mintStartYear', t( 'editor.base.specs.mintStartYear' ), undefined, false, '', 0, 2100, 1 )
+          +number( 'mintEndYear', t( 'editor.base.specs.mintEndYear' ), undefined, false, '', 0, 2100, 1 )
