@@ -316,4 +316,18 @@ export class DatabaseService {
         await this.save();
     }
 
+    // single coin
+
+    public getAllSingleCoins () : SingleCoin[] {
+        return this.db.data.collection.items;
+    }
+
+    public getSingleCoin ( id: string ) : SingleCoin | undefined {
+        return this.db.data.collection.items.find( i => i.id === id );
+    }
+
+    public getSingleCoinsByBase ( baseId: string ) : SingleCoin[] {
+        return this.db.data.collection.items.filter( i => i.baseId === baseId );
+    }
+
 }
