@@ -1,11 +1,12 @@
 import type { Request, Response } from 'express';
-import { CoinType } from '../types';
+import { CoinShape, CoinType } from '../types';
 
 export const baseEditor = async ( req: Request, res: Response ) : Promise< void > => {
     res.render( 'editor/base', {
         title: req.t( 'editor.base.title' ),
         keys: {
-            type: CoinType
+            type: CoinType,
+            shape: CoinShape
         }
     } );
 };

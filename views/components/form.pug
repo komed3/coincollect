@@ -22,6 +22,11 @@ mixin date( name, label, val, req = false, classes = '' )
       required= req, id= '__' + name
     )
 
+mixin textarea( name, label, val, req = false, classes = '' )
+  div.cc-form--field( class= classes )
+    label( for= '__' + name )= label + ( req ? ' *' : '' )
+    textarea( name= name, required= req, id= '__' + name )= val
+
 mixin select( name, label, keys, val, req = false, classes = '' )
   div.cc-form--field( class= classes )
     label( for= '__' + name )= label + ( req ? ' *' : '' )

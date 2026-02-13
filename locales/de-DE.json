@@ -6,6 +6,14 @@
       "settings": "Einstellungen",
       "stats": "Statistik"
     },
+    "shape": {
+      "irregular": "Unregelmäßig",
+      "other": "Andere",
+      "oval": "Oval",
+      "polygonal": "Vielseitig",
+      "round": "Rund",
+      "square": "Quadratisch"
+    },
     "title": "{{title}} — CoinCollection",
     "type": {
       "banknote": "Banknote",
@@ -26,6 +34,14 @@
   },
   "editor": {
     "base": {
+      "design": {
+        "description": "Beschreibung",
+        "edge": "Rand",
+        "headline": "Design",
+        "obverse": "Avers (Vorderseite)",
+        "reverse": "Revers (Rückseite)",
+        "shape": "Mümzform"
+      },
       "info": {
         "country": "Land/Region",
         "currency": "Münzwährung",
@@ -45,8 +61,8 @@
         "headline": "Technische Daten",
         "issueDate": "Ausgabedatum",
         "issuer": "Emittent",
-        "mintMarks": "Prägestätten (getrennt durch Kommata)",
         "mintEndYear": "Letzter Jahrgang",
+        "mintMarks": "Prägestätten (getrennt durch Kommata)",
         "mintStartYear": "Erster Jahrgang",
         "thickness": "Stärke (mm)",
         "weight": "Gewicht (g)"
