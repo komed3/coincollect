@@ -11,7 +11,7 @@ block main
       a( href= "/add/base" )= t( 'editor.nav.base' )
       a.current( href= "/add/coin" )= t( 'editor.nav.coin' )
 
-    form.cc-editor--form( autocomplete= "on" )
+    form.cc-editor--form
       div.cc-box
         h3.cc-box--hl= t( 'editor.coin.info.headline' )
         div.cc-form--row
@@ -26,9 +26,19 @@ block main
         div.cc-form--row
           +select( 'status', t( 'editor.coin.info.status' ), keys.status, undefined, true, 'x2' )
           +select( 'grade', t( 'editor.coin.info.grade' ), keys.grade, undefined, true, 'x2' )
-          +number( 'amount', t( 'editor.coin.info.amount' ), 1, true )
+          +number( 'amount', t( 'editor.coin.info.amount' ), 1, true, '', 1, undefined, 1 )
         div.cc-form--row
           +checkbox( 'certified', t( 'editor.coin.info.certified' ), undefined, false )
+        div.cc-form--row
+          +text( 'mintMark', t( 'editor.coin.info.mintMark' ), undefined, false, 'x2' )
+          +number( 'mintYear', t( 'editor.coin.info.mintYear' ), undefined, false, '', 0, 2100, 1 )
+          +number( 'mintage', t( 'editor.coin.info.mintage' ), undefined, false, '', 0, undefined, 1 )
+
+      div.cc-box
+        h3.cc-box--hl= t( 'editor.coin.acquisition.headline' )
+
+      div.cc-box
+        h3.cc-box--hl= t( 'editor.coin.value.headline' )
 
       div.cc-box
         h3.cc-box--hl= t( 'editor.coin.extra.headline' )

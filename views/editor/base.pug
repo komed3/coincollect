@@ -11,7 +11,7 @@ block main
       a.current( href= "/add/base" )= t( 'editor.nav.base' )
       a( href= "/add/coin" )= t( 'editor.nav.coin' )
 
-    form.cc-editor--form( autocomplete= "on" )
+    form.cc-editor--form( enctype= "multipart/form-data" )
       div.cc-box
         h3.cc-box--hl= t( 'editor.base.info.headline' )
         div.cc-form--row

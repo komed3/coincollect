@@ -158,6 +158,9 @@
         "certified": "Zertifikat vorhanden",
         "grade": "Erhaltungsgrad",
         "headline": "Grundinformationen",
+        "mintage": "Auflage",
+        "mintMark": "Prägestätte",
+        "mintYear": "Prägejahr",
         "status": "Status in Sammlung"
       },
       "title": "Einzelmünze bearbeiten"

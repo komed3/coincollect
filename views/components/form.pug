@@ -2,8 +2,8 @@ mixin text( name, label, val, req = false, classes = '', datalist = [] )
   div.cc-form--field( class= classes )
     label( for= '__' + name )= label + ( req ? ' *' : '' )
     input(
-      type= "text", name= name, value= val,
-      required= req, id= '__' + name,
+      type= 'text', name= name, value= val,
+      required= req, id= '__' + name, autocomplete= name,
       list= datalist.length ? '__' + name + '-list' : undefined
     )
     if datalist.length
@@ -15,22 +15,22 @@ mixin number( name, label, val, req = false, classes = '', min = 0, max = undefi
   div.cc-form--field( class= classes )
     label( for= '__' + name )= label + ( req ? ' *' : '' )
     input(
-      type= "number", name= name, value= val, min= min, max= max, step= step,
-      required= req, id= '__' + name
+      type= 'number', name= name, value= val, min= min, max= max, step= step,
+      required= req, id= '__' + name, autocomplete= 'off'
     )
 
 mixin date( name, label, val, req = false, classes = '' )
   div.cc-form--field( class= classes )
     label( for= '__' + name )= label + ( req ? ' *' : '' )
     input(
-      type= "date", name= name, value= val && new Date( val ).toISOString().split( 'T' )[ 0 ],
-      required= req, id= '__' + name
+      type= 'date', name= name, value= val && new Date( val ).toISOString().split( 'T' )[ 0 ],
+      required= req, id= '__' + name, autocomplete= 'off'
     )
 
 mixin checkbox( name, label, val, req = false, classes = '' )
   div.cc-form--field( class= classes )
     label.cc-form--checkbox
-      input( type= "checkbox", name= name, checked= val, required= req )
+      input( type= 'checkbox', name= name, checked= val, required= req )
       i.fa.fa-check
       span= label
 
@@ -43,7 +43,7 @@ mixin select( name, label, keys, val, req = false, classes = '' )
   div.cc-form--field( class= classes )
     label( for= '__' + name )= label + ( req ? ' *' : '' )
     select( name= name, required= req, id= '__' + name )
-      option( value= "" )= t( 'editor.select' )
+      option( value= '' )= t( 'editor.select' )
       option( disabled ) ──────────
       each k in keys
         - let n = name.split( '__' )[ 0 ]
