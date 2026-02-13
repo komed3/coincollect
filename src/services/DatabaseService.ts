@@ -4,7 +4,7 @@ import { join } from 'node:path';
 import { Low } from 'lowdb';
 import { JSONFile } from 'lowdb/node';
 
-import type { CoinBase, CoinShape, CoinStats, CoinType, Database, SingleCoin } from '../types';
+import type { CoinBase, CoinMaterial, CoinShape, CoinStats, CoinType, Database, SingleCoin } from '../types';
 
 
 const DATA_DIR = join( process.cwd(), 'data' );
@@ -168,6 +168,15 @@ export class DatabaseService {
             if ( raw.design.reverse ) coin.design.reverse = this.str( raw.design.reverse );
             if ( raw.design.edge ) coin.design.edge = this.str( raw.design.edge );
         }
+
+        if ( raw.material?.length ) coin.material = raw.material.filter( Boolean ).map( m => {
+            const material: any = { material: m.material as CoinMaterial };
+
+            if ( m.fineness ) material.fineness = this.num( m.fineness, 1 );
+            if ( m.portion ) material.portion = this.num( m.portion, 2 );
+
+            return material;
+        } );
 
         if ( raw.dimension ) {
             coin.dimension = {};
