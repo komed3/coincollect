@@ -4,7 +4,7 @@ import { join } from 'node:path';
 import { Low } from 'lowdb';
 import { JSONFile } from 'lowdb/node';
 
-import type { CoinStats, Database } from '../types';
+import type { CoinBase, CoinStats, Database, SingleCoin } from '../types';
 
 
 const DATA_DIR = join( process.cwd(), 'data' );
@@ -109,6 +109,16 @@ export class DatabaseService {
         do { id = this.generateId( 10 ) }
         while ( this.db.data.collection.items.some( i => i.id === id ) );
         return id;
+    }
+
+    // validation
+
+    private validateCoinBase ( coin: Partial< CoinBase > ) : Partial< CoinBase > {
+        return {};
+    }
+
+    private validateSingleCoin ( coin: Partial< SingleCoin > ) : Partial< SingleCoin > {
+        return {};
     }
 
 }
