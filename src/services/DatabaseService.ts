@@ -75,6 +75,20 @@ export class DatabaseService {
         };
     }
 
+    // db management
+
+    private async save () : Promise< void > {
+        this.db.data._meta.updatedAt = this.now();
+    }
+
+    public async export () : Promise< Database > {
+        return JSON.parse( JSON.stringify( this.db.data ) );
+    }
+
+    public async getDatabase () : Promise< Database > {
+        return this.db.data;
+    }
+
     // id generator
 
     private generateId ( length: number ) : string {
@@ -86,14 +100,14 @@ export class DatabaseService {
     private generateBaseId () : string {
         let id: string;
         do { id = this.generateId( 8 ) }
-        while ( this.db.data!.collection.coins.some( c => c.id === id ) );
+        while ( this.db.data.collection.coins.some( c => c.id === id ) );
         return id;
     }
 
     private generateSingleId () : string {
         let id: string;
         do { id = this.generateId( 10 ) }
-        while ( this.db.data!.collection.items.some( i => i.id === id ) );
+        while ( this.db.data.collection.items.some( i => i.id === id ) );
         return id;
     }
 
