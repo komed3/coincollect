@@ -2,6 +2,7 @@ extends ../layout/page
 include ../components/form
 
 append styles
+  link( rel= "stylesheet", href= "/css/form.css" )
   link( rel= "stylesheet", href= "/css/editor.css" )
 
 block main
@@ -19,3 +20,14 @@ block main
           +select( 'status', t( 'editor.coin.info.status' ), keys.status, undefined, true, 'x2' )
           +select( 'grade', t( 'editor.coin.info.grade' ), keys.grade, undefined, true, 'x2' )
           +number( 'amount', t( 'editor.coin.info.amount' ), 1, true )
+        div.cc-form--row
+          +checkbox( 'certified', t( 'editor.coin.info.certified' ), undefined, false )
+
+      div.cc-box
+        h3.cc-box--hl= t( 'editor.coin.extra.headline' )
+        div.cc-form--row
+          +textarea( 'notes', t( 'editor.coin.extra.notes' ), undefined, false )
+
+      div.cc-form--actions
+        button.cc-form--submit( type= "submit" )= t( '_.actions.submit' )
+        button.cc-form--abort( type= "reset" )= t( '_.actions.abort' )

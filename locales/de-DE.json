@@ -148,8 +148,13 @@
       "title": "Münzbasis bearbeiten"
     },
     "coin": {
+      "extra": {
+        "headline": "Zusätzliche Informationen",
+        "notes": "Notizen"
+      },
       "info": {
         "amount": "Anzahl",
+        "certified": "Zertifikat vorhanden",
         "grade": "Erhaltungsgrad",
         "headline": "Grundinformationen",
         "status": "Status in Sammlung"

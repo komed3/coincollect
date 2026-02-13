@@ -27,6 +27,13 @@ mixin date( name, label, val, req = false, classes = '' )
       required= req, id= '__' + name
     )
 
+mixin checkbox( name, label, val, req = false, classes = '' )
+  div.cc-form--field( class= classes )
+    label.cc-form--checkbox
+      input( type= "checkbox", name= name, checked= val, required= req )
+      i.fa.fa-check
+      span= label
+
 mixin textarea( name, label, val, req = false, classes = '' )
   div.cc-form--field( class= classes )
     label( for= '__' + name )= label + ( req ? ' *' : '' )

@@ -1,0 +1,114 @@
+.cc-form--row {
+    display: flex;
+    flex-flow: row nowrap;
+    align-items: baseline;
+    gap: 12px 20px;
+    margin-top: 12px;
+}
+
+.cc-form--field {
+    flex: 1 0 0;
+    display: flex;
+    flex-flow: column wrap;
+    gap: 6px;
+}
+
+.cc-form--field.x2 {
+    flex: 2 0 0;
+}
+
+.cc-form--field label {
+    font-size: 14px;
+    font-weight: 500;
+}
+
+.cc-form--field input,
+.cc-form--field textarea,
+.cc-form--field select {
+    min-width: 0;
+    width: 100%;
+    padding: 12px;
+    font-family: inherit;
+    font-size: 15px;
+    color: var( --text-color );
+    background: #fff;
+    border: 1px solid var( --border-color );
+    border-radius: var( --border-radius );
+}
+
+.cc-form--field input,
+.cc-form--field select {
+    height: 48px;
+}
+
+.cc-form--field select {
+    cursor: pointer;
+}
+
+.cc-form--field textarea {
+    height: 120px;
+    resize: none;
+}
+
+.cc-form--checkbox {
+    position: relative;
+    display: flex;
+    flex-flow: row nowrap;
+    align-items: center;
+    gap: 12px;
+    margin-top: 12px;
+    cursor: pointer;
+}
+
+.cc-form--checkbox input {
+    position: absolute;
+    top: 0;
+    right: 0;
+    width: 0;
+    height: 0;
+    opacity: 0;
+}
+
+.cc-form--checkbox i {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 28px;
+    height: 28px;
+    font-size: 16px;
+    color: transparent;
+    border: 1px solid var( --border-color );
+    border-radius: var( --border-radius );
+}
+
+.cc-form--checkbox input:checked + i {
+    color: #fff;
+    background: var( --accent-main );
+    border-color: var( --accent-main );
+}
+
+.cc-form--actions {
+    display: flex;
+    flex-flow: row nowrap;
+    justify-content: flex-end;
+    align-items: center;
+    gap: 12px;
+}
+
+.cc-form--actions button {
+    padding: 14px 18px;
+    font-size: 16px;
+    font-weight: 500;
+    color: #fff;
+    background: var( --accent-main );
+    border: 0;
+    cursor: pointer;
+}
+
+.cc-form--actions button:hover {
+    background: var( --accent-secondary );
+}
+
+.cc-form--abort {
+    filter: grayscale( 1 ) opacity( 0.8 );
+}
