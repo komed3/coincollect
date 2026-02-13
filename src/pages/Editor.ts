@@ -1,5 +1,7 @@
 import type { Request, Response } from 'express';
-import { CoinMaterial, CoinShape, CoinType } from '../types';
+
+import { DatabaseService } from '../services/DatabaseService';
+import { Acquisition, CoinGrade, CoinMaterial, CoinShape, CoinStatus, CoinType } from '../types';
 
 export const baseEditor = async ( req: Request, res: Response ) : Promise< void > => {
     res.render( 'editor/base', {
@@ -13,5 +15,16 @@ export const baseEditor = async ( req: Request, res: Response ) : Promise< void 
 };
 
 export const coinEditor = async ( req: Request, res: Response ) : Promise< void > => {
-    res.render( 'editor/coin', { title: req.t( 'editor.coin.title' ) } );
+    const DB = DatabaseService.getInstance();
+    await DB.init();
+
+    res.render( 'editor/coin', {
+        title: req.t( 'editor.coin.title' ),
+        coinBases: DB.getAllCoinBases(),
+        keys: {
+            status: CoinStatus,
+            grade: CoinGrade,
+            acquisition: Acquisition
+        }
+    } );
 };
