@@ -5,7 +5,7 @@ header#header.cc-header
         span Coin
         b Collect
     nav.cc-header--nav
-      a( href= "/" )= t( '_.nav.dashboard' )
-      a( href= "/stats" )= t( '_.nav.stats' )
-      a( href= "/add/base" )= t( '_.nav.add' )
-      a( href= "/settings" )= t( '_.nav.settings' )
+      a( href= "/", class= ( page == 'dashboard' ? 'current' : '' ) )= t( '_.nav.dashboard' )
+      a( href= "/stats", class= ( page == 'stats' ? 'current' : '' ) )= t( '_.nav.stats' )
+      a( href= "/add/base", class= ( page == 'editor' ? 'current' : '' ) )= t( '_.nav.add' )
+      a( href= "/settings", class= ( page == 'settings' ? 'current' : '' ) )= t( '_.nav.settings' )

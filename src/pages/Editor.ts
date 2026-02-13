@@ -5,6 +5,7 @@ import { Acquisition, CoinGrade, CoinMaterial, CoinShape, CoinStatus, CoinType }
 
 export const baseEditor = async ( req: Request, res: Response ) : Promise< void > => {
     res.render( 'editor/base', {
+        page: 'editor',
         title: req.t( 'editor.base.title' ),
         keys: {
             type: CoinType,
@@ -19,6 +20,7 @@ export const coinEditor = async ( req: Request, res: Response ) : Promise< void 
     await DB.init();
 
     res.render( 'editor/coin', {
+        page: 'editor',
         title: req.t( 'editor.coin.title' ),
         coinBases: DB.getAllCoinBases(),
         keys: {

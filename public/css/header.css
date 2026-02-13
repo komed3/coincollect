@@ -51,3 +51,8 @@
 .cc-header--nav a:hover {
     color: var( --accent-main );
 }
+
+.cc-header--nav a.current {
+    color: #fff;
+    background: var( --accent-main );
+}
