@@ -133,7 +133,7 @@ export class DatabaseService {
     private validateCoinBase ( raw: Partial< CoinBase > ) : Partial< CoinBase > {
         const coin: Partial< CoinBase > = {};
 
-        if ( ! raw.name?.trim().length ) throw new Error( 'Name is required' );
+        if ( ! raw.name?.trim() ) throw new Error( 'Name is required' );
         else coin.name = this.str( raw.name );
 
         if ( raw.type ) coin.type = coin.type as CoinType;
@@ -203,8 +203,13 @@ export class DatabaseService {
         return coin;
     }
 
-    private validateSingleCoin ( coin: Partial< SingleCoin > ) : Partial< SingleCoin > {
-        return {};
+    private validateSingleCoin ( raw: Partial< SingleCoin > ) : Partial< SingleCoin > {
+        if ( ! raw.baseId?.trim() ) throw new Error( 'BaseId is required' );
+        else if ( ! this.db.data.collection.coins.some( c => c.id === raw.baseId ) ) throw new Error( 'BaseId does not exist' );
+
+        const coin: Partial< SingleCoin > = { baseId: this.str( raw.baseId ) };
+
+        return coin;
     }
 
 }
