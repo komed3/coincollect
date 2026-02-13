@@ -1,10 +1,15 @@
-mixin text( name, label, val, req = false, classes = '' )
+mixin text( name, label, val, req = false, classes = '', datalist = [] )
   div.cc-form--field( class= classes )
     label( for= '__' + name )= label + ( req ? ' *' : '' )
     input(
       type= "text", name= name, value= value,
-      required= req, id= '__' + name
+      required= req, id= '__' + name,
+      list= datalist.length ? '__' + name + '-list' : undefined
     )
+    if datalist.length
+      datalist( id= '__' + name + '-list' )
+        each item in datalist
+          option( value= item )= item
 
 mixin number( name, label, val, req = false, classes = '', min = 0, max = undefined, step = 0.01 )
   div.cc-form--field( class= classes )

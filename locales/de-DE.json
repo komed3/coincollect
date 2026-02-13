@@ -52,7 +52,7 @@
           "value": "Nominalwert"
         },
         "series": "Serie/Münzreihe",
-        "tags": "Schlagworte (getrennt durch Kommata)",
+        "tags": "Schlagworte/Themen (getrennt durch Kommata)",
         "type": "Münztyp"
       },
       "specs": {
