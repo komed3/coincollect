@@ -14,6 +14,7 @@ const DATA_DIR = join( process.cwd(), 'data' );
 const DB_PATH = join( DATA_DIR, 'db.json' );
 
 type CoinBaseRaw = Omit< CoinBase, 'id' | 'createdAt' | 'updatedAt' >;
+type SingleCoinRaw = Omit< SingleCoin, 'id' | 'createdAt' | 'updatedAt' >;
 
 export class DatabaseService {
 
@@ -282,7 +283,7 @@ export class DatabaseService {
         const coin = this.getCoinBase( id );
         if ( ! coin ) throw new Error( `Base coin ${ id } not found` );
 
-        const updated = {
+        const updated: CoinBase = {
             ...this.validateCoinBase( raw ),
             id: coin.id,
             createdAt: coin.createdAt,
@@ -328,6 +329,21 @@ export class DatabaseService {
 
     public getSingleCoinsByBase ( baseId: string ) : SingleCoin[] {
         return this.db.data.collection.items.filter( i => i.baseId === baseId );
+    }
+
+    public async addSingleCoin ( raw: SingleCoinRaw ) : Promise< SingleCoin > {
+        const now = this.now();
+        const coin: SingleCoin = {
+            ...this.validateSingleCoin( raw ),
+            id: this.generateSingleId(),
+            createdAt: now,
+            updatedAt: now
+        } as SingleCoin;
+
+        this.db.data.collection.items.push( coin );
+        await this.save();
+
+        return coin;
     }
 
 }
