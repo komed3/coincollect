@@ -255,6 +255,10 @@ export class DatabaseService {
 
     // coin base
 
+    public getAllCoinBases () : CoinBase[] {
+        return this.db.data.collection.coins;
+    }
+
     public getCoinBase ( id: string ) : CoinBase | undefined {
         return this.db.data.collection.coins.find( c => c.id === id );
     }
