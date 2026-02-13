@@ -58,3 +58,8 @@ a, a:link, a:visited, a:hover, a:focus {
     max-width: 1200px;
     padding: 0 1em;
 }
+
+.cc-main {
+    margin: 32px 0;
+    min-height: 80dvh;
+}

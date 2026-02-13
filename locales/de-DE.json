@@ -10,5 +10,17 @@
   },
   "dashboard": {
     "title": "Meine Münzsammlung"
+  },
+  "editor": {
+    "base": {
+      "title": "Münzbasis bearbeiten"
+    },
+    "coin": {
+      "title": "Einzelmünze bearbeiten"
+    },
+    "nav": {
+      "base": "Münzbasis",
+      "coin": "Einzelmünze"
+    }
   }
 }

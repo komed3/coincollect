@@ -1,0 +1,10 @@
+extends ../layout/page
+
+append styles
+  link( rel= "stylesheet", href= "/css/editor.css" )
+
+block main
+  div.cc-editor.cc-content--normal
+    div.cc-editor--nav
+      a( href= "/add/base" )= t( 'editor.nav.base' )
+      a.current( href= "/add/coin" )= t( 'editor.nav.coin' )
