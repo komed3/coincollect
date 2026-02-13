@@ -148,7 +148,7 @@ export class DatabaseService {
         } );
 
         [ 'mintStartYear', 'mintEndYear' ].forEach( k => {
-            if ( k in raw && ( raw as any )[ k ] ) ( coin as any )[ k ] = this.num( ( raw as any )[ k ] );
+            if ( k in raw && ( raw as any )[ k ] ) ( coin as any )[ k ] = this.num( ( raw as any )[ k ], 0 );
         } );
 
         [ 'issueDate', 'devaluationDate' ].forEach( k => {
