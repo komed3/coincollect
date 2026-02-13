@@ -13,6 +13,8 @@ import type {
 const DATA_DIR = join( process.cwd(), 'data' );
 const DB_PATH = join( DATA_DIR, 'db.json' );
 
+type CoinBaseRaw = Omit< CoinBase, 'id' | 'createdAt' | 'updatedAt' >;
+
 export class DatabaseService {
 
     private static instance: DatabaseService;
@@ -253,9 +255,13 @@ export class DatabaseService {
 
     // coin base
 
-    public async addCoinBase ( raw: Omit< CoinBase, 'id' | 'createdAt' | 'updatedAt' > ) : Promise< CoinBase > {
+    public getCoinBaseById ( id: string ) : CoinBase | undefined {
+        return this.db.data.collection.coins.find( c => c.id === id );
+    }
+
+    public async addCoinBase ( raw: CoinBaseRaw ) : Promise< CoinBase > {
         const now = this.now();
-        const coin: CoinBase = {
+        const coin = {
             ...this.validateCoinBase( raw ),
             id: this.generateBaseId(),
             createdAt: now,
@@ -263,6 +269,34 @@ export class DatabaseService {
         } as CoinBase;
 
         this.db.data.collection.coins.push( coin );
+        await this.save();
+
+        return coin;
+    }
+
+    public async setCoinBase ( id: string, raw: CoinBaseRaw ) : Promise< CoinBase > {
+        const coin = this.getCoinBaseById( id );
+        if ( ! coin ) throw new Error( `Base coin ${ id } not found` );
+
+        const updated = {
+            ...this.validateCoinBase( raw ),
+            id: coin.id,
+            createdAt: coin.createdAt,
+            updatedAt: this.now()
+        } as CoinBase;
+
+        this.db.data.collection.coins = this.db.data.collection.coins.map( c => updated.id === c.id ? updated : c );
+        await this.save();
+
+        return coin;
+    }
+
+    public async updateCoinBase ( id: string, raw: CoinBaseRaw ) : Promise< CoinBase > {
+        const coin = this.getCoinBaseById( id );
+        if ( ! coin ) throw new Error( `Base coin ${ id } not found` );
+
+        const updated = this.validateCoinBase( { ...coin, ...raw } );
+        Object.assign( coin, updated, { updatedAt: this.now() } );
         await this.save();
 
         return coin;
