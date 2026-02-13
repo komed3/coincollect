@@ -154,6 +154,7 @@
       },
       "info": {
         "amount": "Anzahl",
+        "baseId": "Münzbasis",
         "certified": "Zertifikat vorhanden",
         "grade": "Erhaltungsgrad",
         "headline": "Grundinformationen",

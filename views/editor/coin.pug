@@ -15,7 +15,14 @@ block main
       div.cc-box
         h3.cc-box--hl= t( 'editor.coin.info.headline' )
         div.cc-form--row
-          // base ID
+          div.cc-form--field
+            label( for= "__baseId" )= t( 'editor.coin.info.baseId' ) + ' *'
+            select( name= "baseId", required= true, id= "__baseId" )
+              option( value= "" )= t( 'editor.select' )
+              option( disabled ) ──────────
+              each base in coinBases
+                option( value= base.id )= base.name + ' (#' + base.id + ')'
+
         div.cc-form--row
           +select( 'status', t( 'editor.coin.info.status' ), keys.status, undefined, true, 'x2' )
           +select( 'grade', t( 'editor.coin.info.grade' ), keys.grade, undefined, true, 'x2' )
