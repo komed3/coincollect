@@ -36,9 +36,19 @@ block main
 
       div.cc-box
         h3.cc-box--hl= t( 'editor.coin.acquisition.headline' )
+        div.cc-form--row
+          +select( 'acquisition', t( 'editor.coin.acquisition.method' ), keys.acquisition, undefined, false, 'x2' )
+          +date( 'acquisitionDate', t( 'editor.coin.acquisition.date' ), undefined, false )
+          +number( 'acquisitionPrice', t( 'editor.coin.acquisition.price' ), undefined, false )
+        div.cc-form--row
+          +textarea( 'acquisitionNotes', t( 'editor.coin.acquisition.notes' ), undefined, false )
 
       div.cc-box
         h3.cc-box--hl= t( 'editor.coin.value.headline' )
+        each i in [ 0, 1, 2, 3, 4, 5, 6, 7, 8, 9 ]
+          div.cc-form--row
+            +date( 'date__' + i, t( 'editor.coin.value.date' ), undefined, false )
+            +number( 'price__' + i, t( 'editor.coin.value.price' ), undefined, false )
 
       div.cc-box
         h3.cc-box--hl= t( 'editor.coin.extra.headline' )

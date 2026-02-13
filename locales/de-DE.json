@@ -148,6 +148,13 @@
       "title": "Münzbasis bearbeiten"
     },
     "coin": {
+      "acquisition": {
+        "date": "Datum",
+        "headline": "Erwerb",
+        "method": "Art des Erwerbs",
+        "notes": "Anmerkungen",
+        "price": "Kaufpreis"
+      },
       "extra": {
         "headline": "Zusätzliche Informationen",
         "notes": "Notizen"
@@ -163,7 +170,12 @@
         "mintYear": "Prägejahr",
         "status": "Status in Sammlung"
       },
-      "title": "Einzelmünze bearbeiten"
+      "title": "Einzelmünze bearbeiten",
+      "value": {
+        "date": "Datum",
+        "headline": "Geschätzter Marktwert",
+        "price": "Wert"
+      }
     },
     "nav": {
       "base": "Münzbasis",
