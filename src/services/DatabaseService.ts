@@ -31,6 +31,11 @@ export class DatabaseService {
         return String( v ).trim();
     }
 
+    private list ( v: any ) : string[] {
+        const arr = Array.isArray( v ) ? v : this.str( v ).split( ',' );
+        return arr.map( this.str.bind( this ) );
+    }
+
     private num ( v: any, d: number = 2 ) : number {
         return Number( parseFloat( v ).toFixed( d ) );
     }
@@ -136,6 +141,10 @@ export class DatabaseService {
 
         [ 'description', 'note', 'country', 'series', 'currency', 'issuer' ].forEach( k => {
             if ( k in raw && ( raw as any )[ k ] ) ( coin as any )[ k ] = this.str( ( raw as any )[ k ] );
+        } );
+
+        [ 'tags', 'mintLocations' ].forEach( k => {
+            if ( k in raw && ( raw as any )[ k ] ) ( coin as any )[ k ] = this.list( ( raw as any )[ k ] );
         } );
 
         [ 'mintStartYear', 'mintEndYear' ].forEach( k => {
