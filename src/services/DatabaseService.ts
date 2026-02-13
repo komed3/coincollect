@@ -27,6 +27,10 @@ export class DatabaseService {
         return new Date().toISOString();
     }
 
+    private bool ( v: any ) : boolean {
+        return Boolean( v );
+    }
+
     private str ( v: any ) : string {
         return String( v ).trim();
     }
@@ -207,7 +211,11 @@ export class DatabaseService {
         if ( ! raw.baseId?.trim() ) throw new Error( 'BaseId is required' );
         else if ( ! this.db.data.collection.coins.some( c => c.id === raw.baseId ) ) throw new Error( 'BaseId does not exist' );
 
-        const coin: Partial< SingleCoin > = { baseId: this.str( raw.baseId ) };
+        const coin: Partial< SingleCoin > = {
+            baseId: this.str( raw.baseId ),
+            certified: this.bool( raw.certified ?? false ),
+            amount: this.num( raw.amount ?? 1, 0 )
+        };
 
         return coin;
     }
