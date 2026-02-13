@@ -4,6 +4,16 @@
       "abort": "Abbrechen",
       "submit": "Speichern"
     },
+    "grade": {
+      "BU": "Unzirkuliert",
+      "F": "Schön",
+      "FDC": "Stempelglanz",
+      "G": "Gut erhalten",
+      "UNC": "Fast unzirkuliert",
+      "VF": "Sehr schön",
+      "VG": "Sehr gut erhalten",
+      "XF": "Vorzüglich"
+    },
     "material": {
       "aluminum": "Aluminium",
       "brass": "Messing",
@@ -56,6 +66,15 @@
       "polygonal": "Vielseitig",
       "round": "Rund",
       "square": "Quadratisch"
+    },
+    "status": {
+      "duplicate": "Duplikat",
+      "missing": "Fehlend",
+      "ordered": "Bestellt",
+      "owned": "Im Besitz",
+      "sale": "Zum Verkauf",
+      "sold": "Verkauft",
+      "wanted": "Gewünscht"
     },
     "title": "{{title}} — CoinCollection",
     "type": {
@@ -129,6 +148,12 @@
       "title": "Münzbasis bearbeiten"
     },
     "coin": {
+      "info": {
+        "amount": "Anzahl",
+        "grade": "Erhaltungsgrad",
+        "headline": "Grundinformationen",
+        "status": "Status in Sammlung"
+      },
       "title": "Einzelmünze bearbeiten"
     },
     "nav": {
