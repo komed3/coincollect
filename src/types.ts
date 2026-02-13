@@ -128,7 +128,7 @@ export interface SingleCoin extends Meta {
 
     value: {
         date: string;
-        price: string;
+        price: number;
     }[];
 
     mintMark?: string;
