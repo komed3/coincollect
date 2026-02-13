@@ -4,7 +4,7 @@ import { join } from 'node:path';
 import { Low } from 'lowdb';
 import { JSONFile } from 'lowdb/node';
 
-import type { CoinBase, CoinStats, CoinType, Database, SingleCoin } from '../types';
+import type { CoinBase, CoinShape, CoinStats, CoinType, Database, SingleCoin } from '../types';
 
 
 const DATA_DIR = join( process.cwd(), 'data' );
@@ -154,6 +154,28 @@ export class DatabaseService {
         [ 'issueDate', 'devaluationDate' ].forEach( k => {
             if ( k in raw && ( raw as any )[ k ] ) ( coin as any )[ k ] = this.date( ( raw as any )[ k ] );
         } );
+
+        if ( raw.nominal?.value ) {
+            coin.nominal = { value: this.str( raw.nominal.value ) };
+            if ( raw.nominal.unit ) coin.nominal.unit = this.str( raw.nominal.unit );
+        }
+
+        if ( raw.design ) {
+            coin.design = {};
+
+            if ( raw.design.shape ) coin.design.shape = raw.design.shape as CoinShape;
+            if ( raw.design.obverse ) coin.design.obverse = this.str( raw.design.obverse );
+            if ( raw.design.reverse ) coin.design.reverse = this.str( raw.design.reverse );
+            if ( raw.design.edge ) coin.design.edge = this.str( raw.design.edge );
+        }
+
+        if ( raw.dimension ) {
+            coin.dimension = {};
+
+            if ( raw.dimension.diameter ) coin.dimension.diameter = this.num( raw.dimension.diameter, 3 );
+            if ( raw.dimension.thickness ) coin.dimension.thickness = this.num( raw.dimension.thickness, 3 );
+            if ( raw.dimension.weight ) coin.dimension.weight = this.num( raw.dimension.weight, 3 );
+        }
 
         return coin;
     }
