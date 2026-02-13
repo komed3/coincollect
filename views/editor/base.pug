@@ -1,4 +1,5 @@
 extends ../layout/page
+include ../components/form
 
 append styles
   link( rel= "stylesheet", href= "/css/editor.css" )
@@ -15,3 +16,6 @@ block main
         div.cc-form--field
           label( for= "name" )= t( 'editor.base.info.name' ) + '*'
           input( type= "text", name= "name", required )
+        div.cc-form--field
+          label( for= "type" )= t( 'editor.base.info.type' ) + '*'
+          +select( 'type', [] )
