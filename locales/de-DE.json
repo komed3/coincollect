@@ -1,5 +1,13 @@
 {
   "_": {
+    "acquisition": {
+      "exchange": "Tausch",
+      "found": "Fund",
+      "gift": "Geschenk",
+      "inheritance": "Erbschaft",
+      "other": "Andere",
+      "purchase": "Kauf"
+    },
     "actions": {
       "abort": "Abbrechen",
       "submit": "Speichern"
