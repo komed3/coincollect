@@ -50,7 +50,7 @@ mixin select( name, label, keys, val, req = false, classes = '' )
         option( value= k, selected= ( k === val ) )= t( '_.' + n + '.' + k )
 
 mixin file( name, label, val, req = false, classes = '' )
-  div.cc-form--field.cc-editor--image( id= name )
+  div.cc-form--field.cc-form--image( id= name )
     input( type= 'file', name= name, id= '__' + name )
     label( for= '__' + name )
       i.fa.fa-upload
