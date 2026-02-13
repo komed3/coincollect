@@ -19,9 +19,13 @@
     --font-mono: 'FiraCode', monospace;
 
     --text-color: #1a1a1a;
-    --bg-color: #f8f9fa;
+    --main-bg: #f8f9fa;
+    --box-bg: #fff;
     --accent-main: #0066cc;
     --accent-secondary: #004999;
+
+    --border-color: #e0e0e0;
+    --border-radius: 3px;
 }
 
 *, *::after, *::before {
@@ -33,6 +37,23 @@ html, body {
     margin: 0;
     font-family: var( --font-sans );
     color: var( --text-color );
-    background: var( --bg-color );
+    background: var( --main-bg );
     line-height: 1.5;
+}
+
+a, a:link, a:visited, a:hover, a:focus {
+    text-decoration: none;
+    color: inherit;
+}
+
+.cc-content--wide {
+    margin: 0 auto;
+    max-width: 1600px;
+    padding: 0 1em;
+}
+
+.cc-content--normal {
+    margin: 0 auto;
+    max-width: 1200px;
+    padding: 0 1em;
 }

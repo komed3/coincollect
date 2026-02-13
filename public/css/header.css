@@ -2,5 +2,7 @@
     position: sticky;
     top: 0;
     width: 100%;
+    background: var( --box-bg );
+    border-bottom: 1px solid var( --border-color );
     z-index: 99;
 }

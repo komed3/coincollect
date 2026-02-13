@@ -1,1 +1,10 @@
-{}
+{
+  "_": {
+    "nav": {
+      "add": "Eintragen",
+      "dashboard": "Sammlung",
+      "settings": "Einstellungen",
+      "stats": "Statistik"
+    }
+  }
+}
