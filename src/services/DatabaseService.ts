@@ -251,4 +251,21 @@ export class DatabaseService {
         return coin;
     }
 
+    // coin base
+
+    public async addCoinBase ( raw: Omit< CoinBase, 'id' | 'createdAt' | 'updatedAt' > ) : Promise< CoinBase > {
+        const now = this.now();
+        const coin: CoinBase = {
+            ...this.validateCoinBase( raw ),
+            id: this.generateBaseId(),
+            createdAt: now,
+            updatedAt: now
+        } as CoinBase;
+
+        this.db.data.collection.coins.push( coin );
+        await this.save();
+
+        return coin;
+    }
+
 }
