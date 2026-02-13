@@ -75,4 +75,26 @@ export class DatabaseService {
         };
     }
 
+    // id generator
+
+    private generateId ( length: number ) : string {
+        let id = '';
+        while ( id.length < length ) id += Math.floor( Math.random() * 10 ).toString();
+        return id;
+    }
+
+    private generateBaseId () : string {
+        let id: string;
+        do { id = this.generateId( 8 ) }
+        while ( this.db.data!.collection.coins.some( c => c.id === id ) );
+        return id;
+    }
+
+    private generateSingleId () : string {
+        let id: string;
+        do { id = this.generateId( 10 ) }
+        while ( this.db.data!.collection.items.some( i => i.id === id ) );
+        return id;
+    }
+
 }
