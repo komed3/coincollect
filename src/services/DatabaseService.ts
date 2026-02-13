@@ -242,9 +242,9 @@ export class DatabaseService {
 
             if ( raw.acquisition.price ) coin.acquisition.price = this.num( raw.acquisition.price );
             if ( raw.acquisition.notes ) coin.acquisition.notes = this.str( raw.acquisition.notes );
-        }
+        } else throw new Error( 'Acquisition is required' );
 
-        if ( raw.value?.length ) coin.value = raw.value.filter( Boolean ).map( v => ( {
+        coin.value = ( raw.value ?? [] ).filter( Boolean ).map( v => ( {
             date: this.date( v.date ), price: this.num( v.price )
         } ) ).sort( ( a, b ) => new Date( b.date ).getTime() - new Date( a.date ).getTime() );
 
