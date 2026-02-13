@@ -313,7 +313,6 @@ export class DatabaseService {
 
         this.db.data.collection.items = this.db.data.collection.items.filter( i => i.baseId !== id );
         this.db.data.collection.coins.splice( index, 1 );
-
         await this.save();
     }
 
@@ -372,6 +371,14 @@ export class DatabaseService {
         await this.save();
 
         return coin;
+    }
+
+    public async deleteSingleCoin ( id: string ) : Promise< void > {
+        const index = this.db.data.collection.items.findIndex( c => c.id === id );
+        if ( index === -1 ) throw new Error( `Single coin ${ id } not found` );
+
+        this.db.data.collection.items.splice( index, 1 );
+        await this.save();
     }
 
 }
