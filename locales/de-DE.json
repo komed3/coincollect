@@ -1,5 +1,9 @@
 {
   "_": {
+    "actions": {
+      "abort": "Abbrechen",
+      "submit": "Speichern"
+    },
     "material": {
       "aluminum": "Aluminium",
       "brass": "Messing",

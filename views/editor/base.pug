@@ -75,3 +75,7 @@ block main
         h3.cc-box--hl= t( 'editor.base.extra.headline' )
         div.cc-form--row
           +textarea( 'notes', t( 'editor.base.extra.notes' ), undefined, false )
+
+      div.cc-form--actions
+        button.cc-form--submit( type= "submit" )= t( '_.actions.submit' )
+        button.cc-form--abort( type= "reset" )= t( '_.actions.abort' )
