@@ -1,4 +1,5 @@
 extends ../layout/page
+include ../components/material
 
 append styles
   link( rel= "stylesheet", href= "/css/coin.css" )
@@ -47,7 +48,12 @@ block main
                 span= t( 'view.coin.info.nominal' )
                 b= base.nominal.value + ' ' + base.nominal.unit
 
-        if base.dimension || ( base.design && base.design.shape )
+        if base.tags && base.tags.length
+          div.cc-coin--tags
+            each tag in base.tags
+              a( href= '/#tag=' + tag )= tag
+
+        if base.dimension || ( base.design && base.design.shape ) || base.material
         div.cc-box.cc-coin--info
           h3.cc-box--hl= t( 'view.coin.specs.headline' )
           ul.cc-list
@@ -67,6 +73,10 @@ block main
               li
                 span= t( 'view.coin.specs.weight' )
                 b= formatter.unit( 'gram', base.dimension.weight )
+            if base.material
+              li.column
+                span= t( 'view.coin.specs.material' )
+                +material( base.material )
 
         if base.description || ( base.design && ( base.design.obverse || base.design.reverse || base.design.edge ) )
           div.cc-box.cc-coin--info
@@ -88,11 +98,6 @@ block main
                 li.column
                   span= t( 'view.coin.design.description' )
                   p= base.description
-
-        if base.tags && base.tags.length
-          div.cc-coin--tags
-            each tag in base.tags
-              a( href= '/#tag=' + tag )= tag
 
       div.cc-coin--aside
         if base.image && base.image.obverse

@@ -46,11 +46,12 @@
     display: flex;
     flex-flow: row wrap;
     gap: 8px;
+    margin: 24px 0;
 }
 
 .cc-coin--tags a {
-    padding: 4px 10px;
-    font-size: 12px;
+    padding: 6px 10px;
+    font-size: 13px;
     font-weight: 500;
     color: #fff;
     background: var( --accent-main );

@@ -149,7 +149,7 @@ button[type="reset"] {
     padding: 0;
 }
 
-.cc-list li {
+.cc-list > li {
     display: flex;
     flex-flow: row nowrap;
     justify-content: space-between;
@@ -158,27 +158,27 @@ button[type="reset"] {
     padding: 12px 0;
 }
 
-.cc-list li.column {
+.cc-list > li.column {
     flex-direction: column;
     justify-content: flex-start;
-    align-items: flex-start;
+    align-items: stretch;
     gap: 6px;
 }
 
-.cc-list li:not( :last-child ) {
+.cc-list > li:not( :last-child ) {
     border-bottom: 1px dashed var( --border-color );
 }
 
-.cc-list li span {
+.cc-list > li > span {
     font-size: 13px;
     font-weight: 300;
 }
 
-.cc-list li b {
+.cc-list > li > b {
     font-weight: 500;
 }
 
-.cc-list li p {
+.cc-list > li > p {
     margin: 0;
     font-weight: 300;
 }
