@@ -4,6 +4,7 @@ const $  = ( s, el = document ) => el.querySelector( s );
 const val = ( v, type, d = undefined ) => {
     if ( ! v || ! v.length || v === '' ) return d;
     switch ( type ) {
+        case 'bool': return Boolean( v );
         case 'string': return String( v ).trim();
         case 'list': return String( v ).split( ',' ).map( t => t.trim() ).filter( Boolean );
         case 'number': return Number( v );
