@@ -62,6 +62,23 @@ document.addEventListener( 'DOMContentLoaded', () => {
 
         const fd = new FormData( form );
 
+        const material = [];
+        for ( let i = 0; fd.has( `material__${i}` ); i++ ) {
+            const m = val( fd.get( `material__${i}` ), 'string' );
+            if ( m ) material.push( {
+                material: m,
+                fineness: val( fd.getAll( `fineness__${i}` ), 'number' ),
+                portion: val( fd.getAll( `portion__${i}` ), 'number' )
+            } );
+        }
+
+        const identifier = [];
+        for ( let i = 0; fd.has( `catalog__${i}` ) && fd.has( `id__${i}` ); i++ ) {
+            const c = val( fd.get( `catalog__${i}` ), 'string' );
+            const n = val( fd.get( `id__${i}` ), 'string' );
+            if ( c && n ) identifier.push( { catalog: c, id: n } );
+        }
+
         const coinData = {
             name: val( fd.get( 'name' ), 'string' ),
             description: val( fd.get( 'description' ), 'string' ),
@@ -87,14 +104,13 @@ document.addEventListener( 'DOMContentLoaded', () => {
                 reverse: val( fd.get( 'reverse' ), 'string' ),
                 edge: val( fd.get( 'edge' ), 'string' )
             },
-            // material
             dimension: {
                 diameter: val( fd.get( 'diameter' ), 'number' ),
                 thickness: val( fd.get( 'thickness' ), 'number' ),
                 weight: val( fd.get( 'weight' ), 'number' )
             },
-            // images
-            // identifiers
+            material,
+            identifier
         };
     } );
 
