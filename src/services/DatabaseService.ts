@@ -176,7 +176,7 @@ export class DatabaseService {
         if ( ! raw.name?.trim() ) throw new Error( 'Name is required' );
         else coin.name = this.str( raw.name );
 
-        if ( raw.type ) coin.type = coin.type as CoinType;
+        if ( raw.type ) coin.type = raw.type as CoinType;
         else coin.type = 'other' as CoinType;
 
         [ 'description', 'notes', 'country', 'series', 'currency', 'issuer' ].forEach( k => {
