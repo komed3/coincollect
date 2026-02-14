@@ -50,6 +50,18 @@ block main
         div.cc-box.cc-coin--info
           h3.cc-box--hl= t( 'view.coin.specs.headline' )
           ul.cc-list
+            if base.dimension && base.dimension.diameter
+              li
+                span= t( 'view.coin.specs.diameter' )
+                b= formatter.unit( 'millimeter', base.dimension.diameter )
+            if base.dimension && base.dimension.thickness
+              li
+                span= t( 'view.coin.specs.thickness' )
+                b= formatter.unit( 'millimeter', base.dimension.thickness )
+            if base.dimension && base.dimension.weight
+              li
+                span= t( 'view.coin.specs.weight' )
+                b= formatter.unit( 'gram', base.dimension.weight )
 
         if base.design && ( base.design.obverse || base.design.reverse || base.design.edge )
           div.cc-box.cc-coin--info

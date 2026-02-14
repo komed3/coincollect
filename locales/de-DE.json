@@ -225,6 +225,12 @@
         "status": "Status in Sammlung",
         "type": "Münztyp"
       },
+      "specs": {
+        "diameter": "Durchmesser (mm)",
+        "headline": "Technische Daten",
+        "thickness": "Stärke (mm)",
+        "weight": "Gewicht (g)"
+      },
       "title": "{{name}}"
     }
   }
