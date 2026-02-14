@@ -33,25 +33,25 @@ export class DatabaseService {
         return new Date().toISOString();
     }
 
-    private bool ( v: any ) : boolean {
-        return Boolean( v );
+    private bool ( value: any ) : boolean {
+        return Boolean( value );
     }
 
-    private str ( v: any ) : string {
-        return String( v ).trim();
+    private str ( value: any ) : string {
+        return String( value ).trim();
     }
 
-    private list ( v: any ) : string[] {
-        const arr = Array.isArray( v ) ? v : this.str( v ).split( ',' );
+    private list ( value: any ) : string[] {
+        const arr = Array.isArray( value ) ? value : this.str( value ).split( ',' );
         return arr.map( this.str.bind( this ) );
     }
 
-    private num ( v: any, d: number = 2 ) : number {
-        return Number( parseFloat( v ).toFixed( d ) );
+    private num ( value: any, digits: number = 2 ) : number {
+        return Number( parseFloat( value ).toFixed( digits ) );
     }
 
-    private date ( v: any ) : string {
-        return new Date( v ).toISOString();
+    private date ( value: any ) : string {
+        return new Date( value ).toISOString();
     }
 
     // init db
