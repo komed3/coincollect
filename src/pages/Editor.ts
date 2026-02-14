@@ -19,9 +19,11 @@ export const baseEditor = async ( req: Request, res: Response ) : Promise< void 
 };
 
 export const coinEditor = async ( req: Request, res: Response ) : Promise< void > => {
+    const coin = req.params.id ? DB.getSingleCoin( req.params.id as string ) : undefined;
     res.render( 'editor/coin', {
         page: 'editor',
         title: req.t( 'editor.coin.title' ),
+        mode: coin ? 'edit' : 'add', coin,
         coinBases: DB.getAllCoinBases(),
         suggestions: DB.getAllSuggestions(),
         keys: {

@@ -12,6 +12,8 @@ block main
       a.current( href= "/add/coin" )= t( 'editor.nav.coin' )
 
     form.cc-editor--form
+      input( type= "hidden", name= "mode", value= mode )
+      input( type= "hidden", name= "id", value= coin && coin.id )
       div.cc-box
         h3.cc-box--hl= t( 'editor.coin.info.headline' )
         div.cc-form--row
@@ -28,36 +30,37 @@ block main
                 option( value= base.id )= label
 
         div.cc-form--row
-          +select( 'status', t( 'editor.coin.info.status' ), keys.status, undefined, true, 'x2' )
-          +select( 'grade', t( 'editor.coin.info.grade' ), keys.grade, undefined, true, 'x2' )
-          +number( 'amount', t( 'editor.coin.info.amount' ), 1, true, '', 1, undefined, 1 )
+          +select( 'status', t( 'editor.coin.info.status' ), keys.status, coin && coin.status, true, 'x2' )
+          +select( 'grade', t( 'editor.coin.info.grade' ), keys.grade, coin && coin.grade, true, 'x2' )
+          +number( 'amount', t( 'editor.coin.info.amount' ), 1, true, '', 1, coin && coin.amount || 1 )
         div.cc-form--row
-          +checkbox( 'certified', t( 'editor.coin.info.certified' ), undefined, false )
+          +checkbox( 'certified', t( 'editor.coin.info.certified' ), coin && coin.certified, false )
         div.cc-form--row
-          +text( 'mintMark', t( 'editor.coin.info.mintMark' ), undefined, false, 'x2', suggestions.mark )
-          +number( 'mintYear', t( 'editor.coin.info.mintYear' ), undefined, false, '', 0, 2100, 1 )
-          +number( 'mintage', t( 'editor.coin.info.mintage' ), undefined, false, '', 0, undefined, 1 )
+          +text( 'mintMark', t( 'editor.coin.info.mintMark' ), coin && coin.mintMark, false, 'x2', suggestions.mark )
+          +number( 'mintYear', t( 'editor.coin.info.mintYear' ), coin && coin.mintYear, false, '', 0, 2100, 1 )
+          +number( 'mintage', t( 'editor.coin.info.mintage' ), coin && coin.mintage, false, '', 0, undefined, 1 )
 
       div.cc-box
         h3.cc-box--hl= t( 'editor.coin.acquisition.headline' )
         div.cc-form--row
-          +select( 'acquisition', t( 'editor.coin.acquisition.method' ), keys.acquisition, undefined, false, 'x2' )
-          +date( 'acquisitionDate', t( 'editor.coin.acquisition.date' ), undefined, false )
-          +number( 'acquisitionPrice', t( 'editor.coin.acquisition.price' ), undefined, false )
+          +select( 'acquisition', t( 'editor.coin.acquisition.method' ), keys.acquisition, coin && coin.acquisition && coin.acquisition.method, false, 'x2' )
+          +date( 'acquisitionDate', t( 'editor.coin.acquisition.date' ), coin && coin.acquisition && coin.acquisition.date, false )
+          +number( 'acquisitionPrice', t( 'editor.coin.acquisition.price' ), coin && coin.acquisition && coin.acquisition.price, false )
         div.cc-form--row
-          +textarea( 'acquisitionNotes', t( 'editor.coin.acquisition.notes' ), undefined, false )
+          +textarea( 'acquisitionNotes', t( 'editor.coin.acquisition.notes' ), coin && coin.acquisition && coin.acquisition.notes, false )
 
       div.cc-box
         h3.cc-box--hl= t( 'editor.coin.value.headline' )
         each i in [ 0, 1, 2, 3, 4, 5, 6, 7, 8, 9 ]
+          - let value = ( coin && coin.value && coin.value[ i ] ) || {};
           div.cc-form--row
-            +date( 'date__' + i, t( 'editor.coin.value.date' ), undefined, false )
-            +number( 'price__' + i, t( 'editor.coin.value.price' ), undefined, false )
+            +date( 'date__' + i, t( 'editor.coin.value.date' ), value.date, false )
+            +number( 'price__' + i, t( 'editor.coin.value.price' ), value.price, false )
 
       div.cc-box
         h3.cc-box--hl= t( 'editor.coin.extra.headline' )
         div.cc-form--row
-          +textarea( 'notes', t( 'editor.coin.extra.notes' ), undefined, false )
+          +textarea( 'notes', t( 'editor.coin.extra.notes' ), coin && coin.notes, false )
 
       div.cc-form--actions
         button.cc-form--submit( type= "submit" )= t( '_.actions.submit' )
