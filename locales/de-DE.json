@@ -213,8 +213,10 @@
       "info": {
         "country": "Land / Region",
         "currency": "Münzwährung",
+        "grade": "Erhaltungsgrad",
         "headline": "Grundinformationen",
         "nominal": "Nominalwert",
+        "status": "Status in Sammlung",
         "type": "Münztyp"
       },
       "title": "{{name}}"

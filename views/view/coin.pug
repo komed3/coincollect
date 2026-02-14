@@ -21,19 +21,27 @@ block main
             if base.type
               li
                 span= t( 'view.coin.info.type' )
-                b: a( href= '/#type='+  base.type )= t( '_.type.' + base.type )
+                b: a( href= '/#type='+ base.type )= t( '_.type.' + base.type )
+            if coin.status
+              li
+                span= t( 'view.coin.info.status' )
+                b: a( href= '/#status='+ coin.status )= t( '_.status.' + coin.status ) + ' (' + coin.amount + 'x)'
+            if coin.grade
+              li
+                span= t( 'view.coin.info.grade' )
+                b: a( href= '/#grade='+ coin.grade )= t( '_.grade.' + coin.grade )
             if base.series
               li
                 span= t( 'view.coin.info.series' )
-                b: a( href= '/#series='+  base.series )= base.series
+                b: a( href= '/#series='+ base.series )= base.series
             if base.country
               li
                 span= t( 'view.coin.info.country' )
-                b: a( href= '/#country='+  base.country )= base.country
+                b: a( href= '/#country='+ base.country )= base.country
             if base.currency
               li
                 span= t( 'view.coin.info.currency' )
-                b: a( href= '/#currency='+  base.currency )= base.currency
+                b: a( href= '/#currency='+ base.currency )= base.currency
             if base.nominal && base.nominal.value && base.nominal.unit
               li
                 span= t( 'view.coin.info.nominal' )
