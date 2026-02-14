@@ -21,7 +21,7 @@ block main
               option( value= "" )= t( 'editor.select' )
               option( disabled ) ──────────
               each base in coinBases
-                option( value= base.id )= base.name + ' (#' + base.id + ')'
+                option( value= base.id )= [ base.name, base.series, base.currency, base.country ].filter( Boolean ).join( ', ' ) + ' (#' + base.id + ')'
 
         div.cc-form--row
           +select( 'status', t( 'editor.coin.info.status' ), keys.status, undefined, true, 'x2' )
