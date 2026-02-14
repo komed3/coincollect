@@ -230,6 +230,7 @@
       "specs": {
         "diameter": "Durchmesser (mm)",
         "headline": "Technische Daten",
+        "material": "Materialzusammensetzung",
         "thickness": "Stärke (mm)",
         "weight": "Gewicht (g)"
       },
