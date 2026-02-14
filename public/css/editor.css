@@ -22,3 +22,7 @@
     color: var( --accent-main );
     border-bottom-color: var( --accent-main );
 }
+
+.cc-editor--nav .space {
+    flex: 1;
+}

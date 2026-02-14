@@ -192,6 +192,7 @@
     },
     "delete": "Löschen",
     "nav": {
+      "back": "Zurück",
       "base": "Münzbasis",
       "coin": "Einzelmünze"
     },

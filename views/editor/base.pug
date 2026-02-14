@@ -13,6 +13,9 @@ block main
     div.cc-editor--nav
       a.current( href= "/add/base" )= t( 'editor.nav.base' )
       a( href= "/add/coin" )= t( 'editor.nav.coin' )
+      if mode === 'edit' && coin && coin.id
+        span.space
+        a( href= "/base/" + coin.id )= t( 'editor.nav.back' )
 
     form.cc-editor--form( enctype= "multipart/form-data" )
       input( type= "hidden", name= "mode", value= mode )
