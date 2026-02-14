@@ -30,7 +30,7 @@ block main
                   let label = [
                     base.name, t( '_.type.' + base.type ), base.series, base.currency, base.country
                   ].filter( Boolean ).join( ', ' ) + ' (#' + base.id + ')';
-                option( value= base.id )= label
+                option( value= base.id, selected= ( coin && base.id === coin.baseId ) )= label
 
         div.cc-form--row
           +select( 'status', t( 'editor.coin.info.status' ), keys.status, coin && coin.status, true, 'x2' )
