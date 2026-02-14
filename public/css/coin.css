@@ -35,3 +35,32 @@
     color: var( --accent-main );
     border-bottom-color: var( --accent-main );
 }
+
+.cc-coin--content {
+    display: grid;
+    grid-template-columns: 1fr 320px;
+    gap: 48px;
+}
+
+.cc-coin--image {
+    margin: 0 0 32px;
+    padding: 0;
+}
+
+.cc-coin--image img {
+    aspect-ratio: 1 / 1;
+    width: 100%;
+    height: auto;
+    object-fit: cover;
+    object-position: center;
+    background: var( --box-bg );
+    border: 1px solid var( --border-color );
+    border-radius: var( --border-radius );
+    overflow: hidden;
+}
+
+.cc-coin--image figcaption {
+    text-align: right;
+    font-size: 12px;
+    color: var( --text-muted );
+}

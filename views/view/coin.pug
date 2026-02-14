@@ -18,25 +18,37 @@ block main
         div.cc-box.cc-coin--info
           h3.cc-box--hl= t( 'view.coin.info.headline' )
           ul.cc-list
-            if base && base.type
+            if base.type
               li
                 span= t( 'view.coin.info.type' )
                 b: a( href= '/#type='+  base.type )= t( '_.type.' + base.type )
-            if base && base.series
+            if base.series
               li
                 span= t( 'view.coin.info.series' )
                 b: a( href= '/#series='+  base.series )= base.series
-            if base && base.country
+            if base.country
               li
                 span= t( 'view.coin.info.country' )
                 b: a( href= '/#country='+  base.country )= base.country
-            if base && base.currency
+            if base.currency
               li
                 span= t( 'view.coin.info.currency' )
                 b: a( href= '/#currency='+  base.currency )= base.currency
-            if base && base.nominal && base.nominal.value && base.nominal.unit
+            if base.nominal && base.nominal.value && base.nominal.unit
               li
                 span= t( 'view.coin.info.nominal' )
                 b= base.nominal.value + ' ' + base.nominal.unit
 
       div.cc-coin--aside
+        if base.image && base.image.obverse
+          figure.cc-coin--image
+            img( src= '/uploads/' + base.image.obverse, alt= t( 'view.coin.image.obverse' ) )
+            figcaption= t( 'view.coin.image.obverse' )
+        if base.image && base.image.reverse
+          figure.cc-coin--image
+            img( src= '/uploads/' + base.image.reverse, alt= t( 'view.coin.image.reverse' ) )
+            figcaption= t( 'view.coin.image.reverse' )
+        if base.image && base.image.other
+          figure.cc-coin--image
+            img( src= '/uploads/' + base.image.other, alt= t( 'view.coin.image.other' ) )
+            figcaption= t( 'view.coin.image.other' )

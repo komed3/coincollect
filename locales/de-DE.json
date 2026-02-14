@@ -205,6 +205,11 @@
       "view": "Ansicht"
     },
     "coin": {
+      "image": {
+        "obverse": "Avers (Vorderseite)",
+        "other": "Zusätzliche Abbildung",
+        "reverse": "Revers (Rückseite)"
+      },
       "info": {
         "country": "Land / Region",
         "currency": "Münzwährung",
