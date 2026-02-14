@@ -37,7 +37,9 @@ block main
           +select( 'grade', t( 'editor.coin.info.grade' ), keys.grade, coin && coin.grade, true, 'x2' )
           +number( 'amount', t( 'editor.coin.info.amount' ), 1, true, '', 1, coin && coin.amount || 1 )
         div.cc-form--row
-          +checkbox( 'certified', t( 'editor.coin.info.certified' ), coin && coin.certified, false )
+          +checkbox( 'certified', t( 'editor.coin.info.certified' ), coin && coin.certified, false, 'x2' )
+          +text( 'certIssuer', t( 'editor.coin.info.certIssuer' ), coin && coin.certIssuer, false, 'x2', suggestions.certifier )
+          +text( 'certNumber', t( 'editor.coin.info.certNumber' ), coin && coin.certNumber, false )
         div.cc-form--row
           +text( 'mintMark', t( 'editor.coin.info.mintMark' ), coin && coin.mintMark, false, 'x2', suggestions.mark )
           +number( 'mintYear', t( 'editor.coin.info.mintYear' ), coin && coin.mintYear, false, '', 0, 2100, 1 )

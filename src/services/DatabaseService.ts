@@ -92,6 +92,7 @@ export class DatabaseService {
             unit: [],
             issuer: [],
             catalog: [],
+            certifier: [],
             mark: []
         };
     }
@@ -320,6 +321,7 @@ export class DatabaseService {
         } );
 
         this.db.data.collection.items.forEach( i => {
+            if ( i.certIssuer && ! suggestions.certifier.includes( i.certIssuer ) ) suggestions.certifier.push( i.certIssuer );
             if ( i.mintMark && ! suggestions.mark.includes( i.mintMark ) ) suggestions.mark.push( i.mintMark );
         } );
 

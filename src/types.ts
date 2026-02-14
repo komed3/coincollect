@@ -14,7 +14,7 @@ export interface Database {
     stats: CoinStats;
 }
 
-export type SuggestionTypes = 'series' | 'country' | 'currency' | 'unit' | 'issuer' | 'catalog' | 'mark';
+export type SuggestionTypes = 'series' | 'country' | 'currency' | 'unit' | 'issuer' | 'catalog' | 'certifier' | 'mark';
 export type Suggestions = Record< SuggestionTypes, string[] >;
 
 export type CoinValue = Record< string, {
