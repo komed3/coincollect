@@ -69,17 +69,19 @@ block main
       div.cc-box
         h3.cc-box--hl= t( 'editor.base.material.headline' )
         each i in [ 0, 1, 2, 3, 4 ]
+          - let material = ( coin && coin.material && coin.material[ i ] ) || {};
           div.cc-form--row
-            +select( 'material__' + i, t( 'editor.base.material.material' ), keys.material, undefined, false, 'x2' )
-            +number( 'fineness__' + i, t( 'editor.base.material.fineness' ), undefined, false, '', 0, 1000, 0.1 )
-            +number( 'portion__' + i, t( 'editor.base.material.portion' ), undefined, false, '', 0, 100 )
+            +select( 'material__' + i, t( 'editor.base.material.material' ), keys.material, material.material, false, 'x2' )
+            +number( 'fineness__' + i, t( 'editor.base.material.fineness' ), material.fineness, false, '', 0, 1000, 0.1 )
+            +number( 'portion__' + i, t( 'editor.base.material.portion' ), material.portion, false, '', 0, 100 )
 
       div.cc-box
         h3.cc-box--hl= t( 'editor.base.identifier.headline' )
         each i in [ 0, 1, 2, 3, 4 ]
+          - let identifier = ( coin && coin.identifier && coin.identifier[ i ] ) || {};
           div.cc-form--row
-            +text( 'catalog__' + i, t( 'editor.base.identifier.catalog' ), undefined, false, 'x2' )
-            +text( 'id__' + i, t( 'editor.base.identifier.id' ), undefined, false )
+            +text( 'catalog__' + i, t( 'editor.base.identifier.catalog' ), identifier.catalog, false, 'x2' )
+            +text( 'id__' + i, t( 'editor.base.identifier.id' ), identifier.id, false )
 
       div.cc-box
         h3.cc-box--hl= t( 'editor.base.extra.headline' )
