@@ -142,3 +142,29 @@ button[type="reset"] {
     letter-spacing: 1px;
     color: var( --text-muted );
 }
+
+.cc-list {
+    display: grid;
+    grid-template-columns: repeat( var( --c, 1 ), 1fr );
+    gap: 18px 48px;
+}
+
+.cc-list.c2 { --c: 2; }
+.cc-list.c3 { --c: 3; }
+.cc-list.c4 { --c: 4; }
+
+.cc-list--item.x2 {
+    grid-column: span 2;
+}
+
+.cc-list--item span {
+    display: block;
+    font-size: 13px;
+    font-weight: 500;
+    color: var( --text-muted );
+}
+
+.cc-list--item b {
+    display: block;
+    font-weight: 500;
+}

@@ -205,6 +205,13 @@
       "view": "Ansicht"
     },
     "coin": {
+      "info": {
+        "country": "Land / Region",
+        "currency": "Münzwährung",
+        "headline": "Grundinformationen",
+        "nominal": "Nominalwert",
+        "type": "Münztyp"
+      },
       "title": "{{name}}"
     }
   }
