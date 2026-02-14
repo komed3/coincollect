@@ -61,7 +61,7 @@ document.addEventListener( 'DOMContentLoaded', () => {
         e.preventDefault();
 
         const fd = new FormData( form );
-        const id = undefined;
+        const id = val( fd.get( 'id' ), 'string' );
 
         const material = [];
         for ( let i = 0; fd.has( `material__${i}` ); i++ ) {
@@ -81,6 +81,7 @@ document.addEventListener( 'DOMContentLoaded', () => {
         }
 
         const coinData = {
+            id,
             name: val( fd.get( 'name' ), 'string' ),
             description: val( fd.get( 'description' ), 'string' ),
             notes: val( fd.get( 'notes' ), 'string' ),
@@ -111,7 +112,12 @@ document.addEventListener( 'DOMContentLoaded', () => {
                 weight: val( fd.get( 'weight' ), 'number' )
             },
             material,
-            identifier
+            identifier,
+            images: {
+                obverse: val( $( '#obverseImage' ).getAttribute( 'image' ), 'string' ),
+                reverse: val( $( '#reverseImage' ).getAttribute( 'image' ), 'string' ),
+                other: val( $( '#otherImage' ).getAttribute( 'image' ), 'string' )
+            }
         };
 
          try {
