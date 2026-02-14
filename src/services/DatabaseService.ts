@@ -106,6 +106,7 @@ export class DatabaseService {
 
     private async save () : Promise< void > {
         this.db.data._meta.updatedAt = this.now();
+        await this.db.write();
     }
 
     public async export () : Promise< Database > {

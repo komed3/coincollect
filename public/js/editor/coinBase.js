@@ -61,6 +61,7 @@ document.addEventListener( 'DOMContentLoaded', () => {
         e.preventDefault();
 
         const fd = new FormData( form );
+        const id = undefined;
 
         const material = [];
         for ( let i = 0; fd.has( `material__${i}` ); i++ ) {
@@ -112,6 +113,25 @@ document.addEventListener( 'DOMContentLoaded', () => {
             material,
             identifier
         };
+
+         try {
+            const res = await fetch( id ? `/api/base/${id}/set` : `/api/base/add`, {
+                method: id ? 'PUT' : 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify( coinData )
+            } );
+
+            if ( ! res.ok ) {
+                const err = await res.json();
+                throw new Error( err.msg || err.error || 'Save failed' );
+            }
+
+            const saved = await res.json();
+            if ( ! saved?.id ) throw new Error( 'Invalid save response' );
+        } catch ( err ) {
+            console.error( err );
+            alert( err.message || 'Unexpected error' );
+        }
     } );
 
     // reset form
