@@ -78,17 +78,21 @@ export class DatabaseService {
                 coins: [],
                 items: []
             },
-            suggestions: {
-                series: [],
-                country: [],
-                currency: [],
-                unit: [],
-                issuer: [],
-                catalog: [],
-                mark: []
-            },
-            value: {},
-            stats: this.getDefaultStats()
+            suggestions: this.getDefaultSuggestions(),
+            stats: this.getDefaultStats(),
+            value: {}
+        };
+    }
+
+    private getDefaultSuggestions () : Suggestions {
+        return {
+            series: [],
+            country: [],
+            currency: [],
+            unit: [],
+            issuer: [],
+            catalog: [],
+            mark: []
         };
     }
 
@@ -299,6 +303,28 @@ export class DatabaseService {
 
     public getSuggestions ( type: SuggestionTypes ) : string[] {
         return this.db.data.suggestions[ type ];
+    }
+
+    public async generateSuggestions () : Promise< void > {
+        const suggestions = this.getDefaultSuggestions();
+
+        this.db.data.collection.coins.forEach( c => {
+            if ( c.series && ! suggestions.series.includes( c.series ) ) suggestions.series.push( c.series );
+            if ( c.country && ! suggestions.country.includes( c.country ) ) suggestions.country.push( c.country );
+            if ( c.currency && ! suggestions.currency.includes( c.currency ) ) suggestions.currency.push( c.currency );
+            if ( c.nominal?.unit && ! suggestions.unit.includes( c.nominal.unit ) ) suggestions.unit.push( c.nominal.unit );
+            if ( c.issuer && ! suggestions.issuer.includes( c.issuer ) ) suggestions.issuer.push( c.issuer );
+
+            c.identifier?.forEach( i => { if ( i.catalog && ! suggestions.catalog.includes( i.catalog ) ) suggestions.catalog.push( i.catalog ) } );
+            c.mintMarks?.forEach( m => { if ( ! suggestions.mark.includes( m ) ) suggestions.mark.push( m ) } );
+        } );
+
+        this.db.data.collection.items.forEach( i => {
+            if ( i.mintMark && ! suggestions.mark.includes( i.mintMark ) ) suggestions.mark.push( i.mintMark );
+        } );
+
+        this.db.data.suggestions = suggestions;
+        await this.save();
     }
 
     // coin base

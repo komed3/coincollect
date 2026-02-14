@@ -9,6 +9,7 @@ export const baseEditor = async ( req: Request, res: Response ) : Promise< void 
         page: 'editor',
         title: req.t( 'editor.base.title' ),
         mode: coin ? 'edit' : 'add', coin,
+        suggestions: DB.getAllSuggestions(),
         keys: {
             type: CoinType,
             material: CoinMaterial,
@@ -22,6 +23,7 @@ export const coinEditor = async ( req: Request, res: Response ) : Promise< void 
         page: 'editor',
         title: req.t( 'editor.coin.title' ),
         coinBases: DB.getAllCoinBases(),
+        suggestions: DB.getAllSuggestions(),
         keys: {
             status: CoinStatus,
             grade: CoinGrade,
