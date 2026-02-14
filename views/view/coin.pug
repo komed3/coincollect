@@ -1,0 +1,19 @@
+extends ../layout/page
+
+append styles
+  link( rel= "stylesheet", href= "/css/coin.css" )
+
+block main
+  div.cc-coin.cc-content--normal
+    div.cc-coin--header
+      h1.cc-coin--header-title= base.name
+      div.cc-coin--header-actions
+        a.current( href= `/coin/${coin.id}` )= t( 'view.actions.view' )
+        a( href= `/base/${base.id}` )= t( 'view.actions.base' )
+        a( href= `/coin/${coin.id}/edit` )= t( 'view.actions.edit' )
+        a( href= `/coin/${coin.id}/delete` )= t( 'view.actions.delete' )
+
+    div.cc-coin--content
+      dic.cc-coin--main
+
+      div.cc-coin--aside

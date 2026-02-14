@@ -199,10 +199,10 @@
   },
   "view": {
     "actions": {
-      "back": "Zurück",
       "base": "Münzbasis",
       "delete": "Löschen",
-      "edit": "Bearbeiten"
+      "edit": "Bearbeiten",
+      "view": "Ansicht"
     },
     "coin": {
       "title": "{{name}}"

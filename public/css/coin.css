@@ -1,11 +1,24 @@
-.cc-editor--nav {
+.cc-coin--header {
     display: flex;
     flex-flow: row nowrap;
+    justify-content: space-between;
+    align-items: flex-end;
     margin-bottom: 20px;
     border-bottom: 1px solid var( --border-color );
 }
 
-.cc-editor--nav a {
+.cc-coin--header-title {
+    margin: 0 0 12px;
+    font-size: 22px;
+    font-weight: 500;
+}
+
+.cc-coin--header-actions {
+    display: flex;
+    flex-flow: row nowrap;
+}
+
+.cc-coin--header-actions a {
     margin-bottom: -1px;
     padding: 12px 16px;
     font-size: 14px;
@@ -14,11 +27,11 @@
     border-bottom: 2px solid transparent;
 }
 
-.cc-editor--nav a:hover {
+.cc-coin--header-actions a:hover {
     color: var( --text-color );
 }
 
-.cc-editor--nav a.current {
+.cc-coin--header-actions a.current {
     color: var( --accent-main );
     border-bottom-color: var( --accent-main );
 }
