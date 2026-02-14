@@ -38,8 +38,6 @@ document.addEventListener( 'DOMContentLoaded', () => {
             mintage: val( fd.get( 'mintage' ), 'number' )
         };
 
-        console.log(coinData);
-
         try {
             const res = await fetch( id ? `/api/coin/${id}/set` : `/api/coin/add`, {
                 method: id ? 'PUT' : 'POST',
@@ -55,7 +53,7 @@ document.addEventListener( 'DOMContentLoaded', () => {
             const saved = await res.json();
             if ( ! saved?.id ) throw new Error( 'Invalid save response' );
 
-            //window.location.href = `/coin/${saved.id}`;
+            window.location.href = `/coin/${saved.id}`;
         } catch ( err ) {
             console.error( err );
             alert( err.message || 'Unexpected error' );
