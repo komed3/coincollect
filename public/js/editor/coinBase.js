@@ -1,7 +1,7 @@
 document.addEventListener( 'DOMContentLoaded', () => {
     const form = document.querySelector( '.cc-editor--form' );
 
-    // set up images
+    // set up image
 
     const setupImageBox = box => {
         const input = $( 'input[type="file"]', box );
@@ -113,7 +113,7 @@ document.addEventListener( 'DOMContentLoaded', () => {
             },
             material,
             identifier,
-            images: {
+            image: {
                 obverse: val( $( '#obverseImage' ).getAttribute( 'image' ), 'string' ),
                 reverse: val( $( '#reverseImage' ).getAttribute( 'image' ), 'string' ),
                 other: val( $( '#otherImage' ).getAttribute( 'image' ), 'string' )

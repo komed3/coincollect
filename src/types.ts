@@ -99,7 +99,7 @@ export interface CoinBase extends Meta {
         weight?: number;
     };
 
-    images?: {
+    image?: {
         obverse?: string;
         reverse?: string;
         other?: string;

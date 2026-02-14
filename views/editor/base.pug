@@ -33,11 +33,11 @@ block main
           +text( 'tags', t( 'editor.base.info.tags' ), ( coin && coin.tags || [] ).join( ', ' ), false )
 
       div.cc-box
-        h3.cc-box--hl= t( 'editor.base.images.headline' )
+        h3.cc-box--hl= t( 'editor.base.image.headline' )
         div.cc-form--row
-          +file( 'obverseImage', t( 'editor.base.images.obverse' ), undefined, false )
-          +file( 'reverseImage', t( 'editor.base.images.reverse' ), undefined, false )
-          +file( 'otherImage', t( 'editor.base.images.other' ), undefined, false )
+          +file( 'obverseImage', t( 'editor.base.image.obverse' ), coin && coin.image && coin.image.obverse, false )
+          +file( 'reverseImage', t( 'editor.base.image.reverse' ), coin && coin.image && coin.image.reverse, false )
+          +file( 'otherImage', t( 'editor.base.image.other' ), coin && coin.image && coin.image.other, false )
 
       div.cc-box
         h3.cc-box--hl= t( 'editor.base.specs.headline' )

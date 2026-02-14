@@ -226,12 +226,12 @@ export class DatabaseService {
             if ( raw.dimension.weight ) coin.dimension.weight = this.num( raw.dimension.weight, 3 );
         }
 
-        if ( raw.images ) {
-            coin.images = {};
+        if ( raw.image ) {
+            coin.image = {};
 
-            if ( raw.images.obverse ) coin.images.obverse = this.str( raw.images.obverse );
-            if ( raw.images.reverse ) coin.images.reverse = this.str( raw.images.reverse );
-            if ( raw.images.other ) coin.images.other = this.str( raw.images.other );
+            if ( raw.image.obverse ) coin.image.obverse = this.str( raw.image.obverse );
+            if ( raw.image.reverse ) coin.image.reverse = this.str( raw.image.reverse );
+            if ( raw.image.other ) coin.image.other = this.str( raw.image.other );
         }
 
         if ( raw.identifier?.length ) coin.identifier = raw.identifier.filter( Boolean ).map(

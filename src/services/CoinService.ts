@@ -32,7 +32,7 @@ export class CoinService {
     }
 
     public async uploadImages ( req: Request, res: Response ) : Promise< void > {
-        await this.catch( res, 'Failed to upload images', async () => {
+        await this.catch( res, 'Failed to upload image', async () => {
             const { id } = req.params;
             if ( typeof id !== 'string' ) throw new Error( 'Invalid ID' );
 
@@ -53,10 +53,10 @@ export class CoinService {
                 return;
             }
 
-            const updates: any = { images: { ...( coin.images ?? {} ) } };
-            if ( files.obverse?.[ 0 ] ) updates.images.obverse = files.obverse[ 0 ].filename;
-            if ( files.reverse?.[ 0 ] ) updates.images.reverse = files.reverse[ 0 ].filename;
-            if ( files.other?.[ 0 ] ) updates.images.other = files.other[ 0 ].filename;
+            const updates: any = { image: { ...( coin.image ?? {} ) } };
+            if ( files.obverse?.[ 0 ] ) updates.image.obverse = files.obverse[ 0 ].filename;
+            if ( files.reverse?.[ 0 ] ) updates.image.reverse = files.reverse[ 0 ].filename;
+            if ( files.other?.[ 0 ] ) updates.image.other = files.other[ 0 ].filename;
 
             const updated = this.dbService.updateCoinBase( id, updates );
             res.json( updated );
