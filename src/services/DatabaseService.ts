@@ -380,3 +380,8 @@ export class DatabaseService {
     }
 
 }
+
+const DB = DatabaseService.getInstance();
+await DB.init();
+
+export default DB;
