@@ -18,7 +18,7 @@ document.addEventListener( 'DOMContentLoaded', () => {
 
         const coinData = {
             id,
-            baseId: val( fd.get( 'baseId' ), 'number' ),
+            baseId: val( fd.get( 'baseId' ), 'string' ),
             status: val( fd.get( 'status' ), 'string' ),
             certified: val( fd.get( 'certified' ), 'bool' ),
             certIssuer: val( fd.get( 'certIssuer' ), 'string' ),

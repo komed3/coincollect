@@ -35,7 +35,7 @@ block main
         div.cc-form--row
           +select( 'status', t( 'editor.coin.info.status' ), keys.status, coin && coin.status, true, 'x2' )
           +select( 'grade', t( 'editor.coin.info.grade' ), keys.grade, coin && coin.grade, true, 'x2' )
-          +number( 'amount', t( 'editor.coin.info.amount' ), 1, true, '', 1, coin && coin.amount || 1 )
+          +number( 'amount', t( 'editor.coin.info.amount' ), coin && coin.amount || 1, true, '', 1, undefined, 1 )
         div.cc-form--row
           +checkbox( 'certified', t( 'editor.coin.info.certified' ), coin && coin.certified, false, 'x2' )
           +text( 'certIssuer', t( 'editor.coin.info.certIssuer' ), coin && coin.certIssuer, false, 'x2', suggestions.certifier )
