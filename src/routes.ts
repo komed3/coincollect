@@ -7,8 +7,8 @@ import { baseView, coinView } from './pages/View';
 const routes = Router();
 routes.get( '{/}', dashboard );
 
-routes.get( 'base/:id{/}', baseView );
-routes.get( 'coin/:id{/}', coinView );
+routes.get( '/base/:id{/}', baseView );
+routes.get( '/coin/:id{/}', coinView );
 
 routes.get( '/add/base{/}', baseEditor );
 routes.get( '/add/coin{/}', coinEditor );
