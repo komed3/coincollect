@@ -47,9 +47,14 @@ block main
                 span= t( 'view.coin.info.nominal' )
                 b= base.nominal.value + ' ' + base.nominal.unit
 
+        if base.dimension || ( base.design && base.design.shape )
         div.cc-box.cc-coin--info
           h3.cc-box--hl= t( 'view.coin.specs.headline' )
           ul.cc-list
+            if base.design && base.design.shape
+              li
+                span= t( 'view.coin.design.shape' )
+                b= t( '_.shape.' + base.design.shape )
             if base.dimension && base.dimension.diameter
               li
                 span= t( 'view.coin.specs.diameter' )
@@ -79,6 +84,11 @@ block main
                 li.column
                   span= t( 'view.coin.design.edge' )
                   p= base.design.edge
+
+        if base.tags && base.tags.length
+          div.cc-coin--tags
+            each tag in base.tags
+              a( href= '/#tag=' + tag )= tag
 
       div.cc-coin--aside
         if base.image && base.image.obverse

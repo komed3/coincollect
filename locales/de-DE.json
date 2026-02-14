@@ -209,7 +209,8 @@
         "edge": "Rand",
         "headline": "Design / Merkmale",
         "obverse": "Avers (Vorderseite)",
-        "reverse": "Revers (Rückseite)"
+        "reverse": "Revers (Rückseite)",
+        "shape": "Mümzform"
       },
       "image": {
         "obverse": "Avers (Vorderseite)",
