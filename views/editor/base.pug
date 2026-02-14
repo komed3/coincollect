@@ -23,12 +23,12 @@ block main
           +text( 'name', t( 'editor.base.info.name' ), coin && coin.name, true, 'x2' )
           +select( 'type', t( 'editor.base.info.type' ), keys.type, coin && coin.type, true )
         div.cc-form--row
-          +text( 'series', t( 'editor.base.info.series' ), coin && coin.series, false, 'x2' )
-          +text( 'country', t( 'editor.base.info.country' ), coin && coin.country, false )
+          +text( 'series', t( 'editor.base.info.series' ), coin && coin.series, false, 'x2', suggestions.series )
+          +text( 'country', t( 'editor.base.info.country' ), coin && coin.country, false, '', suggestions.country )
         div.cc-form--row
-          +text( 'currency', t( 'editor.base.info.currency' ), coin && coin.currency, false, 'x2' )
+          +text( 'currency', t( 'editor.base.info.currency' ), coin && coin.currency, false, 'x2', suggestions.currency )
           +text( 'nominalValue', t( 'editor.base.info.nominalValue' ), coin && coin.nominal && coin.nominal.value, false )
-          +text( 'nominalUnit', t( 'editor.base.info.nominalUnit' ), coin && coin.nominal && coin.nominal.unit, false )
+          +text( 'nominalUnit', t( 'editor.base.info.nominalUnit' ), coin && coin.nominal && coin.nominal.unit, false, '', suggestions.unit )
         div.cc-form--row
           +text( 'tags', t( 'editor.base.info.tags' ), ( coin && coin.tags || [] ).join( ', ' ), false )
 
@@ -46,7 +46,7 @@ block main
           +number( 'thickness', t( 'editor.base.specs.thickness' ), coin && coin.dimension && coin.dimension.thickness, false )
           +number( 'weight', t( 'editor.base.specs.weight' ), coin && coin.dimension && coin.dimension.weight, false )
         div.cc-form--row
-          +text( 'issuer', t( 'editor.base.specs.issuer' ), coin && coin.issuer, false, 'x2' )
+          +text( 'issuer', t( 'editor.base.specs.issuer' ), coin && coin.issuer, false, 'x2', suggestions.issuer )
           +date( 'issueDate', t( 'editor.base.specs.issueDate' ), coin && coin.issueDate, false )
           +date( 'devaluationDate', t( 'editor.base.specs.devaluationDate' ), coin && coin.devaluationDate, false )
         div.cc-form--row
@@ -80,7 +80,7 @@ block main
         each i in [ 0, 1, 2, 3, 4 ]
           - let identifier = ( coin && coin.identifier && coin.identifier[ i ] ) || {};
           div.cc-form--row
-            +text( 'catalog__' + i, t( 'editor.base.identifier.catalog' ), identifier.catalog, false, 'x2' )
+            +text( 'catalog__' + i, t( 'editor.base.identifier.catalog' ), identifier.catalog, false, 'x2', suggestions.catalog )
             +text( 'id__' + i, t( 'editor.base.identifier.id' ), identifier.id, false )
 
       div.cc-box

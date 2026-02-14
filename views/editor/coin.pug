@@ -34,7 +34,7 @@ block main
         div.cc-form--row
           +checkbox( 'certified', t( 'editor.coin.info.certified' ), undefined, false )
         div.cc-form--row
-          +text( 'mintMark', t( 'editor.coin.info.mintMark' ), undefined, false, 'x2' )
+          +text( 'mintMark', t( 'editor.coin.info.mintMark' ), undefined, false, 'x2', suggestions.mark )
           +number( 'mintYear', t( 'editor.coin.info.mintYear' ), undefined, false, '', 0, 2100, 1 )
           +number( 'mintage', t( 'editor.coin.info.mintage' ), undefined, false, '', 0, undefined, 1 )
 
