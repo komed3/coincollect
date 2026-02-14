@@ -3,6 +3,7 @@ import express, { type Response, static as serveStatic } from 'express';
 
 import { i18n } from './middlewares/i18n';
 import { appService } from './services/AppService';
+import { formatterService } from './services/FormatterService';
 import { api } from './api';
 import { routes } from './routes';
 
@@ -19,6 +20,7 @@ app.set( 'view engine', 'pug' );
 app.use( express.json() );
 app.use( express.urlencoded( { extended: true } ) );
 app.use( i18n );
+app.use( formatterService );
 app.use( appService );
 
 // serve static files
