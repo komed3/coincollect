@@ -62,6 +62,22 @@
     background: var( --accent-secondary );
 }
 
+.cc-coin--value-list .cc-list li {
+    gap: 0;
+    padding: 8px 0;
+}
+
+.cc-coin--value-container {
+    display: grid;
+    grid-template-columns: 200px 1fr;
+}
+
+.cc-coin--value-graph {
+    margin-left: 24px;
+    padding-left: 24px;
+    border-left: 1px dashed var( --border-color );
+}
+
 .cc-coin--image {
     margin: 0 0 32px;
     padding: 0;

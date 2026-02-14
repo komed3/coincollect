@@ -64,6 +64,30 @@ block main
             each tag in base.tags
               a( href= '/#tag=' + tag )= tag
 
+        if coin.acquisition || ( coin.value && coin.value.length )
+          div.cc-box.cc-coin--value
+            h3.cc-box--hl= t( 'view.coin.value.headline' )
+            div.cc-coin--value-container
+              div.cc-coin--value-list
+                ul.cc-list
+                  if coin.acquisition && coin.acquisition.method && coin.acquisition.date
+                    li.column
+                      span= t( 'view.coin.value.acquisition' )
+                      b= t( '_.acquisition.' + coin.acquisition.method ) + ', ' + formatter.date( coin.acquisition.date )
+                  if coin.acquisition && coin.acquisition.price
+                    li.column
+                      span= t( 'view.coin.value.price' )
+                      b= formatter.money( currency, coin.acquisition.price )
+                  if coin.value && coin.value.length
+                    li.column
+                      span= t( 'view.coin.value.value' )
+                      b= formatter.money( currency, coin.value[ 0 ].price )
+                    if coin.acquisition && coin.acquisition.price
+                      li.column
+                        span= t( 'view.coin.value.growth' )
+                        b= formatter.percent( coin.value[ 0 ].price / coin.acquisition.price * 100 - 100 )
+              div.cc-coin--value-graph
+
         if base.dimension || ( base.design && base.design.shape ) || base.material
           div.cc-box.cc-coin--specs
             h3.cc-box--hl= t( 'view.coin.specs.headline' )
@@ -105,6 +129,10 @@ block main
                 li
                   span= t( 'view.coin.mint.devaluationDate' )
                   b= formatter.date( base.devaluationDate )
+              if coin.mintage
+                li
+                  span= t( 'view.coin.mint.mintage' )
+                  b= formatter.number( coin.mintage, 0 )
               if coin.mintMark
                 li
                   span= t( 'view.coin.mint.mintMark' )
@@ -113,10 +141,6 @@ block main
                 li
                   span= t( 'view.coin.mint.mintYear' )
                   b= coin.mintYear
-              if coin.mintage
-                li
-                  span= t( 'view.coin.mint.mintage' )
-                  b= formatter.number( coin.mintage, 0 )
 
         if base.description || ( base.design && ( base.design.obverse || base.design.reverse || base.design.edge ) )
           div.cc-box.cc-coin--design

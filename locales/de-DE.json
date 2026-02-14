@@ -251,7 +251,14 @@
         "thickness": "Stärke (mm)",
         "weight": "Gewicht (g)"
       },
-      "title": "{{name}}"
+      "title": "{{name}}",
+      "value": {
+        "acquisition": "Erwerb",
+        "growth": "Wertsteigerung",
+        "headline": "Wertentwicklung",
+        "price": "Kaufpreis",
+        "value": "Marktwert (geschätzt)"
+      }
     }
   }
 }
