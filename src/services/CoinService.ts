@@ -17,7 +17,7 @@ export class CoinService {
     }
 
     public async setCoinBase ( req: Request, res: Response ) : Promise< void > {
-        await this.catch( res, 'Failed to add coin base', async () => {
+        await this.catch( res, 'Failed to update coin base', async () => {
             const { id } = req.params;
             const data = req.body;
 
@@ -25,6 +25,28 @@ export class CoinService {
             else if ( id !== data.id ) res.status( 400 ).json( { error: 'ID mismatch' } );
             else {
                 const coin = await this.dbService.setCoinBase( id, data );
+                if ( coin ) res.json( coin );
+                else res.status( 404 ).json( { msg: 'Coin not found', id } );
+            }
+        } );
+    }
+
+    public async addSingleCoin ( req: Request, res: Response ) : Promise< void > {
+        await this.catch( res, 'Failed to add single coin', async () => {
+            const coin = await this.dbService.addSingleCoin( req.body );
+            res.status( 201 ).json( coin );
+        } );
+    }
+
+    public async setSingleCoin ( req: Request, res: Response ) : Promise< void > {
+        await this.catch( res, 'Failed to update single coin', async () => {
+            const { id } = req.params;
+            const data = req.body;
+
+            if ( typeof id !== 'string' ) res.status( 400 ).json( { error: 'Invalid ID' } );
+            else if ( id !== data.id ) res.status( 400 ).json( { error: 'ID mismatch' } );
+            else {
+                const coin = await this.dbService.setSingleCoin( id, data );
                 if ( coin ) res.json( coin );
                 else res.status( 404 ).json( { msg: 'Coin not found', id } );
             }

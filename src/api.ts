@@ -14,4 +14,7 @@ api.post( '/base/:id/upload', upload.fields( [
     { name: 'other', maxCount: 1 }
 ] ), service.uploadImages.bind( service ) );
 
+api.post( '/coin/add', service.addSingleCoin.bind( service ) );
+api.put( '/coin/:id/set', service.setSingleCoin.bind( service ) );
+
 export { api };
