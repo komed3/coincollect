@@ -116,7 +116,7 @@
         "headline": "Zusätzliche Informationen",
         "notes": "Notizen"
       },
-      "identifiers": {
+      "identifier": {
         "catalog": "Münzkatalog / Plattform",
         "headline": "Katalognummern",
         "id": "Katalognummer"

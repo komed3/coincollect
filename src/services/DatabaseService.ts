@@ -204,7 +204,7 @@ export class DatabaseService {
             if ( raw.images.other ) coin.images.other = this.str( raw.images.other );
         }
 
-        if ( raw.identifiers?.length ) coin.identifiers = raw.identifiers.filter( Boolean ).map(
+        if ( raw.identifier?.length ) coin.identifier = raw.identifier.filter( Boolean ).map(
             i => ( { catalog: this.str( i.catalog ), id: this.str( i.id ) } )
         );
 

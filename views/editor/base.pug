@@ -73,11 +73,11 @@ block main
             +number( 'portion__' + i, t( 'editor.base.material.portion' ), undefined, false, '', 0, 100 )
 
       div.cc-box
-        h3.cc-box--hl= t( 'editor.base.identifiers.headline' )
+        h3.cc-box--hl= t( 'editor.base.identifier.headline' )
         each i in [ 0, 1, 2, 3, 4 ]
           div.cc-form--row
-            +text( 'catalog__' + i, t( 'editor.base.identifiers.catalog' ), undefined, false, 'x2' )
-            +text( 'id__' + i, t( 'editor.base.identifiers.id' ), undefined, false )
+            +text( 'catalog__' + i, t( 'editor.base.identifier.catalog' ), undefined, false, 'x2' )
+            +text( 'id__' + i, t( 'editor.base.identifier.id' ), undefined, false )
 
       div.cc-box
         h3.cc-box--hl= t( 'editor.base.extra.headline' )
