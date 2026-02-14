@@ -1,7 +1,7 @@
 .cc-form--row {
     display: flex;
     flex-flow: row nowrap;
-    align-items: flex-start;
+    align-items: flex-end;
     gap: 12px 20px;
     margin-top: 12px;
 }
@@ -28,7 +28,7 @@
     flex-flow: row nowrap;
     align-items: center;
     gap: 12px;
-    margin: 12px 0;
+    margin: 10px 0;
     cursor: pointer;
 }
 
