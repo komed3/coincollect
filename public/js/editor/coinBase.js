@@ -120,7 +120,7 @@ document.addEventListener( 'DOMContentLoaded', () => {
             }
         };
 
-         try {
+        try {
             const res = await fetch( id ? `/api/base/${id}/set` : `/api/base/add`, {
                 method: id ? 'PUT' : 'POST',
                 headers: { 'Content-Type': 'application/json' },
