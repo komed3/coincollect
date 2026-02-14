@@ -17,25 +17,25 @@ block main
       dic.cc-coin--main
         div.cc-box.cc-coin--info
           h3.cc-box--hl= t( 'view.coin.info.headline' )
-          div.cc-list.c4
+          ul.cc-list
             if base && base.type
-              div.cc-list--item
+              li
                 span= t( 'view.coin.info.type' )
                 b: a( href= '/#type='+  base.type )= t( '_.type.' + base.type )
             if base && base.series
-              div.cc-list--item.x2
+              li
                 span= t( 'view.coin.info.series' )
                 b: a( href= '/#series='+  base.series )= base.series
             if base && base.country
-              div.cc-list--item
+              li
                 span= t( 'view.coin.info.country' )
                 b: a( href= '/#country='+  base.country )= base.country
             if base && base.currency
-              div.cc-list--item
+              li
                 span= t( 'view.coin.info.currency' )
                 b: a( href= '/#currency='+  base.currency )= base.currency
             if base && base.nominal && base.nominal.value && base.nominal.unit
-              div.cc-list--item
+              li
                 span= t( 'view.coin.info.nominal' )
                 b= base.nominal.value + ' ' + base.nominal.unit
 
