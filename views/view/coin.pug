@@ -87,8 +87,9 @@ block main
                       li.column.big
                         span= t( 'view.coin.value.growth' )
                         b= formatter.percent( coin.value[ 0 ].price / coin.acquisition.price * 100 - 100 )
-              div.cc-coin--value-graph
-                +chart( 'value', { acquisition: coin.acquisition, value: coin.value } )
+              if coin.value && coin.value.length
+                div.cc-coin--value-graph
+                  +chart( 'value', { acquisition: coin.acquisition, value: coin.value } )
 
         if base.dimension || ( base.design && base.design.shape ) || base.material
           div.cc-box.cc-coin--specs

@@ -38,7 +38,7 @@
 
 .cc-coin--content {
     display: grid;
-    grid-template-columns: 1fr 360px;
+    grid-template-columns: 1fr 340px;
     gap: 48px;
 }
 
