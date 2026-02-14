@@ -1,4 +1,5 @@
 extends ../layout/page
+include ../components/chart
 include ../components/material
 
 append styles
@@ -75,18 +76,19 @@ block main
                       span= t( 'view.coin.value.acquisition' )
                       b= t( '_.acquisition.' + coin.acquisition.method ) + ', ' + formatter.date( coin.acquisition.date )
                   if coin.acquisition && coin.acquisition.price
-                    li.column
+                    li.column.big
                       span= t( 'view.coin.value.price' )
                       b= formatter.money( currency, coin.acquisition.price )
                   if coin.value && coin.value.length
-                    li.column
+                    li.column.big
                       span= t( 'view.coin.value.value' )
                       b= formatter.money( currency, coin.value[ 0 ].price )
                     if coin.acquisition && coin.acquisition.price
-                      li.column
+                      li.column.big
                         span= t( 'view.coin.value.growth' )
                         b= formatter.percent( coin.value[ 0 ].price / coin.acquisition.price * 100 - 100 )
               div.cc-coin--value-graph
+                +chart( 'value', { acquisition: coin.acquisition, value: coin.value } )
 
         if base.dimension || ( base.design && base.design.shape ) || base.material
           div.cc-box.cc-coin--specs

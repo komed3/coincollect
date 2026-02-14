@@ -180,6 +180,10 @@ button[type="reset"] {
     font-weight: 500;
 }
 
+.cc-list > li.big > b {
+    font-size: 22px;
+}
+
 .cc-list > li > p {
     margin: 0;
     font-weight: 300;
