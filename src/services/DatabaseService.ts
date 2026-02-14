@@ -6,7 +6,7 @@ import { JSONFile } from 'lowdb/node';
 
 import type {
     Acquisition, CoinBase, CoinGrade, CoinMaterial, CoinShape, CoinStats, CoinStatus,
-    CoinType, Database, SingleCoin
+    CoinType, Database, SingleCoin, Suggestions, SuggestionTypes
 } from '../types';
 
 
@@ -289,6 +289,16 @@ export class DatabaseService {
         } ) ).sort( ( a, b ) => new Date( b.date ).getTime() - new Date( a.date ).getTime() );
 
         return coin;
+    }
+
+    // suggestions
+
+    public getAllSuggestions () : Suggestions {
+        return this.db.data.suggestions;
+    }
+
+    public getSuggestions ( type: SuggestionTypes ) : string[] {
+        return this.db.data.suggestions[ type ];
     }
 
     // coin base
