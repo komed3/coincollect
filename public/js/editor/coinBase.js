@@ -1,7 +1,7 @@
 document.addEventListener( 'DOMContentLoaded', () => {
     const form = document.querySelector( '.cc-editor--form' );
 
-    /** Set up images */
+    // set up images
 
     const setupImageBox = box => {
         const input = $( 'input[type="file"]', box );
@@ -54,4 +54,22 @@ document.addEventListener( 'DOMContentLoaded', () => {
     };
 
     $$( '.cc-form--image' ).forEach( setupImageBox );
+
+    // submit form
+
+    form.addEventListener( 'submit', async ( e ) => {
+        e.preventDefault();
+
+        // ...
+    } );
+
+    // reset form
+
+    $( '.cc-form--abort', form ).addEventListener( 'click', e => {
+        e.preventDefault();
+
+        if ( confirm( 'Do you really want to discard all changes?' ) ) {
+            location.reload();
+        }
+    } );
 } );
