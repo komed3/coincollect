@@ -16,6 +16,21 @@ export class CoinService {
         } );
     }
 
+    public async setCoinBase ( req: Request, res: Response ) : Promise< void > {
+        await this.catch( res, 'Failed to add coin base', async () => {
+            const { id } = req.params;
+            const data = req.body;
+
+            if ( typeof id !== 'string' ) res.status( 400 ).json( { error: 'Invalid ID' } );
+            else if ( id !== data.id ) res.status( 400 ).json( { error: 'ID mismatch' } );
+            else {
+                const coin = await this.dbService.setCoinBase( id, data );
+                if ( coin ) res.json( coin );
+                else res.status( 404 ).json( { msg: 'Coin not found', id } );
+            }
+        } );
+    }
+
     public async uploadImages ( req: Request, res: Response ) : Promise< void > {
         await this.catch( res, 'Failed to upload images', async () => {
             const { id } = req.params;
