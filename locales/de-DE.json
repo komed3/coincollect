@@ -196,5 +196,16 @@
       "coin": "Einzelmünze"
     },
     "select": "Wählen"
+  },
+  "view": {
+    "actions": {
+      "back": "Zurück",
+      "base": "Münzbasis",
+      "delete": "Löschen",
+      "edit": "Bearbeiten"
+    },
+    "coin": {
+      "title": "{{name}}"
+    }
   }
 }
