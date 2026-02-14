@@ -22,34 +22,6 @@
     font-weight: 500;
 }
 
-.cc-form--field input,
-.cc-form--field textarea,
-.cc-form--field select {
-    min-width: 0;
-    width: 100%;
-    padding: 12px;
-    font-family: inherit;
-    font-size: 15px;
-    color: var( --text-color );
-    background: #fff;
-    border: 1px solid var( --border-color );
-    border-radius: var( --border-radius );
-}
-
-.cc-form--field input,
-.cc-form--field select {
-    height: 48px;
-}
-
-.cc-form--field select {
-    cursor: pointer;
-}
-
-.cc-form--field textarea {
-    height: 120px;
-    resize: none;
-}
-
 .cc-form--checkbox {
     position: relative;
     display: flex;
@@ -99,7 +71,7 @@
     text-align: center;
     background-size: cover;
     background-position: center;
-    background-color: #fff;
+    background-color: var( --box-bg );
     border: 2px dashed var( --border-color );
     border-radius: var( --border-radius );
     cursor: pointer;
@@ -159,22 +131,4 @@
     justify-content: flex-end;
     align-items: center;
     gap: 12px;
-}
-
-.cc-form--actions button {
-    padding: 14px 18px;
-    font-size: 16px;
-    font-weight: 500;
-    color: #fff;
-    background: var( --accent-main );
-    border: 0;
-    cursor: pointer;
-}
-
-.cc-form--actions button:hover {
-    background: var( --accent-secondary );
-}
-
-.cc-form--abort {
-    filter: grayscale( 1 ) opacity( 0.8 );
 }
