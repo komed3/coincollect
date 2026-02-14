@@ -201,9 +201,7 @@ export class DatabaseService {
 
             if ( raw.images.obverse ) coin.images.obverse = this.str( raw.images.obverse );
             if ( raw.images.reverse ) coin.images.reverse = this.str( raw.images.reverse );
-            if ( raw.images.other ) coin.images.other = [
-                ...raw.images.other.filter( Boolean ).map( this.str.bind( this ) )
-            ];
+            if ( raw.images.other ) coin.images.other = this.str( raw.images.other );
         }
 
         if ( raw.identifiers?.length ) coin.identifiers = raw.identifiers.filter( Boolean ).map(

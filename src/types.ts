@@ -102,7 +102,7 @@ export interface CoinBase extends Meta {
     images?: {
         obverse?: string;
         reverse?: string;
-        other?: string[];
+        other?: string;
     };
 
     identifiers?: {
