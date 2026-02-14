@@ -1,12 +1,14 @@
 import type { Request, Response } from 'express';
 
-import { DatabaseService } from '../services/DatabaseService';
+import DB from '../services/DatabaseService';
 import { Acquisition, CoinGrade, CoinMaterial, CoinShape, CoinStatus, CoinType } from '../types';
 
 export const baseEditor = async ( req: Request, res: Response ) : Promise< void > => {
+    const coin = req.params.id ? DB.getCoinBase( req.params.id as string ) : undefined;
     res.render( 'editor/base', {
         page: 'editor',
         title: req.t( 'editor.base.title' ),
+        mode: coin ? 'edit' : 'add', coin,
         keys: {
             type: CoinType,
             material: CoinMaterial,
@@ -16,9 +18,6 @@ export const baseEditor = async ( req: Request, res: Response ) : Promise< void 
 };
 
 export const coinEditor = async ( req: Request, res: Response ) : Promise< void > => {
-    const DB = DatabaseService.getInstance();
-    await DB.init();
-
     res.render( 'editor/coin', {
         page: 'editor',
         title: req.t( 'editor.coin.title' ),

@@ -15,20 +15,22 @@ block main
       a( href= "/add/coin" )= t( 'editor.nav.coin' )
 
     form.cc-editor--form( enctype= "multipart/form-data" )
+      input( type= "hidden", name= "mode", value= mode )
+      input( type= "hidden", name= "id", value= coin && coin.id )
       div.cc-box
         h3.cc-box--hl= t( 'editor.base.info.headline' )
         div.cc-form--row
-          +text( 'name', t( 'editor.base.info.name' ), undefined, true, 'x2' )
-          +select( 'type', t( 'editor.base.info.type' ), keys.type, undefined, true )
+          +text( 'name', t( 'editor.base.info.name' ), coin && coin.name, true, 'x2' )
+          +select( 'type', t( 'editor.base.info.type' ), keys.type, coin && coin.type, true )
         div.cc-form--row
-          +text( 'series', t( 'editor.base.info.series' ), undefined, false, 'x2' )
-          +text( 'country', t( 'editor.base.info.country' ), undefined, false )
+          +text( 'series', t( 'editor.base.info.series' ), coin && coin.series, false, 'x2' )
+          +text( 'country', t( 'editor.base.info.country' ), coin && coin.country, false )
         div.cc-form--row
-          +text( 'currency', t( 'editor.base.info.currency' ), undefined, false, 'x2' )
-          +text( 'nominalValue', t( 'editor.base.info.nominalValue' ), undefined, false )
-          +text( 'nominalUnit', t( 'editor.base.info.nominalUnit' ), undefined, false )
+          +text( 'currency', t( 'editor.base.info.currency' ), coin && coin.currency, false, 'x2' )
+          +text( 'nominalValue', t( 'editor.base.info.nominalValue' ), coin && coin.nominal && coin.nominal.value, false )
+          +text( 'nominalUnit', t( 'editor.base.info.nominalUnit' ), coin && coin.nominal && coin.nominal.unit, false )
         div.cc-form--row
-          +text( 'tags', t( 'editor.base.info.tags' ), undefined, false )
+          +text( 'tags', t( 'editor.base.info.tags' ), ( coin && coin.tags || [] ).join( ', ' ), false )
 
       div.cc-box
         h3.cc-box--hl= t( 'editor.base.images.headline' )
@@ -40,29 +42,29 @@ block main
       div.cc-box
         h3.cc-box--hl= t( 'editor.base.specs.headline' )
         div.cc-form--row
-          +number( 'diameter', t( 'editor.base.specs.diameter' ), undefined, false )
-          +number( 'thickness', t( 'editor.base.specs.thickness' ), undefined, false )
-          +number( 'weight', t( 'editor.base.specs.weight' ), undefined, false )
+          +number( 'diameter', t( 'editor.base.specs.diameter' ), coin && coin.dimension && coin.dimension.diameter, false )
+          +number( 'thickness', t( 'editor.base.specs.thickness' ), coin && coin.dimension && coin.dimension.thickness, false )
+          +number( 'weight', t( 'editor.base.specs.weight' ), coin && coin.dimension && coin.dimension.weight, false )
         div.cc-form--row
-          +text( 'issuer', t( 'editor.base.specs.issuer' ), undefined, false, 'x2' )
-          +date( 'issueDate', t( 'editor.base.specs.issueDate' ), undefined, false )
-          +date( 'devaluationDate', t( 'editor.base.specs.devaluationDate' ), undefined, false )
+          +text( 'issuer', t( 'editor.base.specs.issuer' ), coin && coin.issuer, false, 'x2' )
+          +date( 'issueDate', t( 'editor.base.specs.issueDate' ), coin && coin.issueDate, false )
+          +date( 'devaluationDate', t( 'editor.base.specs.devaluationDate' ), coin && coin.devaluationDate, false )
         div.cc-form--row
-          +text( 'mintMarks', t( 'editor.base.specs.mintMarks' ), undefined, false, 'x2' )
-          +number( 'mintStartYear', t( 'editor.base.specs.mintStartYear' ), undefined, false, '', 0, 2100, 1 )
-          +number( 'mintEndYear', t( 'editor.base.specs.mintEndYear' ), undefined, false, '', 0, 2100, 1 )
+          +text( 'mintMarks', t( 'editor.base.specs.mintMarks' ), ( coin && coin.mintMarks || [] ).join( ', ' ), false, 'x2' )
+          +number( 'mintStartYear', t( 'editor.base.specs.mintStartYear' ), coin && coin.mintStartYear, false, '', 0, 2100, 1 )
+          +number( 'mintEndYear', t( 'editor.base.specs.mintEndYear' ), coin && coin.mintEndYear, false, '', 0, 2100, 1 )
 
       div.cc-box
         h3.cc-box--hl= t( 'editor.base.design.headline' )
         div.cc-form--row
-          +select( 'shape', t( 'editor.base.design.shape' ), keys.shape, undefined, false )
+          +select( 'shape', t( 'editor.base.design.shape' ), keys.shape, coin && coin.design && coin.design.shape, false )
         div.cc-form--row
-          +textarea( 'obverse', t( 'editor.base.design.obverse' ), undefined, false )
+          +textarea( 'obverse', t( 'editor.base.design.obverse' ), coin && coin.design && coin.design.obverse, false )
         div.cc-form--row
-          +textarea( 'reverse', t( 'editor.base.design.reverse' ), undefined, false )
+          +textarea( 'reverse', t( 'editor.base.design.reverse' ), coin && coin.design && coin.design.reverse, false )
         div.cc-form--row
-          +textarea( 'edge', t( 'editor.base.design.edge' ), undefined, false )
-          +textarea( 'description', t( 'editor.base.design.description' ), undefined, false )
+          +textarea( 'edge', t( 'editor.base.design.edge' ), coin && coin.design && coin.design.edge, false )
+          +textarea( 'description', t( 'editor.base.design.description' ), coin && coin.description, false )
 
       div.cc-box
         h3.cc-box--hl= t( 'editor.base.material.headline' )
@@ -82,7 +84,7 @@ block main
       div.cc-box
         h3.cc-box--hl= t( 'editor.base.extra.headline' )
         div.cc-form--row
-          +textarea( 'notes', t( 'editor.base.extra.notes' ), undefined, false )
+          +textarea( 'notes', t( 'editor.base.extra.notes' ), coin && coin.notes, false )
 
       div.cc-form--actions
         button.cc-form--submit( type= "submit" )= t( '_.actions.submit' )

@@ -7,5 +7,7 @@ const routes = Router();
 routes.get( '{/}', dashboard );
 routes.get( '/add/base{/}', baseEditor );
 routes.get( '/add/coin{/}', coinEditor );
+routes.get( '/base/:id/edit{/}', baseEditor );
+routes.get( '/coin/:id/edit{/}', coinEditor );
 
 export { routes };
