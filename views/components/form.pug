@@ -3,7 +3,7 @@ mixin text( name, label, val, req = false, classes = '', datalist = [] )
     label( for= '__' + name )= label + ( req ? ' *' : '' )
     input(
       type= 'text', name= name, value= val,
-      required= req, id= '__' + name, autocomplete= 'cc__' + name,
+      required= req, id= '__' + name, autocomplete= 'on',
       list= datalist.length ? '__' + name + '-list' : undefined
     )
     if datalist.length
