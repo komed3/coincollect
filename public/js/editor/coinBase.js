@@ -128,6 +128,25 @@ document.addEventListener( 'DOMContentLoaded', () => {
 
             const saved = await res.json();
             if ( ! saved?.id ) throw new Error( 'Invalid save response' );
+
+            const obv = fd.get( 'obverseImage' );
+            const rev = fd.get( 'reverseImage' );
+            const oth = fd.get( 'otherImage' );
+
+            const upload = new FormData();
+            if ( obv?.name?.length ) upload.append( 'obverse', obv );
+            if ( rev?.name?.length ) upload.append( 'reverse', rev );
+            if ( oth?.name?.length ) upload.append( 'other', oth );
+
+            if ( [ ...upload.keys() ].length ) {
+                const up = await fetch( `/api/base/${saved.id}/upload`, {
+                    method: 'POST', body: upload
+                } );
+
+                if ( ! up.ok ) throw new Error( 'Image upload failed' );
+            }
+
+            window.location.href = `/base/${saved.id}`;
         } catch ( err ) {
             console.error( err );
             alert( err.message || 'Unexpected error' );
