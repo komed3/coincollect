@@ -270,7 +270,7 @@ export class DatabaseService {
         if ( raw.grade ) coin.grade = coin.grade as CoinGrade;
         else coin.grade = 'unc' as CoinGrade;
 
-        [ 'notes', 'mintMark' ].forEach( k => {
+        [ 'certIssuer', 'certNumber', 'notes', 'mintMark' ].forEach( k => {
             if ( k in raw && ( raw as any )[ k ] ) ( coin as any )[ k ] = this.str( ( raw as any )[ k ] );
         } );
 

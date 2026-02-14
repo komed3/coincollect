@@ -119,6 +119,8 @@ export interface SingleCoin extends Meta {
     readonly baseId: string;
     status: CoinStatus;
     certified: boolean;
+    certIssuer?: string;
+    certNumber?: string;
     amount: number;
     notes?: string;
 
