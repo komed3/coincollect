@@ -20,6 +20,8 @@ export class DatabaseService {
 
     private static instance: DatabaseService;
     private db!: Low< Database >;
+    private writeTimer: NodeJS.Timeout | undefined;
+    private writeDelay = 150;
 
     private constructor () {}
 
@@ -118,17 +120,28 @@ export class DatabaseService {
 
     // db management
 
-    private async save () : Promise< void > {
+    private scheduleWrite ( immediate: boolean = false ) : void {
+        if ( this.writeTimer ) clearTimeout( this.writeTimer );
+        if ( immediate ) { this.flush(); return }
+        this.writeTimer = setTimeout( () => this.flush(), this.writeDelay );
+    }
+
+    private async flush () : Promise< void > {
         this.db.data._meta.updatedAt = this.now();
         await this.db.write();
     }
 
-    public async export () : Promise< Database > {
-        return JSON.parse( JSON.stringify( this.db.data ) );
+    public async save () : Promise< void > {
+        this.generateSuggestions( false );
+        this.scheduleWrite();
     }
 
     public async getDatabase () : Promise< Database > {
         return this.db.data;
+    }
+
+    public async export () : Promise< Database > {
+        return JSON.parse( JSON.stringify( this.db.data ) );
     }
 
     // meta data
@@ -265,10 +278,10 @@ export class DatabaseService {
             amount: this.num( raw.amount ?? 1, 0 )
         };
 
-        if ( raw.status ) coin.status = coin.status as CoinStatus;
+        if ( raw.status ) coin.status = raw.status as CoinStatus;
         else coin.status = 'owned' as CoinStatus;
 
-        if ( raw.grade ) coin.grade = coin.grade as CoinGrade;
+        if ( raw.grade ) coin.grade = raw.grade as CoinGrade;
         else coin.grade = 'unc' as CoinGrade;
 
         [ 'certIssuer', 'certNumber', 'notes', 'mintMark' ].forEach( k => {
@@ -306,7 +319,7 @@ export class DatabaseService {
         return this.db.data.suggestions[ type ];
     }
 
-    public async generateSuggestions () : Promise< void > {
+    public async generateSuggestions ( save: boolean = true ) : Promise< void > {
         const suggestions = this.getDefaultSuggestions();
 
         this.db.data.collection.coins.forEach( c => {
@@ -326,7 +339,7 @@ export class DatabaseService {
         } );
 
         this.db.data.suggestions = suggestions;
-        await this.save();
+        if ( save ) this.scheduleWrite();
     }
 
     // coin base
