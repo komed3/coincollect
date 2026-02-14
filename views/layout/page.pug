@@ -12,6 +12,7 @@ html( lang= lang, currency= currency )
       link( rel= "stylesheet", href= "/css/header.css" )
 
     block scripts
+      script( src= "/js/utils.js" )
       script.
         const I18N = !{ JSON.stringify( translations ) };
         const LANG = "!{ lang }";
