@@ -134,8 +134,8 @@
         "name": "Münzbezeichnung / Anlass",
         "nominalUnit": "Einheit",
         "nominalValue": "Nominalwert",
-        "series": "Serie/Münzreihe",
-        "tags": "Schlagworte/Themen (getrennt durch Kommata)",
+        "series": "Serie / Münzreihe",
+        "tags": "Schlagworte / Themen (getrennt durch Kommata)",
         "type": "Münztyp"
       },
       "material": {
