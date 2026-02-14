@@ -205,6 +205,12 @@
       "view": "Ansicht"
     },
     "coin": {
+      "design": {
+        "edge": "Rand",
+        "headline": "Design / Merkmale",
+        "obverse": "Avers (Vorderseite)",
+        "reverse": "Revers (Rückseite)"
+      },
       "image": {
         "obverse": "Avers (Vorderseite)",
         "other": "Zusätzliche Abbildung",

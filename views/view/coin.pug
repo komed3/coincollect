@@ -47,6 +47,27 @@ block main
                 span= t( 'view.coin.info.nominal' )
                 b= base.nominal.value + ' ' + base.nominal.unit
 
+        div.cc-box.cc-coin--info
+          h3.cc-box--hl= t( 'view.coin.specs.headline' )
+          ul.cc-list
+
+        if base.design && ( base.design.obverse || base.design.reverse || base.design.edge )
+          div.cc-box.cc-coin--info
+            h3.cc-box--hl= t( 'view.coin.design.headline' )
+            ul.cc-list
+              if base.design && base.design.obverse
+                li.column
+                  span= t( 'view.coin.design.obverse' )
+                  p= base.design.obverse
+              if base.design && base.design.reverse
+                li.column
+                  span= t( 'view.coin.design.reverse' )
+                  p= base.design.reverse
+              if base.design && base.design.edge
+                li.column
+                  span= t( 'view.coin.design.edge' )
+                  p= base.design.edge
+
       div.cc-coin--aside
         if base.image && base.image.obverse
           figure.cc-coin--image

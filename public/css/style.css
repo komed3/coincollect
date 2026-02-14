@@ -158,6 +158,13 @@ button[type="reset"] {
     padding: 12px 0;
 }
 
+.cc-list li.column {
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: flex-start;
+    gap: 6px;
+}
+
 .cc-list li:not( :last-child ) {
     border-bottom: 1px dashed var( --border-color );
 }
@@ -169,4 +176,9 @@ button[type="reset"] {
 
 .cc-list li b {
     font-weight: 500;
+}
+
+.cc-list li p {
+    margin: 0;
+    font-weight: 300;
 }
