@@ -27,6 +27,13 @@ block main
               li
                 span= t( 'view.coin.info.status' )
                 b: a( href= '/#status='+ coin.status )= t( '_.status.' + coin.status ) + ' (' + coin.amount + 'x)'
+            if coin.certified
+              li
+                span= t( 'view.coin.info.certificate' )
+                if coin.certIssuer
+                  b= t( 'view.coin.info.certified', { issuer: coin.certIssuer, number: coin.certNumber || '—' } )
+                else
+                  b= t( 'view.coin.info.certifiedUnknown' )
             if coin.grade
               li
                 span= t( 'view.coin.info.grade' )
@@ -47,6 +54,10 @@ block main
               li
                 span= t( 'view.coin.info.nominal' )
                 b= base.nominal.value + ' ' + base.nominal.unit
+            if coin.notes
+              li.column
+                span= t( 'view.coin.info.notes' )
+                p= coin.notes
 
         if base.tags && base.tags.length
           div.cc-coin--tags
@@ -54,29 +65,58 @@ block main
               a( href= '/#tag=' + tag )= tag
 
         if base.dimension || ( base.design && base.design.shape ) || base.material
-        div.cc-box.cc-coin--info
-          h3.cc-box--hl= t( 'view.coin.specs.headline' )
-          ul.cc-list
-            if base.design && base.design.shape
-              li
-                span= t( 'view.coin.design.shape' )
-                b= t( '_.shape.' + base.design.shape )
-            if base.dimension && base.dimension.diameter
-              li
-                span= t( 'view.coin.specs.diameter' )
-                b= formatter.unit( 'millimeter', base.dimension.diameter )
-            if base.dimension && base.dimension.thickness
-              li
-                span= t( 'view.coin.specs.thickness' )
-                b= formatter.unit( 'millimeter', base.dimension.thickness )
-            if base.dimension && base.dimension.weight
-              li
-                span= t( 'view.coin.specs.weight' )
-                b= formatter.unit( 'gram', base.dimension.weight )
-            if base.material
-              li.column
-                span= t( 'view.coin.specs.material' )
-                +material( base.material )
+          div.cc-box.cc-coin--info
+            h3.cc-box--hl= t( 'view.coin.specs.headline' )
+            ul.cc-list
+              if base.design && base.design.shape
+                li
+                  span= t( 'view.coin.design.shape' )
+                  b= t( '_.shape.' + base.design.shape )
+              if base.dimension && base.dimension.diameter
+                li
+                  span= t( 'view.coin.specs.diameter' )
+                  b= formatter.unit( 'millimeter', base.dimension.diameter )
+              if base.dimension && base.dimension.thickness
+                li
+                  span= t( 'view.coin.specs.thickness' )
+                  b= formatter.unit( 'millimeter', base.dimension.thickness )
+              if base.dimension && base.dimension.weight
+                li
+                  span= t( 'view.coin.specs.weight' )
+                  b= formatter.unit( 'gram', base.dimension.weight )
+              if base.material
+                li.column
+                  span= t( 'view.coin.specs.material' )
+                  +material( base.material )
+
+        if base.issuer || base.issueDate || base.devaluationDate || coin.mintMark || coin.mintYear || coin.mintage
+          div.cc-box.cc-coin--info
+            h3.cc-box--hl= t( 'view.coin.mint.headline' )
+            ul.cc-list
+              if base.issuer
+                li
+                  span= t( 'view.coin.mint.issuer' )
+                  b: a( href= "/#issuer=" + base.issuer )= base.issuer
+              if base.issueDate
+                li
+                  span= t( 'view.coin.mint.issueDate' )
+                  b= formatter.date( base.issueDate )
+              if base.devaluationDate
+                li
+                  span= t( 'view.coin.mint.devaluationDate' )
+                  b= formatter.date( base.devaluationDate )
+              if coin.mintMark
+                li
+                  span= t( 'view.coin.mint.mintMark' )
+                  b= coin.mintMark
+              if coin.mintYear
+                li
+                  span= t( 'view.coin.mint.mintYear' )
+                  b= coin.mintYear
+              if coin.mintage
+                li
+                  span= t( 'view.coin.mint.mintage' )
+                  b= formatter.number( coin.mintage, 0 )
 
         if base.description || ( base.design && ( base.design.obverse || base.design.reverse || base.design.edge ) )
           div.cc-box.cc-coin--info

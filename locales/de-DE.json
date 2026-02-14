@@ -220,6 +220,9 @@
         "reverse": "Revers (Rückseite)"
       },
       "info": {
+        "certificate": "Zertifikat",
+        "certified": "{{issuer}}, Nr. {{number}}",
+        "certifiedUnknown": "Zertifikat vorhanden",
         "country": "Land / Region",
         "currency": "Münzwährung",
         "grade": "Erhaltungsgrad",
@@ -227,6 +230,15 @@
         "nominal": "Nominalwert",
         "status": "Status in Sammlung",
         "type": "Münztyp"
+      },
+      "mint": {
+        "devaluationDate": "Entwertungsdatum",
+        "headline": "Prägung",
+        "issueDate": "Ausgabedatum",
+        "issuer": "Emittent",
+        "mintage": "Auflage",
+        "mintMark": "Prägestätte",
+        "mintYear": "Prägejahr"
       },
       "specs": {
         "diameter": "Durchmesser (mm)",
