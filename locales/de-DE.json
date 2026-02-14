@@ -214,6 +214,10 @@
         "reverse": "Revers (Rückseite)",
         "shape": "Mümzform"
       },
+      "identifier": {
+        "headline": "Münzkataloge",
+        "number": "Nr. {{number}}"
+      },
       "image": {
         "obverse": "Avers (Vorderseite)",
         "other": "Zusätzliche Abbildung",

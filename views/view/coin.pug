@@ -65,7 +65,7 @@ block main
               a( href= '/#tag=' + tag )= tag
 
         if base.dimension || ( base.design && base.design.shape ) || base.material
-          div.cc-box.cc-coin--info
+          div.cc-box.cc-coin--specs
             h3.cc-box--hl= t( 'view.coin.specs.headline' )
             ul.cc-list
               if base.design && base.design.shape
@@ -90,7 +90,7 @@ block main
                   +material( base.material )
 
         if base.issuer || base.issueDate || base.devaluationDate || coin.mintMark || coin.mintYear || coin.mintage
-          div.cc-box.cc-coin--info
+          div.cc-box.cc-coin--mint
             h3.cc-box--hl= t( 'view.coin.mint.headline' )
             ul.cc-list
               if base.issuer
@@ -119,7 +119,7 @@ block main
                   b= formatter.number( coin.mintage, 0 )
 
         if base.description || ( base.design && ( base.design.obverse || base.design.reverse || base.design.edge ) )
-          div.cc-box.cc-coin--info
+          div.cc-box.cc-coin--design
             h3.cc-box--hl= t( 'view.coin.design.headline' )
             ul.cc-list
               if base.design && base.design.obverse
@@ -152,3 +152,12 @@ block main
           figure.cc-coin--image
             img( src= '/uploads/' + base.image.other, alt= t( 'view.coin.image.other' ) )
             figcaption= t( 'view.coin.image.other' )
+
+        if base.identifier && base.identifier.length
+          div.cc-coin--identifier
+            h3.cc-box--hl= t( 'view.coin.identifier.headline' )
+            ul.cc-list
+              each id in base.identifier
+                li.column
+                  span= id.catalog
+                  b= t( 'view.coin.identifier.number', { number: id.id } )
