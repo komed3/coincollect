@@ -9,9 +9,12 @@ export interface Database {
         coins: CoinBase[];
         items: SingleCoin[];
     };
+    suggestions: Suggestions;
     value: CoinValue;
     stats: CoinStats;
 }
+
+export type Suggestions = Record< 'series' | 'country' | 'currency' | 'unit' | 'issuer' | 'catalog' | 'mark', string[] >
 
 export type CoinValue = Record< string, {
     coins: number;

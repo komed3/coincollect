@@ -78,6 +78,15 @@ export class DatabaseService {
                 coins: [],
                 items: []
             },
+            suggestions: {
+                series: [],
+                country: [],
+                currency: [],
+                unit: [],
+                issuer: [],
+                catalog: [],
+                mark: []
+            },
             value: {},
             stats: this.getDefaultStats()
         };
