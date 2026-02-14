@@ -117,6 +117,35 @@ export class DatabaseService {
         return this.db.data;
     }
 
+    // meta data
+
+    public getMetaData () : Database[ '_meta' ] {
+        return this.db.data._meta;
+    }
+
+    public getSchemaVersion () : string {
+        return this.db.data._meta.schemaVersion;
+    }
+
+    public getDateCreatedAt () : Date {
+        return new Date( this.db.data._meta.createdAt );
+    }
+
+    public getDateUpdatedAt () : Date {
+        return new Date( this.db.data._meta.updatedAt );
+    }
+
+    // settings
+
+    public getCurrency () : string {
+        return this.db.data._meta.currency;
+    }
+
+    public async setCurrency ( currency: string ) : Promise< void > {
+        this.db.data._meta.currency = currency.trim();
+        await this.save();
+    }
+
     // id generator
 
     private generateId ( length: number ) : string {
