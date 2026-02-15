@@ -114,7 +114,11 @@ class CCChart {
 
     renderValueChart ( uuid, data, ctx ) {
         const value = ( data.value ?? [] ).map( o => ( { x: o.date, y: o.price } ) );
-        const th = data.acquisition?.price ? value.map( o => ( { x: o.x, y: data.acquisition.price } ) ) : [];
+        value.unshift( { x: new Date().toISOString(), y: value[ 0 ].y } );
+
+        const th = data.acquisition?.price ? value.map( o => ( {
+            x: o.x, y: data.acquisition.price
+        } ) ) : [];
 
         const chart = new Chart( ctx, {
             type: 'line',
