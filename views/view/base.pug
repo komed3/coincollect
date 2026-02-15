@@ -50,6 +50,9 @@ block main
               span= t( 'view.base.info.mintYears' )
               b= coin.mintStartYear + ' — ' + ( coin.mintEndYear || t( '_.today' ) )
 
+    div.cc-coin--modified
+      p= t( '_.modified', { date: formatter.date( coin.updatedAt ) } )
+
     if coins && coins.length
       -
         let count = 0, purchase = 0, value = 0;

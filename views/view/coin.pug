@@ -167,6 +167,9 @@ block main
                   span= t( 'view.coin.design.description' )
                   p= base.description
 
+        div.cc-coin--modified
+          p= t( '_.modified', { date: formatter.date( coin.updatedAt ) } )
+
       div.cc-coin--aside
         div.cc-coin--barcode
           +barcode( coin.id )
