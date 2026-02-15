@@ -1,9 +1,12 @@
-.cc-footer {
-    padding: 48px 0 96px;
+.cc-footer--inner {
+    display: flex;
+    flex-flow: row nowrap;
+    justify-content: space-between;
+    align-items: center;
+    gap: 48px;
+    padding: 96px 0 48px;
     font-size: 14px;
-    background: rgba( 255 255 255 / 0.8 );
-    backdrop-filter: blur( 10px );
-    border-top: 1px solid var( --border-color );
+    color: var( --text-muted );
 }
 
 .cc-footer--legal {
@@ -11,7 +14,6 @@
     flex-flow: row nowrap;
     align-items: center;
     gap: 32px;
-    margin-top: 12px;
 }
 
 .cc-footer--legal a:hover {
