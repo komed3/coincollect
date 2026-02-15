@@ -63,8 +63,8 @@ block main
         let count = 0, purchase = 0, value = 0;
         coins.forEach( c => {
           count += c.amount;
-          purchase += c.acquisition?.price ?? 0;
-          value += c.value?.[ 0 ]?.avg ?? 0;
+          purchase += ( c.acquisition?.price ?? 0 ) * c.amount;
+          value += ( c.value?.[ 0 ]?.avg ?? 0 ) * c.amount;
         } );
 
       div.cc-coin--stats
