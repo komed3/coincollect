@@ -217,7 +217,14 @@
         "type": "Münztyp"
       },
       "list": {
-        "headline": "Münzen"
+        "amount": "Anzahl",
+        "coin": "Münze",
+        "grade": "Grad",
+        "headline": "Münzen",
+        "mark": "Prägestätte",
+        "status": "Status",
+        "value": "Wert",
+        "year": "Prägejahr"
       },
       "notes": {
         "headline": "Notizen"
