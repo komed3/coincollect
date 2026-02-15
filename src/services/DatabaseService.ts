@@ -303,9 +303,10 @@ export class DatabaseService {
         } else throw new Error( 'Acquisition is required' );
 
         coin.value = ( raw.value ?? [] ).filter( Boolean ).map( v => {
-            const min = Math.min( v.min ?? +Infinity, v.max ?? +Infinity );
-            const max = Math.max( v.max ?? -Infinity, v.min ?? -Infinity );
-            return { min, max, avg: this.num( ( min + max ) / 2 ), date: this.date( v.date ) };
+            const min = this.num( Math.min( v.min ?? +Infinity, v.max ?? +Infinity ) );
+            const max = this.num( Math.max( v.max ?? -Infinity, v.min ?? -Infinity ) );
+            const avg = this.num( v.avg || ( min + max ) / 2 );
+            return { date: this.date( v.date ), min, max, avg };
         } ).sort( ( a, b ) => new Date( b.date ).getTime() - new Date( a.date ).getTime() );
 
         return coin;
