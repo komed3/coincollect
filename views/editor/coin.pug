@@ -53,7 +53,7 @@ block main
         div.cc-form--row
           +select( 'acquisition', t( 'editor.coin.acquisition.method' ), keys.acquisition, coin && coin.acquisition && coin.acquisition.method, false, 'x2' )
           +date( 'acquisitionDate', t( 'editor.coin.acquisition.date' ), coin && coin.acquisition && coin.acquisition.date, false )
-          +number( 'acquisitionPrice', t( 'editor.coin.acquisition.price' ), coin && coin.acquisition && coin.acquisition.price, false )
+          +number( 'acquisitionPrice', t( 'editor.coin.acquisition.price', { currency } ), coin && coin.acquisition && coin.acquisition.price, false )
         div.cc-form--row
           +textarea( 'acquisitionNotes', t( 'editor.coin.acquisition.notes' ), coin && coin.acquisition && coin.acquisition.notes, false )
 
@@ -63,7 +63,7 @@ block main
           - let value = ( coin && coin.value && coin.value[ i ] ) || {};
           div.cc-form--row
             +date( 'date__' + i, t( 'editor.coin.value.date' ), value.date, false )
-            +number( 'price__' + i, t( 'editor.coin.value.price' ), value.price, false )
+            +number( 'price__' + i, t( 'editor.coin.value.price', { currency } ), value.price, false )
 
       div.cc-box
         h3.cc-box--hl= t( 'editor.coin.extra.headline' )

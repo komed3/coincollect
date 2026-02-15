@@ -165,7 +165,7 @@
         "headline": "Erwerb",
         "method": "Art des Erwerbs",
         "notes": "Anmerkungen",
-        "price": "Kaufpreis"
+        "price": "Kaufpreis ({{currency}})"
       },
       "extra": {
         "headline": "Zusätzliche Informationen",
@@ -188,7 +188,7 @@
       "value": {
         "date": "Datum",
         "headline": "Geschätzter Marktwert",
-        "price": "Wert"
+        "price": "Wert ({{currency}})"
       }
     },
     "delete": "Löschen",
