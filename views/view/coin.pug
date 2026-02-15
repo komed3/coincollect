@@ -83,11 +83,11 @@ block main
                   if coin.value && coin.value.length
                     li.column.big
                       span= t( 'view.coin.value.value' )
-                      b= formatter.money( currency, coin.value[ 0 ].price )
+                      b= formatter.money( currency, coin.value[ 0 ].avg )
                     if coin.acquisition && coin.acquisition.price
                       li.column.big
                         span= t( 'view.coin.value.growth' )
-                        b= formatter.percent( coin.value[ 0 ].price / coin.acquisition.price * 100 - 100 )
+                        b= formatter.percent( coin.value[ 0 ].avg / coin.acquisition.price * 100 - 100 )
               if coin.value && coin.value.length
                 div.cc-coin--value-graph
                   +chart( 'value', { acquisition: coin.acquisition, value: coin.value } )

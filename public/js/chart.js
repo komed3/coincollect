@@ -113,10 +113,14 @@ class CCChart {
     }
 
     renderValueChart ( uuid, data, ctx ) {
-        const value = ( data.value ?? [] ).map( o => ( { x: o.date, y: o.price } ) );
-        value.unshift( { x: new Date().toISOString(), y: value[ 0 ].y } );
+        const min = ( data.value ?? [] ).map( o => ( { x: o.date, y: o.min } ) );
+        const max = ( data.value ?? [] ).map( o => ( { x: o.date, y: o.max } ) );
+        const avg = ( data.value ?? [] ).map( o => ( { x: o.date, y: o.avg } ) );
+        min.unshift( { x: new Date().toISOString(), y: min[ 0 ].y } );
+        max.unshift( { x: new Date().toISOString(), y: max[ 0 ].y } );
+        avg.unshift( { x: new Date().toISOString(), y: avg[ 0 ].y } );
 
-        const th = data.acquisition?.price ? value.map( o => ( {
+        const th = data.acquisition?.price ? avg.map( o => ( {
             x: o.x, y: data.acquisition.price
         } ) ) : [];
 
@@ -124,16 +128,33 @@ class CCChart {
             type: 'line',
             data: {
                 datasets: [ {
-                    data: value,
+                    data: avg,
                     borderWidth: 2,
-                    borderColor: '#0066cc',
+                    borderColor: '#06c',
                     hoverBorderWidth: 2,
-                    hoverBorderColor: '#0066cc',
+                    hoverBorderColor: '#06c',
                     pointRadius: 5,
                     pointBackgroundColor: '#fff',
                     pointHoverRadius: 5,
                     pointHoverBackgroundColor: '#fff',
-                    tension: 0.1
+                    tension: 0.05
+                }, {
+                    data: min,
+                    borderWidth: 0,
+                    hoverBorderWidth: 0,
+                    pointRadius: 0,
+                    pointHoverRadius: 0,
+                    tension: 0.05,
+                    fill: false
+                }, {
+                    data: max,
+                    borderWidth: 0,
+                    backgroundColor: '#06c2',
+                    hoverBorderWidth: 0,
+                    pointRadius: 0,
+                    pointHoverRadius: 0,
+                    tension: 0.05,
+                    fill: 1
                 }, {
                     data: th,
                     borderWidth: 2,
@@ -154,7 +175,7 @@ class CCChart {
                                 style: 'currency', currency: CURRENCY
                             } ).format( item.raw.y )
                         },
-                        filter: ( item ) => item.datasetIndex !== 1
+                        filter: ( item ) => item.datasetIndex === 0
                     }
                 },
                 scales: {
