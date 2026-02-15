@@ -302,9 +302,11 @@ export class DatabaseService {
             if ( raw.acquisition.notes ) coin.acquisition.notes = this.str( raw.acquisition.notes );
         } else throw new Error( 'Acquisition is required' );
 
-        coin.value = ( raw.value ?? [] ).filter( Boolean ).map( v => ( {
-            date: this.date( v.date ), price: this.num( v.price )
-        } ) ).sort( ( a, b ) => new Date( b.date ).getTime() - new Date( a.date ).getTime() );
+        coin.value = ( raw.value ?? [] ).filter( Boolean ).map( v => {
+            const min = Math.min( v.min ?? +Infinity, v.max ?? +Infinity );
+            const max = Math.max( v.max ?? -Infinity, v.min ?? -Infinity );
+            return { min, max, avg: this.num( ( min + max ) / 2 ), date: this.date( v.date ) };
+        } ).sort( ( a, b ) => new Date( b.date ).getTime() - new Date( a.date ).getTime() );
 
         return coin;
     }
