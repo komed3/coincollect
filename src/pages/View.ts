@@ -6,6 +6,7 @@ export const baseView = async ( req: Request, res: Response ) : Promise< void > 
 
     if ( ! coin ) { res.redirect( '/404' ) } else {
         res.render( 'view/base', {
+            page: 'dashboard',
             title: req.t( 'view.base.title', { name: coin.name, id: coin.id } ),
             coin, coins: DB.getSingleCoinsByBase( coin.id )
         } );
@@ -18,6 +19,7 @@ export const coinView = async ( req: Request, res: Response ) : Promise< void > 
     if ( ! coin ) { res.redirect( '/404' ) } else {
         const base = DB.getCoinBase( coin.baseId )!;
         res.render( 'view/coin', {
+            page: 'dashboard',
             title: req.t( 'view.coin.title', { name: base.name, id: coin.id, baseId: base.id } ),
             base, coin
         } );
