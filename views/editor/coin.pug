@@ -28,7 +28,7 @@ block main
             select( name= "baseId", required= true, id= "__baseId" )
               option( value= "" )= t( 'editor.select' )
               option( disabled ) ──────────
-              each base in coinBases
+              each base in coinBases.reverse()
                 -
                   let label = [
                     base.name, t( '_.type.' + base.type ), base.series, base.currency, base.country
@@ -63,7 +63,9 @@ block main
           - let value = ( coin && coin.value && coin.value[ i ] ) || {};
           div.cc-form--row
             +date( 'date__' + i, t( 'editor.coin.value.date' ), value.date, false )
-            +number( 'price__' + i, t( 'editor.coin.value.price', { currency } ), value.price, false )
+            +number( 'min__' + i, t( 'editor.coin.value.min', { currency } ), value.min, false )
+            +number( 'max__' + i, t( 'editor.coin.value.max', { currency } ), value.max, false )
+            +number( 'avg__' + i, t( 'editor.coin.value.avg', { currency } ), value.avg, false )
 
       div.cc-box
         h3.cc-box--hl= t( 'editor.coin.extra.headline' )
