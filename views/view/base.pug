@@ -91,13 +91,13 @@ block main
         tbody
           each c in coins
             tr
-              td: a( href= '/coin/' + c.id )= '#' + c.id
+              td: tt: a( href= '/coin/' + c.id )= '#' + c.id
               td= c.mintYear || '—'
               td= c.mintMark || '—'
               td= t( '_.status.' + c.status )
               td= t( '_.grade.' + c.grade )
-              td.right= formatter.number( c.amount, 0 )
-              td.right= formatter.money( currency, ( c.value && c.value[ 0 ] && c.value[ 0 ].price ) || 0 )
+              td.right: tt= formatter.number( c.amount, 0 ).padStart( 4, '*' )
+              td.right: tt= formatter.money( currency, ( c.value && c.value[ 0 ] && c.value[ 0 ].price ) || 0 )
 
     if coin.notes
       div.cc-box.cc-coin--notes
