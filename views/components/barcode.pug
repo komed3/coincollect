@@ -1,0 +1,10 @@
+append styles
+  link( rel= "stylesheet", href= "/css/components/barcode.css" )
+
+append scripts
+  script( src= "https://cdn.jsdelivr.net/jsbarcode/3.3.20/JsBarcode.all.min.js" )
+  script( src= "/js/barcode.js", defer )
+
+mixin barcode( code )
+  div.cc-mixin.cc-mixin--barcode
+    img.cc-barcode( code= code )

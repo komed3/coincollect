@@ -1,4 +1,5 @@
 extends ../layout/page
+include ../components/barcode
 include ../components/chart
 include ../components/material
 
@@ -167,6 +168,9 @@ block main
                   p= base.description
 
       div.cc-coin--aside
+        div.cc-coin--barcode
+          +barcode( coin.id )
+
         if base.image && base.image.obverse
           figure.cc-coin--image
             img( src= '/uploads/' + base.image.obverse, alt= t( 'view.coin.image.obverse' ) )

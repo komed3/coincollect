@@ -85,6 +85,10 @@
     height: 260px;
 }
 
+.cc-coin--barcode {
+    margin-bottom: 32px;
+}
+
 .cc-coin--image {
     margin: 0 0 32px;
     padding: 0;
