@@ -160,7 +160,14 @@ class CCChart {
                             unit: 'year',
                             tooltipFormat: 'PP'
                         },
-                        display: false
+                        grid: {
+                            drawOnChartArea: false,
+                            tickLength: 6
+                        },
+                        ticks: {
+                            autoSkip: true,
+                            maxTicksLimit: 5
+                        }
                     },
                     y: {
                         beginAtZero: true,
