@@ -12,6 +12,14 @@
       "abort": "Abbrechen",
       "submit": "Speichern"
     },
+    "credits": "Copyright © 2026 CoinCollect. Entwickelt für Enthusiasten von komed3. Alle Rechte vorbehalten.",
+    "currency": {
+      "CHF": "CHF (₣)",
+      "EUR": "EUR (€)",
+      "GBP": "GBP (£)",
+      "JPY": "JPY (¥)",
+      "USD": "USD ($)"
+    },
     "grade": {
       "BU": "Unzirkuliert",
       "F": "Schön",
@@ -21,6 +29,10 @@
       "VF": "Sehr schön",
       "VG": "Sehr gut erhalten",
       "XF": "Vorzüglich"
+    },
+    "lang": {
+      "de-DE": "Deutsch (DE)",
+      "en-US": "Englisch (US)"
     },
     "material": {
       "aluminum": "Aluminium",
@@ -61,6 +73,7 @@
       "vanadium": "Vanadium",
       "zinc": "Zink"
     },
+    "modified": "Zuletzt geändert am {{date}}",
     "nav": {
       "add": "Eintragen",
       "dashboard": "Sammlung",
@@ -84,6 +97,7 @@
       "sold": "Verkauft",
       "wanted": "Gewünscht"
     },
+    "support": "Unterstützen",
     "title": "{{title}} — CoinCollection",
     "today": "heute",
     "type": {
