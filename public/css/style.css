@@ -148,12 +148,6 @@ button[type="reset"] {
     color: var( --text-muted );
 }
 
-.cc-box--cols {
-    display: grid;
-    grid-template-columns: repeat( 2, 1fr );
-    gap: 32px;
-}
-
 .cc-table {
     margin: 0 0 24px;
     width: 100%;

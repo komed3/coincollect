@@ -14,7 +14,7 @@ block main
 
     div.cc-box.cc-coin--info
       h3.cc-box--hl= t( 'view.base.info.headline' )
-      div.cc-box--cols
+      div.cc-coin--baseinfo
         ul.cc-list
           if coin.type
             li
@@ -36,7 +36,6 @@ block main
             li
               span= t( 'view.base.info.nominal' )
               b= coin.nominal.value + ' ' + coin.nominal.unit
-        ul.cc-list
           if coin.issuer
             li
               span= t( 'view.base.info.issuer' )
@@ -49,6 +48,12 @@ block main
             li
               span= t( 'view.base.info.mintYears' )
               b= coin.mintStartYear + ' — ' + ( coin.mintEndYear || t( '_.today' ) )
+
+        div.cc-coin--images
+          if coin.image.obverse
+            img( src= "/uploads/" + coin.image.obverse, alt= t( 'view.base.image.obverse' ) )
+          if coin.image.reverse
+            img( src= "/uploads/" + coin.image.reverse, alt= t( 'view.base.image.reverse' ) )
 
     div.cc-coin--modified
       p= t( '_.modified', { date: formatter.date( coin.updatedAt ) } )

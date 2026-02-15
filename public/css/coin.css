@@ -96,6 +96,25 @@
     margin-bottom: 32px;
 }
 
+.cc-coin--images {
+    display: flex;
+    flex-flow: row nowrap;
+    gap: 12px;
+}
+
+.cc-coin--images img {
+    flex: 1;
+    aspect-ratio: 1 / 1;
+    display: block;
+    width: 100%;
+    height: auto;
+    object-fit: cover;
+    object-position: center;
+    border: 1px solid var( --border-color );
+    border-radius: var( --border-radius );
+    overflow: hidden;
+}
+
 .cc-coin--image {
     margin: 0 0 32px;
     padding: 0;
@@ -122,6 +141,13 @@
 .cc-coin--identifier .cc-list li {
     gap: 0;
     padding: 8px 0;
+}
+
+.cc-coin--baseinfo {
+    display: grid;
+    grid-template-columns: 1fr 340px;
+    align-items: start;
+    gap: 32px;
 }
 
 .cc-coin--stats {
