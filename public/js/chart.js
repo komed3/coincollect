@@ -43,9 +43,9 @@ class CCChart {
         Chart.defaults.plugins.legend.labels.boxWidth = 14;
         Chart.defaults.plugins.legend.labels.boxHeight = 14;
 
-        Chart.defaults.plugins.tooltip.titleColor = '#777';
+        Chart.defaults.plugins.tooltip.titleColor = '#666';
         Chart.defaults.plugins.tooltip.bodyColor = '#000';
-        Chart.defaults.plugins.tooltip.footerColor = '#777';
+        Chart.defaults.plugins.tooltip.footerColor = '#666';
         Chart.defaults.plugins.tooltip.backgroundColor = '#fff';
         Chart.defaults.plugins.tooltip.borderColor = '#e5e5e5';
         Chart.defaults.plugins.tooltip.borderWidth = 1;
@@ -138,13 +138,13 @@ class CCChart {
                 }, {
                     data: th,
                     borderWidth: 2,
-                    borderColor: '#d9534f99',
+                    borderColor: '#6669',
                     hoverBorderWidth: 2,
-                    hoverBorderColor: '#d9534f99',
+                    hoverBorderColor: '#6669',
                     pointRadius: 0,
                     pointHoverRadius: 0,
                     fill: true,
-                    backgroundColor: this.pattern( '#d9534f99' )
+                    backgroundColor: this.pattern( '#6669' )
                 } ]
             },
             options: {
