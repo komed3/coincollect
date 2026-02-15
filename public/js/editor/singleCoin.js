@@ -10,12 +10,12 @@ document.addEventListener( 'DOMContentLoaded', () => {
         const id = val( fd.get( 'id' ), 'string' );
 
         const value = [];
-        for ( let i = 0; fd.has( `date__${i}` ) && ( fd.has( `min__${i}` ) || fd.has( `max__${i}` ) ); i++ ) {
+        for ( let i = 0; fd.has( `date__${i}` ) && ( fd.has( `min__${i}` ) || fd.has( `max__${i}` ) || fd.has( `avg__${i}` ) ); i++ ) {
             const date = val( fd.get( `date__${i}` ), 'date' );
             const min = val( fd.get( `min__${i}` ), 'number' );
             const max = val( fd.get( `max__${i}` ), 'number' );
             const avg = val( fd.get( `avg__${i}` ), 'number' );
-            if ( date && ( min || max ) ) value.push( { date, min, max, avg } );
+            if ( date && ( min || max || avg ) ) value.push( { date, min, max, avg } );
         }
 
         const coinData = {
