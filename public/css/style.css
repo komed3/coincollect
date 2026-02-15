@@ -155,7 +155,7 @@ button[type="reset"] {
 }
 
 .cc-table {
-    margin: 24px 0;
+    margin: 0 0 24px;
     width: 100%;
     overflow-x: auto;
     text-align: left;
