@@ -205,6 +205,19 @@
       "edit": "Bearbeiten",
       "view": "Ansicht"
     },
+    "base": {
+      "info": {
+        "country": "Land / Region",
+        "currency": "Münzwährung",
+        "headline": "Eigenschaften",
+        "issuer": "Emittent",
+        "mintMarks": "Prägestätten",
+        "mintYears": "Zeitraum",
+        "nominal": "Nominalwert",
+        "type": "Münztyp"
+      },
+      "title": "{{name}}"
+    },
     "coin": {
       "design": {
         "description": "Beschreibung",

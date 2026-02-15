@@ -11,3 +11,41 @@ block main
         a.current( href= `/base/${coin.id}` )= t( 'view.actions.view' )
         a( href= `/base/${coin.id}/edit` )= t( 'view.actions.edit' )
         a( href= `/base/${coin.id}/delete` )= t( 'view.actions.delete' )
+
+    div.cc-box.cc-coin--info
+      h3.cc-box--hl= t( 'view.base.info.headline' )
+      div.cc-box--cols
+        ul.cc-list
+          if coin.type
+            li
+              span= t( 'view.base.info.type' )
+              b: a( href= '/#type='+ coin.type )= t( '_.type.' + coin.type )
+          if coin.series
+            li
+              span= t( 'view.base.info.series' )
+              b: a( href= '/#series='+ coin.series )= coin.series
+          if coin.country
+            li
+              span= t( 'view.base.info.country' )
+              b: a( href= '/#country='+ coin.country )= coin.country
+          if coin.currency
+            li
+              span= t( 'view.base.info.currency' )
+              b: a( href= '/#currency='+ coin.currency )= coin.currency
+          if coin.nominal && coin.nominal.value && coin.nominal.unit
+            li
+              span= t( 'view.base.info.nominal' )
+              b= coin.nominal.value + ' ' + coin.nominal.unit
+        ul.cc-list
+          if coin.issuer
+            li
+              span= t( 'view.base.info.issuer' )
+              b: a( href= '/#issuer='+ coin.issuer )= coin.issuer
+          if coin.mintMarks
+            li
+              span= t( 'view.base.info.mintMarks' )
+              b= coin.mintMarks.join( ', ' )
+          if coin.mintStartYear || coin.mintEndYear
+            li
+              span= t( 'view.base.info.mintYears' )
+              b= ( coin.mintStartYear || '…' ) + ' — ' + ( coin.mintEndYear || '…' )
