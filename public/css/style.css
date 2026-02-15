@@ -12,13 +12,19 @@
 }
 
 @font-face {
-    font-family: 'FiraCode';
-    src: url( ../fonts/FiraCode.woff2 ) format( 'woff2' );
+    font-family: 'Roboto Mono';
+    src: url( ../fonts/RobotoMono.woff2 ) format( 'woff2' );
+}
+
+@font-face {
+    font-family: 'Roboto Mono';
+    font-style: italic;
+    src: url( ../fonts/RobotoMono-Italic.woff2 ) format( 'woff2' );
 }
 
 :root {
     --font-sans: 'Inter', sans-serif;
-    --font-mono: 'FiraCode', monospace;
+    --font-mono: 'Roboto Mono', monospace;
 
     --text-color: #1a1a1a;
     --text-muted: #666;
@@ -57,6 +63,10 @@ a, img, label, input, select, button, .noselect {
 a, a:link, a:visited, a:hover, a:focus {
     text-decoration: none;
     color: inherit;
+}
+
+tt {
+    font-family: var( --font-mono );
 }
 
 input, textarea, select {
