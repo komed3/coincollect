@@ -42,6 +42,8 @@ html, body {
     color: var( --text-color );
     background: var( --main-bg );
     line-height: 1.5;
+    text-underline-offset: 15%;
+    text-decoration-thickness: 1px;
 }
 
 a, img, label, input, select, button, .noselect {
@@ -149,6 +151,52 @@ button[type="reset"] {
     display: grid;
     grid-template-columns: repeat( 2, 1fr );
     gap: 32px;
+}
+
+.cc-table {
+    width: 100%;
+    overflow-x: auto;
+    text-align: left;
+    font-size: 15px;
+    border-collapse: collapse;
+    border-spacing: 0;
+}
+
+.cc-table th, .cc-table td {
+    padding: 12px 0;
+}
+
+.cc-table thead th {
+    text-transform: uppercase;
+    font-size: 11px;
+    font-weight: 600;
+    letter-spacing: 0.5px;
+    border-bottom: 1px solid var( --border-color );
+}
+
+.cc-table tbody tr:not( :last-child ) td {
+    border-bottom: 1px dashed var( --border-color );
+}
+
+.cc-table .px1 {
+    width: 1px;
+}
+
+.cc-table .center {
+    text-align: center;
+}
+
+.cc-table .right {
+    text-align: right;
+}
+
+.cc-table a {
+    color: var( --accent-main );
+}
+
+.cc-table a:hover {
+    text-decoration: underline;
+    color: var( --accent-secondary );
 }
 
 .cc-list {
