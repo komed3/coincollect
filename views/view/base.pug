@@ -45,10 +45,10 @@ block main
             li
               span= t( 'view.base.info.mintMarks' )
               b= coin.mintMarks.join( ', ' )
-          if coin.mintStartYear || coin.mintEndYear
+          if coin.mintStartYear
             li
               span= t( 'view.base.info.mintYears' )
-              b= ( coin.mintStartYear || '…' ) + ' — ' + ( coin.mintEndYear || '…' )
+              b= coin.mintStartYear + ' — ' + ( coin.mintEndYear || t( '_.today' ) )
 
     if coins && coins.length
       -

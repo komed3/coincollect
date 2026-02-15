@@ -85,6 +85,7 @@
       "wanted": "Gewünscht"
     },
     "title": "{{title}} — CoinCollection",
+    "today": "heute",
     "type": {
       "banknote": "Banknote",
       "bullion": "Anlagemünze",
