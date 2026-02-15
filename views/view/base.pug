@@ -70,28 +70,26 @@ block main
           h3.cc-box--hl= t( 'view.base.stats.growth' )
           b= formatter.percent( value / purchase * 100 - 100 )
 
-      div.cc-box.cc-coin--list
-        h3.cc-box--hl= t( 'view.base.list.headline' )
-        table.cc-table.cc-coin--list-table
-          thead
+      table.cc-table.cc-coin--list-table
+        thead
+          tr
+            th= t( 'view.base.list.coin' )
+            th= t( 'view.base.list.year' )
+            th= t( 'view.base.list.mark' )
+            th= t( 'view.base.list.status' )
+            th= t( 'view.base.list.grade' )
+            th.right= t( 'view.base.list.amount' )
+            th.right= t( 'view.base.list.value' )
+        tbody
+          each c in coins
             tr
-              th= t( 'view.base.list.coin' )
-              th= t( 'view.base.list.year' )
-              th= t( 'view.base.list.mark' )
-              th= t( 'view.base.list.status' )
-              th= t( 'view.base.list.grade' )
-              th.right= t( 'view.base.list.amount' )
-              th.right= t( 'view.base.list.value' )
-          tbody
-            each c in coins
-              tr
-                td: a( href= '/coin/' + c.id )= '#' + c.id
-                td= c.mintYear || '—'
-                td= c.mintMark || '—'
-                td= t( '_.status.' + c.status )
-                td= t( '_.grade.' + c.grade )
-                td.right= formatter.number( c.amount, 0 )
-                td.right= formatter.money( currency, ( c.value && c.value[ 0 ] && c.value[ 0 ].price ) || 0 )
+              td: a( href= '/coin/' + c.id )= '#' + c.id
+              td= c.mintYear || '—'
+              td= c.mintMark || '—'
+              td= t( '_.status.' + c.status )
+              td= t( '_.grade.' + c.grade )
+              td.right= formatter.number( c.amount, 0 )
+              td.right= formatter.money( currency, ( c.value && c.value[ 0 ] && c.value[ 0 ].price ) || 0 )
 
     if coin.notes
       div.cc-box.cc-coin--notes

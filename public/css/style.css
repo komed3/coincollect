@@ -23,6 +23,7 @@
     --text-color: #1a1a1a;
     --text-muted: #666;
     --main-bg: #f8f9fa;
+    --light-bg: #f5f5f5;
     --box-bg: #fff;
     --accent-main: #0066cc;
     --accent-secondary: #004999;
@@ -154,28 +155,39 @@ button[type="reset"] {
 }
 
 .cc-table {
+    margin: 24px 0;
     width: 100%;
     overflow-x: auto;
     text-align: left;
     font-size: 15px;
+    background: var( --box-bg );
+    border: 1px solid var( --border-color );
     border-collapse: collapse;
     border-spacing: 0;
 }
 
 .cc-table th, .cc-table td {
-    padding: 12px 0;
+    padding: 20px 8px;
+}
+
+.cc-table tr > :nth-child( 1 ) {
+    padding-left: 24px;
+}
+
+.cc-table tr > :nth-last-child( 1 ) {
+    padding-right: 24px;
 }
 
 .cc-table thead th {
-    text-transform: uppercase;
-    font-size: 11px;
-    font-weight: 600;
+    font-size: 14px;
+    font-weight: 500;
     letter-spacing: 0.5px;
-    border-bottom: 1px solid var( --border-color );
+    color: var( --text-muted );
+    background: var( --light-bg );
 }
 
-.cc-table tbody tr:not( :last-child ) td {
-    border-bottom: 1px dashed var( --border-color );
+.cc-table tbody td {
+    border-top: 1px solid var( --border-color );
 }
 
 .cc-table .px1 {
@@ -191,12 +203,19 @@ button[type="reset"] {
 }
 
 .cc-table a {
+    font-weight: 500;
     color: var( --accent-main );
 }
 
 .cc-table a:hover {
     text-decoration: underline;
     color: var( --accent-secondary );
+}
+
+.cc-box > .cc-table {
+    margin: 0 -24px -24px;
+    width: calc( 100% + 48px );
+    border-width: 1px 0 0 0;
 }
 
 .cc-list {
