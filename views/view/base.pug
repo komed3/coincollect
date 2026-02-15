@@ -59,7 +59,7 @@ block main
         coins.forEach( c => {
           count += c.amount;
           purchase += c.acquisition?.price ?? 0;
-          value += c.value?.[ 0 ]?.price ?? 0;
+          value += c.value?.[ 0 ]?.avg ?? 0;
         } );
 
       div.cc-coin--stats

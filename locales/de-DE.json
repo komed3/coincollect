@@ -202,7 +202,9 @@
       "value": {
         "date": "Datum",
         "headline": "Geschätzter Marktwert",
-        "price": "Wert ({{currency}})"
+        "min": "Minimum ({{currency}})",
+        "max": "Maximum ({{currency}})",
+        "avg": "Durchschnitt ({{currency}})"
       }
     },
     "delete": "Löschen",
