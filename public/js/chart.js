@@ -116,11 +116,6 @@ class CCChart {
         const value = ( data.value ?? [] ).map( o => ( { x: o.date, y: o.price } ) );
         const th = data.acquisition?.price ? value.map( o => ( { x: o.x, y: data.acquisition.price } ) ) : [];
 
-        if ( data.acquisition.date ) {
-            value.push( { x: data.acquisition.date, y: data.acquisition.price } );
-            th.push( { x: data.acquisition.date, y: data.acquisition.price } );
-        }
-
         const chart = new Chart( ctx, {
             type: 'line',
             data: {
