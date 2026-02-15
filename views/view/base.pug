@@ -1,1 +1,13 @@
 extends ../layout/page
+
+append styles
+  link( rel= "stylesheet", href= "/css/coin.css" )
+
+block main
+  div.cc-coin.cc-content--normal
+    div.cc-coin--header
+      h1.cc-coin--header-title= coin.name
+      div.cc-coin--header-actions
+        a.current( href= `/base/${coin.id}` )= t( 'view.actions.view' )
+        a( href= `/base/${coin.id}/edit` )= t( 'view.actions.edit' )
+        a( href= `/base/${coin.id}/delete` )= t( 'view.actions.delete' )
