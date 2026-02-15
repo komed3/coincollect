@@ -216,6 +216,17 @@
         "nominal": "Nominalwert",
         "type": "Münztyp"
       },
+      "list": {
+        "headline": "Münzen"
+      },
+      "notes": {
+        "headline": "Notizen"
+      },
+      "stats": {
+        "count": "Anzahl Münzen",
+        "growth": "Wertsteigerung",
+        "value": "Gesamtmarktwert"
+      },
       "title": "{{name}}"
     },
     "coin": {

@@ -122,3 +122,9 @@
     grid-template-columns: repeat( 3, 1fr );
     gap: 24px;
 }
+
+.cc-coin--stats b {
+    font-size: 26px;
+    font-weight: 500;
+    color: var( --accent-main );
+}
