@@ -123,8 +123,12 @@
     gap: 24px;
 }
 
+.cc-coin--stats .cc-box--hl {
+    margin-bottom: 6px;
+}
+
 .cc-coin--stats b {
-    font-size: 26px;
+    font-size: 32px;
     font-weight: 500;
     color: var( --accent-main );
 }

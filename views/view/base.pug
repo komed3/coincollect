@@ -51,16 +51,24 @@ block main
               b= ( coin.mintStartYear || '…' ) + ' — ' + ( coin.mintEndYear || '…' )
 
     if coins && coins.length
+      -
+        let count = 0, purchase = 0, value = 0;
+        coins.forEach( c => {
+          count += c.amount;
+          purchase += c.acquisition?.price ?? 0;
+          value += c.value?.[ 0 ]?.price ?? 0;
+        } );
+
       div.cc-coin--stats
         div.cc-box.cc-coin--stats-item
           h3.cc-box--hl= t( 'view.base.stats.count' )
-          b= formatter.number( 0, 0 )
+          b= formatter.number( count, 0 )
         div.cc-box.cc-coin--stats-item
           h3.cc-box--hl= t( 'view.base.stats.value' )
-          b= formatter.money( currency, 0 )
+          b= formatter.money( currency, value )
         div.cc-box.cc-coin--stats-item
           h3.cc-box--hl= t( 'view.base.stats.growth' )
-          b= formatter.percent( 0 )
+          b= formatter.percent( value / purchase * 100 - 100 )
 
       div.cc-box.cc-coin--list
         h3.cc-box--hl= t( 'view.base.list.headline' )
