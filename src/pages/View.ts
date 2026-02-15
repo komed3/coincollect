@@ -7,7 +7,7 @@ export const baseView = async ( req: Request, res: Response ) : Promise< void > 
     if ( ! coin ) { res.redirect( '/404' ) } else {
         res.render( 'view/base', {
             title: req.t( 'view.base.title', { name: coin.name, id: coin.id } ),
-            coin
+            coin, coins: DB.getSingleCoinsByBase( coin.id )
         } );
     }
 };
