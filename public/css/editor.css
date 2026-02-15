@@ -1,7 +1,7 @@
 .cc-editor--nav {
     display: flex;
     flex-flow: row nowrap;
-    margin-bottom: 20px;
+    margin-bottom: 32px;
     border-bottom: 1px solid var( --border-color );
 }
 

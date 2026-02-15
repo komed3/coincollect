@@ -3,7 +3,7 @@
     flex-flow: row nowrap;
     justify-content: space-between;
     align-items: flex-end;
-    margin-bottom: 20px;
+    margin-bottom: 32px;
     border-bottom: 1px solid var( --border-color );
 }
 
