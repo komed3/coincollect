@@ -49,3 +49,29 @@ block main
             li
               span= t( 'view.base.info.mintYears' )
               b= ( coin.mintStartYear || '…' ) + ' — ' + ( coin.mintEndYear || '…' )
+
+    if coins && coins.length
+      div.cc-coin--stats
+        div.cc-box.cc-coin--stats-item
+          h3.cc-box--hl= t( 'view.base.stats.count' )
+          b= formatter.number( 0, 0 )
+        div.cc-box.cc-coin--stats-item
+          h3.cc-box--hl= t( 'view.base.stats.value' )
+          b= formatter.money( currency, 0 )
+        div.cc-box.cc-coin--stats-item
+          h3.cc-box--hl= t( 'view.base.stats.growth' )
+          b= formatter.percent( 0 )
+
+      div.cc-box.cc-coin--list
+        h3.cc-box--hl= t( 'view.base.list.headline' )
+
+    if coin.notes
+      div.cc-box.cc-coin--notes
+        h3.cc-box--hl= t( 'view.base.notes.headline' )
+        ul.cc-list
+          li: p= coin.notes
+
+    if coin.tags && coin.tags.length
+      div.cc-coin--tags
+        each tag in coin.tags
+          a( href= '/#tag=' + tag )= tag

@@ -116,3 +116,9 @@
     gap: 0;
     padding: 8px 0;
 }
+
+.cc-coin--stats {
+    display: grid;
+    grid-template-columns: repeat( 3, 1fr );
+    gap: 24px;
+}
