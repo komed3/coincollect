@@ -4,7 +4,7 @@ import { join } from 'node:path';
 import { Low } from 'lowdb';
 import { JSONFile } from 'lowdb/node';
 
-import type {
+import {
     Acquisition, CoinBase, CoinGrade, CoinMaterial, CoinShape, CoinStats, CoinStatus,
     CoinType, Database, SingleCoin, Suggestions, SuggestionTypes
 } from '../types';
@@ -19,6 +19,12 @@ type SingleCoinRaw = Omit< SingleCoin, 'id' | 'createdAt' | 'updatedAt' >;
 export class DatabaseService {
 
     private static instance: DatabaseService;
+    private static readonly validStatus: CoinStatus[] = [
+        CoinStatus.Owned,
+        CoinStatus.Duplicate,
+        CoinStatus.ForSale
+    ];
+
     private db!: Low< Database >;
     private writeTimer: NodeJS.Timeout | undefined;
     private writeDelay = 150;
@@ -103,7 +109,7 @@ export class DatabaseService {
         return {
             totalCoins: 0,
             totalAcquisition: 0,
-            totalOmv: 0,
+            totalValue: { min: 0, max: 0, avg: 0 },
             growth: 0,
             totalWeight: 0,
             collectionAge: this.now(),
@@ -470,6 +476,39 @@ export class DatabaseService {
 
         this.db.data.collection.items.splice( index, 1 );
         await this.save();
+    }
+
+    // stats
+
+    public async generateStats () : Promise< CoinStats > {
+        const coins = this.db.data.collection.items;
+        const stats: CoinStats = this.getDefaultStats();
+        let first = Infinity;
+
+        for ( const c of coins ) {
+            if ( ! DatabaseService.validStatus.includes( c.status ) ) continue;
+
+            const amount = c.amount || 1;
+            let purchase: number | undefined, value: number | undefined;
+            stats.totalCoins += amount;
+
+            if ( c.acquisition?.price ) stats.totalAcquisition += ( purchase = c.acquisition.price * amount );
+
+            if ( c.value?.length ) {
+                stats.totalValue.avg += ( value = c.value[ 0 ].avg * amount );
+                stats.totalValue.min += c.value[ 0 ].min * amount;
+                stats.totalValue.max += c.value[ 0 ].max * amount;
+            } else if ( purchase ) {
+                stats.totalValue.avg += ( value = purchase );
+                stats.totalValue.min += purchase;
+                stats.totalValue.max += purchase;
+            }
+        }
+
+        this.db.data.stats = stats;
+        await this.save();
+
+        return stats;
     }
 
 }
