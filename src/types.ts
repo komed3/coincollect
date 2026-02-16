@@ -20,7 +20,11 @@ export type Suggestions = Record< SuggestionTypes, string[] >;
 export type CoinValue = Record< string, {
     coins: number;
     acquisition: number;
-    value: number;
+    value: {
+        min: number;
+        max: number;
+        avg: number;
+    };
     change: number;
     percent: number;
     growth: number;
