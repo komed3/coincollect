@@ -230,11 +230,23 @@
     "select": "Wählen"
   },
   "stats": {
+    "country": {
+      "headline": "Länder / Regionen"
+    },
+    "currency": {
+      "headline": "Währungen (der Nominale)"
+    },
+    "material": {
+      "headline": "Materialzusammensetzung"
+    },
     "overview": {
       "age": "Alter der Sammlung",
       "coins": "Anzahl der Münzen",
       "growth": "Wertsteigerung",
       "value": "Marktwert"
+    },
+    "status": {
+      "headline": "Münzstatus & Erhaltungsgrade"
     },
     "title": "Statistik",
     "type": {
@@ -242,6 +254,9 @@
     },
     "value": {
       "headline": "Wertentwicklung"
+    },
+    "year": {
+      "headline": "Prägejahre"
     }
   },
   "view": {
