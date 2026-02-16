@@ -5,7 +5,7 @@ import { Low } from 'lowdb';
 import { JSONFile } from 'lowdb/node';
 
 import {
-    Acquisition, CoinBase, CoinGrade, CoinMaterial, CoinShape, CoinStats, CoinStatus,
+    Acquisition, CoinBase, CoinGrade, CoinMaterial, CoinShape, CoinStats, CoinStatsItem, CoinStatus,
     CoinType, Database, SingleCoin, Suggestions, SuggestionTypes
 } from '../types';
 
@@ -489,21 +489,36 @@ export class DatabaseService {
         for ( const c of coins ) {
             if ( ! DatabaseService.validStatus.includes( c.status ) ) continue;
 
+            const base = this.getCoinBase( c.baseId )!;
             const amount = c.amount || 1;
             let purchase: number | undefined, value: number | undefined;
             stats.totalCoins += amount;
 
-            if ( c.acquisition?.price ) stats.totalAcquisition += ( purchase = c.acquisition.price * amount );
+            if ( c.acquisition?.price ) stats.totalAcquisition += purchase = c.acquisition.price * amount;
 
             if ( c.value?.length ) {
-                stats.totalValue.avg += this.num( value = c.value[ 0 ].avg * amount );
-                stats.totalValue.min += this.num( c.value[ 0 ].min * amount );
-                stats.totalValue.max += this.num( c.value[ 0 ].max * amount );
+                stats.totalValue.avg += value = c.value[ 0 ].avg * amount;
+                stats.totalValue.min += c.value[ 0 ].min * amount;
+                stats.totalValue.max += c.value[ 0 ].max * amount;
             } else if ( purchase ) {
-                stats.totalValue.avg += this.num( value = purchase );
-                stats.totalValue.min += this.num( purchase );
-                stats.totalValue.max += this.num( purchase );
+                stats.totalValue.avg += value = purchase;
+                stats.totalValue.min += purchase;
+                stats.totalValue.max += purchase;
             }
+
+            const updateStats = ( obj: keyof CoinStats, key: string ) => {
+                ( stats as any )[ obj ][ key ] ??= { coins: 0, acquisition: 0, value: 0 } as CoinStatsItem;
+
+                ( stats as any )[ obj ][ key ].coins += amount;
+                ( stats as any )[ obj ][ key ].acquisition += purchase ?? 0;
+                ( stats as any )[ obj ][ key ].value += value ?? 0;
+            };
+
+            base.type && updateStats( 'type', base.type );
+            c.status && updateStats( 'status', c.status );
+            c.grade && updateStats( 'grade', c.grade );
+            base.country && updateStats( 'country', base.country );
+            base.currency && updateStats( 'currency', base.currency );
         }
 
         this.db.data.stats = stats;
