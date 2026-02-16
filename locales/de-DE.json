@@ -230,7 +230,7 @@
     "select": "Wählen"
   },
   "stats": {
-    "headline": "Statistik",
+    "title": "Statistik",
     "overview": {
       "age": "Alter der Sammlung",
       "coins": "Anzahl der Münzen",
