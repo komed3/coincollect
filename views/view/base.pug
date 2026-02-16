@@ -47,7 +47,10 @@ block main
           if coin.mintStartYear
             li
               span= t( 'view.base.info.mintYears' )
-              b= coin.mintStartYear + ' — ' + ( coin.mintEndYear || t( '_.today' ) )
+              if coin.mintStartYear === coin.mintEndYear
+                b= coin.mintStartYear
+              else
+                b= coin.mintStartYear + ' — ' + ( coin.mintEndYear || t( '_.today' ) )
 
         div.cc-coin--images
           if coin.image.obverse
