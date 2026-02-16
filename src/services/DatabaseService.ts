@@ -491,7 +491,7 @@ export class DatabaseService {
 
             const base = this.getCoinBase( c.baseId )!;
             const amount = c.amount || 1;
-            let purchase: number | undefined, value: number | undefined;
+            let purchase: number | undefined, value: number | undefined, weight: number | undefined;
             stats.totalCoins += amount;
 
             if ( c.acquisition?.date ) first = Math.min( first, new Date( c.acquisition.date ).getTime() );
@@ -523,11 +523,50 @@ export class DatabaseService {
             base.currency && updateStats( 'currency', base.currency );
             c.mintYear && updateStats( 'year', c.mintYear.toString() );
 
-            if ( base.dimension?.weight ) {}
+            if ( base.dimension?.weight ) {
+                stats.totalWeight += weight = base.dimension.weight * amount;
+
+                for ( const m of base.material ?? [] ) {
+                    if ( ! ( m.material in stats.material ) ) stats.material[ m.material ] = {
+                        coins: 0, acquisition: 0, value: 0, weight: 0,
+                        pureWeight: 0, fineness: undefined, portion: 0
+                    };
+
+                    stats.material[ m.material ]!.coins += amount;
+                    stats.material[ m.material ]!.acquisition += purchase ?? 0;
+                    stats.material[ m.material ]!.value += value ?? 0;
+
+                    stats.material[ m.material ]!.weight += this.num(
+                        weight * ( ( m.portion ?? 100 ) / 100 ), 4
+                    );
+                    stats.material[ m.material ]!.pureWeight += this.num(
+                        weight * ( ( m.fineness ?? 999 ) / 1000 ) * ( ( m.portion ?? 100 ) / 100 ), 4
+                    );
+                }
+            }
         }
 
-        stats.growth = Number( ( stats.totalValue.avg / stats.totalAcquisition * 100 - 100 ).toFixed( 3 ) );
+        stats.growth = this.num( stats.totalValue.avg / stats.totalAcquisition * 100 - 100, 3 );
         stats.collectionAge = new Date( first ).toISOString();
+
+        const pureWeight = Object.values( stats.material ).reduce(
+            ( s, i ) => s + ( ( i as any ).pureWeight ?? 0 ), 0
+        );
+
+        for ( const m of Object.keys( stats.material ) ) {
+            const sm = ( stats.material as any )[ m ]!;
+
+            sm.fineness = this.num( sm.pureWeight / sm.weight * 1000, 1 );
+            sm.portion = pureWeight ? this.num( sm.pureWeight / pureWeight * 100 ) : 0;
+            sm.acquisition *= sm.portion;
+            sm.value *= sm.portion;
+        }
+
+        stats.material = Object.fromEntries(
+            Object.entries( stats.material ).sort( ( a, b ) =>
+                ( b[ 1 ].portion ?? 0 ) - ( a[ 1 ].portion ?? 0 )
+            )
+        );
 
         this.db.data.stats = stats;
         if ( save ) this.scheduleWrite();
