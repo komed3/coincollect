@@ -18,15 +18,13 @@
     display: flex;
     flex-flow: row nowrap;
     align-items: center;
-    gap: 20px;
+    gap: 12px;
     margin: 48px 0 32px;
     font-size: 19px;
     font-weight: 300;
 }
 
-.cc-stats--headline::after {
-    content: '';
-    flex: 1;
-    height: 2px;
-    background: var( --accent-main );
+.cc-stats--headline i {
+    width: 40px;
+    text-align: center;
 }
