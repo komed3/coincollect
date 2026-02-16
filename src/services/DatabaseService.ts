@@ -481,6 +481,10 @@ export class DatabaseService {
 
     // stats
 
+    public getStats () : CoinStats {
+        return this.db.data.stats;
+    }
+
     public async generateStats ( save: boolean = true ) : Promise< CoinStats > {
         const coins = this.db.data.collection.items;
         const stats: CoinStats = this.getDefaultStats();
