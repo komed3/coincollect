@@ -1,0 +1,15 @@
+.cc-stats--overview {
+    display: grid;
+    grid-template-columns: repeat( 4, 1fr );
+    gap: 24px;
+}
+
+.cc-stats--overview .cc-box--hl {
+    margin-bottom: 6px;
+}
+
+.cc-stats--overview b {
+    font-size: 32px;
+    font-weight: 500;
+    color: var( --accent-main );
+}
