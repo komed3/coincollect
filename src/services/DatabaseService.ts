@@ -6,7 +6,7 @@ import { JSONFile } from 'lowdb/node';
 
 import {
     Acquisition, CoinBase, CoinGrade, CoinMaterial, CoinShape, CoinStats, CoinStatsItem, CoinStatus,
-    CoinType, Database, SingleCoin, Suggestions, SuggestionTypes
+    CoinType, CoinValue, Database, SingleCoin, Suggestions, SuggestionTypes
 } from '../types';
 
 
@@ -576,6 +576,21 @@ export class DatabaseService {
         if ( save ) this.scheduleWrite();
 
         return stats;
+    }
+
+    // value
+
+    public getValue () : CoinValue {
+        return this.db.data.value;
+    }
+
+    public async calculateValue ( save: boolean = true ) : Promise< CoinValue > {
+        const value: CoinValue = {};
+
+        this.db.data.value = value;
+        if ( save ) this.scheduleWrite();
+
+        return value;
     }
 
 }
