@@ -28,7 +28,7 @@ block main
             select( name= "baseId", required= true, id= "__baseId" )
               option( value= "" )= t( 'editor.select' )
               option( disabled ) ──────────
-              each base in coinBases.reverse()
+              each base in coinBases.slice().reverse()
                 -
                   let label = [
                     base.name, t( '_.type.' + base.type ), base.series, base.currency, base.country
