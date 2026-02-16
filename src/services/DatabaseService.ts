@@ -494,6 +494,7 @@ export class DatabaseService {
             let purchase: number | undefined, value: number | undefined;
             stats.totalCoins += amount;
 
+            if ( c.acquisition?.date ) first = Math.min( first, new Date( c.acquisition.date ).getTime() );
             if ( c.acquisition?.price ) stats.totalAcquisition += purchase = c.acquisition.price * amount;
 
             if ( c.value?.length ) {
@@ -517,9 +518,16 @@ export class DatabaseService {
             base.type && updateStats( 'type', base.type );
             c.status && updateStats( 'status', c.status );
             c.grade && updateStats( 'grade', c.grade );
+            c.acquisition?.method && updateStats( 'acquisition', c.acquisition.method );
             base.country && updateStats( 'country', base.country );
             base.currency && updateStats( 'currency', base.currency );
+            c.mintYear && updateStats( 'year', c.mintYear.toString() );
+
+            if ( base.dimension?.weight ) {}
         }
+
+        stats.growth = Number( ( stats.totalValue.avg / stats.totalAcquisition * 100 - 100 ).toFixed( 3 ) );
+        stats.collectionAge = new Date( first ).toISOString();
 
         this.db.data.stats = stats;
         if ( save ) this.scheduleWrite();
