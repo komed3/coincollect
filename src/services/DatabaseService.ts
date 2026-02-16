@@ -138,7 +138,8 @@ export class DatabaseService {
     }
 
     public async save () : Promise< void > {
-        this.generateSuggestions( false );
+        await this.generateStats( false );
+        await this.generateSuggestions( false );
         this.scheduleWrite();
     }
 
@@ -480,7 +481,7 @@ export class DatabaseService {
 
     // stats
 
-    public async generateStats () : Promise< CoinStats > {
+    public async generateStats ( save: boolean = true ) : Promise< CoinStats > {
         const coins = this.db.data.collection.items;
         const stats: CoinStats = this.getDefaultStats();
         let first = Infinity;
@@ -495,18 +496,18 @@ export class DatabaseService {
             if ( c.acquisition?.price ) stats.totalAcquisition += ( purchase = c.acquisition.price * amount );
 
             if ( c.value?.length ) {
-                stats.totalValue.avg += ( value = c.value[ 0 ].avg * amount );
-                stats.totalValue.min += c.value[ 0 ].min * amount;
-                stats.totalValue.max += c.value[ 0 ].max * amount;
+                stats.totalValue.avg += this.num( value = c.value[ 0 ].avg * amount );
+                stats.totalValue.min += this.num( c.value[ 0 ].min * amount );
+                stats.totalValue.max += this.num( c.value[ 0 ].max * amount );
             } else if ( purchase ) {
-                stats.totalValue.avg += ( value = purchase );
-                stats.totalValue.min += purchase;
-                stats.totalValue.max += purchase;
+                stats.totalValue.avg += this.num( value = purchase );
+                stats.totalValue.min += this.num( purchase );
+                stats.totalValue.max += this.num( purchase );
             }
         }
 
         this.db.data.stats = stats;
-        await this.save();
+        if ( save ) this.scheduleWrite();
 
         return stats;
     }
