@@ -30,7 +30,11 @@ export type CoinValue = Record< string, {
 export interface CoinStats {
     totalCoins: number;
     totalAcquisition: number;
-    totalOmv: number;
+    totalValue: {
+        min: number;
+        max: number;
+        avg: number;
+    };
     growth: number;
     totalWeight: number;
     collectionAge: string;
