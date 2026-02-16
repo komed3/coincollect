@@ -18,3 +18,11 @@ block main
       div.cc-box.cc-stats--overview-item
         h3.cc-box--hl= t( 'stats.overview.age' )
         b= formatter.dateDiff( stats.collectionAge, t )
+
+    h3.cc-stats--headline
+      i.fa.fa-diamond
+      span= t( 'stats.value.headline' )
+
+    h3.cc-stats--headline
+      i.fa.fa-balance-scale
+      span= t( 'stats.material.headline' )
