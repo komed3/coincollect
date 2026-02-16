@@ -138,8 +138,9 @@ export class DatabaseService {
     }
 
     public async save () : Promise< void > {
-        await this.generateStats( false );
         await this.generateSuggestions( false );
+        await this.generateStats( false );
+        await this.calculateValue( false );
         this.scheduleWrite();
     }
 
