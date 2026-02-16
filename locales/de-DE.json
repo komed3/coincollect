@@ -229,6 +229,15 @@
     },
     "select": "Wählen"
   },
+  "stats": {
+    "headline": "Statistik",
+    "overview": {
+      "age": "Alter der Sammlung",
+      "coins": "Anzahl der Münzen",
+      "growth": "Wertsteigerung",
+      "value": "Marktwert"
+    }
+  },
   "view": {
     "actions": {
       "base": "Münzbasis",
