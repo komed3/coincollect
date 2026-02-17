@@ -106,7 +106,11 @@ block main
         thead
           tr
             th= t( 'stats.material.label' )
+            th.right= t( 'stats._.coins' )
+            th.right= t( 'stats._.value' )
         tbody
           each r, k in stats.material
             tr
               td= t( '_.material.' + k )
+              td.right: tt= formatter.number( r.coins, 0 )
+              td.right: tt= formatter.money( currency, r.value )
