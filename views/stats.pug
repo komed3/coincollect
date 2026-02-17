@@ -1,7 +1,7 @@
 extends layout/page
 include components/chart
 
-mixin table( key )
+mixin table( key, i18n = false )
   - let data = stats[ key ] ?? []
   table.cc-table
     thead
@@ -15,7 +15,7 @@ mixin table( key )
     tbody
       each r, k in data
         tr
-          td: a( href= '/#' + key + '=' + k )= t( '_.' + key + '.' + k )
+          td: a( href= '/#' + key + '=' + k )= ( i18n ? t( '_.' + key + '.' + k ) : k )
           td.right: tt= formatter.number( r.coins, 0 )
           td.right: tt= formatter.money( currency, r.acquisition )
           td.right: tt= formatter.money( currency, r.value )
