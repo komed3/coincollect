@@ -628,6 +628,7 @@ export class DatabaseService {
                         s.value.max += this.num( ( v.max ?? acq ) * cnt );
                         s.value.avg += this.num( ( v.avg ?? acq ) * cnt );
                         is = true;
+                        break;
                     }
                 }
 
