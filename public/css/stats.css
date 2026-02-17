@@ -1,7 +1,7 @@
 .cc-stats--overview {
     display: grid;
     grid-template-columns: repeat( 4, 1fr );
-    gap: 24px;
+    gap: 0 24px;
 }
 
 .cc-stats--overview .cc-box--hl {

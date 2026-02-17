@@ -154,7 +154,7 @@
 .cc-coin--stats {
     display: grid;
     grid-template-columns: repeat( 3, 1fr );
-    gap: 24px;
+    gap: 0 24px;
 }
 
 .cc-coin--stats .cc-box--hl {
