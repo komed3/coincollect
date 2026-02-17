@@ -26,6 +26,7 @@ block main
         span= t( 'stats.value.headline' )
       div.cc-box: +chart( 'value', value )
       div.cc-box: +chart( 'growth', value )
+      div.cc-box: +chart( 'variance', value )
 
     h3.cc-stats--headline
       i.fa.fa-cube

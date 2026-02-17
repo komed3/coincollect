@@ -210,12 +210,14 @@ class CCChart {
 
     renderGrowthChart ( uuid, data, ctx ) {
         const labels = [], change = [], growth = [], colors = [];
+        let acq = 0;
 
         for ( const [ y, o ] of Object.entries( data ) ) {
             labels.push( y );
-            change.push( Math.abs( o.change ) );
+            change.push( Math.abs( o.acquisition - acq ) );
             growth.push( Math.abs( o.growth ) );
             colors.push( this.colors[ o.growth < 0 ? 8 : 2 ] );
+            acq = o.acquisition;
         }
 
         const chart = new Chart( ctx, {
