@@ -116,12 +116,15 @@ class CCChart {
     }
 
     renderCoinChart ( uuid, data, ctx ) {
+        const avg = ( data.value ?? [] ).map( o => ( { x: o.date, y: o.avg } ) );
         const min = ( data.value ?? [] ).map( o => ( { x: o.date, y: o.min } ) );
         const max = ( data.value ?? [] ).map( o => ( { x: o.date, y: o.max } ) );
-        const avg = ( data.value ?? [] ).map( o => ( { x: o.date, y: o.avg } ) );
-        min.unshift( { x: new Date().toISOString(), y: min[ 0 ].y } );
-        max.unshift( { x: new Date().toISOString(), y: max[ 0 ].y } );
-        avg.unshift( { x: new Date().toISOString(), y: avg[ 0 ].y } );
+
+        if ( avg.length < 2 ) {
+            avg.unshift( { x: new Date().toISOString(), y: avg[ 0 ].y } );
+            min.unshift( { x: new Date().toISOString(), y: min[ 0 ].y } );
+            max.unshift( { x: new Date().toISOString(), y: max[ 0 ].y } );
+        }
 
         const th = data.acquisition?.price ? avg.map( o => ( {
             x: o.x, y: data.acquisition.price
