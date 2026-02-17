@@ -588,19 +588,56 @@ export class DatabaseService {
     public async calculateValue ( save: boolean = true ) : Promise< CoinValue > {
         const coins = this.db.data.collection.items;
         const value: CoinValue = {};
+        let minYear = +Infinity, maxYear = -Infinity;
+        let coinYear: Record< string, number > = {};
+        let prev = undefined;
 
         const getYear = ( d: any ) : number => new Date( d ).getFullYear();
 
-        let minYear = +Infinity, maxYear = -Infinity;
         for ( const c of coins ) {
             const acqYear = getYear( c.acquisition?.date );
             const valueDates = c.value?.map( v => getYear( v.date ) ) || [];
+
+            coinYear[ c.id ] = Math.min( acqYear, ...valueDates );
             minYear = Math.min( minYear, acqYear, ...valueDates );
             maxYear = Math.max( maxYear, acqYear, ...valueDates );
         }
 
         for ( let y = minYear; y <= maxYear; y++ ) {
-            //
+            const s = {
+                coins: 0, acquisition: 0, value: { min: 0, max: 0, avg: 0 },
+                change: 0, percent: 0, growth: 0, ratio: 0
+            };
+
+            for ( const c of coins ) {
+                if ( coinYear[ c.id ] > y ) continue;
+
+                const cnt = c.amount || 1;
+                const acq = c.acquisition?.price || 0;
+
+                s.coins += cnt;
+                s.acquisition += this.num( acq * cnt );
+
+                let is = false;
+                for ( const v of c.value ?? [] ) {
+                    if ( getYear( v.date ) <= y ) {
+                        s.value.min += this.num( ( v.min ?? acq ) * cnt );
+                        s.value.max += this.num( ( v.max ?? acq ) * cnt );
+                        s.value.avg += this.num( ( v.avg ?? acq ) * cnt );
+                        is = true;
+                    }
+                }
+
+                if ( ! is ) s.value.min += s.value.max += s.value.avg += this.num( acq * cnt );
+            }
+
+            s.change = this.num( s.value.avg - ( prev?.value?.avg ?? 0 ) );
+            s.percent = this.num( s.change / s.value.avg * 100, 3 );
+            s.growth = this.num( s.change - ( s.acquisition - ( prev?.acquisition ?? 0 ) ) );
+            s.ratio = this.num( s.growth / s.change, 3 );
+
+            value[ y ] = s;
+            prev = s;
         }
 
         this.db.data.value = value;
