@@ -37,3 +37,7 @@
     background: var( --c, var( --main-bg ) );
     border-radius: var( --border-radius );
 }
+
+.cc-mixin--material-legend-item a:hover {
+    text-decoration: underline;
+}
