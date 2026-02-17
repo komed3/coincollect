@@ -253,10 +253,12 @@
       "value": "Marktwert"
     },
     "country": {
-      "headline": "Länder / Regionen"
+      "headline": "Länder / Regionen",
+      "label": "Region"
     },
     "currency": {
-      "headline": "Währungen (der Nominale)"
+      "headline": "Währungen (der Nominale)",
+      "label": "Währung"
     },
     "material": {
       "headline": "Materialzusammensetzung"
@@ -272,7 +274,8 @@
       "weight": "Gesamtgewicht"
     },
     "status": {
-      "headline": "Münzstatus & Erhaltungsgrade"
+      "headline": "Münzstatus in Sammlung",
+      "label": "Status"
     },
     "title": "Statistik",
     "type": {
@@ -283,7 +286,8 @@
       "headline": "Wertentwicklung"
     },
     "year": {
-      "headline": "Prägejahre"
+      "headline": "Prägejahre",
+      "label": "Jahr"
     }
   },
   "view": {
