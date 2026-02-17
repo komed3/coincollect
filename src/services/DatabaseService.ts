@@ -595,6 +595,8 @@ export class DatabaseService {
         const getYear = ( d: any ) : number => new Date( d ).getFullYear();
 
         for ( const c of coins ) {
+            if ( ! DatabaseService.validStatus.includes( c.status ) ) continue;
+
             const acqYear = getYear( c.acquisition?.date );
             const valueDates = c.value?.map( v => getYear( v.date ) ) || [];
 
@@ -610,6 +612,7 @@ export class DatabaseService {
             };
 
             for ( const c of coins ) {
+                if ( ! DatabaseService.validStatus.includes( c.status ) ) continue;
                 if ( coinYear[ c.id ] > y ) continue;
 
                 const cnt = c.amount || 1;
