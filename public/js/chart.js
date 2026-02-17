@@ -111,6 +111,7 @@ class CCChart {
             case 'coin': this.renderCoinChart( uuid, data, ctx ); break;
             case 'growth': this.renderGrowthChart( uuid, data, ctx ); break;
             case 'value': this.renderValueChart( uuid, data, ctx ); break;
+            case 'variance': this.renderVarianceChart( uuid, data, ctx ); break;
         }
     }
 
@@ -339,6 +340,65 @@ class CCChart {
                             )
                         },
                         filter: ( item ) => item.datasetIndex < 2
+                    }
+                },
+                scales: {
+                    x: {
+                        grid: {
+                            drawOnChartArea: false,
+                            tickLength: 6
+                        },
+                        ticks: {
+                            autoSkip: true,
+                            maxTicksLimit: 5
+                        }
+                    },
+                    y: {
+                        beginAtZero: true,
+                        display: false
+                    }
+                }
+            }
+        } );
+
+        this.charts.set( uuid, chart );
+        return chart;
+    }
+
+    renderVarianceChart ( uuid, data, ctx ) {
+        const labels = [], variance = [];
+
+        for ( const [ y, o ] of Object.entries( data ) ) {
+            labels.push( y );
+            variance.push( o.variance );
+        }
+
+        const chart = new Chart( ctx, {
+            type: 'line',
+            data: {
+                labels,
+                datasets: [ {
+                    label: I18N.label.variance.label,
+                    data: variance,
+                    borderWidth: 2,
+                    borderColor: '#c5851f',
+                    hoverBorderWidth: 2,
+                    hoverBorderColor: '#c5851f',
+                    pointRadius: 0,
+                    pointHoverRadius: 0,
+                    tension: 0.05,
+                    fill: true,
+                    backgroundColor: this.pattern( '#c5851f99' )
+                } ]
+            },
+            options: {
+                plugins: {
+                    tooltip: {
+                        callbacks: {
+                            label: ( item ) => item.dataset.label + ': ' + Intl.NumberFormat( LANG, {
+                                style: 'percent', minimumFractionDigits: 1
+                            } ).format( item.raw / 100 )
+                        }
                     }
                 },
                 scales: {
