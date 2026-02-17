@@ -260,6 +260,10 @@
       "headline": "Währungen (der Nominale)",
       "label": "Währung"
     },
+    "grade": {
+      "headline": "Erhaltungsgrade",
+      "label": "Grad"
+    },
     "material": {
       "headline": "Materialzusammensetzung"
     },
