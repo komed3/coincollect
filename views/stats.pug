@@ -108,9 +108,17 @@ block main
             th= t( 'stats.material.label' )
             th.right= t( 'stats._.coins' )
             th.right= t( 'stats._.value' )
+            th.right= t( 'stats.material.weight' )
+            th.right= t( 'stats.material.pureWeight' )
+            th.right= t( 'stats.material.fineness' )
+            th.right= t( 'stats.material.portion' )
         tbody
           each r, k in stats.material
             tr
               td= t( '_.material.' + k )
               td.right: tt= formatter.number( r.coins, 0 )
               td.right: tt= formatter.money( currency, r.value )
+              td.right: tt= formatter.number( r.weight / 1000, 3 )
+              td.right: tt= formatter.number( r.pureWeight / 1000, 3 )
+              td.right: tt= ( r.fineness ? formatter.number( r.fineness, 1 ) : '—' )
+              td.right: tt= formatter.number( r.portion, 2 )
