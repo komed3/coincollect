@@ -561,8 +561,6 @@ export class DatabaseService {
 
             sm.fineness = this.num( sm.pureWeight / sm.weight * 1000, 1 );
             sm.portion = pureWeight ? this.num( sm.pureWeight / pureWeight * 100 ) : 0;
-            sm.acquisition *= sm.portion / 100;
-            sm.value *= sm.portion / 100;
         }
 
         stats.material = Object.fromEntries(
