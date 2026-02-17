@@ -54,6 +54,9 @@
         "avg": "Marktwert",
         "max": "Maximum",
         "min": "Minimum"
+      },
+      "variance": {
+        "label": "Schwankung"
       }
     },
     "lang": {
