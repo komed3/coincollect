@@ -639,12 +639,24 @@ export class DatabaseService {
                 }
             }
 
+            if ( s.acquisition === 0 && s.value.avg === 0 ) {
+                prev = s; continue;
+            }
+
             s.range = this.num( s.value.max - s.value.min );
             s.variance = this.num( s.range / ( s.value.avg || 1 ) * 100, 3 );
             s.change = this.num( s.value.avg - ( prev?.value?.avg ?? 0 ) );
             s.percent = this.num( s.change / s.value.avg * 100, 3 );
             s.growth = this.num( s.change - ( s.acquisition - ( prev?.acquisition ?? 0 ) ) );
             s.ratio = this.num( s.growth / s.change, 3 );
+
+            if (
+                prev && s.coins === prev.coins && s.acquisition === prev.acquisition &&
+                s.value.min === prev.value.min && s.value.max === prev.value.max &&
+                s.value.avg === prev.value.avg
+            ) {
+                prev = s; continue;
+            }
 
             value[ y ] = s;
             prev = s;
