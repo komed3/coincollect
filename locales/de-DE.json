@@ -255,10 +255,14 @@
       "headline": "Materialzusammensetzung"
     },
     "overview": {
+      "acquisition": "Erwerb",
       "age": "Alter der Sammlung",
       "coins": "Anzahl der Münzen",
       "growth": "Wertsteigerung",
-      "value": "Marktwert"
+      "max": "Maximum",
+      "min": "Minimum",
+      "value": "Marktwert",
+      "weight": "Gesamtgewicht"
     },
     "status": {
       "headline": "Münzstatus & Erhaltungsgrade"
