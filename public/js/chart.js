@@ -108,11 +108,12 @@ class CCChart {
 
     renderChart ( type, uuid, data, ctx ) {
         switch ( type ) {
+            case 'coin': this.renderCoinChart( uuid, data, ctx ); break;
             case 'value': this.renderValueChart( uuid, data, ctx ); break;
         }
     }
 
-    renderValueChart ( uuid, data, ctx ) {
+    renderCoinChart ( uuid, data, ctx ) {
         const min = ( data.value ?? [] ).map( o => ( { x: o.date, y: o.min } ) );
         const max = ( data.value ?? [] ).map( o => ( { x: o.date, y: o.max } ) );
         const avg = ( data.value ?? [] ).map( o => ( { x: o.date, y: o.avg } ) );
@@ -185,6 +186,100 @@ class CCChart {
                             unit: 'year',
                             tooltipFormat: 'PP'
                         },
+                        grid: {
+                            drawOnChartArea: false,
+                            tickLength: 6
+                        },
+                        ticks: {
+                            autoSkip: true,
+                            maxTicksLimit: 5
+                        }
+                    },
+                    y: {
+                        beginAtZero: true,
+                        display: false
+                    }
+                }
+            }
+        } );
+
+        this.charts.set( uuid, chart );
+        return chart;
+    }
+
+    renderValueChart ( uuid, data, ctx ) {
+        const labels = [], avg = [], min = [], max = [], acq = [];
+
+        for ( const [ y, o ] of Object.entries( data ) ) {
+            labels.push( y );
+            avg.push( o.value.avg );
+            min.push( o.value.min );
+            max.push( o.value.max );
+            acq.push( o.acquisition );
+        };
+
+        const chart = new Chart( ctx, {
+            type: 'line',
+            data: {
+                labels,
+                datasets: [ {
+                    label: I18N.label.value.avg,
+                    data: avg,
+                    borderWidth: 2,
+                    borderColor: '#06c',
+                    hoverBorderWidth: 2,
+                    hoverBorderColor: '#06c',
+                    pointRadius: 5,
+                    pointBackgroundColor: '#fff',
+                    pointHoverRadius: 5,
+                    pointHoverBackgroundColor: '#fff',
+                    tension: 0.05
+                }, {
+                    label: I18N.label.value.acq,
+                    data: acq,
+                    borderWidth: 2,
+                    borderColor: '#6669',
+                    hoverBorderWidth: 2,
+                    hoverBorderColor: '#6669',
+                    pointRadius: 0,
+                    pointHoverRadius: 0,
+                    fill: true,
+                    backgroundColor: this.pattern( '#6669' )
+                }, {
+                    label: I18N.label.value.min,
+                    data: min,
+                    borderWidth: 0,
+                    hoverBorderWidth: 0,
+                    pointRadius: 0,
+                    pointHoverRadius: 0,
+                    tension: 0.05,
+                    fill: false
+                }, {
+                    label: I18N.label.value.max,
+                    data: max,
+                    borderWidth: 0,
+                    backgroundColor: '#06c2',
+                    hoverBorderWidth: 0,
+                    pointRadius: 0,
+                    pointHoverRadius: 0,
+                    tension: 0.05,
+                    fill: 2
+                } ]
+            },
+            options: {
+                plugins: {
+                    tooltip: {
+                        callbacks: {
+                            label: ( item ) => item.dataset.label + ': ' + (
+                                Intl.NumberFormat( LANG, {
+                                    style: 'currency', currency: CURRENCY
+                                } ).format( item.raw )
+                            )
+                        }
+                    }
+                },
+                scales: {
+                    x: {
                         grid: {
                             drawOnChartArea: false,
                             tickLength: 6

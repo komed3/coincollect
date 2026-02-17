@@ -1,11 +1,12 @@
 extends layout/page
+include components/chart
 
 append styles
   link( rel= "stylesheet", href= "/css/stats.css" )
 
 block main
   div.cc-stats.cc-content--normal
-    div.cc-stats--overview
+    div.cc-stats--section.cc-stats--overview
       div.cc-box.cc-stats--overview-item
         h3.cc-box--hl= t( 'stats.overview.coins' )
         b= formatter.number( stats.totalCoins, 0 )
@@ -19,9 +20,11 @@ block main
         h3.cc-box--hl= t( 'stats.overview.age' )
         b= formatter.dateDiff( stats.collectionAge, t )
 
-    h3.cc-stats--headline
-      i.fa.fa-diamond
-      span= t( 'stats.value.headline' )
+    div.cc-stats--section.cc-stats--value
+      h3.cc-stats--headline
+        i.fa.fa-diamond
+        span= t( 'stats.value.headline' )
+      +chart( 'value', value )
 
     h3.cc-stats--headline
       i.fa.fa-cube
