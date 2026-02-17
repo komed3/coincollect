@@ -66,23 +66,31 @@ block main
       h3.cc-stats--headline
         i.fa.fa-cube
         span= t( 'stats.type.headline' )
-      div.cc-box: +table( 'type' )
+      div.cc-box: +table( 'type', true )
 
-    h3.cc-stats--headline
-      i.fa.fa-hashtag
-      span= t( 'stats.status.headline' )
+    div.cc-stats--section.cc-stats--status
+      h3.cc-stats--headline
+        i.fa.fa-hashtag
+        span= t( 'stats.status.headline' )
+      div.cc-box: +table( 'status', true )
 
-    h3.cc-stats--headline
-      i.fa.fa-globe
-      span= t( 'stats.country.headline' )
+    div.cc-stats--section.cc-stats--country
+      h3.cc-stats--headline
+        i.fa.fa-globe
+        span= t( 'stats.country.headline' )
+      div.cc-box: +table( 'country', false )
 
-    h3.cc-stats--headline
-      i.fa.fa-money
-      span= t( 'stats.currency.headline' )
+    div.cc-stats--section.cc-stats--currency
+      h3.cc-stats--headline
+        i.fa.fa-money
+        span= t( 'stats.currency.headline' )
+      div.cc-box: +table( 'currency', false )
 
-    h3.cc-stats--headline
-      i.fa.fa-calendar-o
-      span= t( 'stats.year.headline' )
+    div.cc-stats--section.cc-stats--year
+      h3.cc-stats--headline
+        i.fa.fa-calendar-o
+        span= t( 'stats.year.headline' )
+      div.cc-box: +table( 'year', false )
 
     h3.cc-stats--headline
       i.fa.fa-balance-scale
