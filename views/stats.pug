@@ -115,7 +115,7 @@ block main
         tbody
           each r, k in stats.material
             tr
-              td.material( material= k )= t( '_.material.' + k )
+              td.material( material= k ): a( href= "/#material=" + k )= t( '_.material.' + k )
               td.right: tt= formatter.number( r.coins, 0 )
               td.right: tt= formatter.money( currency, r.value )
               td.right: tt= formatter.number( r.weight / 1000, 3 )
