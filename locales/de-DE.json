@@ -44,6 +44,14 @@
       "VG": "Sehr gut erhalten",
       "XF": "Vorzüglich"
     },
+    "label": {
+      "value": {
+        "acq": "Kaufpreis",
+        "avg": "Marktwert",
+        "max": "Maximum",
+        "min": "Minimum"
+      }
+    },
     "lang": {
       "de-DE": "Deutsch (DE)",
       "en-US": "Englisch (US)"
