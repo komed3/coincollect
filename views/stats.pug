@@ -102,3 +102,11 @@ block main
       h3.cc-stats--headline
         i.fa.fa-balance-scale
         span= t( 'stats.material.headline' )
+      table.cc-table
+        thead
+          tr
+            th= t( 'stats.material.label' )
+        tbody
+          each r, k in stats.material
+            tr
+              td= t( '_.material.' + k )
