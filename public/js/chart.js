@@ -275,7 +275,8 @@ class CCChart {
                                     style: 'currency', currency: CURRENCY
                                 } ).format( item.raw )
                             )
-                        }
+                        },
+                        filter: ( item ) => item.datasetIndex < 2
                     }
                 },
                 scales: {

@@ -28,3 +28,8 @@
     width: 40px;
     text-align: center;
 }
+
+.cc-mixin--chart[type="value"] .cc-chart {
+    width: 100%;
+    height: 320px;
+}
