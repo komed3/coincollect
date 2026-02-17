@@ -79,7 +79,7 @@ block main
           b= formatter.money( currency, value )
         div.cc-box.cc-coin--stats-item
           h3.cc-box--hl= t( 'view.base.stats.growth' )
-          b= formatter.percent( value / purchase * 100 - 100 )
+          b= ( purchase ? formatter.percent( value / purchase * 100 - 100 ) : '—' )
 
       table.cc-table.cc-coin--list-table
         thead
