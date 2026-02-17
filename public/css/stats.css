@@ -29,8 +29,12 @@
     text-align: center;
 }
 
-.cc-stats--value .cc-box {
-    padding-bottom: 12px;
+.cc-stats--section .cc-box .cc-mixin--chart {
+    margin-bottom: 20px;
+}
+
+.cc-stats--section .cc-box .cc-mixin--chart:last-child {
+    margin-bottom: -10px;
 }
 
 .cc-stats--value .cc-mixin--chart[type="value"] .cc-chart {
