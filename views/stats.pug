@@ -41,9 +41,29 @@ block main
         +chart( 'growth', value )
         +chart( 'variance', value )
 
-    h3.cc-stats--headline
-      i.fa.fa-cube
-      span= t( 'stats.type.headline' )
+    div.cc-stats--section.cc-stats--type
+      h3.cc-stats--headline
+        i.fa.fa-cube
+        span= t( 'stats.type.headline' )
+      div.cc-box
+        table.cc-table
+          thead
+            tr
+              th= t( 'stats.type.type' )
+              th.right= t( 'stats._.coins' )
+              th.right= t( 'stats._.acquisition' )
+              th.right= t( 'stats._.value' )
+              th.right= t( 'stats._.avg' )
+              th.right= t( 'stats._.growth' )
+          tbody
+            each r, type in stats.type
+              tr
+                td: a( href= '/#type=' + type )= t( '_.type.' + type )
+                td.right: tt= formatter.number( r.coins, 0 )
+                td.right: tt= formatter.money( currency, r.acquisition )
+                td.right: tt= formatter.money( currency, r.value )
+                td.right: tt= 0
+                td.right: tt= 0
 
     h3.cc-stats--headline
       i.fa.fa-hashtag
