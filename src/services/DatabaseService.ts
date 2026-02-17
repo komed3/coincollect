@@ -639,9 +639,7 @@ export class DatabaseService {
                 }
             }
 
-            if ( s.acquisition === 0 && s.value.avg === 0 ) {
-                prev = s; continue;
-            }
+            if ( s.acquisition === 0 && s.value.avg === 0 ) { prev = s; continue; }
 
             s.range = this.num( s.value.max - s.value.min );
             s.variance = this.num( s.range / ( s.value.avg || 1 ) * 100, 3 );
@@ -651,12 +649,9 @@ export class DatabaseService {
             s.ratio = this.num( s.growth / s.change, 3 );
 
             if (
-                prev && s.coins === prev.coins && s.acquisition === prev.acquisition &&
-                s.value.min === prev.value.min && s.value.max === prev.value.max &&
-                s.value.avg === prev.value.avg
-            ) {
-                prev = s; continue;
-            }
+                prev && s.acquisition === prev.acquisition && s.value.min === prev.value.min &&
+                s.value.max === prev.value.max && s.value.avg === prev.value.avg
+            ) { prev = s; continue; }
 
             value[ y ] = s;
             prev = s;
