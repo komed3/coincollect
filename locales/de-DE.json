@@ -245,6 +245,13 @@
     "select": "Wählen"
   },
   "stats": {
+    "_": {
+      "acquisition": "Ankauf",
+      "avg": "Wert / Münze",
+      "coins": "Münzen",
+      "growth": "Wertsteigerung",
+      "value": "Marktwert"
+    },
     "country": {
       "headline": "Länder / Regionen"
     },
@@ -269,7 +276,8 @@
     },
     "title": "Statistik",
     "type": {
-      "headline": "Münztypen"
+      "headline": "Münztypen",
+      "label": "Münztyp"
     },
     "value": {
       "headline": "Wertentwicklung"
