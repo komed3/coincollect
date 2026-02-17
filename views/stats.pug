@@ -62,8 +62,8 @@ block main
                 td.right: tt= formatter.number( r.coins, 0 )
                 td.right: tt= formatter.money( currency, r.acquisition )
                 td.right: tt= formatter.money( currency, r.value )
-                td.right: tt= 0
-                td.right: tt= 0
+                td.right: tt= formatter.money( currency, r.value / r.coins )
+                td.right: tt= ( r.acquisition ? formatter.percent( r.value / r.acquisition * 100 - 100 ) : '—' )
 
     h3.cc-stats--headline
       i.fa.fa-hashtag
