@@ -11,4 +11,4 @@ mixin material( materials )
         li.cc-mixin--material-legend-item( material= m.material )
           - let fineness = m.fineness ? formatter.number( m.fineness, 1 ) + ' ' : ''
           - let portion = ' (' + formatter.percent( m.portion, 1 ) + ')'
-          span= fineness + t( '_.material.' + m.material ) + portion
+          a( href= '/#material=' + m.material )= fineness + t( '_.material.' + m.material ) + portion

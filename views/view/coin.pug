@@ -144,7 +144,7 @@ block main
               if coin.mintYear
                 li
                   span= t( 'view.coin.mint.mintYear' )
-                  b= coin.mintYear
+                  b: a( href= '/#year=' + coin.mintYear )= coin.mintYear
 
         if base.description || ( base.design && ( base.design.obverse || base.design.reverse || base.design.edge ) )
           div.cc-box.cc-coin--design
