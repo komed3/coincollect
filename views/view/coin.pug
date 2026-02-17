@@ -11,10 +11,10 @@ block main
     div.cc-coin--header
       h1.cc-coin--header-title= base.name
       div.cc-coin--header-actions
-        a.current( href= `/coin/${coin.id}` )= t( 'view.actions.view' )
-        a( href= `/base/${base.id}` )= t( 'view.actions.base' )
-        a( href= `/coin/${coin.id}/edit` )= t( 'view.actions.edit' )
-        a( href= `/coin/${coin.id}/delete` )= t( 'view.actions.delete' )
+        a.current( href= '/coin/' + coin.id )= t( 'view.actions.view' )
+        a( href= '/base/' + base.id )= t( 'view.actions.base' )
+        a( href= '/coin/' + coin.id + '/edit' )= t( 'view.actions.edit' )
+        a( href= '/coin/' + coin.id + '/delete' )= t( 'view.actions.delete' )
 
     div.cc-coin--content
       dic.cc-coin--main
@@ -90,7 +90,7 @@ block main
                         b= formatter.percent( coin.value[ 0 ].avg / coin.acquisition.price * 100 - 100 )
               if coin.value && coin.value.length
                 div.cc-coin--value-graph
-                  +chart( 'value', { acquisition: coin.acquisition, value: coin.value } )
+                  +chart( 'coin', { acquisition: coin.acquisition, value: coin.value } )
 
         if base.dimension || ( base.design && base.design.shape ) || base.material
           div.cc-box.cc-coin--specs
