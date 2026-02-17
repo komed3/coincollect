@@ -628,7 +628,11 @@ export class DatabaseService {
                     }
                 }
 
-                if ( ! is ) s.value.min += s.value.max += s.value.avg += this.num( acq * cnt );
+                if ( ! is ) {
+                    s.value.min += this.num( acq * cnt );
+                    s.value.max += this.num( acq * cnt );
+                    s.value.avg += this.num( acq * cnt );
+                }
             }
 
             s.range = this.num( s.value.max - s.value.min );
