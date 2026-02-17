@@ -25,6 +25,8 @@ export type CoinValue = Record< string, {
         max: number;
         avg: number;
     };
+    range: number;
+    variance: number;
     change: number;
     percent: number;
     growth: number;

@@ -605,8 +605,8 @@ export class DatabaseService {
 
         for ( let y = minYear; y <= maxYear; y++ ) {
             const s = {
-                coins: 0, acquisition: 0, value: { min: 0, max: 0, avg: 0 },
-                change: 0, percent: 0, growth: 0, ratio: 0
+                coins: 0, acquisition: 0, value: { min: 0, max: 0, avg: 0 }, range: 0,
+                variance: 0, change: 0, percent: 0, growth: 0, ratio: 0
             };
 
             for ( const c of coins ) {
@@ -631,6 +631,8 @@ export class DatabaseService {
                 if ( ! is ) s.value.min += s.value.max += s.value.avg += this.num( acq * cnt );
             }
 
+            s.range = this.num( s.value.max - s.value.min );
+            s.variance = this.num( s.range / ( s.value.avg || 1 ) * 100, 3 );
             s.change = this.num( s.value.avg - ( prev?.value?.avg ?? 0 ) );
             s.percent = this.num( s.change / s.value.avg * 100, 3 );
             s.growth = this.num( s.change - ( s.acquisition - ( prev?.acquisition ?? 0 ) ) );
