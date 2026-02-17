@@ -76,7 +76,7 @@ block main
 
     div.cc-stats--section.cc-stats--grade
       h3.cc-stats--headline
-        i.fa.fa-hashtag
+        i.fa.fa-gavel
         span= t( 'stats.grade.headline' )
       +table( 'grade', true )
 
@@ -98,6 +98,7 @@ block main
         span= t( 'stats.year.headline' )
       +table( 'year', false )
 
-    h3.cc-stats--headline
-      i.fa.fa-balance-scale
-      span= t( 'stats.material.headline' )
+    div.cc-stats--section.cc-stats--material
+      h3.cc-stats--headline
+        i.fa.fa-balance-scale
+        span= t( 'stats.material.headline' )
