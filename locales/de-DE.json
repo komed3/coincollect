@@ -45,6 +45,10 @@
       "XF": "Vorzüglich"
     },
     "label": {
+      "growth": {
+        "change": "Zukauf",
+        "growth": "Wertsteigerung"
+      },
       "value": {
         "acq": "Kaufpreis",
         "avg": "Marktwert",

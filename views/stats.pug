@@ -24,8 +24,8 @@ block main
       h3.cc-stats--headline
         i.fa.fa-diamond
         span= t( 'stats.value.headline' )
-      div.cc-box
-        +chart( 'value', value )
+      div.cc-box: +chart( 'value', value )
+      div.cc-box: +chart( 'growth', value )
 
     h3.cc-stats--headline
       i.fa.fa-cube

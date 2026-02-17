@@ -109,6 +109,7 @@ class CCChart {
     renderChart ( type, uuid, data, ctx ) {
         switch ( type ) {
             case 'coin': this.renderCoinChart( uuid, data, ctx ); break;
+            case 'growth': this.renderGrowthChart( uuid, data, ctx ); break;
             case 'value': this.renderValueChart( uuid, data, ctx ); break;
         }
     }
@@ -207,6 +208,65 @@ class CCChart {
         return chart;
     }
 
+    renderGrowthChart ( uuid, data, ctx ) {
+        const labels = [], change = [], growth = [], colors = [];
+
+        for ( const [ y, o ] of Object.entries( data ) ) {
+            labels.push( y );
+            change.push( Math.abs( o.change ) );
+            growth.push( Math.abs( o.growth ) );
+            colors.push( this.colors[ o.growth < 0 ? 8 : 2 ] );
+        }
+
+        const chart = new Chart( ctx, {
+            type: 'bar',
+            data: {
+                labels,
+                datasets: [ {
+                    label: I18N.label.growth.change,
+                    data: change,
+                    backgroundColor: '#6665'
+                }, {
+                    label: I18N.label.growth.growth,
+                    data: growth,
+                    backgroundColor: colors,
+                    hoverBackgroundColor: colors
+                } ]
+            },
+            options: {
+                plugins: {
+                    tooltip: {
+                        callbacks: {
+                            label: ( item ) => item.dataset.label + ': ' + Intl.NumberFormat( LANG, {
+                                style: 'currency', currency: CURRENCY
+                            } ).format( item.raw )
+                        }
+                    }
+                },
+                scales: {
+                    x: {
+                        grid: {
+                            drawOnChartArea: false,
+                            tickLength: 6
+                        },
+                        ticks: {
+                            autoSkip: true,
+                            maxTicksLimit: 5
+                        }
+                    },
+                    y: {
+                        type: 'logarithmic',
+                        beginAtZero: true,
+                        display: false
+                    }
+                }
+            }
+        } );
+
+        this.charts.set( uuid, chart );
+        return chart;
+    }
+
     renderValueChart ( uuid, data, ctx ) {
         const labels = [], avg = [], min = [], max = [], acq = [];
 
@@ -216,7 +276,7 @@ class CCChart {
             min.push( o.value.min );
             max.push( o.value.max );
             acq.push( o.acquisition );
-        };
+        }
 
         const chart = new Chart( ctx, {
             type: 'line',
