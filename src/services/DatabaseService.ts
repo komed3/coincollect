@@ -588,41 +588,19 @@ export class DatabaseService {
     public async calculateValue ( save: boolean = true ) : Promise< CoinValue > {
         const coins = this.db.data.collection.items;
         const value: CoinValue = {};
-        const year: Record< string, number[] > = {};
-        let collected= new Set< number >();
 
-        coins.forEach( ( c, i ) => {
-            const acq = c.acquisition.date || c.value.at( -1 )?.date || undefined;
-            acq && ( year[ new Date( acq ).getFullYear() ] ??= [] ).push( i );
+        const getYear = ( d: any ) : number => new Date( d ).getFullYear();
 
-            c.value.forEach( ( { date } ) => {
-                date && ( year[ new Date( date ).getFullYear() ] ??= [] ).push( i );
-            } );
-        } );
+        let minYear = +Infinity, maxYear = -Infinity;
+        for ( const c of coins ) {
+            const acqYear = getYear( c.acquisition?.date );
+            const valueDates = c.value?.map( v => getYear( v.date ) ) || [];
+            minYear = Math.min( minYear, acqYear, ...valueDates );
+            maxYear = Math.max( maxYear, acqYear, ...valueDates );
+        }
 
-        for ( const y of Object.keys( year ).sort() ) {
-            collected = new Set( [ ...collected, ...year[ y ] ] );
-
-            const th = Date.UTC( Number( y ), 11, 31, 23, 59, 59, 999 );
-            const s = {
-                coins: 0, value: { min: 0, max: 0, avg: 0 }, acquisition: 0,
-                change: 0, percent: 0, growth: 0, ratio: 0
-            };
-
-            coins.forEach( ( c, i ) => {
-                if ( ! collected.has( i ) ) return;
-
-                const amount = c.amount || 1;
-                const v = c.value.filter( cv => new Date( cv.date ).getTime() <= th ).at( 0 );
-
-                s.coins += amount;
-                s.value.min += ( v?.min ?? c.acquisition.price ?? 0 ) * amount;
-                s.value.max += ( v?.max ?? c.acquisition.price ?? 0 ) * amount;
-                s.value.avg += ( v?.avg ?? c.acquisition.price ?? 0 ) * amount;
-                s.acquisition += ( c.acquisition.price ?? 0 ) * amount;
-            } );
-
-            value[ y ] = s;
+        for ( let y = minYear; y <= maxYear; y++ ) {
+            //
         }
 
         this.db.data.value = value;
