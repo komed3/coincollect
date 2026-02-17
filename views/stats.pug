@@ -19,6 +19,18 @@ block main
       div.cc-box.cc-stats--overview-item
         h3.cc-box--hl= t( 'stats.overview.age' )
         b= formatter.dateDiff( stats.collectionAge, t )
+      div.cc-box.cc-stats--overview-item
+        h3.cc-box--hl= t( 'stats.overview.acquisition' )
+        b= formatter.money( currency, stats.totalAcquisition )
+      div.cc-box.cc-stats--overview-item
+        h3.cc-box--hl= t( 'stats.overview.min' )
+        b= formatter.money( currency, stats.totalValue.min )
+      div.cc-box.cc-stats--overview-item
+        h3.cc-box--hl= t( 'stats.overview.max' )
+        b= formatter.money( currency, stats.totalValue.max )
+      div.cc-box.cc-stats--overview-item
+        h3.cc-box--hl= t( 'stats.overview.weight' )
+        b= formatter.unit( 'kilogram', stats.totalWeight / 1000 )
 
     div.cc-stats--section.cc-stats--value
       h3.cc-stats--headline
