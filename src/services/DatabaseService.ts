@@ -532,21 +532,19 @@ export class DatabaseService {
                 stats.totalWeight += weight = base.dimension.weight * amount;
 
                 for ( const m of base.material ?? [] ) {
+                    const fineness = ( m.fineness ?? 999 ) / 1000;
+                    const portion = ( m.portion ?? 100 ) / 100;
+
                     if ( ! ( m.material in stats.material ) ) stats.material[ m.material ] = {
                         coins: 0, acquisition: 0, value: 0, weight: 0,
                         pureWeight: 0, fineness: undefined, portion: 0
                     };
 
                     stats.material[ m.material ]!.coins += amount;
-                    stats.material[ m.material ]!.acquisition += purchase ?? 0;
-                    stats.material[ m.material ]!.value += value ?? 0;
-
-                    stats.material[ m.material ]!.weight += this.num(
-                        weight * ( ( m.portion ?? 100 ) / 100 ), 4
-                    );
-                    stats.material[ m.material ]!.pureWeight += this.num(
-                        weight * ( ( m.fineness ?? 999 ) / 1000 ) * ( ( m.portion ?? 100 ) / 100 ), 4
-                    );
+                    stats.material[ m.material ]!.acquisition += this.num( ( purchase ?? 0 ) * portion, 2 );
+                    stats.material[ m.material ]!.value += this.num( ( value ?? 0 ) * portion, 2 );
+                    stats.material[ m.material ]!.weight += this.num( weight * portion, 4 );
+                    stats.material[ m.material ]!.pureWeight += this.num( weight * fineness * portion, 4 );
                 }
             }
         }
