@@ -586,7 +586,44 @@ export class DatabaseService {
     }
 
     public async calculateValue ( save: boolean = true ) : Promise< CoinValue > {
+        const coins = this.db.data.collection.items;
         const value: CoinValue = {};
+        const year: Record< string, number[] > = {};
+        let collected= new Set< number >();
+
+        coins.forEach( ( c, i ) => {
+            const acq = c.acquisition.date || c.value.at( -1 )?.date || undefined;
+            acq && ( year[ new Date( acq ).getFullYear() ] ??= [] ).push( i );
+
+            c.value.forEach( ( { date } ) => {
+                date && ( year[ new Date( date ).getFullYear() ] ??= [] ).push( i );
+            } );
+        } );
+
+        for ( const y of Object.keys( year ).sort() ) {
+            collected = new Set( [ ...collected, ...year[ y ] ] );
+
+            const th = Date.UTC( Number( y ), 11, 31, 23, 59, 59, 999 );
+            const s = {
+                coins: 0, value: { min: 0, max: 0, avg: 0 }, acquisition: 0,
+                change: 0, percent: 0, growth: 0, ratio: 0
+            };
+
+            coins.forEach( ( c, i ) => {
+                if ( ! collected.has( i ) ) return;
+
+                const amount = c.amount || 1;
+                const v = c.value.filter( cv => new Date( cv.date ).getTime() <= th ).at( 0 );
+
+                s.coins += amount;
+                s.value.min += ( v?.min ?? c.acquisition.price ?? 0 ) * amount;
+                s.value.max += ( v?.max ?? c.acquisition.price ?? 0 ) * amount;
+                s.value.avg += ( v?.avg ?? c.acquisition.price ?? 0 ) * amount;
+                s.acquisition += ( c.acquisition.price ?? 0 ) * amount;
+            } );
+
+            value[ y ] = s;
+        }
 
         this.db.data.value = value;
         if ( save ) this.scheduleWrite();
