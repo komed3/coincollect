@@ -35,6 +35,15 @@ class CCList {
         } catch { /** silent */ }
     }
 
+    populateSelectFromKeys ( select, obj, i18n ) {
+        if ( ! select || ! obj ) return;
+        Object.keys( obj ).sort().forEach( key => {
+            const o = document.createElement( 'option' );
+            o.value = key, o.textContent = i18n?.[ key ] ?? key;
+            select.appendChild( o );
+        } );
+    }
+
 }
 
 document.addEventListener( 'DOMContentLoaded', function () {
