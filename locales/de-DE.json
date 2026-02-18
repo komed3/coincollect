@@ -246,7 +246,14 @@
   },
   "list": {
     "filter": {
-      "search": "Münzen nach Name, Beschreibung oder Design suchen …"
+      "country": "Herkunfsland",
+      "currency": "Währung",
+      "grade": "Erhaltungsgrad",
+      "material": "Material",
+      "search": "Münzen nach Name, Beschreibung oder Design suchen …",
+      "status": "Status",
+      "type": "Münztyp",
+      "year": "Jahr"
     }
   },
   "stats": {
