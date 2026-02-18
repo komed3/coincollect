@@ -11,4 +11,10 @@ class CCList {
 
     initializeEvents () {}
 
+    async loadFilter () {}
+
 }
+
+document.addEventListener( 'DOMContentLoaded', function () {
+    const ccList = new CCList();
+} );
