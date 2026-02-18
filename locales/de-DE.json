@@ -244,6 +244,11 @@
     },
     "select": "Wählen"
   },
+  "list": {
+    "filter": {
+      "search": "Münzen nach Name, Beschreibung oder Design suchen …"
+    }
+  },
   "stats": {
     "_": {
       "acquisition": "Ankauf",
