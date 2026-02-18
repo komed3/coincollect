@@ -563,11 +563,15 @@ export class DatabaseService {
             sm.portion = pureWeight ? this.num( sm.pureWeight / pureWeight * 100 ) : 0;
         }
 
-        stats.material = Object.fromEntries(
-            Object.entries( stats.material ).sort( ( a, b ) =>
-                ( b[ 1 ].portion ?? 0 ) - ( a[ 1 ].portion ?? 0 )
-            )
-        );
+        const sortStats = ( key: keyof CoinStats ) => {
+            ( stats as any )[ key ] = Object.fromEntries(
+                Object.entries( ( stats as any )[ key ] ).sort( ( a, b ) =>
+                    ( ( b as any )[ 1 ].value ?? 0 ) - ( ( a as any )[ 1 ].value ?? 0 )
+                )
+            );
+        };
+
+        sortStats( 'material' );
 
         this.db.data.stats = stats;
         if ( save ) this.scheduleWrite();
