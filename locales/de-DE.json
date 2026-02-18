@@ -365,6 +365,7 @@
         "grade": "Erhaltungsgrad",
         "headline": "Grundinformationen",
         "nominal": "Nominalwert",
+        "notes": "Notizen",
         "series": "Serie / Münzreihe",
         "status": "Status in Sammlung",
         "type": "Münztyp"
