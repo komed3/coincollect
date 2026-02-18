@@ -571,6 +571,13 @@ export class DatabaseService {
             );
         };
 
+        sortStats( 'type' );
+        sortStats( 'status' );
+        sortStats( 'grade' );
+        sortStats( 'acquisition' );
+        sortStats( 'country' );
+        sortStats( 'currency' );
+        sortStats( 'year' );
         sortStats( 'material' );
 
         this.db.data.stats = stats;
