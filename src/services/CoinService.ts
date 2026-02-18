@@ -9,6 +9,18 @@ export class CoinService {
         try { await fn() } catch ( err ) { res.status( 500 ).json( { msg, err } ) }
     }
 
+    public getStats ( _: Request, res: Response ) : void {
+        this.catch( res, 'Failed to fetch stats', async () => {
+            res.json( this.dbService.getStats() );
+        } );
+    }
+
+    public getValue ( _: Request, res: Response ) : void {
+        this.catch( res, 'Failed to fetch value', async () => {
+            res.json( this.dbService.getValue() );
+        } );
+    }
+
     public async addCoinBase ( req: Request, res: Response ) : Promise< void > {
         await this.catch( res, 'Failed to add coin base', async () => {
             const coin = await this.dbService.addCoinBase( req.body );

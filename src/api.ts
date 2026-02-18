@@ -6,6 +6,9 @@ import { CoinService } from './services/CoinService';
 const api = Router();
 const service = new CoinService();
 
+api.get( '/stats', service.getStats.bind( service ) );
+api.get( '/value', service.getValue.bind( service ) );
+
 api.post( '/base/add', service.addCoinBase.bind( service ) );
 api.put( '/base/:id/set', service.setCoinBase.bind( service ) );
 api.post( '/base/:id/upload', upload.fields( [
