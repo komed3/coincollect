@@ -28,3 +28,48 @@
     align-items: center;
     gap: 16px;
 }
+
+.cc-list--table-container {
+    width: 100%;
+    white-space: nowrap;
+    overflow-x: auto;
+}
+
+.cc-list--table {
+    position: relative;
+    min-width: 100%;
+}
+
+.cc-list--table ._coin {
+    position: sticky;
+    left: 0;
+    max-width: 320px;
+    border-right: 1px dashed var( --border-color );
+    opacity: 98;
+}
+
+.cc-list--table ._coin a {
+    display: flex;
+    flex-flow: row nowrap;
+    align-items: center;
+    gap: 12px;
+    width: 100%;
+    overflow: hidden;
+}
+
+.cc-list--table ._coin a b {
+    min-width: 0;
+    text-overflow: ellipsis;
+    font-weight: 500;
+    color: var( --accent-color );
+    overflow: hidden;
+}
+
+.cc-list--table ._coin a img {
+    width: 48px;
+    height: 48px;
+    object-fit: cover;
+    object-position: center;
+    border: 1px solid var( --border-color );
+    border-radius: var( --border-radius );
+}
