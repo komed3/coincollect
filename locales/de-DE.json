@@ -245,6 +245,8 @@
     "select": "Wählen"
   },
   "list": {
+    "empty": "Keine Münzen gefunden, die den Suchkriterien entsprechen.",
+    "eol": "Ende des Katalogs",
     "filter": {
       "country": "Herkunfsland",
       "currency": "Währung",
