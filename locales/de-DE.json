@@ -254,6 +254,16 @@
       "status": "Status",
       "type": "Münztyp",
       "year": "Jahr"
+    },
+    "table": {
+      "amount": "Anzahl",
+      "coin": "Münze",
+      "country": "Land",
+      "grade": "Grad",
+      "status": "Status",
+      "type": "Münztyp",
+      "value": "Marktwert",
+      "year": "Jahr"
     }
   },
   "stats": {
