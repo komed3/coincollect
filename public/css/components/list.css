@@ -1,7 +1,7 @@
 .cc-list--filter {
     display: flex;
     flex-flow: column nowrap;
-    gap: 20px;
+    gap: 16px;
     margin-bottom: 32px;
 }
 
@@ -19,4 +19,12 @@
 
 .cc-list--filter-search input {
     padding-left: 48px;
+}
+
+.cc-list--filter-controls {
+    display: flex;
+    flex-flow: row nowrap;
+    justify-content: flex-end;
+    align-items: center;
+    gap: 16px;
 }
