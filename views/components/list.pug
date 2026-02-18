@@ -10,3 +10,8 @@ mixin list()
           filter= "search", type= "text", autocomplete= "off",
           placeholder= t( 'list.filter.search' )
         )
+      div.cc-list--filter-controls
+        each s in [ 'type', 'status', 'grade', 'country', 'currency', 'year', 'material' ]
+          select.cc-list--filter-select( filter= s )
+            option( value= "" )= t( 'list.filter.' + s )
+            option( disabled ) ──────────
