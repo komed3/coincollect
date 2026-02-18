@@ -73,3 +73,27 @@
     border: 1px solid var( --border-color );
     border-radius: var( --border-radius );
 }
+
+.cc-list--table-empty td {
+    display: none;
+    padding: 96px;
+    text-align: center;
+    font-size: 20px;
+    font-weight: 300;
+    color: var( --text-muted );
+    border-top: 1px solid var( --border-color );
+}
+
+.cc-list--table-empty.show td {
+    display: table-cell;
+}
+
+.cc-list--eol {
+    margin: 32px 0;
+    text-align: center;
+    text-transform: uppercase;
+    font-size: 13px;
+    font-weight: 500;
+    letter-spacing: 0.5px;
+    color: var( --text-muted );
+}
