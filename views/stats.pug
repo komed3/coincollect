@@ -27,6 +27,11 @@ append styles
 
 block main
   div.cc-stats.cc-content--normal
+
+    h3.cc-stats--headline
+      i.fa.fa-diamond
+      span= t( 'stats.title' )
+
     div.cc-stats--section.cc-stats--overview
       div.cc-box.cc-stats--overview-item
         h3.cc-box--hl= t( 'stats.overview.coins' )
@@ -55,7 +60,7 @@ block main
 
     div.cc-stats--section.cc-stats--value
       h3.cc-stats--headline
-        i.fa.fa-diamond
+        i.fa.fa-bar-chart
         span= t( 'stats.value.headline' )
       div.cc-box
         +chart( 'value', value )
