@@ -1,0 +1,22 @@
+.cc-list--filter {
+    display: flex;
+    flex-flow: column nowrap;
+    gap: 20px;
+    margin-bottom: 32px;
+}
+
+.cc-list--filter-search {
+    position: relative;
+}
+
+.cc-list--filter-search i {
+    position: absolute;
+    top: 50%;
+    left: 20px;
+    transform: translateY( -50% );
+    color: var( --text-muted );
+}
+
+.cc-list--filter-search input {
+    padding-left: 48px;
+}
