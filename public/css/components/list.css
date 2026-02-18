@@ -2,7 +2,7 @@
     display: flex;
     flex-flow: column nowrap;
     gap: 16px;
-    margin-bottom: 32px;
+    margin: 48px 0;
 }
 
 .cc-list--filter-search {
