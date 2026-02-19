@@ -150,7 +150,7 @@ class CCChart {
                     hoverBorderWidth: 0,
                     pointRadius: 0,
                     pointHoverRadius: 0,
-                    tension: 0.05,
+                    tension: 0.2,
                     fill: false
                 }, {
                     data: max,
@@ -159,7 +159,7 @@ class CCChart {
                     hoverBorderWidth: 0,
                     pointRadius: 0,
                     pointHoverRadius: 0,
-                    tension: 0.05,
+                    tension: 0.2,
                     fill: 1
                 }, {
                     data: th,
@@ -309,6 +309,7 @@ class CCChart {
                     hoverBorderColor: '#6669',
                     pointRadius: 0,
                     pointHoverRadius: 0,
+                    tension: 0.05,
                     fill: true,
                     backgroundColor: this.pattern( '#6669' )
                 }, {
@@ -318,7 +319,7 @@ class CCChart {
                     hoverBorderWidth: 0,
                     pointRadius: 0,
                     pointHoverRadius: 0,
-                    tension: 0.05,
+                    tension: 0.2,
                     fill: false
                 }, {
                     label: I18N.label.value.max,
@@ -328,7 +329,7 @@ class CCChart {
                     hoverBorderWidth: 0,
                     pointRadius: 0,
                     pointHoverRadius: 0,
-                    tension: 0.05,
+                    tension: 0.2,
                     fill: 2
                 } ]
             },
