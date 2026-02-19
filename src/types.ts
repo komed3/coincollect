@@ -251,3 +251,8 @@ export enum CoinCatalog {
     Muenzkatalog = 'muenzkatalog',
     Numista = 'numista'
 }
+
+export interface CoinListItem {
+    coin: SingleCoin;
+    base: CoinBase;
+}
