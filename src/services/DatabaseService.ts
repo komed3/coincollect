@@ -5,8 +5,9 @@ import { Low } from 'lowdb';
 import { JSONFile } from 'lowdb/node';
 
 import {
-    Acquisition, CoinBase, CoinGrade, CoinMaterial, CoinShape, CoinStats, CoinStatsItem, CoinStatus,
-    CoinType, CoinValue, Database, SingleCoin, Suggestions, SuggestionTypes
+    Acquisition, CoinBase, CoinGrade, CoinListItem, CoinMaterial,
+    CoinShape, CoinStats, CoinStatsItem, CoinStatus, CoinType, CoinValue,
+    Database, SingleCoin, Suggestions, SuggestionTypes
 } from '../types';
 
 
@@ -419,6 +420,55 @@ export class DatabaseService {
 
     public getAllSingleCoins () : SingleCoin[] {
         return this.db.data.collection.items;
+    }
+
+    public searchCoins ( params: { search?: any, filter?: {
+        type?: any, status?: any, grade?: any, country?: any, currency?: any, year?: any, material?: any
+    } } = {} ) : CoinListItem[] {
+        const search = this.str( params.search ?? '' ).toLowerCase();
+        const raw = ( params.filter || {} ) as Record< string, any >;
+        const vals: Record< string, string > = {};
+
+        [ 'type', 'status', 'grade', 'country', 'currency', 'year', 'material' ].forEach( k => {
+            vals[ k ] = this.str( raw[ k ] ?? '' ).toLowerCase();
+        } );
+
+        const results: CoinListItem[] = [];
+        for ( const coin of this.db.data.collection.items ) {
+            const base = this.getCoinBase( coin.baseId );
+            if ( ! base ) continue;
+
+            if ( search ) {
+                const haystack = [
+                    base.name, base.description, base.issuer, base.series, base.design?.obverse,
+                    base.design?.reverse, ...( base.tags ?? [] ), ...( base.mintMarks ?? [] )
+                ].filter( Boolean ).join( ' ' ).toLowerCase();
+
+                if ( ! haystack.includes( search ) ) continue;
+            }
+
+            const cStatus = coin.status.toLowerCase();
+            const cGrade = coin.grade.toLowerCase();
+            const cYear = String( coin.mintYear ?? '' );
+            const bType = base.type.toLowerCase();
+            const bCountry = ( base.country ?? '' ).toLowerCase();
+            const bCurrency = ( base.currency ?? '' ).toLowerCase();
+            const bMaterials = vals.material
+                ? ( base.material ?? [] ).map( m => String( m.material ).toLowerCase() )
+                : undefined;
+
+            if ( vals.type && bType !== vals.type ) continue;
+            if ( vals.status && cStatus !== vals.status ) continue;
+            if ( vals.grade && cGrade !== vals.grade ) continue;
+            if ( vals.country && bCountry !== vals.country ) continue;
+            if ( vals.currency && bCurrency !== vals.currency ) continue;
+            if ( vals.year && cYear !== vals.year ) continue;
+            if ( vals.material && bMaterials && !bMaterials.includes( vals.material ) ) continue;
+
+            results.push( { coin, base } );
+        }
+
+        return results;
     }
 
     public getSingleCoin ( id: string ) : SingleCoin | undefined {
