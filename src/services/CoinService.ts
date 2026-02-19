@@ -21,6 +21,12 @@ export class CoinService {
         } );
     }
 
+    public searchCoins ( req: Request, res: Response ) : void {
+        this.catch( res, 'Failed to search coins', async () => {
+            res.json( this.dbService.searchCoins( req.body ) );
+        } );
+    }
+
     public async addCoinBase ( req: Request, res: Response ) : Promise< void > {
         await this.catch( res, 'Failed to add coin base', async () => {
             const coin = await this.dbService.addCoinBase( req.body );

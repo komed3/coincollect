@@ -6,7 +6,7 @@ import { CoinService } from './services/CoinService';
 const api = Router();
 const service = new CoinService();
 
-api.get( '/search', service.searchCoins.bind( service ) );
+api.post( '/search', service.searchCoins.bind( service ) );
 
 api.get( '/stats', service.getStats.bind( service ) );
 api.get( '/value', service.getValue.bind( service ) );
