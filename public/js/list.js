@@ -25,14 +25,11 @@ class CCList {
         this.searchInput.addEventListener( 'input', () => this.applyFilters() );
         this.filterSelects.forEach( sel => sel.addEventListener( 'change', () => this.applyFilters() ) );
 
-        // infinite scroll on window since container doesn't scroll vertically
         window.addEventListener( 'scroll', () => {
             if ( this.loading ) return;
             const scrollBottom = window.scrollY + window.innerHeight;
             const trigger = document.body.scrollHeight - 100;
-            if ( scrollBottom >= trigger ) {
-                this.renderMore();
-            }
+            if ( scrollBottom >= trigger ) this.renderMore();
         } );
     }
 
@@ -56,14 +53,16 @@ class CCList {
                 headers: { 'Content-Type': 'application/json' },
                 body: JSON.stringify( params )
             } );
-            if ( ! res.ok ) throw new Error( 'bad response' );
+
+            if ( ! res.ok ) throw new Error( 'Bad Response' );
+
             this.items = await res.json();
             this.rendered = 0;
             this.tableContent.innerHTML = '';
-            // ensure empty state even when no rows will be rendered
+
             this.updateEmptyState();
             this.renderMore();
-        } catch (e) {
+        } catch {
             // silent for now
         } finally {
             this.loading = false;
@@ -73,50 +72,53 @@ class CCList {
     renderMore () {
         if ( this.rendered >= this.items.length ) return;
         const end = Math.min( this.items.length, this.rendered + this.pageSize );
+
         for ( let i = this.rendered; i < end; i++ ) {
-            this.tableContent.appendChild( this.createRow( this.items[i] ) );
+            this.tableContent.appendChild( this.createRow( this.items[ i ] ) );
         }
+
         this.rendered = end;
         this.updateEmptyState();
     }
 
     updateEmptyState () {
-        if ( this.items.length === 0 ) this.emptyState.classList.add( 'show' );
-        else this.emptyState.classList.remove( 'show' );
+        this.emptyState.classList.toggle( 'show', this.items.length === 0 );
     }
 
     createRow ( item ) {
         const tr = document.createElement( 'tr' );
         const { coin, base } = item;
 
-        const td = (cls, child) => {
+        const td = ( cls, child ) => {
             const e = document.createElement( 'td' );
             if ( cls ) e.className = cls;
             if ( child ) e.appendChild( child );
             return e;
         };
 
-        // numeric cells with tt wrapper using closure
-        const numberCell = (cls, value, formatter) => {
+        const numberCell = ( cls, value, formatter ) => {
             const tt = document.createElement( 'tt' );
             tt.textContent = formatter( value );
             return td( cls, tt );
         };
 
-        // coin cell with optional image and link
         const coinTd = document.createElement( 'td' );
         coinTd.className = '_coin';
+
         const a = document.createElement( 'a' );
         a.href = `/coin/${coin.id}`;
+
         const b = document.createElement( 'b' );
         b.textContent = base.name;
         a.appendChild( b );
+
         if ( base.image?.obverse ) {
             const img = document.createElement( 'img' );
             img.src = `/uploads/${base.image.obverse}`;
             img.alt = base.name;
             a.insertBefore( img, b );
         }
+
         coinTd.appendChild( a );
         tr.appendChild( coinTd );
 
@@ -125,12 +127,13 @@ class CCList {
         tr.appendChild( td( '_country', document.createTextNode( base.country || '' ) ) );
         tr.appendChild( td( '_year', document.createTextNode( coin.mintYear?.toString() || '' ) ) );
         tr.appendChild( td( '_grade', document.createTextNode( I18N.grade?.[ coin.grade ] || coin.grade ) ) );
-        if ( coin.amount != null )
-            tr.appendChild( numberCell( '_amount right', coin.amount, v => `***${v}` ) );
+
+        if ( coin.amount != null ) tr.appendChild( numberCell( '_amount right', coin.amount, v => String( v ).padStart( 4, '*' ) ) );
         else tr.appendChild( td( '_amount right' ) );
-        if ( coin.value?.[0]?.avg != null )
-            tr.appendChild( numberCell( '_value right', coin.value[0].avg,
-                v => Intl.NumberFormat( LANG, { style: 'currency', currency: CURRENCY } ).format( v ) ) );
+
+        if ( coin.value?.[ 0 ]?.avg != null ) tr.appendChild( numberCell( '_value right', coin.value[ 0 ].avg, v =>
+            Intl.NumberFormat( LANG, { style: 'currency', currency: CURRENCY } ).format( v )
+        ) );
         else tr.appendChild( td( '_value right' ) );
 
         return tr;
@@ -152,7 +155,7 @@ class CCList {
             this.populateSelectFromKeys( selects[ 6 ], stats.material, I18N.material );
 
             this.fromHash();
-        } catch { /** silent */ }
+        } catch {}
     }
 
     populateSelectFromKeys ( select, obj, i18n ) {
@@ -164,17 +167,15 @@ class CCList {
         } );
     }
 
-    // existing stub; preserves hash state if used elsewhere
     fromHash () {
         try {
             const data = JSON.parse( decodeURIComponent( location.hash.slice( 1 ) ) );
+
             if ( data.search ) this.searchInput.value = data.search;
-            if ( data.filter ) {
-                Object.entries( data.filter ).forEach( ([k,v]) => {
-                    const sel = document.querySelector( `.cc-list--filter-select[filter="${k}"]` );
-                    if ( sel ) sel.value = v;
-                } );
-            }
+            if ( data.filter ) Object.entries( data.filter ).forEach( ( [ k, v ] ) => {
+                const sel = document.querySelector( `.cc-list--filter-select[filter="${k}"]` );
+                if ( sel ) sel.value = v;
+            } );
         } catch {}
     }
 
