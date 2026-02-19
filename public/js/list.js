@@ -21,9 +21,14 @@ class CCList {
         this.applyFilters();
     }
 
+    triggerUpdate () {
+        this.toHash();
+        this.applyFilters();
+    }
+
     initializeEvents () {
-        this.searchInput.addEventListener( 'input', () => this.applyFilters() );
-        this.filterSelects.forEach( sel => sel.addEventListener( 'change', () => this.applyFilters() ) );
+        this.searchInput.addEventListener( 'input', this.triggerUpdate.bind( this ) );
+        this.filterSelects.forEach( sel => sel.addEventListener( 'change', this.triggerUpdate.bind( this ) ) );
 
         window.addEventListener( 'scroll', () => {
             if ( this.loading ) return;
@@ -169,14 +174,37 @@ class CCList {
 
     fromHash () {
         try {
-            const data = JSON.parse( decodeURIComponent( location.hash.slice( 1 ) ) );
+            const raw = location.hash.slice( 1 );
+            if ( ! raw ) return;
 
-            if ( data.search ) this.searchInput.value = data.search;
-            if ( data.filter ) Object.entries( data.filter ).forEach( ( [ k, v ] ) => {
-                const sel = document.querySelector( `.cc-list--filter-select[filter="${k}"]` );
-                if ( sel ) sel.value = v;
+            const params = new URLSearchParams( raw );
+            const search = params.get( 'search' );
+            if ( search != null ) this.searchInput.value = search;
+
+            [ 'type', 'status', 'grade', 'country', 'currency', 'year', 'material' ].forEach( key => {
+                const val = params.get( key );
+                if ( val != null ) {
+                    const sel = document.querySelector( `.cc-list--filter-select[filter="${key}"]` );
+                    if ( sel ) sel.value = val;
+                }
             } );
-        } catch {}
+        } catch ( e ) {
+            console.warn( 'Invalid hash', e );
+        }
+    }
+
+    toHash () {
+        const hash = new URLSearchParams();
+        const s = this.searchInput.value.trim();
+
+        if ( s ) hash.set( 'search', s );
+
+        Array.from( this.filterSelects ).forEach( sel => {
+            if ( sel.value ) hash.set( sel.getAttribute( 'filter' ), sel.value );
+        } );
+
+        const str = hash.toString();
+        location.hash = str ? str : '';
     }
 
 }
