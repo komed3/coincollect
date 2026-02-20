@@ -45,6 +45,8 @@
       "XF": "Vorzüglich"
     },
     "label": {
+      "acquisition": "Ankauf",
+      "coins": "Anzahl der Münzen",
       "growth": {
         "change": "Zukauf",
         "growth": "Wertsteigerung"

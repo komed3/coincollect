@@ -45,6 +45,8 @@
       "XF": "Extremely Fine"
     },
     "label": {
+      "acquisition": "Acquisition",
+      "coins": "Coins",
       "growth": {
         "change": "Acquisition",
         "growth": "Growth"
