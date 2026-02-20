@@ -109,6 +109,7 @@ class CCChart {
     renderChart ( type, uuid, data, ctx ) {
         switch ( type ) {
             case 'coin': this.renderCoinChart( uuid, data, ctx ); break;
+            case 'doughnut': this.renderDoughnutChart( uuid, data, ctx ); break;
             case 'growth': this.renderGrowthChart( uuid, data, ctx ); break;
             case 'value': this.renderValueChart( uuid, data, ctx ); break;
             case 'variance': this.renderVarianceChart( uuid, data, ctx ); break;
@@ -207,6 +208,13 @@ class CCChart {
                 }
             }
         } );
+
+        this.charts.set( uuid, chart );
+        return chart;
+    }
+
+    renderDoughnutChart ( uuid, data, ctx ) {
+        const chart = new Chart( ctx, {} );
 
         this.charts.set( uuid, chart );
         return chart;
