@@ -51,6 +51,7 @@ export interface CoinStats {
     country: Record< string, CoinStatsItem >;
     currency: Record< string, CoinStatsItem >;
     issuer: Record< string, CoinStatsItem >;
+    mintMark: Record< string, CoinStatsItem >;
     year: Record< string, CoinStatsItem >;
     material: { [ M in CoinMaterial ]?: CoinStatsItem & {
         weight: number;

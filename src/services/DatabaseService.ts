@@ -121,6 +121,7 @@ export class DatabaseService {
             country: {},
             currency: {},
             issuer: {},
+            mintMark: {},
             year: {},
             material: {}
         };
@@ -602,6 +603,7 @@ export class DatabaseService {
             base.country && updateStats( 'country', base.country );
             base.currency && updateStats( 'currency', base.currency );
             base.issuer && updateStats( 'issuer', base.issuer );
+            c.mintMark && updateStats( 'mintMark', c.mintMark );
             c.mintYear && updateStats( 'year', c.mintYear.toString() );
 
             if ( base.dimension?.weight ) {
@@ -648,6 +650,7 @@ export class DatabaseService {
         calcGrowth( 'country' );
         calcGrowth( 'currency' );
         calcGrowth( 'issuer' );
+        calcGrowth( 'mintMark' );
         calcGrowth( 'year' );
         calcGrowth( 'material' );
 
@@ -666,6 +669,7 @@ export class DatabaseService {
         sortStats( 'country' );
         sortStats( 'currency' );
         sortStats( 'issuer' );
+        sortStats( 'mintMark' );
         sortStats( 'year' );
         sortStats( 'material' );
 
