@@ -422,55 +422,6 @@ export class DatabaseService {
         return this.db.data.collection.items;
     }
 
-    public searchCoins ( params: { search?: any, filter?: {
-        type?: any, status?: any, grade?: any, country?: any, currency?: any, year?: any, material?: any
-    } } = {} ) : CoinListItem[] {
-        const search = this.str( params.search ?? '' ).toLowerCase();
-        const raw = ( params.filter || {} ) as Record< string, any >;
-        const vals: Record< string, string > = {};
-
-        [ 'type', 'status', 'grade', 'country', 'currency', 'year', 'material' ].forEach( k => {
-            vals[ k ] = this.str( raw[ k ] ?? '' ).toLowerCase();
-        } );
-
-        const results: CoinListItem[] = [];
-        for ( const coin of this.db.data.collection.items ) {
-            const base = this.getCoinBase( coin.baseId );
-            if ( ! base ) continue;
-
-            if ( search ) {
-                const haystack = [
-                    base.name, base.description, base.issuer, base.series, base.design?.obverse,
-                    base.design?.reverse, ...( base.tags ?? [] ), ...( base.mintMarks ?? [] )
-                ].filter( Boolean ).join( ' ' ).toLowerCase();
-
-                if ( ! haystack.includes( search ) ) continue;
-            }
-
-            const cStatus = coin.status.toLowerCase();
-            const cGrade = coin.grade.toLowerCase();
-            const cYear = String( coin.mintYear ?? '' );
-            const bType = base.type.toLowerCase();
-            const bCountry = ( base.country ?? '' ).toLowerCase();
-            const bCurrency = ( base.currency ?? '' ).toLowerCase();
-            const bMaterials = vals.material
-                ? ( base.material ?? [] ).map( m => String( m.material ).toLowerCase() )
-                : undefined;
-
-            if ( vals.type && bType !== vals.type ) continue;
-            if ( vals.status && cStatus !== vals.status ) continue;
-            if ( vals.grade && cGrade !== vals.grade ) continue;
-            if ( vals.country && bCountry !== vals.country ) continue;
-            if ( vals.currency && bCurrency !== vals.currency ) continue;
-            if ( vals.year && cYear !== vals.year ) continue;
-            if ( vals.material && bMaterials && !bMaterials.includes( vals.material ) ) continue;
-
-            results.push( { coin, base } );
-        }
-
-        return results;
-    }
-
     public getSingleCoin ( id: string ) : SingleCoin | undefined {
         return this.db.data.collection.items.find( i => i.id === id );
     }
@@ -528,6 +479,75 @@ export class DatabaseService {
 
         this.db.data.collection.items.splice( index, 1 );
         await this.save();
+    }
+
+    // search
+
+    public searchCoins ( params: {
+        search?: any, sort?: { key: 'name' | 'mintYear' | 'amount' | 'value', order: 'asc' | 'desc' },
+        filter?: { type?: any, status?: any, grade?: any, country?: any, currency?: any, year?: any, material?: any }
+    } = {} ) : CoinListItem[] {
+        const search = this.str( params.search ?? '' ).toLowerCase();
+        const raw = ( params.filter || {} ) as Record< string, any >;
+        const { key, order } = params.sort ?? { key: 'mintYear', order: 'desc' };
+        const vals: Record< string, string > = {};
+
+        [ 'type', 'status', 'grade', 'country', 'currency', 'year', 'material' ].forEach( k => {
+            vals[ k ] = this.str( raw[ k ] ?? '' ).toLowerCase();
+        } );
+
+        const results: CoinListItem[] = [];
+        for ( const coin of this.db.data.collection.items ) {
+            const base = this.getCoinBase( coin.baseId );
+            if ( ! base ) continue;
+
+            if ( search ) {
+                const haystack = [
+                    base.name, base.description, base.issuer, base.series, base.design?.obverse,
+                    base.design?.reverse, ...( base.tags ?? [] ), ...( base.mintMarks ?? [] )
+                ].filter( Boolean ).join( ' ' ).toLowerCase();
+
+                if ( ! haystack.includes( search ) ) continue;
+            }
+
+            const cStatus = coin.status.toLowerCase();
+            const cGrade = coin.grade.toLowerCase();
+            const cYear = String( coin.mintYear ?? '' );
+            const bType = base.type.toLowerCase();
+            const bCountry = ( base.country ?? '' ).toLowerCase();
+            const bCurrency = ( base.currency ?? '' ).toLowerCase();
+            const bMaterials = vals.material
+                ? ( base.material ?? [] ).map( m => String( m.material ).toLowerCase() )
+                : undefined;
+
+            if ( vals.type && bType !== vals.type ) continue;
+            if ( vals.status && cStatus !== vals.status ) continue;
+            if ( vals.grade && cGrade !== vals.grade ) continue;
+            if ( vals.country && bCountry !== vals.country ) continue;
+            if ( vals.currency && bCurrency !== vals.currency ) continue;
+            if ( vals.year && cYear !== vals.year ) continue;
+            if ( vals.material && bMaterials && !bMaterials.includes( vals.material ) ) continue;
+
+            results.push( { coin, base } );
+        }
+
+        results.sort( ( a, b ) => {
+            const aVal = key === 'name' ? a.base.name :
+                key === 'mintYear' ? a.coin.mintYear ?? 0 :
+                key === 'amount' ? a.coin.amount ?? 1 :
+                key === 'value' ? a.coin.value?.[ 0 ]?.avg ?? 0 : 0;
+            const bVal = key === 'name' ? b.base.name :
+                key === 'mintYear' ? b.coin.mintYear ?? 0 :
+                key === 'amount' ? b.coin.amount ?? 1 :
+                key === 'value' ? b.coin.value?.[ 0 ]?.avg ?? 0 : 0;
+
+            return (
+                aVal < bVal ? ( order === 'asc' ? -1 : 1 ) : 
+                aVal > bVal ? ( order === 'asc' ? 1 : -1 ) : 0
+            );
+        } );
+
+        return results;
     }
 
     // stats
