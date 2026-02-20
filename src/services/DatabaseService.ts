@@ -627,12 +627,16 @@ export class DatabaseService {
             }
         }
 
-        let totalGrowth = 0;
+        let totalAcquisition = 0, totalGrowth = 0;
         const calcGrowth = ( key: keyof CoinStats ) => {
             for ( const k in ( stats as any )[ key ] ) {
                 const item = ( stats as any )[ key ][ k ] as CoinStatsItem;
 
-                totalGrowth += item.growth;
+                if ( item.acquisition && item.growth ) {
+                    totalAcquisition += item.acquisition;
+                    totalGrowth += item.growth;
+                }
+
                 item.growth = this.num( item.growth / item.acquisition * 100 - 100, 3 );
             }
         };
@@ -665,7 +669,7 @@ export class DatabaseService {
         sortStats( 'year' );
         sortStats( 'material' );
 
-        stats.growth = this.num( totalGrowth / stats.totalAcquisition * 100 - 100, 3 );
+        stats.growth = this.num( totalGrowth / totalAcquisition * 100 - 100, 3 );
         stats.collectionAge = new Date( first ).toISOString();
 
         const pureWeight = Object.values( stats.material ).reduce(
