@@ -486,15 +486,22 @@ export class DatabaseService {
     // search
 
     public searchCoins ( params: {
-        search?: any, sort?: { key: 'name' | 'mintYear' | 'amount' | 'value', order: 'asc' | 'desc' },
-        filter?: { type?: any, status?: any, grade?: any, country?: any, currency?: any, year?: any, material?: any }
+        search?: any,
+        sort?: {
+            key: 'name' | 'mintYear' | 'amount' | 'value',
+            order: 'asc' | 'desc'
+        },
+        filter?: {
+            type?: any, status?: any, grade?: any, country?: any, currency?: any,
+            issuer?: any, mintMark?: any, year?: any, material?: any
+        }
     } = {} ) : CoinListItem[] {
         const search = this.str( params.search ?? '' ).toLowerCase();
         const raw = ( params.filter || {} ) as Record< string, any >;
         const { key, order } = params.sort ?? { key: 'mintYear', order: 'desc' };
         const vals: Record< string, string > = {};
 
-        [ 'type', 'status', 'grade', 'country', 'currency', 'year', 'material' ].forEach( k => {
+        [ 'type', 'status', 'grade', 'country', 'currency', 'issuer', 'mintMark', 'year', 'material' ].forEach( k => {
             vals[ k ] = this.str( raw[ k ] ?? '' ).toLowerCase();
         } );
 
@@ -518,6 +525,8 @@ export class DatabaseService {
             const bType = base.type.toLowerCase();
             const bCountry = ( base.country ?? '' ).toLowerCase();
             const bCurrency = ( base.currency ?? '' ).toLowerCase();
+            const bIssuer = ( base.issuer ?? '' ).toLowerCase();
+            const cMintMark = ( coin.mintMark ?? '' ).toLowerCase();
             const bMaterials = vals.material
                 ? ( base.material ?? [] ).map( m => String( m.material ).toLowerCase() )
                 : undefined;
@@ -527,6 +536,8 @@ export class DatabaseService {
             if ( vals.grade && cGrade !== vals.grade ) continue;
             if ( vals.country && bCountry !== vals.country ) continue;
             if ( vals.currency && bCurrency !== vals.currency ) continue;
+            if ( vals.issuer && bIssuer !== vals.issuer ) continue;
+            if ( vals.mintMark && cMintMark !== vals.mintMark ) continue;
             if ( vals.year && cYear !== vals.year ) continue;
             if ( vals.material && bMaterials && !bMaterials.includes( vals.material ) ) continue;
 
