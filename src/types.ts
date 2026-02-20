@@ -64,6 +64,7 @@ export interface CoinStatsItem {
     coins: number;
     acquisition: number;
     value: number;
+    growth: number;
 }
 
 export interface Meta {
