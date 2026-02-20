@@ -140,7 +140,7 @@ block main
               if coin.mintMark
                 li
                   span= t( 'view.coin.mint.mintMark' )
-                  b= coin.mintMark
+                  b: a( href= "/#mintMark=" + coin.mintMark )= coin.mintMark
               if coin.mintYear
                 li
                   span= t( 'view.coin.mint.mintYear' )
