@@ -50,6 +50,7 @@ export interface CoinStats {
     acquisition: { [ A in Acquisition ]?: CoinStatsItem };
     country: Record< string, CoinStatsItem >;
     currency: Record< string, CoinStatsItem >;
+    issuer: Record< string, CoinStatsItem >;
     year: Record< string, CoinStatsItem >;
     material: { [ M in CoinMaterial ]?: CoinStatsItem & {
         weight: number;
