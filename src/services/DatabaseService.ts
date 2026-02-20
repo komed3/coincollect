@@ -569,28 +569,30 @@ export class DatabaseService {
 
             const base = this.getCoinBase( c.baseId )!;
             const amount = c.amount || 1;
-            let purchase: number | undefined, value: number | undefined, weight: number | undefined;
+            let acq: number | undefined, value: number | undefined, weight: number | undefined;
             stats.totalCoins += amount;
 
             if ( c.acquisition?.date ) first = Math.min( first, new Date( c.acquisition.date ).getTime() );
-            if ( c.acquisition?.price ) stats.totalAcquisition += purchase = c.acquisition.price * amount;
+            if ( c.acquisition?.price ) stats.totalAcquisition += acq = c.acquisition.price * amount;
 
             if ( c.value?.length ) {
                 stats.totalValue.avg += value = c.value[ 0 ].avg * amount;
                 stats.totalValue.min += c.value[ 0 ].min * amount;
                 stats.totalValue.max += c.value[ 0 ].max * amount;
-            } else if ( purchase ) {
-                stats.totalValue.avg += value = purchase;
-                stats.totalValue.min += purchase;
-                stats.totalValue.max += purchase;
+            } else if ( acq ) {
+                stats.totalValue.avg += value = acq;
+                stats.totalValue.min += acq;
+                stats.totalValue.max += acq;
             }
 
             const updateStats = ( obj: keyof CoinStats, key: string ) => {
-                ( stats as any )[ obj ][ key ] ??= { coins: 0, acquisition: 0, value: 0 } as CoinStatsItem;
+                ( stats as any )[ obj ][ key ] ??= { coins: 0, acquisition: 0, value: 0, growth: 0 } as CoinStatsItem;
 
                 ( stats as any )[ obj ][ key ].coins += amount;
-                ( stats as any )[ obj ][ key ].acquisition += purchase ?? 0;
+                ( stats as any )[ obj ][ key ].acquisition += acq ?? 0;
                 ( stats as any )[ obj ][ key ].value += value ?? 0;
+
+                ( stats as any )[ obj ][ key ].growth += acq !== undefined ? ( value ?? 0 ) : 0;
             };
 
             base.type && updateStats( 'type', base.type );
@@ -610,32 +612,40 @@ export class DatabaseService {
                     const portion = ( m.portion ?? 100 ) / 100;
 
                     if ( ! ( m.material in stats.material ) ) stats.material[ m.material ] = {
-                        coins: 0, acquisition: 0, value: 0, weight: 0,
+                        coins: 0, acquisition: 0, value: 0, growth: 0, weight: 0,
                         pureWeight: 0, fineness: undefined, portion: 0
                     };
 
                     stats.material[ m.material ]!.coins += amount;
-                    stats.material[ m.material ]!.acquisition += this.num( ( purchase ?? 0 ) * portion, 2 );
+                    stats.material[ m.material ]!.acquisition += this.num( ( acq ?? 0 ) * portion, 2 );
                     stats.material[ m.material ]!.value += this.num( ( value ?? 0 ) * portion, 2 );
+                    stats.material[ m.material ]!.growth += acq !== undefined ? this.num( ( value ?? 0 ) * portion, 2 ) : 0;
+
                     stats.material[ m.material ]!.weight += this.num( weight * portion, 4 );
                     stats.material[ m.material ]!.pureWeight += this.num( weight * fineness * portion, 4 );
                 }
             }
         }
 
-        stats.growth = this.num( stats.totalValue.avg / stats.totalAcquisition * 100 - 100, 3 );
-        stats.collectionAge = new Date( first ).toISOString();
+        let totalGrowth = 0;
+        const calcGrowth = ( key: keyof CoinStats ) => {
+            for ( const k in ( stats as any )[ key ] ) {
+                const item = ( stats as any )[ key ][ k ] as CoinStatsItem;
 
-        const pureWeight = Object.values( stats.material ).reduce(
-            ( s, i ) => s + ( ( i as any ).pureWeight ?? 0 ), 0
-        );
+                totalGrowth += item.growth;
+                item.growth = this.num( item.growth / item.acquisition * 100 - 100, 3 );
+            }
+        };
 
-        for ( const m of Object.keys( stats.material ) ) {
-            const sm = ( stats.material as any )[ m ]!;
-
-            sm.fineness = this.num( sm.pureWeight / sm.weight * 1000, 1 );
-            sm.portion = pureWeight ? this.num( sm.pureWeight / pureWeight * 100 ) : 0;
-        }
+        calcGrowth( 'type' );
+        calcGrowth( 'status' );
+        calcGrowth( 'grade' );
+        calcGrowth( 'acquisition' );
+        calcGrowth( 'country' );
+        calcGrowth( 'currency' );
+        calcGrowth( 'issuer' );
+        calcGrowth( 'year' );
+        calcGrowth( 'material' );
 
         const sortStats = ( key: keyof CoinStats ) => {
             ( stats as any )[ key ] = Object.fromEntries(
@@ -651,8 +661,23 @@ export class DatabaseService {
         sortStats( 'acquisition' );
         sortStats( 'country' );
         sortStats( 'currency' );
+        sortStats( 'issuer' );
         sortStats( 'year' );
         sortStats( 'material' );
+
+        stats.growth = this.num( totalGrowth / stats.totalAcquisition * 100 - 100, 3 );
+        stats.collectionAge = new Date( first ).toISOString();
+
+        const pureWeight = Object.values( stats.material ).reduce(
+            ( s, i ) => s + ( ( i as any ).pureWeight ?? 0 ), 0
+        );
+
+        for ( const m of Object.keys( stats.material ) ) {
+            const sm = ( stats.material as any )[ m ]!;
+
+            sm.fineness = this.num( sm.pureWeight / sm.weight * 1000, 1 );
+            sm.portion = pureWeight ? this.num( sm.pureWeight / pureWeight * 100 ) : 0;
+        }
 
         this.db.data.stats = stats;
         if ( save ) this.scheduleWrite();
