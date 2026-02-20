@@ -16,7 +16,7 @@ mixin table( key, i18n = false )
       each r, k in data
         tr
           td: a( href= '/#' + key + '=' + k )= ( i18n ? t( '_.' + key + '.' + k ) : k )
-          td.right: tt= formatter.number( r.coins, 0 ).padStart( 4, '*' )
+          td.right: tt= formatter.number( r.coins, 0 ).padStart( 5, '*' )
           td.right: tt= formatter.money( currency, r.acquisition )
           td.right: tt= formatter.money( currency, r.value )
           td.right: tt= formatter.money( currency, r.value / r.coins )
