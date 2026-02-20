@@ -20,7 +20,7 @@ mixin table( key, i18n = false )
           td.right: tt= formatter.money( currency, r.acquisition )
           td.right: tt= formatter.money( currency, r.value )
           td.right: tt= formatter.money( currency, r.value / r.coins )
-          td.right: tt= ( r.acquisition ? formatter.percent( r.value / r.acquisition * 100 - 100 ) : '—' )
+          td.right: tt= ( r.acquisition ? formatter.percent( r.growth ) : '—' )
 
 append styles
   link( rel= "stylesheet", href= "/css/stats.css" )
