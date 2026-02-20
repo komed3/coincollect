@@ -533,11 +533,13 @@ export class DatabaseService {
         }
 
         results.sort( ( a, b ) => {
-            const aVal = key === 'name' ? a.base.name :
+            const aVal =
+                key === 'name' ? a.base.name :
                 key === 'mintYear' ? a.coin.mintYear ?? 0 :
                 key === 'amount' ? a.coin.amount ?? 1 :
                 key === 'value' ? a.coin.value?.[ 0 ]?.avg ?? 0 : 0;
-            const bVal = key === 'name' ? b.base.name :
+            const bVal =
+                key === 'name' ? b.base.name :
                 key === 'mintYear' ? b.coin.mintYear ?? 0 :
                 key === 'amount' ? b.coin.amount ?? 1 :
                 key === 'value' ? b.coin.value?.[ 0 ]?.avg ?? 0 : 0;
