@@ -14,7 +14,7 @@ mixin list()
           placeholder= t( 'list.filter.search' )
         )
       div.cc-list--filter-controls
-        each s in [ 'type', 'status', 'grade', 'country', 'currency', 'year', 'material' ]
+        each s in [ 'type', 'status', 'grade', 'country', 'currency', 'issuer', 'mintMark', 'year', 'material' ]
           select.cc-list--filter-select( filter= s )
             option( value= "" )= t( 'list.filter.' + s )
             option( disabled ) ──────────

@@ -156,8 +156,10 @@ class CCList {
             this.populateSelectFromKeys( selects[ 2 ], stats.grade, I18N.grade );
             this.populateSelectFromKeys( selects[ 3 ], stats.country );
             this.populateSelectFromKeys( selects[ 4 ], stats.currency );
-            this.populateSelectFromKeys( selects[ 5 ], stats.year );
-            this.populateSelectFromKeys( selects[ 6 ], stats.material, I18N.material );
+            this.populateSelectFromKeys( selects[ 5 ], stats.issuer );
+            this.populateSelectFromKeys( selects[ 6 ], stats.mintMark );
+            this.populateSelectFromKeys( selects[ 7 ], stats.year );
+            this.populateSelectFromKeys( selects[ 8 ], stats.material, I18N.material );
 
             this.fromHash();
         } catch {}
@@ -181,7 +183,7 @@ class CCList {
             const search = params.get( 'search' );
             if ( search != null ) this.searchInput.value = search;
 
-            [ 'type', 'status', 'grade', 'country', 'currency', 'year', 'material' ].forEach( key => {
+            [ 'type', 'status', 'grade', 'country', 'currency', 'issuer', 'mintMark', 'year', 'material' ].forEach( key => {
                 const val = params.get( key );
                 if ( val != null ) {
                     const sel = document.querySelector( `.cc-list--filter-select[filter="${key}"]` );
