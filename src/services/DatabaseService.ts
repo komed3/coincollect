@@ -120,6 +120,7 @@ export class DatabaseService {
             acquisition: {},
             country: {},
             currency: {},
+            issuer: {},
             year: {},
             material: {}
         };
@@ -596,6 +597,7 @@ export class DatabaseService {
             c.acquisition?.method && updateStats( 'acquisition', c.acquisition.method );
             base.country && updateStats( 'country', base.country );
             base.currency && updateStats( 'currency', base.currency );
+            base.issuer && updateStats( 'issuer', base.issuer );
             c.mintYear && updateStats( 'year', c.mintYear.toString() );
 
             if ( base.dimension?.weight ) {
