@@ -311,6 +311,9 @@
       "value": "Marktwert",
       "weight": "Gesamtgewicht"
     },
+    "series": {
+      "headline": "Serie / Münzreihe"
+    },
     "status": {
       "headline": "Münzstatus in Sammlung",
       "label": "Status"

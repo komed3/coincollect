@@ -311,6 +311,9 @@
       "value": "Market value",
       "weight": "Total weight"
     },
+    "series": {
+      "headline": "Series"
+    },
     "status": {
       "headline": "Status in collection",
       "label": "Status"
