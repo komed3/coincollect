@@ -493,7 +493,7 @@ export class DatabaseService {
             order: 'asc' | 'desc'
         },
         filter?: {
-            type?: any, status?: any, grade?: any, country?: any, currency?: any,
+            type?: any, status?: any, grade?: any, series?: any, country?: any, currency?: any,
             issuer?: any, mintMark?: any, year?: any, material?: any
         }
     } = {} ) : CoinListItem[] {
@@ -502,9 +502,9 @@ export class DatabaseService {
         const { key, order } = params.sort ?? { key: 'mintYear', order: 'desc' };
         const vals: Record< string, string > = {};
 
-        [ 'type', 'status', 'grade', 'country', 'currency', 'issuer', 'mintMark', 'year', 'material' ].forEach( k => {
-            vals[ k ] = this.str( raw[ k ] ?? '' ).toLowerCase();
-        } );
+        [ 'type', 'status', 'grade', 'series', 'country', 'currency', 'issuer', 'mintMark', 'year', 'material' ].forEach(
+            k => { vals[ k ] = this.str( raw[ k ] ?? '' ).toLowerCase() }
+        );
 
         const results: CoinListItem[] = [];
         for ( const coin of this.db.data.collection.items ) {
@@ -524,6 +524,7 @@ export class DatabaseService {
             const cGrade = coin.grade.toLowerCase();
             const cYear = String( coin.mintYear ?? '' );
             const bType = base.type.toLowerCase();
+            const bSeries = ( base.series ?? '' ).toLowerCase();
             const bCountry = ( base.country ?? '' ).toLowerCase();
             const bCurrency = ( base.currency ?? '' ).toLowerCase();
             const bIssuer = ( base.issuer ?? '' ).toLowerCase();
@@ -535,6 +536,7 @@ export class DatabaseService {
             if ( vals.type && bType !== vals.type ) continue;
             if ( vals.status && cStatus !== vals.status ) continue;
             if ( vals.grade && cGrade !== vals.grade ) continue;
+            if ( vals.series && bSeries !== vals.series ) continue;
             if ( vals.country && bCountry !== vals.country ) continue;
             if ( vals.currency && bCurrency !== vals.currency ) continue;
             if ( vals.issuer && bIssuer !== vals.issuer ) continue;
