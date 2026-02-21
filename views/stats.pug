@@ -72,7 +72,6 @@ block main
         i.fa.fa-cube
         span= t( 'stats.type.headline' )
       div.cc-box
-        +chart( 'doughnut', { key: 'type', data: stats.type } )
         +table( 'type', true )
 
     div.cc-stats--section.cc-stats--grade
@@ -80,7 +79,6 @@ block main
         i.fa.fa-gavel
         span= t( 'stats.grade.headline' )
       div.cc-box
-        +chart( 'doughnut', { key: 'grade', data: stats.grade } )
         +table( 'grade', true )
 
     div.cc-stats--section.cc-stats--status
@@ -88,7 +86,6 @@ block main
         i.fa.fa-hashtag
         span= t( 'stats.status.headline' )
       div.cc-box
-        +chart( 'doughnut', { key: 'status', data: stats.status } )
         +table( 'status', true )
 
     div.cc-stats--section.cc-stats--currency
@@ -96,7 +93,6 @@ block main
         i.fa.fa-money
         span= t( 'stats.currency.headline' )
       div.cc-box
-        +chart( 'doughnut', { data: stats.currency } )
         +table( 'currency', false )
 
     div.cc-stats--section.cc-stats--country
