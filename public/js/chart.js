@@ -109,7 +109,6 @@ class CCChart {
     renderChart ( type, uuid, data, ctx ) {
         switch ( type ) {
             case 'coin': this.renderCoinChart( uuid, data, ctx ); break;
-            case 'doughnut': this.renderDoughnutChart( uuid, data, ctx ); break;
             case 'growth': this.renderGrowthChart( uuid, data, ctx ); break;
             case 'value': this.renderValueChart( uuid, data, ctx ); break;
             case 'variance': this.renderVarianceChart( uuid, data, ctx ); break;
@@ -204,78 +203,6 @@ class CCChart {
                     y: {
                         beginAtZero: true,
                         display: false
-                    }
-                }
-            }
-        } );
-
-        this.charts.set( uuid, chart );
-        return chart;
-    }
-
-    renderDoughnutChart ( uuid, data, ctx ) {
-        const labels = [], coins = [], value = [], acquisition = [], colors = [];
-        let i = 0;
-
-        for ( const [ key, item ] of Object.entries( data.data ) ) {
-            labels.push( data.key ? I18N[ data.key ][ key ] : key );
-            coins.push( item.coins );
-            value.push( item.value );
-            acquisition.push( item.acquisition );
-            colors.push( this.colors[ i % this.colors.length ] );
-            i++;
-        };
-
-        const chart = new Chart( ctx, {
-            type: 'doughnut',
-            data: {
-                labels,
-                datasets: [ {
-                    label: I18N.label.coins,
-                    data: coins,
-                    backgroundColor: colors,
-                    hoverBackgroundColor: colors,
-                    borderColor: '#fff',
-                    hoverBorderColor: '#fff',
-                    borderWidth: 2
-                }, {
-                    label: I18N.label.value.avg,
-                    data: value,
-                    backgroundColor: colors,
-                    hoverBackgroundColor: colors,
-                    borderColor: '#fff',
-                    hoverBorderColor: '#fff',
-                    borderWidth: 2
-                }, {
-                    label: I18N.label.acquisition,
-                    data: acquisition,
-                    backgroundColor: colors,
-                    hoverBackgroundColor: colors,
-                    borderColor: '#fff',
-                    hoverBorderColor: '#fff',
-                    borderWidth: 2
-                } ]
-            },
-            options: {
-                cutout: '40%',
-                plugins: {
-                    legend: {
-                        display: true,
-                        position: 'right',
-                        labels: { padding: 2 }
-                    },
-                    tooltip: {
-                        titleColor: '#000',
-                        titleFont: { size: 15 },
-                        bodyColor: '#777',
-                        bodyFont: { size: 13 },
-                        callbacks: {
-                            label: ( item ) => item.dataset.label + ': ' + (
-                                item.datasetIndex === 0 ? item.raw : Intl.NumberFormat( LANG, {
-                                    style: 'currency', currency: CURRENCY
-                                } ).format( item.raw )
-                            )
-                        }
                     }
                 }
             }
