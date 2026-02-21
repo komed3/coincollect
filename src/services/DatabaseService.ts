@@ -117,6 +117,7 @@ export class DatabaseService {
             type: {},
             status: {},
             grade: {},
+            series: {},
             acquisition: {},
             country: {},
             currency: {},
@@ -610,6 +611,7 @@ export class DatabaseService {
             base.type && updateStats( 'type', base.type );
             c.status && updateStats( 'status', c.status );
             c.grade && updateStats( 'grade', c.grade );
+            base.series && updateStats( 'series', base.series );
             c.acquisition?.method && updateStats( 'acquisition', c.acquisition.method );
             base.country && updateStats( 'country', base.country );
             base.currency && updateStats( 'currency', base.currency );
@@ -657,6 +659,7 @@ export class DatabaseService {
         calcGrowth( 'type' );
         calcGrowth( 'status' );
         calcGrowth( 'grade' );
+        calcGrowth( 'series' );
         calcGrowth( 'acquisition' );
         calcGrowth( 'country' );
         calcGrowth( 'currency' );
@@ -676,6 +679,7 @@ export class DatabaseService {
         sortStats( 'type' );
         sortStats( 'status' );
         sortStats( 'grade' );
+        sortStats( 'series' );
         sortStats( 'acquisition' );
         sortStats( 'country' );
         sortStats( 'currency' );
