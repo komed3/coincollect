@@ -48,6 +48,7 @@ export interface CoinStats {
     status: { [ S in CoinStatus ]?: CoinStatsItem };
     grade: { [ G in CoinGrade ]?: CoinStatsItem };
     acquisition: { [ A in Acquisition ]?: CoinStatsItem };
+    series: Record< string, CoinStatsItem >;
     country: Record< string, CoinStatsItem >;
     currency: Record< string, CoinStatsItem >;
     issuer: Record< string, CoinStatsItem >;
