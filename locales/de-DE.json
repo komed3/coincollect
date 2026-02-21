@@ -281,6 +281,10 @@
       "growth": "Wertsteigerung",
       "value": "Marktwert"
     },
+    "acquisition": {
+      "headline": "Ankauf",
+      "label": "Ankauf"
+    },
     "country": {
       "headline": "Länder / Regionen",
       "label": "Region"
@@ -312,7 +316,8 @@
       "weight": "Gesamtgewicht"
     },
     "series": {
-      "headline": "Serie / Münzreihe"
+      "headline": "Serie / Münzreihe",
+      "label": "Serie"
     },
     "status": {
       "headline": "Münzstatus in Sammlung",

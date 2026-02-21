@@ -281,6 +281,10 @@
       "growth": "Growth",
       "value": "Market value"
     },
+    "acquisition": {
+      "headline": "Acquisition",
+      "label": "Acquisition"
+    },
     "country": {
       "headline": "Countries / Regions",
       "label": "Region"
@@ -312,7 +316,8 @@
       "weight": "Total weight"
     },
     "series": {
-      "headline": "Series"
+      "headline": "Series",
+      "label": "Series"
     },
     "status": {
       "headline": "Status in collection",
