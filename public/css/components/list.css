@@ -22,9 +22,8 @@
 }
 
 .cc-list--filter-controls {
-    display: flex;
-    flex-flow: row nowrap;
-    justify-content: flex-end;
+    display: grid;
+    grid-template-columns: repeat( 5, 1fr );
     align-items: center;
     gap: 16px;
 }
