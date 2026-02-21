@@ -71,22 +71,25 @@ block main
       h3.cc-stats--headline
         i.fa.fa-cube
         span= t( 'stats.type.headline' )
-      div.cc-box
-        +table( 'type', true )
+      +table( 'type', true )
 
     div.cc-stats--section.cc-stats--grade
       h3.cc-stats--headline
         i.fa.fa-gavel
         span= t( 'stats.grade.headline' )
-      div.cc-box
-        +table( 'grade', true )
+      +table( 'grade', true )
 
     div.cc-stats--section.cc-stats--status
       h3.cc-stats--headline
         i.fa.fa-hashtag
         span= t( 'stats.status.headline' )
-      div.cc-box
-        +table( 'status', true )
+      +table( 'status', true )
+
+    div.cc-stats--section.cc-stats--series
+      h3.cc-stats--headline
+        i.fa.fa-archive
+        span= t( 'stats.series.headline' )
+      +table( 'series', true )
 
     div.cc-stats--section.cc-stats--currency
       h3.cc-stats--headline
