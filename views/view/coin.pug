@@ -64,7 +64,7 @@ block main
         if base.tags && base.tags.length
           div.cc-coin--tags
             each tag in base.tags
-              a( href= '/#tag=' + tag )= tag
+              a( href= '/#search=' + tag )= tag
 
         if coin.acquisition || ( coin.value && coin.value.length )
           div.cc-box.cc-coin--value
