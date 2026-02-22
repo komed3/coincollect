@@ -17,7 +17,7 @@ export class Formatter {
     }
 
     public static percent ( value: any, d: number = 1, opt: Intl.NumberFormatOptions = {} ) : string {
-        return Formatter.number( value > 1 ? value / 100 : value, d, { style: 'percent', ...opt } );
+        return Formatter.number( value >= 1 ? value / 100 : value, d, { style: 'percent', ...opt } );
     }
 
     public static money ( currency: string, value: any, d: number = 2, opt: Intl.NumberFormatOptions = {} ) : string {
