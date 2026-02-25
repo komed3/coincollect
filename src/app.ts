@@ -38,4 +38,4 @@ app.use( '/', routes );
 app.get( '/{*splat}', ( _, res: Response ) => res.redirect( '/' ) );
 
 // listen ...
-app.listen( 3001 );
+app.listen( process.env.PORT ?? 3000 );
