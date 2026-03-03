@@ -36,7 +36,7 @@
     "i18next-fs-backend": "^2.6.1",
     "i18next-http-middleware": "^3.9.2",
     "lowdb": "^7.0.1",
-    "multer": "^2.0.2",
+    "multer": "^2.1.0",
     "pug": "^3.0.3",
     "uuid": "^13.0.0"
   },
