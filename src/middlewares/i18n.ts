@@ -4,7 +4,7 @@ import i18next from 'i18next';
 import I18NexFsBackend from 'i18next-fs-backend';
 import { LanguageDetector, handle } from 'i18next-http-middleware';
 
-await i18next.use( I18NexFsBackend ).use( LanguageDetector ).init( {
+await ( i18next as any ).use( I18NexFsBackend ).use( LanguageDetector ).init( {
     fallbackLng: 'en-US',
     preload: [ 'en-US', 'de-DE' ],
     supportedLngs: [ 'en-US', 'de-DE' ],
