@@ -27,48 +27,47 @@ export const settings = async ( req: Request, res: Response ) : Promise< void > 
 };
 
 export const saveSettings = async ( req: Request, res: Response ) : Promise< void > => {
-    try {
-        const { action, currency, lang } = req.body;
+    const { action, currency, lang } = req.body;
 
+    try {
         if ( action === 'save' ) {
             if ( currency && supportedCurrencies.includes( currency ) ) await DB.setCurrency( currency );
 
             if ( lang && supportedLanguages.includes( lang ) ) {
-                await DB.setLanguage( lang );
                 res.cookie( 'locale', lang, { maxAge: 365 * 24 * 60 * 60 * 1000 } );
+                await DB.setLanguage( lang );
                 i18n.changeLanguage( lang );
             }
 
-            res.redirect( '/settings?message=' + encodeURIComponent( req.t( 'settings.saved' ) ) );
+            res.redirect( '/settings?message=settingsSaved' );
             return;
         }
 
         if ( action === 'refresh' ) {
             await DB.updateDatabase();
-            res.redirect( '/settings?message=' + encodeURIComponent( req.t( 'settings.dbUpdated' ) ) );
+            res.redirect( '/settings?message=dbUpdated' );
             return;
         }
 
         if ( action === 'clear' ) {
-            const confirm = String( ( req.body as { confirmClear?: string } ).confirmClear ?? '' ).trim();
-            if ( confirm !== 'CLEAR' ) {
-                res.redirect( '/settings?message=' + encodeURIComponent( req.t( 'settings.confirmClear' ) ) );
+            if ( String( ( req.body as { confirmClear?: string } ).confirmClear ?? '' ).trim() !== 'CLEAR' ) {
+                res.redirect( '/settings?message=confirmClear' );
                 return;
             }
 
             await DB.clearDatabase();
-            res.redirect( '/settings?message=' + encodeURIComponent( req.t( 'settings.dbCleared' ) ) );
+            res.redirect( '/settings?message=dbCleared' );
             return;
         }
 
         if ( action === 'cleanup' ) {
-            const deleted = await DB.pruneUnusedImages();
-            res.redirect( '/settings?message=' + encodeURIComponent( req.t( 'settings.imagesPruned', { count: deleted.length } ) ) );
+            await DB.pruneUnusedImages();
+            res.redirect( '/settings?message=imagesPruned' );
             return;
         }
 
-        res.redirect( '/settings?message=' + encodeURIComponent( req.t( 'settings.unknownAction' ) ) );
-    } catch ( error ) {
-        res.status( 500 ).send( `${ req.t( 'settings.error' ) }: ${ ( error as Error ).message }` );
+        res.redirect( '/settings?message=unknownAction' );
+    } catch ( err ) {
+        res.status( 500 ).json( { msg: 'Failed to save settings', err } );
     }
 };
