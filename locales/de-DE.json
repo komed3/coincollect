@@ -274,7 +274,7 @@
     }
   },
   "settings": {
-    "bases": "Münzbasis",
+    "bases": "Münzbasen",
     "changeHeadline": "Sprache und Währung",
     "cleanupImages": "Nicht verwendete Bilder entfernen",
     "clearConfirmHint": "Geben Sie CLEAR ein, um zu löschen",
@@ -296,7 +296,6 @@
     "selectCurrency": "Währung wählen",
     "selectLanguage": "Sprache wählen",
     "title": "Einstellungen",
-    "totalItems": "Datenbankinhalt",
     "unknownAction": "Unbekannte Aktion.",
     "unusedImages": "Nicht verwendete Bilder"
   },
