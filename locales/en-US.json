@@ -273,6 +273,33 @@
       "year": "Year"
     }
   },
+  "settings": {
+    "bases": "Coin bases",
+    "changeHeadline": "Language and currency",
+    "cleanupImages": "Cleanup unused images",
+    "clearConfirmHint": "Type CLEAR to delete all data",
+    "clearDb": "Clear database",
+    "coins": "Single coins",
+    "confirmClear": "Type CLEAR to confirm delete.",
+    "current": "Current state",
+    "currentCurrency": "Currency",
+    "currentLanguage": "Language",
+    "databaseMaintenance": "Database maintenance",
+    "dbCleared": "Database cleared successfully.",
+    "dbUpdated": "Database updated successfully.",
+    "error": "Error",
+    "exportData": "Export data",
+    "imagesPruned": "Removed {{count}} unused images.",
+    "refreshDb": "Update database",
+    "save": "Save",
+    "saved": "Settings saved successfully.",
+    "selectCurrency": "Choose currency",
+    "selectLanguage": "Choose language",
+    "title": "Settings",
+    "totalItems": "Database contents",
+    "unknownAction": "Unknown action.",
+    "unusedImages": "Unused images"
+  },
   "stats": {
     "_": {
       "acquisition": "Acquisition",
