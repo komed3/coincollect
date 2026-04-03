@@ -12,7 +12,7 @@ block main
       span= t( 'settings.title' )
 
     if message
-      div.cc-box.cc-settings--message= message
+      div.cc-box.cc-settings--message= t( 'settings.' + message )
 
     div.cc-settings--info.cc-box
       h3.cc-box--hl= t( 'settings.current' )

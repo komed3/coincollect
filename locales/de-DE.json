@@ -290,9 +290,9 @@
     "exportData": "Daten exportieren",
     "imagesPruned": "Nicht verwendete Bilder entfernt.",
     "refreshDb": "Datenbank aktualisieren",
-    "saved": "Einstellungen wurden gespeichert.",
     "selectCurrency": "Währung wählen",
     "selectLanguage": "Sprache wählen",
+    "settingsSaved": "Einstellungen wurden gespeichert.",
     "title": "Einstellungen",
     "unknownAction": "Unbekannte Aktion.",
     "unusedImages": "Nicht verwendete Bilder"

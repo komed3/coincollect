@@ -290,9 +290,9 @@
     "exportData": "Export data",
     "imagesPruned": "Removed unused images.",
     "refreshDb": "Update database",
-    "saved": "Settings saved successfully.",
     "selectCurrency": "Choose currency",
     "selectLanguage": "Choose language",
+    "settingsSaved": "Settings saved successfully.",
     "title": "Settings",
     "unknownAction": "Unknown action.",
     "unusedImages": "Unused images"
