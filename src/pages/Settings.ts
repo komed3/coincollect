@@ -1,4 +1,5 @@
 import type { Request, Response } from 'express';
+import i18n from 'i18next';
 import DB from '../services/DatabaseService';
 
 const supportedCurrencies = [ 'CHF', 'EUR', 'GBP', 'JPY', 'USD' ] as const;
@@ -29,16 +30,14 @@ export const settings = async ( req: Request, res: Response ) : Promise< void > 
 
 export const saveSettings = async ( req: Request, res: Response ) : Promise< void > => {
     try {
-        const { action, currency, language } = req.body as {
-            action?: string, currency?: string, language?: string
-        };
+        const { action, currency, lang } = req.body as { action?: string, currency?: Currency, lang?: Language };
 
         if ( action === 'save' ) {
-            if ( currency && supportedCurrencies.includes( currency as Currency ) ) await DB.setCurrency( currency );
+            if ( currency && supportedCurrencies.includes( currency ) ) await DB.setCurrency( currency );
 
-            if ( language && supportedLanguages.includes( language as Language ) ) {
-                await DB.setLanguage( language as Language );
-                res.cookie( 'locale', language, { sameSite: 'strict', secure: false } );
+            if ( lang && supportedLanguages.includes( lang ) ) {
+                await DB.setLanguage( lang );
+                i18n.changeLanguage( lang );
             }
 
             res.redirect( '/settings?message=' + encodeURIComponent( req.t( 'settings.saved' ) ) );
