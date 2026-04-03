@@ -28,13 +28,14 @@ export const settings = async ( req: Request, res: Response ) : Promise< void > 
 
 export const saveSettings = async ( req: Request, res: Response ) : Promise< void > => {
     try {
-        const { action, currency, lang } = req.body as { action?: string, currency?: string, lang?: string };
+        const { action, currency, lang } = req.body;
 
         if ( action === 'save' ) {
             if ( currency && supportedCurrencies.includes( currency ) ) await DB.setCurrency( currency );
 
             if ( lang && supportedLanguages.includes( lang ) ) {
                 await DB.setLanguage( lang );
+                res.cookie( 'locale', lang, { maxAge: 365 * 24 * 60 * 60 * 1000 } );
                 i18n.changeLanguage( lang );
             }
 
