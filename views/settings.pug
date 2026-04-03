@@ -44,6 +44,18 @@ block main
 
     div.cc-box.cc-settings--maintenance
       h3.cc-box--hl= t( 'settings.databaseMaintenance' )
+      div.cc-form--row
+        form( action= "/settings", method= "post" )
+          input( type= "hidden", name= "action", value= "refresh" )
+          button.cc-form--submit( type= "submit" )= t( 'settings.refreshDb' )
+        form( action= "/settings", method= "post", class= "cc-form cc-form--danger", style= "display:inline-block" )
+          input( type= "hidden", name= "action", value= "cleanup" )
+          button.cc-form--submit( type= "submit" )= t( 'settings.cleanupImages' )
 
-    div.cc-box.cc-settings--danger
+    form.cc-box.cc-settings--danger( action= "/settings", method= "post" )
       h3.cc-box--hl= t( 'settings.dangerZone' )
+      div.cc-form--row
+        +text( 'confirmClear', t( 'settings.confirmClear' ), '', true )
+        input( type= "hidden", name= "action", value= "clear" )
+      div.cc-form--row
+        button.cc-form--submit( type= "submit" )= t( 'settings.clearDb' )
