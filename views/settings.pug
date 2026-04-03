@@ -41,3 +41,9 @@ block main
         +select( 'lang', t( 'settings.selectLanguage' ), supportedLanguages, language, true )
       div.cc-form--row
         button.cc-form--submit( type= "submit" )= t( '_.actions.submit' )
+
+    div.cc-box.cc-settings--maintenance
+      h3.cc-box--hl= t( 'settings.databaseMaintenance' )
+
+    div.cc-box.cc-settings--danger
+      h3.cc-box--hl= t( 'settings.dangerZone' )

@@ -283,6 +283,7 @@
     "confirmClear": "Bitte geben Sie CLEAR ein, um Datenbankauftrag zu bestätigen.",
     "currentCurrency": "Münzwährung",
     "currentLanguage": "Sprache",
+    "dangerZone": "Gefahrenzone",
     "database": "Datenbank",
     "databaseMaintenance": "Datenbankwartung",
     "dbCleared": "Datenbank wurde geleert.",
