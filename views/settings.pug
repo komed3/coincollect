@@ -38,6 +38,6 @@ block main
       h3.cc-box--hl= t( 'settings.changeHeadline' )
       div.cc-form--row
         +select( 'currency', t( 'settings.selectCurrency' ), supportedCurrencies, currency, true )
-        +select( 'language', t( 'settings.selectLanguage' ), supportedLanguages, language, true )
+        +select( 'lang', t( 'settings.selectLanguage' ), supportedLanguages, language, true )
       div.cc-form--row
         button.cc-form--submit( type= "submit" )= t( '_.actions.submit' )

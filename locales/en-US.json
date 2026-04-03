@@ -291,7 +291,6 @@
     "exportData": "Export data",
     "imagesPruned": "Removed {{count}} unused images.",
     "refreshDb": "Update database",
-    "save": "Save",
     "saved": "Settings saved successfully.",
     "selectCurrency": "Choose currency",
     "selectLanguage": "Choose language",
