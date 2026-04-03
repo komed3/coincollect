@@ -22,4 +22,11 @@ api.post( '/base/:id/upload', upload.fields( [
 api.post( '/coin/add', service.addSingleCoin.bind( service ) );
 api.put( '/coin/:id/set', service.setSingleCoin.bind( service ) );
 
+api.get( '/settings/unused-images', service.getUnusedImages.bind( service ) );
+api.post( '/settings/cleanup-images', service.pruneUnusedImages.bind( service ) );
+
+api.get( '/settings/export', service.exportDatabase.bind( service ) );
+api.post( '/settings/refresh', service.refreshDatabase.bind( service ) );
+api.post( '/settings/clear', service.clearDatabase.bind( service ) );
+
 export { api };
