@@ -293,6 +293,7 @@
     "exportImportInfo": "Export your entire collection as a JSON file or import a previously exported file. Please note that importing will overwrite your current collection.",
     "imagesPruned": "Removed unused images.",
     "importData": "Import data",
+    "maintenance": "Maintenance",
     "refreshDb": "Update database",
     "selectCurrency": "Choose currency",
     "selectLanguage": "Choose language",

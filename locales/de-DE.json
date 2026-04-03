@@ -293,6 +293,7 @@
     "exportImportInfo": "Backup erstellen oder eine zuvor exportierte Sammlung importieren. Alle bestehenden Daten gehen bei einem Import verloren.",
     "imagesPruned": "Nicht verwendete Bilder entfernt.",
     "importData": "Daten importieren",
+    "maintenance": "Wartung",
     "refreshDb": "Datenbank aktualisieren",
     "selectCurrency": "Währung wählen",
     "selectLanguage": "Sprache wählen",
