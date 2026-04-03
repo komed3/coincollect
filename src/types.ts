@@ -2,6 +2,7 @@ export interface Database {
     _meta: {
         schemaVersion: '1';
         currency: string;
+        language: 'de-DE' | 'en-US';
         createdAt: string;
         updatedAt: string;
     };
