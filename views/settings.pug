@@ -1,0 +1,64 @@
+extends layout/page
+
+append styles
+  link( rel= "stylesheet", href= "/css/form.css" )
+  link( rel= "stylesheet", href= "/css/settings.css" )
+
+block main
+  div.cc-settings.cc-content--normal
+    h3.cc-page--headline
+      i.fa.fa-life-ring
+      span= t( 'settings.title' )
+
+    if message
+      div.cc-box.cc-settings--message= message
+
+    div.cc-settings--info.cc-box
+      h3.cc-box--hl= t( 'settings.current' )
+      ul.cc-settings--info-list
+        li
+          span= t( 'settings.currentCurrency' )
+          b= currency
+        li
+          span= t( 'settings.currentLanguage' )
+          b= t( '_.lang.' + language )
+        li
+          span= t( 'settings.coins' )
+          b= formatter.number( coinCount, 0 )
+        li
+          span= t( 'settings.bases' )
+          b= formatter.number( baseCount, 0 )
+        li
+          span= t( 'settings.unusedImages' )
+          b= formatter.number( unusedImages.length, 0 )
+
+    //-form( action= '/settings', method= 'post', class='cc-form' )
+      input( type='hidden', name='action', value='save' )
+      h3= t( 'settings.changeHeadline' )
+      .cc-form--field
+        label( for='__currency' )= t( 'settings.selectCurrency' )
+        select#_currency( name='currency' )
+          each c in supportedCurrencies
+            option( value=c selected= ( c === currency ) )= t( '_.currency.' + c )
+      .cc-form--field
+        label( for='__language' )= t( 'settings.selectLanguage' )
+        select#_language( name='language' )
+          each l in supportedLanguages
+            option( value=l selected= ( l === language ) )= t( '_.lang.' + l )
+      button(type='submit')= t( 'settings.save' )
+
+    //-.cc-box
+      h3= t( 'settings.databaseMaintenance' )
+      form( action= '/settings', method= 'post', class='cc-form', style='display:inline-block; margin-right:1rem;' )
+        input( type='hidden', name='action', value='refresh' )
+        button(type='submit')= t( 'settings.refreshDb' )
+      form( action= '/settings', method= 'post', class='cc-form', style='display:inline-block; margin-right:1rem;' )
+        input( type='hidden', name='action', value='clear' )
+        .cc-form--field
+          label( for='__confirmClear' )= t( 'settings.clearConfirmHint' )
+          input( type='text', id='__confirmClear', name='confirmClear', placeholder=t( 'settings.clearConfirmHint' ), required=true )
+        button(type='submit')= t( 'settings.clearDb' )
+      form( action= '/settings', method= 'post', class='cc-form', style='display:inline-block; margin-right:1rem;' )
+        input( type='hidden', name='action', value='cleanup' )
+        button(type='submit')= t( 'settings.cleanupImages' )
+      a(href='/api/settings/export')= t( 'settings.exportData' )

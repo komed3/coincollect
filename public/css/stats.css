@@ -14,21 +14,6 @@
     color: var( --accent-main );
 }
 
-.cc-stats--headline {
-    display: flex;
-    flex-flow: row nowrap;
-    align-items: center;
-    gap: 12px;
-    margin: 48px 0 32px;
-    font-size: 19px;
-    font-weight: 300;
-}
-
-.cc-stats--headline i {
-    width: 40px;
-    text-align: center;
-}
-
 .cc-stats--section .cc-box .cc-mixin--chart:not( :last-child ) {
     margin-bottom: 20px;
 }
