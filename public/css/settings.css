@@ -30,3 +30,12 @@
 .cc-settings--info-list li b {
     font-weight: 500;
 }
+
+.cc-settings--export {
+    display: inline-flex;
+    flex-flow: row nowrap;
+    align-items: center;
+    gap: 12px;
+    font-weight: 500;
+    color: var( --accent-main ) !important;
+}

@@ -52,6 +52,13 @@ block main
           input( type= "hidden", name= "action", value= "cleanup" )
           button.cc-form--submit( type= "submit" )= t( 'settings.cleanupImages' )
 
+    div.cc-box.cc-settings--export-import
+      h3.cc-box--hl= t( 'settings.exportImport' )
+      p= t( 'settings.exportImportInfo' )
+      a.cc-settings--export( href= "/api/settings/export" )
+        i.fa.fa-download
+        span= t( 'settings.exportData' )
+
     form.cc-box.cc-settings--danger( action= "/settings", method= "post" )
       h3.cc-box--hl= t( 'settings.dangerZone' )
       div.cc-form--row
