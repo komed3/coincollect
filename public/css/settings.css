@@ -1,0 +1,32 @@
+.cc-settings--message {
+    margin-bottom: 24px;
+    padding: 12px 16px;
+    font-weight: 500;
+    color: var( --accent-main );
+    border-color: var( --accent-main );
+}
+
+.cc-settings--info-list {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+}
+
+.cc-settings--info-list li {
+    display: flex;
+    flex-flow: row nowrap;
+    justify-content: space-between;
+    align-items: center;
+    gap: 48px;
+    font-weight: 300;
+}
+
+.cc-settings--info-list li:not( :last-child ) {
+    margin-bottom: 12px;
+    padding-bottom: 12px;
+    border-bottom: 1px dashed var( --border-color );
+}
+
+.cc-settings--info-list li b {
+    font-weight: 500;
+}
