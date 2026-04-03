@@ -1,12 +1,10 @@
 import type { Request, Response } from 'express';
 import i18n from 'i18next';
+
 import DB from '../services/DatabaseService';
 
-const supportedCurrencies = [ 'CHF', 'EUR', 'GBP', 'JPY', 'USD' ] as const;
-type Language = ( typeof supportedLanguages )[ number ];
-
-const supportedLanguages = [ 'de-DE', 'en-US' ] as const;
-type Currency = ( typeof supportedCurrencies )[ number ];
+const supportedCurrencies = [ 'CHF', 'EUR', 'GBP', 'JPY', 'USD' ];
+const supportedLanguages = [ 'de-DE', 'en-US' ];
 
 export const settings = async ( req: Request, res: Response ) : Promise< void > => {
     const message = String( req.query.message ?? '' );
@@ -30,7 +28,7 @@ export const settings = async ( req: Request, res: Response ) : Promise< void > 
 
 export const saveSettings = async ( req: Request, res: Response ) : Promise< void > => {
     try {
-        const { action, currency, lang } = req.body as { action?: string, currency?: Currency, lang?: Language };
+        const { action, currency, lang } = req.body as { action?: string, currency?: string, lang?: string };
 
         if ( action === 'save' ) {
             if ( currency && supportedCurrencies.includes( currency ) ) await DB.setCurrency( currency );

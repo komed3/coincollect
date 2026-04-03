@@ -167,12 +167,12 @@ export class DatabaseService {
         return this.db.data._meta.schemaVersion;
     }
 
-    public getCurrency () : string {
+    public getCurrency () : Database[ '_meta' ][ 'currency' ] {
         return this.db.data._meta.currency;
     }
 
     public async setCurrency ( currency: string ) : Promise< void > {
-        this.db.data._meta.currency = this.str( currency );
+        this.db.data._meta.currency = this.str( currency ) as Database[ '_meta' ][ 'currency' ];
         await this.save();
     }
 
@@ -180,8 +180,8 @@ export class DatabaseService {
         return this.db.data._meta.language || 'de-DE';
     }
 
-    public async setLanguage ( language: Database[ '_meta' ][ 'language' ] ) : Promise< void > {
-        this.db.data._meta.language = language;
+    public async setLanguage ( language: string ) : Promise< void > {
+        this.db.data._meta.language = this.str( language ) as Database[ '_meta' ][ 'language' ];
         await this.save();
     }
 
