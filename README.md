@@ -43,4 +43,4 @@ The app will be running at `http://localhost:3000` or any port specified in the 
 ## License
 
 This project is licensed under the MIT License. See the [LICENSE](LICENSE) file for details.  
-(c) 2024 Paul Köhler (komed3). All rights reserved.
+(c) 2026 Paul Köhler (komed3). All rights reserved.
