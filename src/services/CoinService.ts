@@ -103,4 +103,41 @@ export class CoinService {
         } );
     }
 
+    public async exportDatabase ( _: Request, res: Response ) : Promise< void > {
+        await this.catch( res, 'Failed to export database', async () => {
+            const data = await this.dbService.export();
+            res.setHeader( 'Content-Type', 'application/json' );
+            res.setHeader( 'Content-Disposition', 'attachment; filename="coincollect-db.json"' );
+            res.json( data );
+        } );
+    }
+
+    public async refreshDatabase ( _: Request, res: Response ) : Promise< void > {
+        await this.catch( res, 'Failed to update database', async () => {
+            await this.dbService.updateDatabase();
+            res.json( { ok: true } );
+        } );
+    }
+
+    public async clearDatabase ( _: Request, res: Response ) : Promise< void > {
+        await this.catch( res, 'Failed to clear database', async () => {
+            await this.dbService.clearDatabase();
+            res.json( { ok: true } );
+        } );
+    }
+
+    public async getUnusedImages ( _: Request, res: Response ) : Promise< void > {
+        await this.catch( res, 'Failed to find unused images', async () => {
+            const images = await this.dbService.getUnusedImages();
+            res.json( { unused: images } );
+        } );
+    }
+
+    public async pruneUnusedImages ( _: Request, res: Response ) : Promise< void > {
+        await this.catch( res, 'Failed to prune unused images', async () => {
+            const deleted = await this.dbService.pruneUnusedImages();
+            res.json( { deleted } );
+        } );
+    }
+
 }
