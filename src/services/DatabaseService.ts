@@ -1,4 +1,4 @@
-import { mkdir } from 'node:fs/promises';
+import { mkdir, readdir, unlink } from 'node:fs/promises';
 import { join } from 'node:path';
 
 import { Low } from 'lowdb';
@@ -79,7 +79,8 @@ export class DatabaseService {
         return {
             _meta: {
                 schemaVersion: '1',
-                currency: 'EUR',
+                currency: 'USD',
+                language: 'en-US',
                 createdAt: now,
                 updatedAt: now
             },
@@ -166,23 +167,79 @@ export class DatabaseService {
         return this.db.data._meta.schemaVersion;
     }
 
+    public getCurrency () : string {
+        return this.db.data._meta.currency;
+    }
+
+    public async setCurrency ( currency: string ) : Promise< void > {
+        this.db.data._meta.currency = this.str( currency );
+        await this.save();
+    }
+
+    public getLanguage () : Database[ '_meta' ][ 'language' ] {
+        return this.db.data._meta.language || 'de-DE';
+    }
+
+    public async setLanguage ( language: Database[ '_meta' ][ 'language' ] ) : Promise< void > {
+        this.db.data._meta.language = language;
+        await this.save();
+    }
+
+    public async updateDatabase () : Promise< void > {
+        await this.generateSuggestions( false );
+        await this.generateStats( false );
+        await this.calculateValue( false );
+        this.scheduleWrite( true );
+    }
+
+    public async clearDatabase () : Promise< void > {
+        this.db.data.collection.coins = [];
+        this.db.data.collection.items = [];
+        this.db.data.suggestions = this.getDefaultSuggestions();
+        this.db.data.stats = this.getDefaultStats();
+        this.db.data.value = {};
+        this.db.data._meta.updatedAt = this.now();
+        this.scheduleWrite( true );
+    }
+
+    private getImageReferenceSet () : Set< string > {
+        const set = new Set< string >();
+
+        this.db.data.collection.coins.forEach( coin => {
+            if ( coin.image?.obverse ) set.add( coin.image.obverse );
+            if ( coin.image?.reverse ) set.add( coin.image.reverse );
+            if ( coin.image?.other ) set.add( coin.image.other );
+        } );
+
+        return set;
+    }
+
+    public async getUnusedImages () : Promise< string[] > {
+        const directory = join( process.cwd(), 'uploads' );
+        const files = await readdir( directory );
+        const refs = this.getImageReferenceSet();
+
+        return files.filter( file => ! refs.has( file ) );
+    }
+
+    public async pruneUnusedImages () : Promise< string[] > {
+        const directory = join( process.cwd(), 'uploads' );
+        const orphan = await this.getUnusedImages();
+
+        await Promise.all( orphan.map( async file => {
+            try { await unlink( join( directory, file ) ); }
+            catch ( _ ) { /* ignore missing */ }
+        } ) );
+
+        return orphan;
+    }
+
     public getDateCreatedAt () : Date {
         return new Date( this.db.data._meta.createdAt );
     }
 
     public getDateUpdatedAt () : Date {
         return new Date( this.db.data._meta.updatedAt );
-    }
-
-    // settings
-
-    public getCurrency () : string {
-        return this.db.data._meta.currency;
-    }
-
-    public async setCurrency ( currency: string ) : Promise< void > {
-        this.db.data._meta.currency = currency.trim();
-        await this.save();
     }
 
     // id generator
