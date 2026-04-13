@@ -43,7 +43,7 @@
   "devDependencies": {
     "@types/express": "^5.0.6",
     "@types/multer": "^2.1.0",
-    "@types/node": "^25.5.2",
+    "@types/node": "^25.6.0",
     "concurrently": "^9.2.1",
     "nodemon": "^3.1.14",
     "tsc-alias": "^1.8.16",
