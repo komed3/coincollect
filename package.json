@@ -38,7 +38,7 @@
     "lowdb": "^7.0.1",
     "multer": "^2.1.1",
     "pug": "^3.0.4",
-    "uuid": "^13.0.0"
+    "uuid": "^14.0.0"
   },
   "devDependencies": {
     "@types/express": "^5.0.6",
