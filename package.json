@@ -33,7 +33,7 @@
   "dependencies": {
     "express": "^5.2.1",
     "i18next": "^26.0.8",
-    "i18next-fs-backend": "^2.6.4",
+    "i18next-fs-backend": "^2.6.5",
     "i18next-http-middleware": "^3.9.6",
     "lowdb": "^7.0.1",
     "multer": "^2.1.1",
