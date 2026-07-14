@@ -46,7 +46,7 @@
     "@types/node": "^26.1.1",
     "concurrently": "^10.0.3",
     "nodemon": "^3.1.14",
-    "tsc-alias": "^1.9.0",
+    "tsc-alias": "^1.9.1",
     "typescript": "^6.0.3"
   }
 }
